@@ -3,15 +3,48 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
-  <title>Stencil Component Starter</title>
-
+  <title>Gataca QR Component</title>
   <script type="module" src="/build/gatacaqr.esm.js"></script>
   <script nomodule src="/build/gatacaqr.js"></script>
+  <script type="module" src="/build/modal.esm.js"></script>
+  <script nomodule src="/build/modal.js"></script>
+  <style type="text/css">
+  h1{
+    color: #181B5E;
+    align-self: center;
+    text-align: center;
+  }
 
+  h5{
+    color: #181B5E;
+  }
+  </style>
 </head>
 <body>
+  <gataca-qr id="gataca-qr" callback-server="https://connect.dev.gatacaid.com:9090" session-endpoint="http://localhost:9009/login?id=">
+  <h1 slot="title">Login with Gataca</h1>
+  <h5 slot="description">Scan this QR to open your gataca wallet</h5></gataca-qr>
+  
+  <script>
+    const qr = document.getElementById('gataca-qr');
+    qr.successCallback = () => {
+      console.log('SUCCESS')
+    };
+    qr.errorCallback = () => {
+      console.log('ERROR')
+    };
 
-  <my-component first="Stencil" last="'Don't call me a framework' JS"></my-component>
-
+    qr.createSession = async () => {
+      try{
+        let response = await fetch("http://localhost:9009/validate");
+        console.log(response.status) ;
+        response.headers.forEach((value, key) => console.log("key", key, "value", value))
+        return response.headers.get("X-Connect-Id")
+      } catch (error){
+        console.log(error);
+        return ""
+      }
+    }
+  </script>
 </body>
 </html>
