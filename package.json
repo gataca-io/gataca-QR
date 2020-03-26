@@ -1,9 +1,11 @@
 {
   "name": "gatacaqr",
   "version": "0.0.1",
-  "description": "Stencil Component Starter",
+  "description": "Gataca component to display presentation requests in QR",
+  "author": "Gataca <it@gataca.io>",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
+  "licenses": [{"license":"MIT"}],
   "es2015": "dist/esm/index.mjs",
   "es2017": "dist/esm/index.mjs",
   "types": "dist/types/index.d.ts",
