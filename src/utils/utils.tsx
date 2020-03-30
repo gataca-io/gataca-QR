@@ -8,3 +8,10 @@ export function base64UrlEncode(str: string) :string{
     let b64 = btoa(str)
     return b64.replace(/\+/g, '-').replace(/\//g, '_').replace(/\=+$/, '');
 }
+
+export enum RESULT_STATUS {
+    ONGOING =0,
+    SUCCESS =1,
+    FAILED =2,
+  }
+  

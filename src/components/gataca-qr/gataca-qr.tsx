@@ -1,7 +1,7 @@
-import { Component, Prop, h, State, getAssetPath } from '@stencil/core';
+import { Component, Prop, h, State, getAssetPath, Method } from '@stencil/core';
 import qrcode from 'qrcode-generator';
 
-import * as utils from '../../utils/utils';
+import {checkMobile, base64UrlEncode, RESULT_STATUS} from '../../utils/utils';
 
 
 const DEEP_LINK_PREFIX = "https://gataca.page.link/?apn=com.gatacaapp&ibi=com.gataca.wallet&link="
@@ -10,9 +10,8 @@ const DEEP_LINK_PREFIX = "https://gataca.page.link/?apn=com.gatacaapp&ibi=com.ga
 const DEFAULT_SESSION_TIMEOUT = 180 //3mins
 const DEFAULT_POLLING_FREQ = 3 // 3 s
 const DEFAULT_CALLBACK_SERVER = "https://connect.gatacaid.com:9090" // Gataca Connect SaaS
-const DEFAULT_SESSION_ENDPOINT = "https://" + window.location.hostname + "/auth/login?id=" // Should never be used, but will be matching the examples provided
-const DEFAULT_GENERATION_ENDPOINT = "https://" + window.location.hostname + "/auth/validate" // Should never be used, but will be matching the examples provided
-const DEFAULT_SESSION_HEADER = "X-Connect-Id"
+const DEFAULT_SESSION_ENDPOINT = "https://" + window.location.hostname + ":9090/admin/v1/login/gataca" // Should never be used, but will be matching the examples provided
+const DEFAULT_GENERATION_ENDPOINT = "https://" + window.location.hostname + ":9090/admin/v1/login/request" // Should never be used, but will be matching the examples provided
 
 @Component({
   tag: 'gataca-qr',
@@ -25,15 +24,17 @@ export class GatacaQR {
   * ***Mandatory***
   * Callback fired upon session correctly verified
   * If not set, session validation wouldn't trigger any action
+  * The session data and a possible token will be sent as parameters to the callback
   */
-  @Prop() successCallback: () => Promise<void> = undefined;
+  @Prop() successCallback: (data ?:any, token ?:string) => void = undefined;
 
   /**
   * ***Mandatory***
   * Callback fired upon session expired or invalid
   * If not set, session error would not be handled
+  * An error containing information will be passed as parameter
   */
-  @Prop() errorCallback: () => Promise<void> = undefined;
+  @Prop() errorCallback: (error ?:Error) => void = undefined;
 
   /**
   * ***Mandatory***
@@ -46,7 +47,7 @@ export class GatacaQR {
   * Check status function to query the current status of the session
   * If not set, it would fallback to the session Endpoint property.
   */
-  @Prop() checkStatus?: (id: string) => Promise<boolean> = undefined;
+  @Prop() checkStatus?: (id ?: string) => Promise<RESULT_STATUS> = undefined;
 
   /**
   * _[Optional]_
@@ -97,18 +98,58 @@ export class GatacaQR {
    */
   @Prop() dynamicLink?: boolean = true;
 
+  
   @State() open: boolean = false;
 
   @State() loaded: boolean = false;
 
-  async display() {
+  @State() connectToken :string =undefined;
+
+  @State() loginToken :string = undefined;
+  @State() sessionData :any = undefined;
+
+  /**
+   * Force manually the display of a QR
+   */
+  @Method()
+  async display() :Promise<void>{
     await this.getSessionId();
-    this.poll().then(this.successCallback).catch(this.errorCallback);
-    if (utils.checkMobile() && this.dynamicLink) {
+    this.poll().then((data :any) => {this.successCallback(data, this.loginToken)})
+                .catch((error :Error) => this.errorCallback(error));
+    if (checkMobile() && this.dynamicLink) {
       window.location.href = this.getLink();
     } else {
       this.open = true;
     }
+  }
+
+  /**
+   * Stop manually an ongoing session
+   */
+  @Method()
+  async stop() :Promise<void>{
+    this.open = false;
+    this.loginToken = null;
+    this.sessionData = null;
+    if (this.loaded){
+      this.sessionId = null;
+    }
+  }
+
+  /**
+   * Retrieve manually a possible token retrieved upon login on the Header 'token'
+   */
+  @Method()
+  async getToken() {
+    return this.loginToken ? Promise.resolve(this.loginToken) : Promise.reject(new Error("No successful login"))
+  }
+
+  /**
+   * Retrieve manually the session data on a successful login
+   */
+  @Method()
+  async getSessionData() {
+    return this.sessionData ? Promise.resolve(this.sessionData) : Promise.reject(new Error("No successful login"))
   }
 
   async getSessionId(): Promise<string> {
@@ -130,15 +171,10 @@ export class GatacaQR {
     return this.sessionId;
   }
 
-  async createSessionDefault(): Promise<string>{
-    let endpoint = this.generationEndpoint || DEFAULT_GENERATION_ENDPOINT;
-    let result = await fetch(endpoint)
-    return result.headers.get(DEFAULT_SESSION_HEADER)
-  }
 
   getLink(): string{
     let link = 'https://gataca.page.link/scan?';
-    link += "session=" + this.sessionId + "&callback=" + utils.base64UrlEncode(encodeURIComponent(this.callbackServer));
+    link += "session=" + this.sessionId + "&callback=" + base64UrlEncode(encodeURIComponent(this.callbackServer));
     link = encodeURIComponent(link);
     return this.dynamicLink ? DEEP_LINK_PREFIX + link : link;
   }
@@ -147,36 +183,66 @@ export class GatacaQR {
     return <button class="gatacaButton" onClick={(_) => this.display()}><img src={getAssetPath('./gatacaqr/assets/gatacaLogo.png')} class="buttonImg" /> Log in with Gataca</button>;
   }
 
-  async checkSession(id: string): Promise<boolean> {
+  async checkSessionDefault(id: string): Promise<RESULT_STATUS> {
     let endpoint = this.sessionEndpoint || DEFAULT_SESSION_ENDPOINT;
-    let response = await fetch(endpoint + id)
-    return response ? response.status === 200 : false;
+    let response = await fetch(
+      endpoint,
+      {
+          method: "POST",
+          headers: {
+              'Content-Type': 'application/json',
+              'session_id' : id,
+              'connect_token': this.connectToken,
+              'tenant': 'Admin',
+          },
+          body: "{}"
+      }
+    );
+    switch (response.status){
+      case 200:
+        this.loginToken = response.headers.get("token");
+        this.sessionData = (await response.json()).data;
+        return RESULT_STATUS.SUCCESS;
+      case 428:
+        return RESULT_STATUS.ONGOING;
+      default:
+        return RESULT_STATUS.FAILED
+    } 
   }
 
-  async poll() {
+  async createSessionDefault(): Promise< string>{
+    let endpoint = this.generationEndpoint || DEFAULT_GENERATION_ENDPOINT;
+    let response = await fetch(endpoint);
+    let data = await response.json();
+    this.connectToken = data.connect_token;
+    console.log("ConnectToken", "SET", this.connectToken, "EXPECTED", data.connect_token)
+    return data.session_id
+  }
+
+  async poll(){
     let endTime = new Date().getTime() + (this.sessionTimeout || DEFAULT_SESSION_TIMEOUT) * 1000;
     let interval = (this.pollingFrequency || DEFAULT_POLLING_FREQ) * 1000;
-    let checkFunc = async (component: GatacaQR): Promise<boolean> => {
+    let checkFunc = async (component: GatacaQR): Promise<RESULT_STATUS> => {
       let id = await component.getSessionId();
-      return component.checkStatus ? component.checkStatus(id) : component.checkSession(id);
+      return component.checkStatus ? component.checkStatus(id) : component.checkSessionDefault(id);
     }
     let component = this;
     let checkCondition = async function (resolve, reject) {
       // If the condition is met, we're done! 
-      var result = await checkFunc(component);
+      let result = await checkFunc(component);
       console.log("Checking condition: ", result)
-      if (result) {
+      if (result === RESULT_STATUS.SUCCESS) {
         console.log("Resolve")
-        resolve(result);
-      }
+        resolve(this.sessionData);
+      } 
       // If the condition isn't met but the timeout hasn't elapsed, go again
-      else if (new Date().getTime() < endTime) {
+      else if (result === RESULT_STATUS.ONGOING && new Date().getTime() < endTime) {
         console.log("Retry in ", interval)
         setTimeout(checkCondition, interval, resolve, reject);
       }
       // Didn't match and too much time, reject!
       else {
-        this.open = false;
+        await this.stop()
         reject(new Error('Session validation timed out for after' + this.sessionTimeout || DEFAULT_SESSION_TIMEOUT + ' s.'));
       }
     };
@@ -199,11 +265,7 @@ export class GatacaQR {
   }
 
   renderModal() {
-    return <div class={'overlay ' + (this.open ? 'is-visible' : '') + ' '} onClick={(_) => { 
-      this.open = false;
-      if (this.loaded){
-        this.sessionId = null;
-      } }}>
+    return <div class={'overlay ' + (this.open ? 'is-visible' : '') + ' '} onClick={(_) => this.stop()}>
       <div class="modal-window" onClick={(event) => { event.stopPropagation() }}>
         <div class="modal-window__content" >
           {this.displayQR()}
