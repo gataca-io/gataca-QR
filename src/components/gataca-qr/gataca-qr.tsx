@@ -180,7 +180,7 @@ export class GatacaQR {
   }
 
   renderButton() {
-    return <button class="gatacaButton" onClick={(_) => this.display()}><img src={getAssetPath('./gatacaqr/assets/gatacaLogo.png')} class="buttonImg" /> Log in with Gataca</button>;
+    return <button class="gatacaButton" onClick={(_) => this.display()}><img src={getAssetPath('assets/gatacaLogo.png')} class="buttonImg" /> Log in with Gataca</button>;
   }
 
   async checkSessionDefault(id: string): Promise<RESULT_STATUS> {
