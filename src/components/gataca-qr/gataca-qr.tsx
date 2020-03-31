@@ -1,4 +1,4 @@
-import { Component, Prop, h, State, Method , Event, EventEmitter, EventOptions} from '@stencil/core';
+import { Component, Prop, h, State, Method , Event, EventEmitter} from '@stencil/core';
 import qrcode from 'qrcode-generator';
 
 import {checkMobile, base64UrlEncode, RESULT_STATUS} from '../../utils/utils';
