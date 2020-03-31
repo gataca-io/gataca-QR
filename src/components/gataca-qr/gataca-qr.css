@@ -8,6 +8,10 @@ img {
     margin-right: auto;
 }
 
+.buttonContainer{
+    display: inline-block;
+}
+
 .gatacaButton {
     display: flex;
     margin:3px;
@@ -21,6 +25,7 @@ img {
     border-radius: 6px;
     text-shadow: aliceblue;
     color: whitesmoke;
+    
 }
 
 .buttonImg {

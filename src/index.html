@@ -16,12 +16,30 @@
   h5{
     color: #181B5E;
   }
+
+  .btn-gataca {
+    background-color: blue;
+    color: white;
+    font-weight: bold;
+    top: 50%;
+    width: 80%;
+    padding: 40px;
+    height: 100%;
+    margin: auto;
+    text-align: center;
+    align-items: center;
+}
   </style>
 </head>
 <body>
+  <div class="btn-gataca">
+
+  
   <gataca-qr id="gataca-qr" callback-server="https://connect.dev.gatacaid.com:9090" session-endpoint="http://localhost:9009/login?id=">
   <h1 slot="title">Login with Gataca</h1>
   <h5 slot="description">Scan this QR to open your gataca wallet</h5></gataca-qr>
+
+  </div>
   
   <script>
     const qr = document.getElementById('gataca-qr');

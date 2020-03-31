@@ -302,7 +302,7 @@ export class GatacaQR {
   }
 
   render() {
-    return <div>
+    return <div class="buttonContainer">
       {this.renderButton()}
       {this.open && this.renderModal()}
     </div>;
