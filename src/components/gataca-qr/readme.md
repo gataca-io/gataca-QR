@@ -91,6 +91,14 @@ In order to consult sessions, both options are also available, depending on how 
 | `successCallback`    | --                    | ***Mandatory*** Callback fired upon session correctly verified If not set, session validation wouldn't trigger any action The session data and a possible token will be sent as parameters to the callback                                                                                                                                          | `(data?: any, token?: string) => void`    | `undefined`                   |
 
 
+## Events
+
+| Event                  | Description                                                                | Type               |
+| ---------------------- | -------------------------------------------------------------------------- | ------------------ |
+| `gatacaLoginCompleted` | GatacaLoginCompleted event, triggered with session data upon login success | `CustomEvent<any>` |
+| `gatacaLoginFailed`    | GatacaLoginFailed event, triggered with error upon login failure           | `CustomEvent<any>` |
+
+
 ## Methods
 
 ### `display() => Promise<void>`

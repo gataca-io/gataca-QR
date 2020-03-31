@@ -1,4 +1,4 @@
-import { Component, Prop, h, State, Method } from '@stencil/core';
+import { Component, Prop, h, State, Method , Event, EventEmitter, EventOptions} from '@stencil/core';
 import qrcode from 'qrcode-generator';
 
 import {checkMobile, base64UrlEncode, RESULT_STATUS} from '../../utils/utils';
@@ -110,13 +110,39 @@ export class GatacaQR {
   @State() sessionData :any = undefined;
 
   /**
+   * GatacaLoginCompleted event, triggered with session data upon login success
+   */
+  @Event({
+    eventName: 'gatacaLoginCompleted',
+    composed: true,
+    cancelable: true,
+    bubbles: true,
+  }) gatacaLoginCompleted: EventEmitter;
+
+  /**
+   * GatacaLoginFailed event, triggered with error upon login failure
+   */
+  @Event({
+    eventName: 'gatacaLoginFailed',
+    composed: true,
+    cancelable: true,
+    bubbles: true,
+  }) gatacaLoginFailed: EventEmitter;
+
+
+  /**
    * Force manually the display of a QR
    */
   @Method()
   async display() :Promise<void>{
     await this.getSessionId();
-    this.poll().then((data :any) => {this.successCallback(data, this.loginToken)})
-                .catch((error :Error) => this.errorCallback(error));
+    this.poll().then((data :any) => {
+                    this.gatacaLoginCompleted.emit(data);
+                    this.successCallback(data, this.loginToken);
+                }).catch((error :Error) => {
+                  this.gatacaLoginFailed.emit(error);
+                  this.errorCallback(error);
+                });
     if (checkMobile() && this.dynamicLink) {
       window.location.href = this.getLink();
     } else {

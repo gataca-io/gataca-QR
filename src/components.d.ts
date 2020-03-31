@@ -108,6 +108,14 @@ declare namespace LocalJSX {
          */
         "generationEndpoint"?: string;
         /**
+          * GatacaLoginCompleted event, triggered with session data upon login success
+         */
+        "onGatacaLoginCompleted"?: (event: CustomEvent<any>) => void;
+        /**
+          * GatacaLoginFailed event, triggered with error upon login failure
+         */
+        "onGatacaLoginFailed"?: (event: CustomEvent<any>) => void;
+        /**
           * _[Optional]_ Frequency in seconds to check if the session has been validated
          */
         "pollingFrequency"?: number;
