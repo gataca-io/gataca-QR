@@ -260,7 +260,7 @@ export class GatacaQR {
       console.log("Checking condition: ", result)
       if (result === RESULT_STATUS.SUCCESS) {
         console.log("Resolve")
-        resolve(this.sessionData);
+        resolve(component.sessionData);
       } 
       // If the condition isn't met but the timeout hasn't elapsed, go again
       else if (result === RESULT_STATUS.ONGOING && new Date().getTime() < endTime) {
