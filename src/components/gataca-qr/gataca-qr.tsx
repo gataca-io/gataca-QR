@@ -269,7 +269,7 @@ export class GatacaQR {
       }
       // Didn't match and too much time, reject!
       else {
-        await this.stop()
+        await component.stop()
         reject(new Error('Session validation timed out for after' + this.sessionTimeout || DEFAULT_SESSION_TIMEOUT + ' s.'));
       }
     };
