@@ -326,14 +326,12 @@ export class GatacaQR {
   }
 
   renderAsQr(){
-    this.open = true;
-    return this.renderModal()
+    return this.open && this.renderModal()
   }
 
   render() {
     return <div class="buttonContainer">
-      {this.renderButton()}
-      {this.open && this.renderModal()}
+      {this.asButton ? this.renderAsButton() : this.renderAsQr()} 
     </div>;
   }
 }
