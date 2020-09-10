@@ -9,6 +9,7 @@ const DEEP_LINK_PREFIX = "https://gataca.page.link/?apn=com.gatacaapp&ibi=com.ga
 //Default values
 const DEFAULT_SESSION_TIMEOUT = 180 //3mins
 const DEFAULT_POLLING_FREQ = 3 // 3 s
+const DEFAULT_QR_FUNCTION = "scan" // 3 s
 const DEFAULT_CALLBACK_SERVER = "https://connect.gatacaid.com:9090" // Gataca Connect SaaS
 const DEFAULT_SESSION_ENDPOINT = "https://" + window.location.hostname + ":9090/admin/v1/login/gataca" // Should never be used, but will be matching the examples provided
 const DEFAULT_GENERATION_ENDPOINT = "https://" + window.location.hostname + ":9090/admin/v1/login/request" // Should never be used, but will be matching the examples provided
@@ -28,6 +29,21 @@ export class GatacaQR {
   * The session data and a possible token will be sent as parameters to the callback
   */
   @Prop() successCallback: (data ?:any, token ?:string) => void = undefined;
+
+  /**
+  * _[Optional]_
+  * Decide if to show it as a button to display the QR
+  * Or display directly the QR. Default: true (display button)
+  */
+  @Prop() asButton: boolean = true;
+
+  /**
+  * _[Optional]_
+  * Decide if scanning the credential as a verifier to request credentials
+  * or as an issuer too issue credentials.
+  * Options: scan (default) | credential 
+  */
+ @Prop() qrRole: string = DEFAULT_QR_FUNCTION;
 
   /**
   * ***Mandatory***
@@ -200,8 +216,9 @@ export class GatacaQR {
 
 
   getLink(): string{
-    let link = 'https://gataca.page.link/scan?';
-    link += "session=" + this.sessionId + "&callback=" + base64UrlEncode(encodeURIComponent(this.callbackServer));
+    let link = 'https://gataca.page.link/+' + this.qrRole + '?';
+    link += this.qrRole === DEFAULT_QR_FUNCTION ? "session=" + this.sessionId : "process=" + this.sessionId 
+    link += "&callback=" + base64UrlEncode(encodeURIComponent(this.callbackServer));
     link = encodeURIComponent(link);
     return this.dynamicLink ? DEEP_LINK_PREFIX + link : link;
   }
@@ -299,6 +316,18 @@ export class GatacaQR {
         </div>
       </div>
     </div>;
+  }
+
+  renderAsButton(){
+    return <div class="buttonContainer">
+      {this.renderButton()}
+      {this.open && this.renderModal()}
+    </div>;
+  }
+
+  renderAsQr(){
+    this.open = true;
+    return this.renderModal()
   }
 
   render() {

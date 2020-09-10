@@ -9,6 +9,10 @@ import { RESULT_STATUS, } from "./utils/utils";
 export namespace Components {
     interface GatacaQr {
         /**
+          * _[Optional]_ Decide if to show it as a button to display the QR Or display directly the QR. Default: true (display button)
+         */
+        "asButton": boolean;
+        /**
           * ***Mandatory*** Connect Server where the wallet will send the data
          */
         "callbackServer": string;
@@ -49,6 +53,10 @@ export namespace Components {
          */
         "pollingFrequency"?: number;
         /**
+          * _[Optional]_ Decide if scanning the credential as a verifier to request credentials or as an issuer too issue credentials. Options: scan (default) | credential
+         */
+        "qrRole": string;
+        /**
           * _[Optional]_ EndpointURL to fetch data for the status. The endpoint URL will send a GET request with the session id on a parameter; concatenated to this string. It can be used if your API fulfills the requirement. If not, use the checkStatus property. If not set, it would use a default endpoint to the same window URL under the path /auth
          */
         "sessionEndpoint"?: string;
@@ -83,6 +91,10 @@ declare global {
 }
 declare namespace LocalJSX {
     interface GatacaQr {
+        /**
+          * _[Optional]_ Decide if to show it as a button to display the QR Or display directly the QR. Default: true (display button)
+         */
+        "asButton"?: boolean;
         /**
           * ***Mandatory*** Connect Server where the wallet will send the data
          */
@@ -119,6 +131,10 @@ declare namespace LocalJSX {
           * _[Optional]_ Frequency in seconds to check if the session has been validated
          */
         "pollingFrequency"?: number;
+        /**
+          * _[Optional]_ Decide if scanning the credential as a verifier to request credentials or as an issuer too issue credentials. Options: scan (default) | credential
+         */
+        "qrRole"?: string;
         /**
           * _[Optional]_ EndpointURL to fetch data for the status. The endpoint URL will send a GET request with the session id on a parameter; concatenated to this string. It can be used if your API fulfills the requirement. If not, use the checkStatus property. If not set, it would use a default endpoint to the same window URL under the path /auth
          */
