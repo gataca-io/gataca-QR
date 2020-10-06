@@ -216,7 +216,7 @@ export class GatacaQR {
 
 
   getLink(): string{
-    let link = 'https://gataca.page.link/+' + this.qrRole + '?';
+    let link = 'https://gataca.page.link/' + this.qrRole + '?';
     link += this.qrRole === DEFAULT_QR_FUNCTION ? "session=" + this.sessionId : "process=" + this.sessionId 
     link += "&callback=" + base64UrlEncode(encodeURIComponent(this.callbackServer));
     link = encodeURIComponent(link);
@@ -287,7 +287,7 @@ export class GatacaQR {
       // Didn't match and too much time, reject!
       else {
         await component.stop()
-        reject(new Error('Session validation timed out for after' + this.sessionTimeout || DEFAULT_SESSION_TIMEOUT + ' s.'));
+        reject(new Error('Session validation timed out for after' + component.sessionTimeout || DEFAULT_SESSION_TIMEOUT + ' s.'));
       }
     };
     return new Promise(checkCondition);
