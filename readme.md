@@ -20,19 +20,25 @@ It allows to integrate 2 slots, named "title" and "description", to provide furt
 
 ## Usage
 
+The goal of this component is to ease the generation and presentation of QRs with Gataca Connect Sessions on any html or frontend project, to allow the integration of GATACA Connect in your own infrastructure or application.
+
 This component should be used with the prerequisite of having an application which can be integrated with [Gataca Connect](https://docs.gatacaid.com/connect/). More precisely, your application will need to be able to perform the two operations against your connect server:
 1. Create sessions
 2. Consult sessions
 
-Therefore, in order to make it work, you will need at least:
-1. A **connect server** 
-2. An application integrated with that server to perform the basic operations.
+![QRDiagram](QR_Diagram_Expected.png)
 
-Note: Direct integration with [Gataca Connect](https://docs.gatacaid.com/connect/) is not recommended and should be used only for demo purposes.
+Therefore, in order to make it work, you will need at least:
+1. A **connect server** deployed at your infrastructure
+2. A tenant configured on that **Connect** and an application with credentials to create sessions on the tenant. You will need the following properties:
+    - "$YOUR_APP"
+    - "$YOUR_TENANT"
+    - "$YOUR_PASSWORD"
+    - "$YOUR_SERVER"
+3. An application integrated with that server to perform the basic operations.
 
 To better understand how the QR works, this diagram details its work:
 ![QrIntegration](QR_Integration.png)
-
 
 ### Configurations
 
@@ -59,9 +65,193 @@ You can also check the examples below to check which configuration is more suita
 
 ### Examples
 
-#### HTML Only
-This example shows how to integrate the QR Component on a normal scenario, on the easiest case: the application server exposes the same interface as the Gataca Login Module.
+#### Test connection
 
+The first example to understand how the QR works is to avoid any backend processing (no business logic added); just by pointing the frontend directly to consult a session on the Connect.
+
+![QRDiagramDirect](QR_Diagram_Direct.png)
+
+Note: Direct integration with [Gataca Connect](https://docs.gatacaid.com/connect/) is not recommended and should be used only for demo purposes. There would be credentials leaked on the client side otherwise.
+
+````html
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
+    <title>Gataca QR Component</title>
+    <script src='https://unpkg.com/gatacaqr@1.1.3/dist/gatacaqr.js'></script>
+    <style type="text/css">
+        .qrTitle {
+            color: #181B5E;
+            align-self: center;
+            text-align: center;
+        }
+
+        .qrDesc {
+            color: #181B5E;
+        }
+    </style>
+</head>
+
+<body>
+    <gataca-qr id="gataca-qr" session-timeout="300" polling-frequency="3">
+        <h1 class="qrTitle" slot="title" id="qrTitle">Login with Gataca</h1>
+        <h5 class="qrDesc" slot="description">Scan this QR to open your gataca wallet</h5>
+    </gataca-qr>
+
+    <script>
+        const qr = document.getElementById('gataca-qr');
+        const qrTitle = document.getElementById('qrTitle');
+        const RESULT_STATUS = {
+            ONGOING: 0,
+            SUCCESS: 1,
+            FAILED: 2,
+        }
+        let appToken = "";
+        let sessionToken = "";
+
+        //Change this variables with your installation
+        const appName = "$YOUR_APP";
+        const tenant = "$YOUR_TENANT";
+        const appPassword = "$YOUR_PASSWORD";
+        const connectServer = "$YOUR_SERVER";
+
+        qr.callbackServer = connectServer;
+
+        const getAppToken = async () => {
+            if (!appToken) {
+                let response = await fetch(
+                    connectServer + "/admin/v1/login/basic",
+                    {
+                        method: "POST",
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Tenant': tenant,
+                            'Authorization': 'Basic ' + btoa(appName + ":" + appPassword)
+                        },
+                        body: "{}"
+                    })
+                appToken = response.headers.get('Token')
+                return appToken
+            }
+            return appToken
+        }
+
+        qrTitle.onClick = (e) => {
+            qr.open = false;
+        }
+
+
+        const processData = (data) => {
+            let result = {}
+            for (let vc of data?.verifiableCredential) {
+                for (let key of Object.keys(vc.credentialSubject)) {
+                    if (key != "id") {
+                        result[key] = vc.credentialSubject[key]
+                    }
+                }
+            }
+            return result
+        }
+
+        qr.createSession = async () => {
+            let endpoint = connectServer + "/api/v1/sessions";
+            let response = await fetch(
+                endpoint,
+                {
+                    method: "POST",
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'jwt ' + await getAppToken()
+                    },
+                    body: "{}"
+                })
+            let data = await response.json();
+            sessionToken = response.headers.get('Token');
+            return data.id
+        }
+
+        qr.checkStatus = async (id) => {
+            let endpoint = connectServer + '/api/v1/sessions/' + id;
+            let response = await fetch(
+                endpoint,
+                {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'jwt ' + sessionToken,
+                    }
+                }
+            );
+            let data = response.status === 200 ? (await response.json()).data : null;
+            if (data) {
+                qr.sessionData = processData(data)
+            }
+            return response.status === 200 ? RESULT_STATUS.SUCCESS : response.status === 204 ? RESULT_STATUS.ONGOING : RESULT_STATUS.FAILED;
+        }
+
+        qr.successCallback = (data, token) => {
+            alert("LOGIN OK: " + qr.sessionData["some_info_field_you_requested"]) //the session data has mapped the required credentials. You can invoke whichever you need here, depending on what you requested on the tenant configuration.
+        };
+        qr.errorCallback = () => {
+            alert("Wrong credentials!")
+        };
+    </script>
+</body>
+
+</html>
+````
+
+#### HTML Only with the standard interface
+
+This example shows how to integrate the QR Component on a normal scenario, on the easiest case: the application server exposes the same interface as the Access API on the GATACA Connect.
+
+To understand the GATACA Connect Access API, this diagram could help:
+![QRDiagramStandard](QR_Diagram_Access_API.png)
+
+As you can see from the diagram, the Access API performs an internal call to the sessions API to generate and validate sessions. The retrieved information is then mapped with our business logic to perform authorization and generate tokens if needed.
+
+The definition of the default interface is can be found on the [Gataca Connect documentation](https://docs.gataca.io/connect//#access):
+![GatacaLoginAPI](gatacaLoginAPI.png)
+
+The first request - _the gataca login request_- is the default session generation endpoint, whereas the second one -_Gataca Login_- Post response is the session consultation endpoint.
+
+The pseudo-code of those functions in the case of the AccessAPI, that could easily be adapted to your needs, is the following:
+
+````go
+func loginRequest(request, response) {
+    sessionID, token = connectService.CreateSession(session)  // connectService implements the invocation to the sessionsAPI, including the required app authentication
+    cipheredToken = cipher(token)                             // the token is ciphered so it cannot be used by the user or anyone else directly against the connect server if leaked
+    response.Header.Set("connect_token", token)               // token and session_id are returned in both header or response body
+    response.Header.Set("session_id", sessionID)
+    response = {
+        "session_id":    sessionID,
+        "connect_token": connectToken,
+    }
+    return response.writeJSON(http.StatusOK, response)
+}
+
+func loginGataca(request, response) error {
+    sessionID = request.Header.Get("session_id")                          // recover token and session_id
+    connectToken = request.Header.Get("connect_token")
+    decipheredToken = decipher(token)                                     // decipher the previously ciphered token 
+    data, finish_code = connectService.GetSessionData(session, token)     // connectService implements the API Call to validate the session against the Sessions API
+    if (finish_code = 204) {
+       return response.writeJSON(http.StatusPreconditionRequired,"")      // Empty session: returns HTTP code 428
+    } else if (finish_code = 200) {
+       dataProcessed = extractData(data)                                  // Valid session: we can process the response credentials and validate the data with our own business logic or authenticate
+       token = validateDataAndAuthenticate(dataProcessed)
+       response.setToken(token)
+       return response.writeJSON(http.StatusOK, {"data": dataProcessed})  // Return processed data on a free format to be used and presented by the front
+    } else {
+       return response.writeJSON(http.StatusError, "")                    // Invalid session, return an error to the front
+    }
+}
+````
+__Note:__ _The default values provided for demo will always result in rejected sessions, as it is controlled by the gataca access application logic: the authentication using verifiable credentials will be successful whereas the authorization against our business logic will be rejected._
+
+The example configuration of the QR if your application implements the standard API is very simple:
 ````html
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
@@ -105,12 +295,7 @@ session-endpoint = "https://connect.gataca.io:9090/admin/v1/login/gataca">
 </html>
 ````
 
-The definition of the default interface is can be found on the [Gataca Connect documentation](https://docs.gataca.io/connect//#access):
-![GatacaLoginAPI](gatacaLoginAPI.png)
-
-The first request - _the gataca login request_- is the default session generation endpoint, whereas the second one -_Gataca Login_- Post response is the session consultation endpoint.
-
-__Note:__ _The default values provided for demo will always result in rejected sessions._
+___ Note: ___  _The following examples explain how to use certain configuration parameters depending on your application needs_
 
 #### Application rendering HTML Only
 This example shows how to integrate the QR Component on a normal scenario, where the application defines its own interface for the services.
