@@ -33,6 +33,7 @@
   },
   "license": "MIT",
   "dependencies": {
+    "@stencil/react-output-target": "^0.0.9",
     "qrcode-generator": "^1.4.4"
   }
 }
