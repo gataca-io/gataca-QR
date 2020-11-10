@@ -1,24 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ba0b9613-4b45-4420-9b28-588118654bad" name="Default Changelist" comment="v1.4.0&#10;&#10;adaptative style fixes">
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/gataca-QR.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/serialmonitor_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_17_11_2020,_14_50_[Default_Changelist]/shelved.patch" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_17_11_2020,_14_50_[Default_Changelist]1/shelved.patch" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_17_11_2020__14_50__Default_Changelist_.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_13_11_2020,_11_29_[Default_Changelist]/shelved.patch" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_13_11_2020__11_29__Default_Changelist_.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gatacaqr-react/src/react-component-lib/interfaces.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gatacaqr-react/src/react-component-lib/utils/attachProps.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gatacaqr-react/src/react-component-lib/utils/case.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gatacaqr-react/src/react-component-lib/utils/dev.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="ba0b9613-4b45-4420-9b28-588118654bad" name="Default Changelist" comment="merge">
+      <change beforePath="$PROJECT_DIR$/src/components/gataca-qr/gataca-qr.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/gataca-qr/gataca-qr.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/gataca-qr/gataca-qr.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/gataca-qr/gataca-qr.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,6 +12,19 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
+    <favorite-branches>
+      <branch-storage>
+        <map>
+          <entry type="LOCAL">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="v1.1" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </favorite-branches>
     <option name="PUSH_AUTO_UPDATE" value="true" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
@@ -68,7 +67,7 @@
       <workItem from="1605551110252" duration="1345000" />
       <workItem from="1605554715678" duration="115000" />
       <workItem from="1605620214502" duration="3955000" />
-      <workItem from="1605624338911" duration="1834000" />
+      <workItem from="1605624338911" duration="3886000" />
     </task>
     <task id="LOCAL-00001" summary="style update">
       <created>1605016252943</created>
@@ -147,7 +146,21 @@
       <option name="project" value="LOCAL" />
       <updated>1605623600871</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="v1.4.0&#10;&#10;adaptative style fixes">
+      <created>1605626473982</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1605626473982</updated>
+    </task>
+    <task id="LOCAL-00013" summary="merge">
+      <created>1605626532473</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1605626532473</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -162,28 +175,29 @@
     <MESSAGE value="version and tabs" />
     <MESSAGE value="change version" />
     <MESSAGE value="v1.4.0&#10;&#10;adaptative style fixes" />
-    <option name="LAST_COMMIT_MESSAGE" value="v1.4.0&#10;&#10;adaptative style fixes" />
+    <MESSAGE value="merge" />
+    <option name="LAST_COMMIT_MESSAGE" value="merge" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="440" y="23" width="746" height="830" key="CommitChangelistDialog2" timestamp="1605626451397">
-      <screen x="0" y="23" width="1440" height="830" />
+    <state x="-1333" y="-235" width="746" height="830" key="CommitChangelistDialog2" timestamp="1605628242098">
+      <screen x="-1920" y="-340" width="1920" height="1057" />
     </state>
-    <state x="-1333" y="-235" key="CommitChangelistDialog2/0.23.1440.830/-1920.-340.1920.1057@-1920.-340.1920.1057" timestamp="1605267262303" />
-    <state x="440" y="23" width="746" height="830" key="CommitChangelistDialog2/0.23.1440.830@0.23.1440.830" timestamp="1605626451397" />
+    <state x="-1333" y="-235" key="CommitChangelistDialog2/0.23.1440.830/-1920.-340.1920.1057@-1920.-340.1920.1057" timestamp="1605628242098" />
+    <state x="440" y="23" width="746" height="830" key="CommitChangelistDialog2/0.23.1440.830@0.23.1440.830" timestamp="1605626532277" />
     <state x="-1333" y="-235" key="CommitChangelistDialog2/0.23.1440.831/-1920.-340.1920.1057@-1920.-340.1920.1057" timestamp="1605176958300" />
-    <state x="-1536" y="-155" key="DiffContextDialog" timestamp="1605173238829">
+    <state x="-1536" y="-155" key="DiffContextDialog" timestamp="1605628232514">
       <screen x="-1920" y="-340" width="1920" height="1057" />
     </state>
-    <state x="-1536" y="-155" key="DiffContextDialog/0.23.1440.830/-1920.-340.1920.1057@-1920.-340.1920.1057" timestamp="1605173238829" />
-    <state x="62" y="74" width="1679" height="904" key="MergeDialog" timestamp="1605621057585">
+    <state x="-1536" y="-155" key="DiffContextDialog/0.23.1440.830/-1920.-340.1920.1057@-1920.-340.1920.1057" timestamp="1605628232514" />
+    <state x="-1840" y="-281" width="1799" height="956" key="MergeDialog" timestamp="1605628459293">
+      <screen x="-1920" y="-340" width="1920" height="1057" />
+    </state>
+    <state x="-1840" y="-281" width="1799" height="956" key="MergeDialog/0.23.1440.830/-1920.-340.1920.1057@-1920.-340.1920.1057" timestamp="1605628459293" />
+    <state x="62" y="74" key="MergeDialog/0.23.1440.830@0.23.1440.830" timestamp="1605621057585" />
+    <state x="454" y="258" key="MultipleFileMergeDialog" timestamp="1605628459458">
       <screen x="0" y="23" width="1440" height="830" />
     </state>
-    <state x="-1837" y="-275" width="1679" height="904" key="MergeDialog/0.23.1440.830/-1920.-340.1920.1057@-1920.-340.1920.1057" timestamp="1605263582088" />
-    <state x="62" y="74" key="MergeDialog/0.23.1440.830@0.23.1440.830" timestamp="1605621057585" />
-    <state x="-1315" y="-41" key="MultipleFileMergeDialog" timestamp="1605263582137">
-      <screen x="-1920" y="-340" width="1920" height="1057" />
-    </state>
-    <state x="-1315" y="-41" key="MultipleFileMergeDialog/0.23.1440.830/-1920.-340.1920.1057@-1920.-340.1920.1057" timestamp="1605263582137" />
+    <state x="454" y="258" key="MultipleFileMergeDialog/0.23.1440.830/-1920.-340.1920.1057@-1920.-340.1920.1057" timestamp="1605628459458" />
     <state x="357" y="233" key="Vcs.Push.Dialog.v2" timestamp="1605623643384">
       <screen x="0" y="23" width="1440" height="830" />
     </state>

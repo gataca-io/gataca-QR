@@ -46,7 +46,7 @@ export class GatacaQR {
   * _[Optional]_
   * Decide if scanning the credential as a verifier to request credentials
   * or as an issuer too issue credentials.
-  * Options: scan (default) | credential 
+  * Options: scan (default) | credential
   */
  @Prop() qrRole: string = DEFAULT_QR_FUNCTION;
 
@@ -222,7 +222,7 @@ export class GatacaQR {
 
   getLink(): string{
     let link = 'https://gataca.page.link/' + this.qrRole + '?';
-    link += this.qrRole === DEFAULT_QR_FUNCTION ? "session=" + this.sessionId : "process=" + this.sessionId 
+    link += this.qrRole === DEFAULT_QR_FUNCTION ? "session=" + this.sessionId : "process=" + this.sessionId
     link += "&callback=" + base64UrlEncode(encodeURIComponent(this.callbackServer));
     link = encodeURIComponent(link);
     return this.dynamicLink ? DEEP_LINK_PREFIX + link : link;
@@ -231,12 +231,12 @@ export class GatacaQR {
   renderButton() {
     return <div>
       <button class="gatacaButton" onClick={(_) => this.display()}>
-        <img src={PHONE_ICON} class="buttonImg" />
-        <span>Fast login</span>
+        <img src={PHONE_ICON} class="buttonImg" alt="Easy login"/>
+        <span>Easy login</span>
       </button>
       <div class="sectionTwo">
         <span class="buttonText">By Gataca</span>
-        <img src={GATACA_LOGO_BASE64} class="gatacaImgSmall" />
+        <img src={GATACA_LOGO_BASE64} class="gatacaImgSmall" alt="Gataca logo"/>
       </div>
     </div>
   }
@@ -315,21 +315,30 @@ export class GatacaQR {
     console.log("LINK", link)
     qr.addData(link);
     qr.make();
-    return <div>
-      <slot name="title"/>
-      <div class="qr-container" innerHTML={this.dynamicLink? qr.createSvgTag(8, 25) : qr.createSvgTag(6, 25)} />
-      <slot name="description"/>
+    return <div class="qrMainContainer">
+      <div class="qr-container" innerHTML={this.dynamicLink ? qr.createSvgTag(8, 25) : qr.createSvgTag(6, 25)}/>
     </div>
   }
 
   renderModal() {
-    return <div class={'overlay ' + (this.open ? 'is-visible' : '') + ' '} onClick={(_) => this.stop()}>
-      <div class="modal-window" onClick={(event) => { event.stopPropagation() }}>
-        <div class="modal-window__content" >
-          {this.displayQR()}
+    return (
+      <div class="popUpContainer">
+        <div
+          class={'overlay ' + (this.open ? 'is-visible' : '')}
+          onClick={(_) => this.stop()}
+        >
+        </div>
+        <div
+          class={'modal-window ' + (this.open ? 'is-visible' : '')}
+          onClick={(event) => {
+          event.stopPropagation()
+        }}>
+          <div class="modal-window__content">
+            {this.displayQR()}
+          </div>
         </div>
       </div>
-    </div>;
+    );
   }
 
   renderAsButton(){
@@ -341,7 +350,7 @@ export class GatacaQR {
 
   render() {
     return <div class="buttonContainer">
-      {this.asButton ? this.renderAsButton() : this.renderModal()} 
+      {this.asButton ? this.renderAsButton() : this.renderModal()}
     </div>;
   }
 }
