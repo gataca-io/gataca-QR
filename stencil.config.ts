@@ -1,11 +1,13 @@
 import { Config } from '@stencil/core';
 import nodePolyfills from 'rollup-plugin-node-polyfills';
 import { reactOutputTarget } from '@stencil/react-output-target';
+import {sass} from "@stencil/sass";
 
 export const config: Config = {
   namespace: 'gatacaqr',
   plugins: [
     nodePolyfills(),
+    sass()
   ],
   outputTargets: [
     {

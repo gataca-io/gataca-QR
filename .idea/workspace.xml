@@ -2,9 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ba0b9613-4b45-4420-9b28-588118654bad" name="Default Changelist" comment="merge">
-      <change beforePath="$PROJECT_DIR$/src/components/gataca-qr/gataca-qr.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/gataca-qr/gataca-qr.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/gataca-qr/gataca-qr.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/gataca-qr/gataca-qr.css" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/gataca-qr/gataca-qr.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/gataca-qr/gataca-qr.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stencil.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/stencil.config.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,7 +71,7 @@
       <workItem from="1605551110252" duration="1345000" />
       <workItem from="1605554715678" duration="115000" />
       <workItem from="1605620214502" duration="3955000" />
-      <workItem from="1605624338911" duration="3886000" />
+      <workItem from="1605624338911" duration="4116000" />
     </task>
     <task id="LOCAL-00001" summary="style update">
       <created>1605016252943</created>
@@ -189,15 +193,15 @@
       <screen x="-1920" y="-340" width="1920" height="1057" />
     </state>
     <state x="-1536" y="-155" key="DiffContextDialog/0.23.1440.830/-1920.-340.1920.1057@-1920.-340.1920.1057" timestamp="1605628232514" />
-    <state x="-1840" y="-281" width="1799" height="956" key="MergeDialog" timestamp="1605628459293">
+    <state x="-1840" y="-281" width="1799" height="956" key="MergeDialog" timestamp="1605628692859">
       <screen x="-1920" y="-340" width="1920" height="1057" />
     </state>
-    <state x="-1840" y="-281" width="1799" height="956" key="MergeDialog/0.23.1440.830/-1920.-340.1920.1057@-1920.-340.1920.1057" timestamp="1605628459293" />
+    <state x="-1840" y="-281" width="1799" height="956" key="MergeDialog/0.23.1440.830/-1920.-340.1920.1057@-1920.-340.1920.1057" timestamp="1605628692859" />
     <state x="62" y="74" key="MergeDialog/0.23.1440.830@0.23.1440.830" timestamp="1605621057585" />
-    <state x="454" y="258" key="MultipleFileMergeDialog" timestamp="1605628459458">
-      <screen x="0" y="23" width="1440" height="830" />
+    <state x="-1330" y="70" key="MultipleFileMergeDialog" timestamp="1605628692912">
+      <screen x="-1920" y="-340" width="1920" height="1057" />
     </state>
-    <state x="454" y="258" key="MultipleFileMergeDialog/0.23.1440.830/-1920.-340.1920.1057@-1920.-340.1920.1057" timestamp="1605628459458" />
+    <state x="-1330" y="70" key="MultipleFileMergeDialog/0.23.1440.830/-1920.-340.1920.1057@-1920.-340.1920.1057" timestamp="1605628692912" />
     <state x="357" y="233" key="Vcs.Push.Dialog.v2" timestamp="1605623643384">
       <screen x="0" y="23" width="1440" height="830" />
     </state>
