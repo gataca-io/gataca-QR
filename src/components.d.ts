@@ -8,6 +8,7 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { RESULT_STATUS } from "./utils/utils";
 export namespace Components {
     interface GatacaQr {
+        "buttonText"?: string;
         /**
           * ***Mandatory*** Connect Server where the wallet will send the data
          */
@@ -48,6 +49,8 @@ export namespace Components {
           * _[Optional]_ Frequency in seconds to check if the session has been validated
          */
         "pollingFrequency"?: number;
+        "qrDescription"?: string;
+        "qrTitle"?: string;
         /**
           * _[Optional]_ EndpointURL to fetch data for the status. The endpoint URL will send a GET request with the session id on a parameter; concatenated to this string. It can be used if your API fulfills the requirement. If not, use the checkStatus property. If not set, it would use a default endpoint to the same window URL under the path /auth
          */
@@ -83,6 +86,7 @@ declare global {
 }
 declare namespace LocalJSX {
     interface GatacaQr {
+        "buttonText"?: string;
         /**
           * ***Mandatory*** Connect Server where the wallet will send the data
          */
@@ -119,6 +123,8 @@ declare namespace LocalJSX {
           * _[Optional]_ Frequency in seconds to check if the session has been validated
          */
         "pollingFrequency"?: number;
+        "qrDescription"?: string;
+        "qrTitle"?: string;
         /**
           * _[Optional]_ EndpointURL to fetch data for the status. The endpoint URL will send a GET request with the session id on a parameter; concatenated to this string. It can be used if your API fulfills the requirement. If not, use the checkStatus property. If not set, it would use a default endpoint to the same window URL under the path /auth
          */
