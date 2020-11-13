@@ -7,60 +7,62 @@
   <script type="module" src="/build/gatacaqr.esm.js"></script>
   <script nomodule src="/build/gatacaqr.js"></script>
   <style type="text/css">
-  h1{
-    color: #181B5E; 
-    align-self: center;
-    text-align: center;
-  }
+    h1 {
+      color: #181B5E;
+      align-self: center;
+      text-align: center;
+    }
 
-  h5{
-    color: #181B5E;
-  }
+    h5 {
+      color: #181B5E;
+    }
 
-  .btn-gataca {
-    background-color: blue;
-    color: white;
-    font-weight: bold;
-    top: 50%;
-    width: 80%;
-    padding: 40px;
-    height: 100%;
-    margin: auto;
-    text-align: center;
-    align-items: center;
-}
+    .btn-gataca {
+      background-color: #e9e9e9;
+      color: white;
+      font-weight: bold;
+      top: 50%;
+      width: 80%;
+      padding: 40px;
+      height: 100vh;
+      margin: auto;
+      text-align: center;
+      align-items: center;
+    }
   </style>
 </head>
 <body>
-  <div class="btn-gataca">
+<div class="btn-gataca">
 
-  
-  <gataca-qr id="gataca-qr" callback-server="https://connect.dev.gatacaid.com:9090" session-endpoint="http://localhost:9009/login?id=">
-  <h1 slot="title">Login with Gataca</h1>
-  <h5 slot="description">Scan this QR to open your gataca wallet</h5></gataca-qr>
+  <gataca-qr
+    id="gataca-qr"
+    callback-server="https://connect.dev.gatacaid.com:9090"
+    session-endpoint="http://localhost:9009/login?id="
+  >
+  </gataca-qr>
 
-  </div>
-  
-  <script>
-    const qr = document.getElementById('gataca-qr');
-    qr.successCallback = () => {
-      console.log('SUCCESS')
-    };
-    qr.errorCallback = () => {
-      console.log('ERROR')
-    };
+</div>
 
-    qr.createSession = async () => {
-      try{
-        let response = await fetch("http://localhost:9009/validate");
-        console.log(response.status) ;
-        response.headers.forEach((value, key) => console.log("key", key, "value", value))
-        return response.headers.get("X-Connect-Id")
-      } catch (error){
-        console.log(error);
-        return ""
-      }
+<script>
+  const qr = document.getElementById('gataca-qr');
+  qr.successCallback = () => {
+    console.log('SUCCESS')
+  };
+  qr.errorCallback = () => {
+    console.log('ERROR')
+  };
+
+  qr.createSession = async () => {
+    try {
+      let response = await fetch("http://localhost:9009/validate");
+      console.log(response.status);
+      response.headers.forEach((value, key) => console.log("key", key, "value", value))
+      return response.headers.get("X-Connect-Id")
+    } catch (error) {
+      console.log(error);
+      return ""
     }
-  </script>
+  }
+</script>
 </body>
 </html>
