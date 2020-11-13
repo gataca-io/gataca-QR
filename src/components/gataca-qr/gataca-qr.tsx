@@ -47,7 +47,7 @@ export class GatacaQR {
   * _[Optional]_
   * Decide if scanning the credential as a verifier to request credentials
   * or as an issuer too issue credentials.
-  * Options: scan (default) | credential 
+  * Options: scan (default) | credential
   */
  @Prop() qrRole: string = DEFAULT_QR_FUNCTION;
 
@@ -227,7 +227,7 @@ export class GatacaQR {
 
   getLink(): string{
     let link = 'https://gataca.page.link/' + this.qrRole + '?';
-    link += this.qrRole === DEFAULT_QR_FUNCTION ? "session=" + this.sessionId : "process=" + this.sessionId 
+    link += this.qrRole === DEFAULT_QR_FUNCTION ? "session=" + this.sessionId : "process=" + this.sessionId
     link += "&callback=" + base64UrlEncode(encodeURIComponent(this.callbackServer));
     link = encodeURIComponent(link);
     return this.dynamicLink ? DEEP_LINK_PREFIX + link : link;
@@ -346,7 +346,7 @@ export class GatacaQR {
             event.stopPropagation()
           }}>
           <div class="modal-window__content">
-            <p>{this.qrModalTitle}</p>
+            <p class="qrTitle">{this.qrModalTitle}</p>
             {this.displayQR()}
             <p class="qrDescription">{this.qrModalDescription}</p>
           </div>
@@ -364,7 +364,7 @@ export class GatacaQR {
 
   render() {
     return <div class="buttonContainer">
-      {this.asButton ? this.renderAsButton() : this.renderModal()} 
+      {this.asButton ? this.renderAsButton() : this.renderModal()}
     </div>;
   }
 }

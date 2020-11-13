@@ -8,11 +8,11 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { RESULT_STATUS } from "./utils/utils";
 export namespace Components {
     interface GatacaQr {
-        "buttonText"?: string;
         /**
           * _[Optional]_ Decide if to show it as a button to display the QR Or display directly the QR. Default: true (display button)
          */
         "asButton": boolean;
+        "buttonText"?: string;
         /**
           * ***Mandatory*** Connect Server where the wallet will send the data
          */
@@ -36,7 +36,7 @@ export namespace Components {
         /**
           * ***Mandatory*** Callback fired upon session expired or invalid If not set, session error would not be handled An error containing information will be passed as parameter
          */
-        "errorCallback": (error ?: Error) => void;
+        "errorCallback": (error ?:Error) => void;
         /**
           * _[Optional]_ Session Generation URL to create a new Session. It will expect to receive the session Id from the response header 'X-Connect-Id'. If not set, it would use a default endpoint to the same window URL under the path /auth
          */
@@ -53,8 +53,8 @@ export namespace Components {
           * _[Optional]_ Frequency in seconds to check if the session has been validated
          */
         "pollingFrequency"?: number;
-        "qrDescription"?: string;
-        "qrTitle"?: string;
+        "qrModalDescription"?: string;
+        "qrModalTitle"?: string;
         /**
           * _[Optional]_ Decide if scanning the credential as a verifier to request credentials or as an issuer too issue credentials. Options: scan (default) | credential
          */
@@ -94,11 +94,11 @@ declare global {
 }
 declare namespace LocalJSX {
     interface GatacaQr {
-        "buttonText"?: string;
         /**
           * _[Optional]_ Decide if to show it as a button to display the QR Or display directly the QR. Default: true (display button)
          */
         "asButton"?: boolean;
+        "buttonText"?: string;
         /**
           * ***Mandatory*** Connect Server where the wallet will send the data
          */
@@ -118,7 +118,7 @@ declare namespace LocalJSX {
         /**
           * ***Mandatory*** Callback fired upon session expired or invalid If not set, session error would not be handled An error containing information will be passed as parameter
          */
-        "errorCallback"?: (error ?: Error) => void;
+        "errorCallback"?: (error ?:Error) => void;
         /**
           * _[Optional]_ Session Generation URL to create a new Session. It will expect to receive the session Id from the response header 'X-Connect-Id'. If not set, it would use a default endpoint to the same window URL under the path /auth
          */
@@ -135,8 +135,8 @@ declare namespace LocalJSX {
           * _[Optional]_ Frequency in seconds to check if the session has been validated
          */
         "pollingFrequency"?: number;
-        "qrDescription"?: string;
-        "qrTitle"?: string;
+        "qrModalDescription"?: string;
+        "qrModalTitle"?: string;
         /**
           * _[Optional]_ Decide if scanning the credential as a verifier to request credentials or as an issuer too issue credentials. Options: scan (default) | credential
          */
