@@ -6,7 +6,7 @@ You only need to install on a front component to scan presentation requests from
 ## Installing this component
 
 ### Script tag
-- Put a script tag similar to this `<script src='https://unpkg.com/gatacaqr@1.0.1/dist/gatacaqr.js'></script>` in the head of your index.html
+- Put a script tag similar to this `<script src='https://unpkg.com/gatacaqr@1.1.2/dist/gatacaqr.js'></script>` in the head of your index.html
 - Then you can use the element anywhere in your template, JSX, html etc
 
 ### Node Modules
@@ -96,7 +96,13 @@ Note: Direct integration with [Gataca Connect](https://docs.gatacaid.com/connect
 </head>
 
 <body>
-    <gataca-qr id="gataca-qr" callback-server="https://connect.dev.gatacaid.com:9090" session-endpoint="http://localhost:9009/login?id=" qr-modal-title="Easy login" qr-modal-description="Scan this QR to open your gataca wallet" button-text="Easy login">
+    <gataca-qr 
+        id="gataca-qr" 
+        callback-server="https://connect.dev.gatacaid.com:9090" 
+        session-endpoint="http://localhost:9009/login?id=" 
+        qr-modal-title="Easy login" 
+        qr-modal-description="Scan this QR to open your gataca wallet" 
+        button-text="Easy login">
 
     <script>
         const qr = document.getElementById('gataca-qr');
@@ -269,11 +275,12 @@ The example configuration of the QR if your application implements the standard 
   </style>
 </head>
 <body>
-  <gataca-qr id="gataca-qr" session-timeout="300" polling-frequency="3" generation-endpoint ='https://connect.gataca.io:9090/admin/v1/login/request'
-session-endpoint = "https://connect.gataca.io:9090/admin/v1/login/gataca">
-      <h1 class="qrTitle" slot="title" id="qrTitle">Login with Gataca</h1>
-      <h5 class="qrDesc" slot="description">Scan this QR to open your gataca wallet</h5>
-  </gataca-qr>
+  <gataca-qr 
+        id="gataca-qr" 
+        session-timeout="300" 
+        polling-frequency="3" 
+        generation-endpoint ='https://connect.gataca.io:9090/admin/v1/login/request'
+        session-endpoint = "https://connect.gataca.io:9090/admin/v1/login/gataca"/>
   
   <script>
     const qr = document.getElementById('gataca-qr');
