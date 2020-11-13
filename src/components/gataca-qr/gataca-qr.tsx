@@ -103,8 +103,8 @@ export class GatacaQR {
    * Display a link containing a dynamic link to invoke the wallet if closed
    */
   @Prop() dynamicLink?: boolean = true;
-  @Prop() qrTitle?: string = 'Login with Gataca';
-  @Prop() qrDescription?: string = 'Scan this QR to open your gataca wallet';
+  @Prop() qrModalTitle?: string = 'Login with Gataca';
+  @Prop() qrModalDescription?: string = 'Scan this QR to open your gataca wallet';
   @Prop() buttonText?: string = 'Easy login';
 
   @State() open: boolean = false;
@@ -327,9 +327,9 @@ export class GatacaQR {
             event.stopPropagation()
           }}>
           <div class="modal-window__content">
-            <p>{this.qrTitle}</p>
+            <p>{this.qrModalTitle}</p>
             {this.displayQR()}
-            <p class="qrDescription">{this.qrDescription}</p>
+            <p class="qrDescription">{this.qrModalDescription}</p>
           </div>
         </div>
       </div>
