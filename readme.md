@@ -292,8 +292,133 @@ session-endpoint = "https://connect.gataca.io:9090/admin/v1/login/gataca">
 </html>
 ````
 
+___ Note: ___  _The following examples explain how to use certain configuration parameters depending on your application needs_
+
 You can use this component with an already created session, which can be inserted on the sessionId property on the element, or passed via query parameter _id_ or _sessionId_ on the current URL.
 You can also provide a method to generate a new session like in the example, or, in the rare event of matching the authorizer API, just the endpoint to your application.
+
+#### Application rendering HTML Only
+This example shows how to integrate the QR Component on a normal scenario, where the application defines its own interface for the services.
+
+You can find an example of that kind of simple application _(written in Go)_ on the [Gataca Authorizer](https://github.com/gatacaid/gataca-authorizer), which we will use as example to explain the component's usage. 
+*Gataca Authorizer* creates the sessionId before rendering the page and provides it as a parameter on the HTML template. To query the status of the session, it offers the following endpoint:
+
+* **/login/status** : _Check the status of the created session_
+
+Continuing with the example as before, you could integrate with that kind of application - _running at $APP_DOMAIN_- by modifying the following pieces of code
+
+1. Add JQuery Library in HEAD
+````html
+<head>
+...
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+...
+</head>
+`````
+
+2. Modify the parameters of the QR to present the connect server and the session id renderized on the HTML template when loaded by the backend.
+````html
+<body>
+  ...
+  <gataca-qr id="gataca-qr" callback-server="{{.ConnectServer}}" session-id="{{.SessionId}}">
+  ...
+</body>
+`````
+
+3. Include a checkStatus implementation to retrieve the session data.
+````html
+  <script>
+    const qr = document.getElementById('gataca-qr');
+    ....
+    qr.checkStatus = async (id) => {
+        console.log("Check status called for session", id)
+        try {
+            response = await $.get("login/status")
+            console.log("Got Status Response", response)
+            qr.sessionData = (await response.json()).data;
+            return 1;
+        } catch (err) {
+            console.log("Error", err)
+            switch (err.status) {
+                case 428:
+                    return 0;
+                default:
+                    return 2
+            }
+        }
+    }
+ ...   
+  </script>
+````
+__Note__: If you want to retrieve the data on the successCallback, you need to store on the _checkStatus_ invocation the session data in the _sessionData_ property from the qr
+
+__Note 2__: If *Gataca Authorizer* also had an endpoint to generate the sessionId, and in case we wanted that the sessionId is not generated before serving the HTML file, but when clicking the button, we could do it just by modifying the previous example:
+
+1. Modify the parameters of the QR to remove the session-id parameter.
+````html
+<body>
+
+  ...
+  <gataca-qr id="gataca-qr" callback-server="{{.ConnectServer}}">
+  ...
+</body>
+`````
+2. Include a _createSession_ implementation to retrieve the session data.
+````html
+  <script>
+    const qr = document.getElementById('gataca-qr');
+    ....
+    qr.createSession = async (id) => {
+        //Invoke token generation endpoint
+    }
+ ...
+  </script>
+````
+
+#### SPA React Application
+
+In this example, we will show how to integrate it with a full react application.
+
+1. Run `npm install gatacaqr --save`
+2. In _index.js_, include the following code at the beggining:
+````javascript
+import { applyPolyfills, defineCustomElements } from 'gatacaqr/loader';
+
+applyPolyfills().then(() => {
+  defineCustomElements(window);
+});
+````
+3. Create a JS component to use the QR or just invoke it from your component:
+````javascript
+import React, { useEffect, useState, useRef } from 'react'
+
+export const QRLogin: React.FC = () => {
+  const qr = useRef(null)
+
+  const gatacaLoginSuccess = (data: any, token: string) => {
+    alert('Gataca Login Successful')
+  }
+
+  const gatacaLoginError = error => {
+    alert('Gataca Login Error')
+  }
+
+  useEffect(() => {
+    qr.current.generationEndpoint =
+      process.env.REACT_APP_CONNECT_HOST + '/admin/v1/login/request'
+    qr.current.sessionEndpoint =
+      process.env.REACT_APP_CONNECT_HOST + '/admin/v1/login/gataca'
+    qr.current.successCallback = gatacaLoginSuccess
+    qr.current.errorCallback = gatacaLoginError
+  }, [username, password])
+
+  return (<gataca-qr
+                callback-server={process.env.REACT_APP_CONNECT_HOST}
+                ref={qr}
+                polling-frequency="15"/>
+  )
+}
+````
 
 In order to consult sessions, both options are also available, depending on how you want to develop your own API: either checkStatus method or the sessionEndpoint if your API matches the expecter authorizer API.
 
