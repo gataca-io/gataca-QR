@@ -53,12 +53,12 @@ export namespace Components {
           * _[Optional]_ Frequency in seconds to check if the session has been validated
          */
         "pollingFrequency"?: number;
-        "qrDescription"?: string;
+        "qrModalDescription"?: string;
+        "qrModalTitle"?: string;
         /**
           * _[Optional]_ Decide if scanning the credential as a verifier to request credentials or as an issuer too issue credentials. Options: scan (default) | credential
          */
         "qrRole": string;
-        "qrTitle"?: string;
         /**
           * _[Optional]_ EndpointURL to fetch data for the status. The endpoint URL will send a GET request with the session id on a parameter; concatenated to this string. It can be used if your API fulfills the requirement. If not, use the checkStatus property. If not set, it would use a default endpoint to the same window URL under the path /auth
          */
@@ -135,12 +135,12 @@ declare namespace LocalJSX {
           * _[Optional]_ Frequency in seconds to check if the session has been validated
          */
         "pollingFrequency"?: number;
-        "qrDescription"?: string;
+        "qrModalDescription"?: string;
+        "qrModalTitle"?: string;
         /**
           * _[Optional]_ Decide if scanning the credential as a verifier to request credentials or as an issuer too issue credentials. Options: scan (default) | credential
          */
         "qrRole"?: string;
-        "qrTitle"?: string;
         /**
           * _[Optional]_ EndpointURL to fetch data for the status. The endpoint URL will send a GET request with the session id on a parameter; concatenated to this string. It can be used if your API fulfills the requirement. If not, use the checkStatus property. If not set, it would use a default endpoint to the same window URL under the path /auth
          */

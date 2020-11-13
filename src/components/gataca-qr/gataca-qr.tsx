@@ -25,6 +25,7 @@ const GATACA_LOGO_BASE64 = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAjAAAA
   styleUrl: 'gataca-qr.scss',
   shadow: true
 })
+
 export class GatacaQR {
   /**
    * ***Mandatory***
@@ -118,8 +119,8 @@ export class GatacaQR {
    * Display a link containing a dynamic link to invoke the wallet if closed
    */
   @Prop() dynamicLink?: boolean = true;
-  @Prop() qrTitle?: string = 'Login with Gataca';
-  @Prop() qrDescription?: string = 'Scan this QR to open your gataca wallet';
+  @Prop() qrModalTitle?: string = 'Login with Gataca';
+  @Prop() qrModalDescription?: string = 'Scan this QR to open your GATACA wallet';
   @Prop() buttonText?: string = 'Easy login';
 
   @State() open: boolean = false;
@@ -128,8 +129,9 @@ export class GatacaQR {
 
   @State() connectToken: string = undefined;
 
-  @State() loginToken :string = undefined;
-  @State() sessionData :any = undefined;
+  @State() loginToken: string = undefined;
+  @State() sessionData: any = undefined;
+
 
   /**
    * GatacaLoginCompleted event, triggered with session data upon login success
@@ -306,8 +308,8 @@ export class GatacaQR {
       }
       // Didn't match and too much time, reject!
       else {
-        await component.stop()
-        reject(new Error('Session validation timed out for after' + component.sessionTimeout || DEFAULT_SESSION_TIMEOUT + ' s.'));
+        await this.stop()
+        reject(new Error('Session validation timed out for after' + this.sessionTimeout || DEFAULT_SESSION_TIMEOUT + ' s.'));
       }
     };
     return new Promise(checkCondition);
@@ -342,8 +344,9 @@ export class GatacaQR {
             event.stopPropagation()
           }}>
           <div class="modal-window__content">
-            <p>{this.qrTitle}</p>
+            <p>{this.qrModalTitle}</p>
             {this.displayQR()}
+            <p class="qrDescription">{this.qrModalDescription}</p>
           </div>
         </div>
       </div>

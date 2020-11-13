@@ -6,7 +6,7 @@ You only need to install on a front component to scan presentation requests from
 ## Installing this component
 
 ### Script tag
-- Put a script tag similar to this `<script src='https://unpkg.com/gatacaqr@1.1.2/dist/gatacaqr.js'></script>` in the head of your index.html
+- Put a script tag similar to this `<script src='https://unpkg.com/gatacaqr@1.0.1/dist/gatacaqr.js'></script>` in the head of your index.html
 - Then you can use the element anywhere in your template, JSX, html etc
 
 ### Node Modules
@@ -14,64 +14,24 @@ You only need to install on a front component to scan presentation requests from
 - Put a script tag similar to this `<script src='node_modules/gatacaqr/dist/gatacaqr.js'></script>` in the head of your index.html
 - Then you can use the element anywhere in your template, JSX, html etc
 
-## Styles & Personification
+## Usage
 
 It allows to integrate 2 slots, named "title" and "description", to provide further integration to the user upon display of the QR.
 
-## Usage
-
-The goal of this component is to ease the generation and presentation of QRs with Gataca Connect Sessions on any html or frontend project, to allow the integration of GATACA Connect in your own infrastructure or application.
-
-This component should be used with the prerequisite of having an application which can be integrated with [Gataca Connect](https://docs.gatacaid.com/connect/). More precisely, your application will need to be able to perform the two operations against your connect server:
+This component can be used with the prerequisite of having an application which can be integrated with [Gataca Connect](https://docs.gatacaid.com/connect/). More precisely, your application will need to be able to perform the two operations against your connect server:
 1. Create sessions
 2. Consult sessions
 
-![QRDiagram](QR_Diagram_Expected.png)
-
 Therefore, in order to make it work, you will need at least:
-1. A **connect server** deployed at your infrastructure
-2. A tenant configured on that **Connect** and an application with credentials to create sessions on the tenant. You will need the following properties:
-    - "$YOUR_APP"
-    - "$YOUR_TENANT"
-    - "$YOUR_PASSWORD"
-    - "$YOUR_SERVER"
-3. An application integrated with that server to perform the basic operations.
+1. A **connect server** (might be Gataca Connect Saas)
+2. An application integrated with that server to perform the basic operations.
 
-To better understand how the QR works, this diagram details its work:
-![QrIntegration](QR_Integration.png)
+You can find an example of that kind of simple application _(written in Go)_ on the [Gataca Authorizer](https://github.com/gatacaid/gataca-authorizer), which we will use as example to explain the component's usage. *Gataca Authorizer* offers the two required endpoints:
 
-### Configurations
+1. **/validate** : _Check if the user is authenticated, if not, create a new session against the connect server_
+2. **/login** : _Check the status of the created session_
 
-To understand all possible configurations. Check the properties section below. Here is a recap of all possible combinations:
-
-1. You can choose if to generate a QR used for scanning credentials or to issue new credentials, by setting the _qrRole_ property to __scan__ or __credential__ respectively.
-2. You need to configure a _callbackServer_ to display on the QR, so that the wallet knows the location of the server to share the data with.
-3. a. You can use this component with an already created session, which can be inserted on the sessionId property on the element, or passed via query parameter _id_ or _sessionId_ on the current URL.
-b. If you want the event of pushing the button to trigger the creation of the session, you can also provide a method to generate a new session providing the 
-_createSession_ property.
-c. If your application matches the gataca-login interface, you can avoid defining your own implementation and use the default implementation just by providing the _generationEndpoint_.
-4. a. If you have defined your own service to get the session on the connect, you should implement a _checkStatus_ property. The method needs to return 0, 1 or 2 depending if the credential sharing process is still ongoing, succesfully finished or finished with error respectively.
-b. If your application matches the gataca-login interface, you can avoid defining your own implementation and use the default implementation just by providing the _sessionEndpoint_.
-c. You can optionally configure your own frequency for the polling and the session expiration time with the _pollingFrequency_ and _sessionTimeout_ properties.
-5. To keep the logic on your client-side, your shall configure the _sucessCallback_ and the _errorCallback_ properties, to implement alerts, redirections or further logic upon the ending of the process.
-6. You can choose to display the component as a button or avoid to display the button and manually trigger the QR using the _asButton_ property. To manually trigger the QR, use javascript to invoke the _open()_ method
-7. You can choose not display a dynamic link and make the QR lighter by setting the _dynamicLink_ property to false, but it is not recommended for better compatibility and user experience.
-
-To better understand the different relation between properties, this decision diagram explains the relation between them:
-
-![PopertiesConfigDiagram](propertiesDiagram.png)
-
-You can also check the examples below to check which configuration is more suitable for your case.
-
-### Examples
-
-#### Test connection
-
-The first example to understand how the QR works is to avoid any backend processing (no business logic added); just by pointing the frontend directly to consult a session on the Connect.
-
-![QRDiagramDirect](QR_Diagram_Direct.png)
-
-Note: Direct integration with [Gataca Connect](https://docs.gatacaid.com/connect/) is not recommended and should be used only for demo purposes. There would be credentials leaked on the client side otherwise.
+Continuing with that example, you could integrate with that kind of application _(if running on http://localhost:9009)_ using the following code
 
 ````html
 <!DOCTYPE html>
@@ -422,19 +382,24 @@ export const QRLogin: React.FC = () => {
 
 
 ## Properties
+
 | Property             | Attribute             | Description                                                                                                                                                                                                                                                                                                                                         | Type                                      | Default                       |
 | -------------------- | --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------- | ----------------------------- |
 | `sessionId`          | `session-id`          | _[Optional]_ Generated session Id, which is required. Without session Id, the QR will not work. If the property is unset, it will check for an _id_ or _sessionId_ query parameter on the current URL. If there is no sessionId, it will fallback to the createSession method to generate a new Session.↓                                            | `string`                                  | -                   |
 | `createSession`      | --                    | _[Optional]_ Create session function to generate a new Session If the property is unset, it will fallback to the generation Endpoint property.↓                                                                                                                                                                                                      | `() => Promise<string>`                   | `undefined`                   |
 | `generationEndpoint` | `generation-endpoint` | _[Optional]_ Session Generation URL to create a new Session. It will expect to receive the session Id from the response header 'X-Connect-Id'. If not set, it would use a default endpoint to the same window URL under the path /auth                                                                                                              | `string`                                  | `https://$DOMAIN:9090/admin/v1/login/request` |
 | `checkStatus`        | --                    | _[Optional]_ Check status function to query the current status of the session If not set, it would fallback to the session Endpoint property. ↓                                                                                                                                                                                                      | `(id?: string) => Promise<RESULT_STATUS>` | `undefined`                   |
-| `sessionEndpoint`    | `session-endpoint`    | _[Optional]_ EndpointURL to fetch data for the status. The endpoint URL will send a GET request with the session id on a parameter; concatenated to this string. It can be used if your API fulfills the requirement. If not, use the checkStatus property. If not set, it would use a default endpoint to the same window URL under the path /auth | `string`                                  | `https://$CURRENT_DOMAIN:9090/admin/v1/login/gataca`    |
 | `successCallback`    | --                    | ***Mandatory*** Callback fired upon session correctly verified If not set, session validation wouldn't trigger any action The session data and a possible token will be sent as parameters to the callback                                                                                                                                          | `(data?: any, token?: string) => void`    | -                   |
 | `errorCallback`      | --                    | ***Mandatory*** Callback fired upon session expired or invalid If not set, session error would not be handled An error containing information will be passed as parameter                                                                                                                                                                           | `(error?: Error) => void`                 | -                   |
 | `callbackServer`     | `callback-server`     | ***Mandatory*** Connect Server where the wallet will send the data                                                                                                                                                                                                                                                                                  | `string`                                  | `https://connect.gatacaid.com:9090`     |
 | `pollingFrequency`   | `polling-frequency`   | _[Optional]_ Frequency in seconds to check if the session has been validated                                                                                                                                                                                                                                                                        | `number`                                  | 3        |
-| `sessionTimeout`     | `session-timeout`     | _[Optional]_ Maximum time window to display the session                                                                                                                                                                                                                                                                                             | `number`                                  | 180     |
 | `dynamicLink`        | `dynamic-link`        | _[Optional]_ Display a link containing a dynamic link to invoke the wallet if closed                                                                                                                                                                                                                                                                | `boolean`                                 | `true`                        |
+| `generationEndpoint` | `generation-endpoint` | _[Optional]_ Session Generation URL to create a new Session. It will expect to receive the session Id from the response header 'X-Connect-Id'. If not set, it would use a default endpoint to the same window URL under the path /auth                                                                                                              | `string`                                  | `DEFAULT_GENERATION_ENDPOINT` |
+| `sessionEndpoint`    | `session-endpoint`    | _[Optional]_ EndpointURL to fetch data for the status. The endpoint URL will send a GET request with the session id on a parameter; concatenated to this string. It can be used if your API fulfills the requirement. If not, use the checkStatus property. If not set, it would use a default endpoint to the same window URL under the path /auth | `string`                                  | `DEFAULT_SESSION_ENDPOINT`    |
+| `sessionTimeout`     | `session-timeout`     | _[Optional]_ Maximum time window to display the session                                                                                                                                                                                                                                                                                             | `number`                                  | `DEFAULT_SESSION_TIMEOUT`     |
+| `qrModalTitle`    | `qr-modal-title`                    | _[Optional]_ Text that is shown to personalise the message of the qr modal.                                                                                                                                       | `string`                   |
+| `qrModalDescription`    | `qr-modal-description`                    | _[Optional]_ Text to personalise the qr modal description to explain the user what need to be done with the QR code.                                                                                                                              | `string`                   |
+| `buttonText`    | `button-text                    | _[Optional]_ Text of the button.                                                                                                                                | `string`                   |
 | `qrRole`             | `qr-role`             | _[Optional]_ Decide if scanning the credential as a verifier to request credentials or as an issuer too issue credentials. ___Options:___ __scan _(default)_ \| credential__                                                                                                                                                                                    | `string`                                  | `scan`         |
 | `asButton`           | `as-button`           | _[Optional]_ Decide if to show it as a button to display the QR Or display directly the QR. Default: true (display button)                                                                                                                                                                                                                          | `boolean`                                 | `true`                        |
 
@@ -457,6 +422,7 @@ Force manually the display of a QR
 Type: `Promise<void>`
 
 
+
 ### `getSessionData() => Promise<any>`
 
 Retrieve manually the session data on a successful login
@@ -466,6 +432,7 @@ Retrieve manually the session data on a successful login
 Type: `Promise<any>`
 
 
+
 ### `getToken() => Promise<string>`
 
 Retrieve manually a possible token retrieved upon login on the Header 'token'
@@ -473,6 +440,7 @@ Retrieve manually a possible token retrieved upon login on the Header 'token'
 #### Returns
 
 Type: `Promise<string>`
+
 
 
 ### `stop() => Promise<void>`
