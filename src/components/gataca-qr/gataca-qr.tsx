@@ -36,6 +36,7 @@ export class GatacaQR {
   @Prop() successCallback: (data ?: any, token ?: string) => void = undefined;
 
   /**
+
   * _[Optional]_
   * Decide if to show it as a button to display the QR
   * Or display directly the QR. Default: true (display button)
@@ -51,12 +52,12 @@ export class GatacaQR {
  @Prop() qrRole: string = DEFAULT_QR_FUNCTION;
 
   /**
-   * ***Mandatory***
-   * Callback fired upon session expired or invalid
-   * If not set, session error would not be handled
-   * An error containing information will be passed as parameter
-   */
-  @Prop() errorCallback: (error ?: Error) => void = undefined;
+  * ***Mandatory***
+  * Callback fired upon session expired or invalid
+  * If not set, session error would not be handled
+  * An error containing information will be passed as parameter
+  */
+  @Prop() errorCallback: (error ?:Error) => void = undefined
 
   /**
    * ***Mandatory***
@@ -120,7 +121,7 @@ export class GatacaQR {
    */
   @Prop() dynamicLink?: boolean = true;
   @Prop() qrModalTitle?: string = 'Login with Gataca';
-  @Prop() qrModalDescription?: string = 'Scan this QR to open your GATACA wallet';
+  @Prop() qrModalDescription?: string = 'Scan this QR with your Gataca wallet app';
   @Prop() buttonText?: string = 'Easy login';
 
   @State() open: boolean = false;
@@ -221,6 +222,7 @@ export class GatacaQR {
     this.sessionId = await this.createSessionDefault()
     return this.sessionId;
   }
+
 
 
   getLink(): string{
