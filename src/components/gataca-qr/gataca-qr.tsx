@@ -344,7 +344,7 @@ export class GatacaQR {
             event.stopPropagation()
           }}>
           <div class="modal-window__content">
-            <p>{this.qrModalTitle}</p>
+            <p class="qrTitle">{this.qrModalTitle}</p>
             {this.displayQR()}
             <p class="qrDescription">{this.qrModalDescription}</p>
           </div>

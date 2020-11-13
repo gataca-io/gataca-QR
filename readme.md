@@ -226,7 +226,7 @@ The example configuration of the QR if your application implements the standard 
       align-self: center;
       text-align: center;
   }
-  .qrDesc {
+  .qrDescription {
       color: #181B5E;
   }
   </style>
