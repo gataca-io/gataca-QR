@@ -121,7 +121,7 @@ export class GatacaQR {
    */
   @Prop() dynamicLink?: boolean = true;
   @Prop() qrModalTitle?: string = 'Login with Gataca';
-  @Prop() qrModalDescription?: string = 'Scan this QR to open your gataca wallet';
+  @Prop() qrModalDescription?: string = 'Scan this QR with your Gataca wallet app';
   @Prop() buttonText?: string = 'Easy login';
 
   @State() open: boolean = false;
