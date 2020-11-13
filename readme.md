@@ -6,7 +6,7 @@ You only need to install on a front component to scan presentation requests from
 ## Installing this component
 
 ### Script tag
-- Put a script tag similar to this `<script src='https://unpkg.com/gatacaqr@1.1.2/dist/gatacaqr.js'></script>` in the head of your index.html
+- Put a script tag similar to this `<script src='https://unpkg.com/gatacaqr@1.2.0/dist/gatacaqr.js'></script>` in the head of your index.html
 - Then you can use the element anywhere in your template, JSX, html etc
 
 ### Node Modules
@@ -47,7 +47,7 @@ Continuing with that example, you could integrate with that kind of application 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
     <title>Gataca QR Component</title>
-    <script src='https://unpkg.com/gatacaqr@1.1.3/dist/gatacaqr.js'></script>
+    <script src='https://unpkg.com/gatacaqr@1.2.0/dist/gatacaqr.js'></script>
     <style type="text/css">
         .qrTitle {
             color: #181B5E;
@@ -228,7 +228,7 @@ The example configuration of the QR if your application implements the standard 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
   <title>Gataca QR Component</title>
-  <script src='https://unpkg.com/gatacaqr@1.1.2/dist/gatacaqr.js'></script>
+  <script src='https://unpkg.com/gatacaqr@1.2.0/dist/gatacaqr.js'></script>
   <style type="text/css">
   .qrTitle {
       color: #181B5E;
