@@ -220,6 +220,12 @@ The definition of the default interface is can be found on the [Gataca Connect d
 
 The first request - _the gataca login request_- is the default session generation endpoint, whereas the second one -_Gataca Login_- Post response is the session consultation endpoint.
 
+|  App Service Exposed | Connect Service Consumed  |
+|---|---|
+| Login Request  | Create Session  |
+| Login Gataca  | Get Session Data |
+
+
 The pseudo-code of those functions in the case of the AccessAPI, that could easily be adapted to your needs, is the following:
 
 ````go
