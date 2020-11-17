@@ -2,23 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ba0b9613-4b45-4420-9b28-588118654bad" name="Default Changelist" comment="v1.4.0&#10;&#10;adaptative style fixes">
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/gataca-QR.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/serialmonitor_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_17_11_2020,_14_50_[Default_Changelist]/shelved.patch" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_17_11_2020,_14_50_[Default_Changelist]1/shelved.patch" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_17_11_2020__14_50__Default_Changelist_.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_13_11_2020,_11_29_[Default_Changelist]/shelved.patch" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_13_11_2020__11_29__Default_Changelist_.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gatacaqr-react/src/react-component-lib/interfaces.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gatacaqr-react/src/react-component-lib/utils/attachProps.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gatacaqr-react/src/react-component-lib/utils/case.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gatacaqr-react/src/react-component-lib/utils/dev.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/gataca-qr/gataca-qr.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/gataca-qr/gataca-qr.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/gataca-qr/gataca-qr.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/gataca-qr/gataca-qr.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
