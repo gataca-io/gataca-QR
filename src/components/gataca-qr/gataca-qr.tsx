@@ -223,8 +223,6 @@ export class GatacaQR {
     return this.sessionId;
   }
 
-
-
   getLink(): string{
     let link = 'https://gataca.page.link/' + this.qrRole + '?';
     link += this.qrRole === DEFAULT_QR_FUNCTION ? "session=" + this.sessionId : "process=" + this.sessionId
@@ -243,7 +241,7 @@ export class GatacaQR {
           />
           <span>{this.buttonText}</span>
         </button>
-        <div class="sectionTwo">
+        <div class="brandSection">
           <span class="buttonText">By Gataca</span>
           <img src={GATACA_LOGO_BASE64} class="gatacaImgSmall" alt="Gataca logo"/>
         </div>
@@ -346,7 +344,13 @@ export class GatacaQR {
             event.stopPropagation()
           }}>
           <div class="modal-window__content">
-            <p class="qrTitle">{this.qrModalTitle}</p>
+            {this.asButton ?
+              <div class="brandSection brandModal">
+                <span class="buttonText">{this.qrModalTitle}</span>
+                <img src={GATACA_LOGO_BASE64} class="gatacaImgSmall" alt="Gataca logo"/>
+              </div>
+               :
+              null}
             {this.displayQR()}
             <p class="qrDescription">{this.qrModalDescription}</p>
           </div>
@@ -363,7 +367,7 @@ export class GatacaQR {
   }
 
   render() {
-    return <div class="buttonContainer">
+    return <div>
       {this.asButton ? this.renderAsButton() : this.renderModal()}
     </div>;
   }
