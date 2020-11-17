@@ -5,7 +5,7 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
-import { RESULT_STATUS, } from "./utils/utils";
+import { RESULT_STATUS } from "./utils/utils";
 export namespace Components {
     interface GatacaQr {
         /**
@@ -20,7 +20,7 @@ export namespace Components {
         /**
           * _[Optional]_ Check status function to query the current status of the session If not set, it would fallback to the session Endpoint property.
          */
-        "checkStatus"?: (id?: string) => Promise<RESULT_STATUS>;
+        "checkStatus"?: (id ?: string) => Promise<RESULT_STATUS>;
         /**
           * _[Optional]_ Create session function to generate a new Session If the property is unset, it will fallback to the generation Endpoint property.
          */
@@ -36,7 +36,7 @@ export namespace Components {
         /**
           * ***Mandatory*** Callback fired upon session expired or invalid If not set, session error would not be handled An error containing information will be passed as parameter
          */
-        "errorCallback": (error?: Error) => void;
+        "errorCallback": (error ?:Error) => void;
         /**
           * _[Optional]_ Session Generation URL to create a new Session. It will expect to receive the session Id from the response header 'X-Connect-Id'. If not set, it would use a default endpoint to the same window URL under the path /auth
          */
@@ -78,7 +78,7 @@ export namespace Components {
         /**
           * ***Mandatory*** Callback fired upon session correctly verified If not set, session validation wouldn't trigger any action The session data and a possible token will be sent as parameters to the callback
          */
-        "successCallback": (data?: any, token?: string) => void;
+        "successCallback": (data ?: any, token ?: string) => void;
     }
 }
 declare global {
@@ -106,7 +106,7 @@ declare namespace LocalJSX {
         /**
           * _[Optional]_ Check status function to query the current status of the session If not set, it would fallback to the session Endpoint property.
          */
-        "checkStatus"?: (id?: string) => Promise<RESULT_STATUS>;
+        "checkStatus"?: (id ?: string) => Promise<RESULT_STATUS>;
         /**
           * _[Optional]_ Create session function to generate a new Session If the property is unset, it will fallback to the generation Endpoint property.
          */
@@ -118,7 +118,7 @@ declare namespace LocalJSX {
         /**
           * ***Mandatory*** Callback fired upon session expired or invalid If not set, session error would not be handled An error containing information will be passed as parameter
          */
-        "errorCallback"?: (error?: Error) => void;
+        "errorCallback"?: (error ?:Error) => void;
         /**
           * _[Optional]_ Session Generation URL to create a new Session. It will expect to receive the session Id from the response header 'X-Connect-Id'. If not set, it would use a default endpoint to the same window URL under the path /auth
          */
@@ -156,7 +156,7 @@ declare namespace LocalJSX {
         /**
           * ***Mandatory*** Callback fired upon session correctly verified If not set, session validation wouldn't trigger any action The session data and a possible token will be sent as parameters to the callback
          */
-        "successCallback"?: (data?: any, token?: string) => void;
+        "successCallback"?: (data ?: any, token ?: string) => void;
     }
     interface IntrinsicElements {
         "gataca-qr": GatacaQr;
