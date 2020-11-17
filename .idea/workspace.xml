@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="ba0b9613-4b45-4420-9b28-588118654bad" name="Default Changelist" comment="v1.4.0&#10;&#10;adaptative style fixes">
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/gataca-QR.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/serialmonitor_settings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_17_11_2020,_14_50_[Default_Changelist]/shelved.patch" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_17_11_2020,_14_50_[Default_Changelist]1/shelved.patch" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_17_11_2020__14_50__Default_Changelist_.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_13_11_2020,_11_29_[Default_Changelist]/shelved.patch" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_13_11_2020__11_29__Default_Changelist_.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gatacaqr-react/src/react-component-lib/interfaces.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gatacaqr-react/src/react-component-lib/utils/attachProps.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gatacaqr-react/src/react-component-lib/utils/case.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gatacaqr-react/src/react-component-lib/utils/dev.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="PUSH_AUTO_UPDATE" value="true" />
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1k6Dz9gHjKGJG4EYiMePsRCmzmK" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="nodejs_package_manager_path" value="yarn" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode" />
+    <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ba0b9613-4b45-4420-9b28-588118654bad" name="Default Changelist" comment="" />
+      <created>1605012406775</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1605012406775</updated>
+      <workItem from="1605012407880" duration="4714000" />
+      <workItem from="1605022899744" duration="3846000" />
+      <workItem from="1605093540500" duration="1329000" />
+      <workItem from="1605125806535" duration="9665000" />
+      <workItem from="1605200510815" duration="2000" />
+      <workItem from="1605259409610" duration="6993000" />
+      <workItem from="1605518426347" duration="419000" />
+      <workItem from="1605551110252" duration="1345000" />
+      <workItem from="1605554715678" duration="115000" />
+      <workItem from="1605620214502" duration="3955000" />
+      <workItem from="1605624338911" duration="1834000" />
+    </task>
+    <task id="LOCAL-00001" summary="style update">
+      <created>1605016252943</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1605016252944</updated>
+    </task>
+    <task id="LOCAL-00002" summary="style update">
+      <created>1605026058584</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1605026058584</updated>
+    </task>
+    <task id="LOCAL-00003" summary="styles and props update">
+      <created>1605138697908</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1605138697908</updated>
+    </task>
+    <task id="LOCAL-00004" summary="styles and props update">
+      <created>1605259445870</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1605259445870</updated>
+    </task>
+    <task id="LOCAL-00005" summary="readme fixes and naming">
+      <created>1605263215225</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1605263215225</updated>
+    </task>
+    <task id="LOCAL-00006" summary="readme fixes and naming">
+      <created>1605263681589</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1605263681589</updated>
+    </task>
+    <task id="LOCAL-00007" summary="text fixes">
+      <created>1605264733698</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1605264733698</updated>
+    </task>
+    <task id="LOCAL-00008" summary="get back the readme example">
+      <created>1605266223787</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1605266223787</updated>
+    </task>
+    <task id="LOCAL-00009" summary="version and tabs">
+      <created>1605266559286</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1605266559286</updated>
+    </task>
+    <task id="LOCAL-00010" summary="change version">
+      <created>1605267262613</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1605267262613</updated>
+    </task>
+    <task id="LOCAL-00011" summary="v1.4.0&#10;&#10;adaptative style fixes">
+      <created>1605623600871</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1605623600871</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="style update" />
+    <MESSAGE value="styles and props update" />
+    <MESSAGE value="readme fixes and naming" />
+    <MESSAGE value="text fixes" />
+    <MESSAGE value="get back the readme example" />
+    <MESSAGE value="version and tabs" />
+    <MESSAGE value="change version" />
+    <MESSAGE value="v1.4.0&#10;&#10;adaptative style fixes" />
+    <option name="LAST_COMMIT_MESSAGE" value="v1.4.0&#10;&#10;adaptative style fixes" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="440" y="23" width="746" height="830" key="CommitChangelistDialog2" timestamp="1605626451397">
+      <screen x="0" y="23" width="1440" height="830" />
+    </state>
+    <state x="-1333" y="-235" key="CommitChangelistDialog2/0.23.1440.830/-1920.-340.1920.1057@-1920.-340.1920.1057" timestamp="1605267262303" />
+    <state x="440" y="23" width="746" height="830" key="CommitChangelistDialog2/0.23.1440.830@0.23.1440.830" timestamp="1605626451397" />
+    <state x="-1333" y="-235" key="CommitChangelistDialog2/0.23.1440.831/-1920.-340.1920.1057@-1920.-340.1920.1057" timestamp="1605176958300" />
+    <state x="-1536" y="-155" key="DiffContextDialog" timestamp="1605173238829">
+      <screen x="-1920" y="-340" width="1920" height="1057" />
+    </state>
+    <state x="-1536" y="-155" key="DiffContextDialog/0.23.1440.830/-1920.-340.1920.1057@-1920.-340.1920.1057" timestamp="1605173238829" />
+    <state x="62" y="74" width="1679" height="904" key="MergeDialog" timestamp="1605621057585">
+      <screen x="0" y="23" width="1440" height="830" />
+    </state>
+    <state x="-1837" y="-275" width="1679" height="904" key="MergeDialog/0.23.1440.830/-1920.-340.1920.1057@-1920.-340.1920.1057" timestamp="1605263582088" />
+    <state x="62" y="74" key="MergeDialog/0.23.1440.830@0.23.1440.830" timestamp="1605621057585" />
+    <state x="-1315" y="-41" key="MultipleFileMergeDialog" timestamp="1605263582137">
+      <screen x="-1920" y="-340" width="1920" height="1057" />
+    </state>
+    <state x="-1315" y="-41" key="MultipleFileMergeDialog/0.23.1440.830/-1920.-340.1920.1057@-1920.-340.1920.1057" timestamp="1605263582137" />
+    <state x="357" y="233" key="Vcs.Push.Dialog.v2" timestamp="1605623643384">
+      <screen x="0" y="23" width="1440" height="830" />
+    </state>
+    <state x="-1444" y="-72" key="Vcs.Push.Dialog.v2/0.23.1440.830/-1920.-340.1920.1057@-1920.-340.1920.1057" timestamp="1605267264615" />
+    <state x="357" y="233" key="Vcs.Push.Dialog.v2/0.23.1440.830@0.23.1440.830" timestamp="1605623643384" />
+    <state x="-1257" y="-50" width="593" height="476" key="find.popup" timestamp="1605552191576">
+      <screen x="-1920" y="-340" width="1920" height="1057" />
+    </state>
+    <state x="-1257" y="-50" width="593" height="476" key="find.popup/0.23.1440.830/-1920.-340.1920.1057@-1920.-340.1920.1057" timestamp="1605552191576" />
+    <state x="506" y="160" key="git4idea.branch.GitSmartOperationDialog" timestamp="1605621020388">
+      <screen x="0" y="23" width="1440" height="830" />
+    </state>
+    <state x="506" y="160" key="git4idea.branch.GitSmartOperationDialog/0.23.1440.830@0.23.1440.830" timestamp="1605621020388" />
+  </component>
+</project>
