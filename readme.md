@@ -267,6 +267,9 @@ The example configuration of the QR if your application implements the standard 
 
 ___ Note: ___  _The following examples explain how to use certain configuration parameters depending on your application needs_
 
+You can use this component with an already created session, which can be inserted on the sessionId property on the element, or passed via query parameter _id_ or _sessionId_ on the current URL.
+You can also provide a method to generate a new session like in the example, or, in the rare event of matching the authorizer API, just the endpoint to your application.
+
 #### Application rendering HTML Only
 This example shows how to integrate the QR Component on a normal scenario, where the application defines its own interface for the services.
 
@@ -347,6 +350,8 @@ __Note 2__: If *Gataca Authorizer* also had an endpoint to generate the sessionI
 
 In order to consult sessions, both options are also available, depending on how you want to develop your own API: either checkStatus method or the sessionEndpoint if your API matches the expecter authorizer API.
 
+In order to consult sessions, both options are also available, depending on how you want to develop your own API: either checkStatus method or the sessionEndpoint if your API matches the expecter authorizer API.
+
 
 ## Properties
 
@@ -371,6 +376,10 @@ In order to consult sessions, both options are also available, depending on how 
 | `buttonText`    | `button-text                    | _[Optional]_ Text of the button.                                                                                                                                | `string`                   |
 | `qrRole`             | `qr-role`             | _[Optional]_ Decide if scanning the credential as a verifier to request credentials or as an issuer too issue credentials. ___Options:___ __scan _(default)_ \| credential__                                                                                                                                                                                    | `string`                                  | `scan`         |
 | `asButton`           | `as-button`           | _[Optional]_ Decide if to show it as a button to display the QR Or display directly the QR. Default: true (display button)                                                                                                                                                                                                                          | `boolean`                                 | `true`                        |
+| `qrModalTitle`    | `qr-modal-title`                    | _[Optional]_ Text that is shown to personalise the message of the qr modal.                                                                                                                                       | `string`                   |
+| `qrModalDescription`    | `qr-modal-description`                    | _[Optional]_ Text to personalise the qr modal description to explain the user what need to be done with the QR code.                                                                                                                              | `string`                   |
+| `buttonText`    | `button-text`                    | _[Optional]_ Text of the button.                                                                                                                                | `string`                   |
+
 
 
 ## Events
