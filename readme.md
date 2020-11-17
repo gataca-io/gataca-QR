@@ -6,7 +6,7 @@ You only need to install on a front component to scan presentation requests from
 ## Installing this component
 
 ### Script tag
-- Put a script tag similar to this `<script src='https://unpkg.com/gatacaqr@1.1.2/dist/gatacaqr.js'></script>` in the head of your index.html
+- Put a script tag similar to this `<script src='https://unpkg.com/gatacaqr@1.2.0/dist/gatacaqr.js'></script>` in the head of your index.html
 - Then you can use the element anywhere in your template, JSX, html etc
 
 ### Node Modules
@@ -81,7 +81,7 @@ Note: Direct integration with [Gataca Connect](https://docs.gatacaid.com/connect
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
     <title>Gataca QR Component</title>
-    <script src='https://unpkg.com/gatacaqr@1.1.3/dist/gatacaqr.js'></script>
+    <script src='https://unpkg.com/gatacaqr@1.2.0/dist/gatacaqr.js'></script>
     <style type="text/css">
         .qrTitle {
             color: #181B5E;
@@ -96,10 +96,13 @@ Note: Direct integration with [Gataca Connect](https://docs.gatacaid.com/connect
 </head>
 
 <body>
-    <gataca-qr id="gataca-qr" session-timeout="300" polling-frequency="3">
-        <h1 class="qrTitle" slot="title" id="qrTitle">Login with Gataca</h1>
-        <h5 class="qrDesc" slot="description">Scan this QR to open your gataca wallet</h5>
-    </gataca-qr>
+    <gataca-qr 
+        id="gataca-qr" 
+        callback-server="https://connect.dev.gatacaid.com:9090" 
+        session-endpoint="http://localhost:9009/login?id=" 
+        qr-modal-title="Easy login" 
+        qr-modal-description="Scan this QR to open your gataca wallet" 
+        button-text="Easy login">
 
     <script>
         const qr = document.getElementById('gataca-qr');
@@ -217,6 +220,12 @@ The definition of the default interface is can be found on the [Gataca Connect d
 
 The first request - _the gataca login request_- is the default session generation endpoint, whereas the second one -_Gataca Login_- Post response is the session consultation endpoint.
 
+|  App Service Exposed | Connect Service Consumed  |
+|---|---|
+| Login Request  | Create Session  |
+| Login Gataca  | Get Session Data |
+
+
 The pseudo-code of those functions in the case of the AccessAPI, that could easily be adapted to your needs, is the following:
 
 ````go
@@ -259,24 +268,25 @@ The example configuration of the QR if your application implements the standard 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
   <title>Gataca QR Component</title>
-  <script src='https://unpkg.com/gatacaqr@1.1.2/dist/gatacaqr.js'></script>
+  <script src='https://unpkg.com/gatacaqr@1.2.0/dist/gatacaqr.js'></script>
   <style type="text/css">
   .qrTitle {
       color: #181B5E;
       align-self: center;
       text-align: center;
   }
-  .qrDesc {
+  .qrDescription {
       color: #181B5E;
   }
   </style>
 </head>
 <body>
-  <gataca-qr id="gataca-qr" session-timeout="300" polling-frequency="3" generation-endpoint ='https://connect.gataca.io:9090/admin/v1/login/request'
-session-endpoint = "https://connect.gataca.io:9090/admin/v1/login/gataca">
-      <h1 class="qrTitle" slot="title" id="qrTitle">Login with Gataca</h1>
-      <h5 class="qrDesc" slot="description">Scan this QR to open your gataca wallet</h5>
-  </gataca-qr>
+  <gataca-qr 
+        id="gataca-qr" 
+        session-timeout="300" 
+        polling-frequency="3" 
+        generation-endpoint ='https://connect.gataca.io:9090/admin/v1/login/request'
+        session-endpoint = "https://connect.gataca.io:9090/admin/v1/login/gataca"/>
   
   <script>
     const qr = document.getElementById('gataca-qr');
@@ -296,6 +306,9 @@ session-endpoint = "https://connect.gataca.io:9090/admin/v1/login/gataca">
 ````
 
 ___ Note: ___  _The following examples explain how to use certain configuration parameters depending on your application needs_
+
+You can use this component with an already created session, which can be inserted on the sessionId property on the element, or passed via query parameter _id_ or _sessionId_ on the current URL.
+You can also provide a method to generate a new session like in the example, or, in the rare event of matching the authorizer API, just the endpoint to your application.
 
 #### Application rendering HTML Only
 This example shows how to integrate the QR Component on a normal scenario, where the application defines its own interface for the services.
@@ -420,8 +433,11 @@ export const QRLogin: React.FC = () => {
 }
 ````
 
+In order to consult sessions, both options are also available, depending on how you want to develop your own API: either checkStatus method or the sessionEndpoint if your API matches the expecter authorizer API.
+
 
 ## Properties
+
 | Property             | Attribute             | Description                                                                                                                                                                                                                                                                                                                                         | Type                                      | Default                       |
 | -------------------- | --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------- | ----------------------------- |
 | `sessionId`          | `session-id`          | _[Optional]_ Generated session Id, which is required. Without session Id, the QR will not work. If the property is unset, it will check for an _id_ or _sessionId_ query parameter on the current URL. If there is no sessionId, it will fallback to the createSession method to generate a new Session.↓                                            | `string`                                  | -                   |
@@ -437,6 +453,10 @@ export const QRLogin: React.FC = () => {
 | `dynamicLink`        | `dynamic-link`        | _[Optional]_ Display a link containing a dynamic link to invoke the wallet if closed                                                                                                                                                                                                                                                                | `boolean`                                 | `true`                        |
 | `qrRole`             | `qr-role`             | _[Optional]_ Decide if scanning the credential as a verifier to request credentials or as an issuer too issue credentials. ___Options:___ __scan _(default)_ \| credential__                                                                                                                                                                                    | `string`                                  | `scan`         |
 | `asButton`           | `as-button`           | _[Optional]_ Decide if to show it as a button to display the QR Or display directly the QR. Default: true (display button)                                                                                                                                                                                                                          | `boolean`                                 | `true`                        |
+| `qrModalTitle`    | `qr-modal-title`                    | _[Optional]_ Text that is shown to personalise the message of the qr modal.                                                                                                                                       | `string`                   |
+| `qrModalDescription`    | `qr-modal-description`                    | _[Optional]_ Text to personalise the qr modal description to explain the user what need to be done with the QR code.                                                                                                                              | `string`                   |
+| `buttonText`    | `button-text`                    | _[Optional]_ Text of the button.                                                                                                                                | `string`                   |
+
 
 ## Events
 
@@ -457,6 +477,7 @@ Force manually the display of a QR
 Type: `Promise<void>`
 
 
+
 ### `getSessionData() => Promise<any>`
 
 Retrieve manually the session data on a successful login
@@ -466,6 +487,7 @@ Retrieve manually the session data on a successful login
 Type: `Promise<any>`
 
 
+
 ### `getToken() => Promise<string>`
 
 Retrieve manually a possible token retrieved upon login on the Header 'token'
@@ -473,6 +495,7 @@ Retrieve manually a possible token retrieved upon login on the Header 'token'
 #### Returns
 
 Type: `Promise<string>`
+
 
 
 ### `stop() => Promise<void>`
