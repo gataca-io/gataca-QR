@@ -7,25 +7,6 @@
   <script type="module" src="/build/gatacaqr.esm.js"></script>
   <script nomodule src="/build/gatacaqr.js"></script>
   <style type="text/css">
-    h1 {
-      color: #181B5E;
-      align-self: center;
-      text-align: center;
-    }
-
-    h5 {
-      color: #181B5E;
-    }
-
-    .btn-gataca {
-      background-color: #e9e9e9;
-      color: white;
-      font-weight: bold;
-      top: 50%;
-      width: 80%;
-      padding: 40px;
-      height: 100vh;
-    }
   </style>
 </head>
 <body>
@@ -41,7 +22,10 @@
 </div>
 
 <script>
+  
   const qr = document.getElementById('gataca-qr');
+  console.log(qr);
+
   qr.successCallback = () => {
     console.log('SUCCESS')
   };
@@ -60,6 +44,13 @@
       return ""
     }
   }
+  qr.asButton = false;
+
+  (async () => {
+    await customElements.whenDefined('gataca-qr');
+    await qr.display();
+  })();
+
 </script>
 </body>
 </html>
