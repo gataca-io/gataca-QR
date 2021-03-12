@@ -53,6 +53,7 @@ export namespace Components {
           * _[Optional]_ Frequency in seconds to check if the session has been validated
          */
         "pollingFrequency"?: number;
+        "qrModalBrandTile"?: boolean;
         "qrModalDescription"?: string;
         "qrModalTitle"?: string;
         /**
@@ -135,6 +136,7 @@ declare namespace LocalJSX {
           * _[Optional]_ Frequency in seconds to check if the session has been validated
          */
         "pollingFrequency"?: number;
+        "qrModalBrandTile"?: boolean;
         "qrModalDescription"?: string;
         "qrModalTitle"?: string;
         /**

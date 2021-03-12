@@ -120,6 +120,7 @@ export class GatacaQR {
    */
   @Prop() dynamicLink?: boolean = true;
   @Prop() qrModalTitle?: string = 'Fast Sing-on';
+  @Prop() qrModalBrandTile?: boolean = true;
   @Prop() qrModalDescription?: string = 'Scan to sign in';
   @Prop() buttonText?: string = 'Easy login';
 
@@ -240,10 +241,6 @@ export class GatacaQR {
           />
           <span>{this.buttonText}</span>
         </button>
-        <div class="brandSection">
-          <span class="buttonText">By Gataca</span>
-          <img src={GATACA_LOGO_BASE64} class="gatacaImgSmall" alt="Gataca logo"/>
-        </div>
       </div>
     )
   }
@@ -341,11 +338,14 @@ export class GatacaQR {
           <div class="modal-window__content">
             <div class="qrTitleContainer">
               <p class="qrTitle">{this.qrModalTitle}</p>
-              <p class="qrBrand">by Gataca <span><img src={GATACA_LOGO_BASE64}/></span></p>
+              {
+                this.qrModalBrandTile && <p class="qrBrand">
+                  by Gataca <span><img src={GATACA_LOGO_BASE64} /></span>
+                </p>
+              }
             </div>
             <p class="qrDescription">{this.qrModalDescription}</p>
             <div id="qr-container"></div>
-            {/* {this.displayQRStyle()} */}
             {this.displayQR()}
           </div>
         </div>
