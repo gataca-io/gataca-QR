@@ -16,6 +16,9 @@
     id="gataca-qr"
     callback-server="https://connect.dev.gatacaid.com:9090"
     session-endpoint="http://localhost:9009/login?id="
+    qr-modal-title="Fast Sign-on"
+    qrModalBrandTile
+    qrModalDescription="Scan to sign in"
   >
   </gataca-qr>
 
@@ -29,6 +32,7 @@
   qr.successCallback = () => {
     console.log('SUCCESS')
   };
+
   qr.errorCallback = () => {
     console.log('ERROR')
   };
@@ -44,8 +48,9 @@
       return ""
     }
   }
-  qr.asButton = false;
 
+  qr.asButton = false;
+  
   (async () => {
     await customElements.whenDefined('gataca-qr');
     await qr.display();
