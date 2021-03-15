@@ -40,7 +40,7 @@ export class GatacaQR {
   * Decide if to show it as a button to display the QR
   * Or display directly the QR. Default: true (display button)
   */
-  @Prop() asButton: boolean = true;
+  @Prop() asButton: boolean = false;
 
   /**
   * _[Optional]_
