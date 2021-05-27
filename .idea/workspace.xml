@@ -147,7 +147,18 @@
       <option name="project" value="LOCAL" />
       <updated>1605623600871</updated>
     </task>
+<<<<<<< HEAD
     <option name="localTasksCounter" value="12" />
+=======
+    <task id="LOCAL-00012" summary="mindsight changes">
+      <created>1605631904330</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1605631904330</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
+>>>>>>> 7cafc503c0fa99ba1d53000380e6d3f4f57cc2e6
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -162,6 +173,7 @@
     <MESSAGE value="version and tabs" />
     <MESSAGE value="change version" />
     <MESSAGE value="v1.4.0&#10;&#10;adaptative style fixes" />
+<<<<<<< HEAD
     <option name="LAST_COMMIT_MESSAGE" value="v1.4.0&#10;&#10;adaptative style fixes" />
   </component>
   <component name="WindowStateProjectService">
@@ -169,6 +181,16 @@
       <screen x="0" y="23" width="1440" height="830" />
     </state>
     <state x="-1333" y="-235" key="CommitChangelistDialog2/0.23.1440.830/-1920.-340.1920.1057@-1920.-340.1920.1057" timestamp="1605267262303" />
+=======
+    <MESSAGE value="mindsight changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="mindsight changes" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="-1333" y="-235" width="746" height="830" key="CommitChangelistDialog2" timestamp="1605631904115">
+      <screen x="-1920" y="-340" width="1920" height="1057" />
+    </state>
+    <state x="-1333" y="-235" key="CommitChangelistDialog2/0.23.1440.830/-1920.-340.1920.1057@-1920.-340.1920.1057" timestamp="1605631904115" />
+>>>>>>> 7cafc503c0fa99ba1d53000380e6d3f4f57cc2e6
     <state x="440" y="23" width="746" height="830" key="CommitChangelistDialog2/0.23.1440.830@0.23.1440.830" timestamp="1605626451397" />
     <state x="-1333" y="-235" key="CommitChangelistDialog2/0.23.1440.831/-1920.-340.1920.1057@-1920.-340.1920.1057" timestamp="1605176958300" />
     <state x="-1536" y="-155" key="DiffContextDialog" timestamp="1605173238829">

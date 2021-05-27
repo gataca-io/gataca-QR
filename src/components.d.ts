@@ -78,7 +78,7 @@ export namespace Components {
         /**
           * ***Mandatory*** Callback fired upon session correctly verified If not set, session validation wouldn't trigger any action The session data and a possible token will be sent as parameters to the callback
          */
-        "successCallback": (data ?:any, token ?:string) => void;
+        "successCallback": (data ?: any, token ?: string) => void;
     }
 }
 declare global {
@@ -156,7 +156,7 @@ declare namespace LocalJSX {
         /**
           * ***Mandatory*** Callback fired upon session correctly verified If not set, session validation wouldn't trigger any action The session data and a possible token will be sent as parameters to the callback
          */
-        "successCallback"?: (data ?:any, token ?:string) => void;
+        "successCallback"?: (data ?: any, token ?: string) => void;
     }
     interface IntrinsicElements {
         "gataca-qr": GatacaQr;
