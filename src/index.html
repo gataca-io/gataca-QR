@@ -13,42 +13,18 @@
   <gataca-qr
     id="gataca-qr"
     callback-server="https://connect.dev.gatacaid.com:9090"
-    session-endpoint="http://localhost:9009/login?id="
+    session-endpoint="https://connect.dev.gataca.io:9090/admin/v1/login/gataca"
+    generation-endpoint="https://connect.dev.gataca.io:9090/admin/v1/login/request"
     qr-modal-title="Fast Sign-on"
-    qr-modal-brand-tile
-    as-button
     qr-modal-description="Scan to sign in"
   >
   </gataca-qr>
 
 </div>
 
-
 <script>
     const qr = document.getElementById('gataca-qr');
-    const qrTitle = document.getElementById('qrTitle');
-​
-    qrTitle.onClick = (e) => {
-        qr.open = false;
-    }
-​
-    qr.checkStatus = async (id) => {
-        console.log("Check status called for session", id)
-        try {
-            response = await $.get("/login/status")
-            console.log("Got Status Response", response)
-            return 1;
-        } catch (err) {
-            console.log("Error", err)
-            switch (err.status) {
-                case 428:
-                    return 0;
-                default:
-                    return 2
-            }
-        }
-    }
-​
+    ​
     qr.successCallback = () => {
         document.getElementById("loginFinishedSubmit").submit();
         //$.post("/login", "login_challenge={{.LoginChallenge}}")
@@ -57,10 +33,10 @@
         $.post("/login", "login_challenge={{.LoginChallenge}}")
     };
 
-  (async () => {
-    await customElements.whenDefined('gataca-qr');
-    await qr.display();
-  })();
+    (async () => {
+        await customElements.whenDefined('gataca-qr');
+        await qr.display();
+    })();
   
 </script>
 

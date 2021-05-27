@@ -119,17 +119,35 @@ export class GatacaQR {
    * Display a link containing a dynamic link to invoke the wallet if closed
    */
   @Prop() dynamicLink?: boolean = true;
+
+    /**
+   * _[Optional]_
+   * Modifies the qr headline title
+   */
   @Prop() qrModalTitle?: string = 'Fast Sing-on';
-  @Prop() qrModalBrandTile?: boolean = true;
+
+      /**
+   * _[Optional]_
+   * Boolean to show or not show the gataca brand title
+   */
+  @Prop() hideBrandTile?: boolean = false;
+
+        /**
+   * _[Optional]_
+   * Modifies the Modal description
+   */
   @Prop() qrModalDescription?: string = 'Scan to sign in';
+
+          /**
+   * _[Optional]_
+   * In the case of being a button, modifies its text
+   */
   @Prop() buttonText?: string = 'Easy login';
+  
 
   @State() open: boolean = false;
-
   @State() loaded: boolean = false;
-
   @State() connectToken: string = undefined;
-
   @State() loginToken: string = undefined;
   @State() sessionData: any = undefined;
 
@@ -153,7 +171,6 @@ export class GatacaQR {
     cancelable: true,
     bubbles: true,
   }) gatacaLoginFailed: EventEmitter;
-
 
   /**
    * Force manually the display of a QR
@@ -331,7 +348,7 @@ export class GatacaQR {
     return (
       <div class="popUpContainer">
         <div
-          class={'modal-window ' + (this.open ? 'is-visible' : '')}
+          class={'modal-window ' + ('is-visible')}
           onClick={(event) => {
             event.stopPropagation()
           }}>
@@ -339,7 +356,7 @@ export class GatacaQR {
             <div class="qrTitleContainer">
               <p class="qrTitle">{this.qrModalTitle}</p>
               {
-                this.qrModalBrandTile && <p class="qrBrand">
+                !this.hideBrandTile && <p class="qrBrand">
                   by Gataca <span><img src={GATACA_LOGO_BASE64} /></span>
                 </p>
               }
