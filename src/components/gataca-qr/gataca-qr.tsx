@@ -3,7 +3,6 @@ import qrcode from 'qrcode-generator';
 
 import {checkMobile, base64UrlEncode, RESULT_STATUS} from '../../utils/utils';
 
-
 const DEEP_LINK_PREFIX = "https://gataca.page.link/?apn=com.gatacaapp&ibi=com.gataca.wallet&link="
 
 //Default values
@@ -41,7 +40,7 @@ export class GatacaQR {
   * Decide if to show it as a button to display the QR
   * Or display directly the QR. Default: true (display button)
   */
-  @Prop() asButton: boolean = true;
+  @Prop() asButton: boolean = false;
 
   /**
   * _[Optional]_
@@ -120,16 +119,35 @@ export class GatacaQR {
    * Display a link containing a dynamic link to invoke the wallet if closed
    */
   @Prop() dynamicLink?: boolean = true;
-  @Prop() qrModalTitle?: string = 'Login with Gataca';
-  @Prop() qrModalDescription?: string = 'Scan this QR with your Gataca wallet app';
+
+    /**
+   * _[Optional]_
+   * Modifies the qr headline title
+   */
+  @Prop() qrModalTitle?: string = 'Fast Sing-on';
+
+      /**
+   * _[Optional]_
+   * Boolean to show or not show the gataca brand title
+   */
+  @Prop() hideBrandTile?: boolean = false;
+
+        /**
+   * _[Optional]_
+   * Modifies the Modal description
+   */
+  @Prop() qrModalDescription?: string = 'Scan to sign in';
+
+          /**
+   * _[Optional]_
+   * In the case of being a button, modifies its text
+   */
   @Prop() buttonText?: string = 'Easy login';
+  
 
   @State() open: boolean = false;
-
   @State() loaded: boolean = false;
-
   @State() connectToken: string = undefined;
-
   @State() loginToken: string = undefined;
   @State() sessionData: any = undefined;
 
@@ -153,7 +171,6 @@ export class GatacaQR {
     cancelable: true,
     bubbles: true,
   }) gatacaLoginFailed: EventEmitter;
-
 
   /**
    * Force manually the display of a QR
@@ -241,10 +258,6 @@ export class GatacaQR {
           />
           <span>{this.buttonText}</span>
         </button>
-        <div class="brandSection">
-          <span class="buttonText">By Gataca</span>
-          <img src={GATACA_LOGO_BASE64} class="gatacaImgSmall" alt="Gataca logo"/>
-        </div>
       </div>
     )
   }
@@ -325,8 +338,8 @@ export class GatacaQR {
     qr.addData(link);
     qr.make();
     const renderQr = this.dynamicLink ?
-      qr.createSvgTag(8, 25, ) :
-      qr.createSvgTag(6, 25);
+      qr.createSvgTag(8, 0) :
+      qr.createSvgTag(6, 0);
     return <div class="qr-container"
                 innerHTML={renderQr}/>
   }
@@ -335,25 +348,22 @@ export class GatacaQR {
     return (
       <div class="popUpContainer">
         <div
-          class={'overlay ' + (this.open ? 'is-visible' : '')}
-          onClick={(_) => this.stop()}
-        >
-        </div>
-        <div
-          class={'modal-window ' + (this.open ? 'is-visible' : '')}
+          class={'modal-window ' + ('is-visible')}
           onClick={(event) => {
             event.stopPropagation()
           }}>
           <div class="modal-window__content">
-            {!this.asButton ?
-              <div class="brandSection brandModal">
-                <span class="buttonText">{this.qrModalTitle}</span>
-                <img src={GATACA_LOGO_BASE64} class="gatacaImgSmall" alt="Gataca logo"/>
-              </div>
-              :
-              null}
-            {this.displayQR()}
+            <div class="qrTitleContainer">
+              <p class="qrTitle">{this.qrModalTitle}</p>
+              {
+                !this.hideBrandTile && <p class="qrBrand">
+                  by Gataca <span><img src={GATACA_LOGO_BASE64} /></span>
+                </p>
+              }
+            </div>
             <p class="qrDescription">{this.qrModalDescription}</p>
+            <div id="qr-container"></div>
+            {this.displayQR()}
           </div>
         </div>
       </div>

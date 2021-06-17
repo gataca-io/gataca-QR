@@ -14,9 +14,29 @@ You only need to install on a front component to scan presentation requests from
 - Put a script tag similar to this `<script src='node_modules/gatacaqr/dist/gatacaqr.js'></script>` in the head of your index.html
 - Then you can use the element anywhere in your template, JSX, html etc
 
-## Styles & Personification
+## Styles & Personalization
 
 It allows to integrate 2 slots, named "title" and "description", to provide further integration to the user upon display of the QR.
+Both two should be passed to the component as params: 
+<b>qr-modal-title</b>
+<b>qr-modal-description</b>
+
+In order to control how the QR is previsualized the ideal situation is to encapsulate the QR component in a tag with the styles on your control. The component will adapt and fill the container.
+````html
+<div class="your-container-styles">
+
+  <gataca-qr
+    id="gataca-qr"
+    callback-server="https://connect.dev.gatacaid.com:9090"
+    session-endpoint="https://connect.dev.gataca.io:9090/admin/v1/login/gataca"
+    generation-endpoint="https://connect.dev.gataca.io:9090/admin/v1/login/request"
+    qr-modal-title="Fast Sign-on"
+    qr-modal-description="Scan to sign in"
+  >
+  </gataca-qr>
+
+</div>
+````
 
 ## Usage
 
