@@ -101,7 +101,11 @@ Note: Direct integration with [Gataca Connect](https://docs.gatacaid.com/connect
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
     <title>Gataca QR Component</title>
-    <script src='https://unpkg.com/gatacaqr@1.2.0/dist/gatacaqr.js'></script>
+    
+    <script type="module" src="https://unpkg.com/gatacaqr@1.4.2/dist/gatacaqr/gatacaqr.esm.js"></script>
+    <script nomodule="" src="https://unpkg.com/gatacaqr@1.4.2/dist/gatacaqr/gatacaqr.js"></script>
+
+
     <style type="text/css">
         .qrTitle {
             color: #181B5E;
@@ -118,11 +122,12 @@ Note: Direct integration with [Gataca Connect](https://docs.gatacaid.com/connect
 <body>
     <gataca-qr 
         id="gataca-qr" 
-        callback-server="https://connect.dev.gatacaid.com:9090" 
-        session-endpoint="http://localhost:9009/login?id=" 
+        callback-server="$CALLBACK_SERVER"
         qr-modal-title="Easy login" 
         qr-modal-description="Scan this QR to open your gataca wallet" 
-        button-text="Easy login">
+        button-text="Easy login"
+        as-button="true"
+    />
 
     <script>
         const qr = document.getElementById('gataca-qr');
@@ -141,8 +146,6 @@ Note: Direct integration with [Gataca Connect](https://docs.gatacaid.com/connect
         const appPassword = "$YOUR_PASSWORD";
         const connectServer = "$YOUR_SERVER";
 
-        qr.callbackServer = connectServer;
-
         const getAppToken = async () => {
             if (!appToken) {
                 let response = await fetch(
@@ -157,15 +160,12 @@ Note: Direct integration with [Gataca Connect](https://docs.gatacaid.com/connect
                         body: "{}"
                     })
                 appToken = response.headers.get('Token')
+
                 return appToken
             }
+
             return appToken
         }
-
-        qrTitle.onClick = (e) => {
-            qr.open = false;
-        }
-
 
         const processData = (data) => {
             let result = {}
@@ -193,6 +193,7 @@ Note: Direct integration with [Gataca Connect](https://docs.gatacaid.com/connect
                 })
             let data = await response.json();
             sessionToken = response.headers.get('Token');
+
             return data.id
         }
 
@@ -207,19 +208,24 @@ Note: Direct integration with [Gataca Connect](https://docs.gatacaid.com/connect
                     }
                 }
             );
+
             let data = response.status === 200 ? (await response.json()).data : null;
+
             if (data) {
                 qr.sessionData = processData(data)
             }
+
             return response.status === 200 ? RESULT_STATUS.SUCCESS : response.status === 204 ? RESULT_STATUS.ONGOING : RESULT_STATUS.FAILED;
         }
 
         qr.successCallback = (data, token) => {
-            alert("LOGIN OK: " + qr.sessionData["some_info_field_you_requested"]) //the session data has mapped the required credentials. You can invoke whichever you need here, depending on what you requested on the tenant configuration.
+            alert("LOGIN OK: " + qr.sessionData['[CREDENTIAL_TYPE]']) //e.g. email. The session data has mapped the required credentials. You can invoke whichever you need here, depending on what you requested on the tenant configuration.
         };
+
         qr.errorCallback = () => {
             alert("Wrong credentials!")
         };
+
     </script>
 </body>
 
