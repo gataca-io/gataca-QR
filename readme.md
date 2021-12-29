@@ -1,15 +1,15 @@
 # Gataca-QR
 
-This component built using stencyl allows an easy integration to display a gataca QR.
-You only need to install on a front component to scan presentation requests from the (Gataca Wallet)[https://gataca.io/solutions] app.
+This component allows an easy integration to display a GATACA QR code.
+You only need to install on a front component to scan presentation requests from the [GATACA Wallet](https://gataca.io/products/wallet) app.
 
-## Installing this component
+## Installing the component
 
 ### Script tag
-- Put a script tag similar to this `<script src='https://unpkg.com/gatacaqr@1.2.0/dist/gatacaqr.js'></script>` in the head of your index.html
+- Put a script tag similar to this `<script src='https://unpkg.com/gatacaqr@1.4.2/dist/gatacaqr.js'></script>` in the head of your index.html
 - Then you can use the element anywhere in your template, JSX, html etc
 
-### Node Modules
+### Node modules
 - Run `npm install gatacaqr --save`
 - Put a script tag similar to this `<script src='node_modules/gatacaqr/dist/gatacaqr.js'></script>` in the head of your index.html
 - Then you can use the element anywhere in your template, JSX, html etc
@@ -17,11 +17,12 @@ You only need to install on a front component to scan presentation requests from
 ## Styles & Personalization
 
 It allows to integrate 2 slots, named "title" and "description", to provide further integration to the user upon display of the QR.
-Both two should be passed to the component as params: 
-<b>qr-modal-title</b>
-<b>qr-modal-description</b>
+Both should be passed to the component as params: 
+- qr-modal-title
+- qr-modal-description
 
-In order to control how the QR is previsualized the ideal situation is to encapsulate the QR component in a tag with the styles on your control. The component will adapt and fill the container.
+In order to control how the QR code is previsualized the ideal situation is to encapsulate the QR component in a tag with the styles on your control. The component will adapt and fill the container.
+
 ````html
 <div class="your-container-styles">
 
@@ -40,11 +41,15 @@ In order to control how the QR is previsualized the ideal situation is to encaps
 
 ## Usage
 
-The goal of this component is to ease the generation and presentation of QRs with Gataca Connect Sessions on any html or frontend project, to allow the integration of GATACA Connect in your own infrastructure or application.
+The objective of this component is to facilitate the integration of the GATACA platform with any other system that will use SSI technologies.
 
-This component should be used with the prerequisite of having an application which can be integrated with [Gataca Connect](https://docs.gatacaid.com/connect/). More precisely, your application will need to be able to perform the two operations against your connect server:
-1. Create sessions
-2. Consult sessions
+This component should be used with the prerequisite of having an application which can be integrated with [GATACA Connect](https://gataca.atlassian.net/wiki/spaces/developers/pages/783090185/Connect+-+Authenticating+a+user+with+SSI) or [GATACA Certify](https://gataca.atlassian.net/wiki/spaces/developers/pages/783090163/Certify+-+Credential+Issuance+Process). More precisely, client application will need to be able to perform any of these two flows:
+1. Authentication
+2. [Verifiable Credential](https://gataca.atlassian.net/wiki/spaces/developers/pages/815038676/Verifiable+Credential+VC) issuance
+
+### GATACA Connect (Authentication / Credential sharing)
+---
+Information about the GATACA Connect flows: [Connect tutorial](https://gataca.atlassian.net/wiki/spaces/developers/pages/783090185/Connect+-+Authenticating+a+user+with+SSI)
 
 ![QRDiagram](QR_Diagram_Expected.png)
 
@@ -60,7 +65,7 @@ Therefore, in order to make it work, you will need at least:
 To better understand how the QR works, this diagram details its work:
 ![QrIntegration](QR_Integration.png)
 
-### Configurations
+#### Configurations
 
 To understand all possible configurations. Check the properties section below. Here is a recap of all possible combinations:
 
@@ -83,9 +88,9 @@ To better understand the different relation between properties, this decision di
 
 You can also check the examples below to check which configuration is more suitable for your case.
 
-### Examples
+#### Examples
 
-#### Test connection
+##### Test connection
 
 The first example to understand how the QR works is to avoid any backend processing (no business logic added); just by pointing the frontend directly to consult a session on the Connect.
 
@@ -232,7 +237,7 @@ Note: Direct integration with [Gataca Connect](https://docs.gatacaid.com/connect
 </html>
 ````
 
-#### HTML Only with the standard interface
+##### HTML Only with the standard interface
 
 This example shows how to integrate the QR Component on a normal scenario, on the easiest case: the application server exposes the same interface as the Access API on the GATACA Connect.
 
@@ -336,7 +341,7 @@ ___ Note: ___  _The following examples explain how to use certain configuration 
 You can use this component with an already created session, which can be inserted on the sessionId property on the element, or passed via query parameter _id_ or _sessionId_ on the current URL.
 You can also provide a method to generate a new session like in the example, or, in the rare event of matching the authorizer API, just the endpoint to your application.
 
-#### Application rendering HTML Only
+##### Application rendering HTML Only
 This example shows how to integrate the QR Component on a normal scenario, where the application defines its own interface for the services.
 
 You can find an example of that kind of simple application _(written in Go)_ on the [Gataca Authorizer](https://github.com/gatacaid/gataca-authorizer), which we will use as example to explain the component's usage. 
@@ -414,7 +419,7 @@ __Note 2__: If *Gataca Authorizer* also had an endpoint to generate the sessionI
   </script>
 ````
 
-#### SPA React Application
+##### SPA React Application
 
 In this example, we will show how to integrate it with a full react application.
 
@@ -461,6 +466,148 @@ export const QRLogin: React.FC = () => {
 
 In order to consult sessions, both options are also available, depending on how you want to develop your own API: either checkStatus method or the sessionEndpoint if your API matches the expecter authorizer API.
 
+### GATACA Certify (Credential issuance)
+---
+Information about the GATACA Certify flows: [Certify tutorial](https://gataca.atlassian.net/wiki/spaces/developers/pages/783090163/Certify+-+Credential+Issuance+Process)
+
+```html
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
+    <title>Gataca QR Component</title>
+
+    <script type="module" src="https://unpkg.com/gatacaqr@1.4.2/dist/gatacaqr/gatacaqr.esm.js"></script>
+    <script nomodule="" src="https://unpkg.com/gatacaqr@1.4.2/dist/gatacaqr/gatacaqr.js"></script>
+
+
+    <style type="text/css">
+        .qrTitle {
+            color: #181B5E;
+            align-self: center;
+            text-align: center;
+        }
+
+        .qrDesc {
+            color: #181B5E;
+        }
+    </style>
+</head>
+
+<body>
+    <gataca-qr
+        id="gataca-qr"
+        callback-server="$YOUR_SERVER"
+        qr-modal-title="Easy login"
+        qr-modal-description="Scan this QR to open your gataca wallet"
+        qr-role="credential"
+        button-text="Easy login"
+        as-button="true"
+    />
+
+    <script>
+        const qr = document.getElementById('gataca-qr');
+        const qrTitle = document.getElementById('qrTitle');
+        const RESULT_STATUS = {
+            ONGOING: 0,
+            SUCCESS: 1,
+            FAILED: 2,
+        }
+        let appToken = "";
+        let sessionToken = "";
+
+        //Change this variables with your installation
+        const appName = "$YOUR_APP";
+        const tenant = "$YOUR_TENANT";
+        const appPassword = "$APP_PASSWORD";
+        const certifyServer = "$YOUR_SERVER";
+
+        const getAppToken = async () => {
+            if (!appToken) {
+                let response = await fetch(
+                    certifyServer + "/admin/v1/login/basic",
+                    {
+                        method: "POST",
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Tenant': tenant,
+                            'Authorization': 'Basic ' + btoa(appName + ":" + appPassword)
+                        },
+                        body: "{}"
+                    })
+                appToken = response.headers.get('Token')
+
+                return appToken
+            }
+
+            return appToken
+        }
+
+        const processData = (data) => {
+            let result = {}
+            for (let vc of data?.verifiableCredential) {
+                for (let key of Object.keys(vc.credentialSubject)) {
+                    if (key != "id") {
+                        result[key] = vc.credentialSubject[key]
+                    }
+                }
+            }
+            return result
+        }
+
+        qr.createSession = async () => {
+            let endpoint = certifyServer + "/api/v1/issuanceRequests";
+            let response = await fetch(
+                endpoint,
+                {
+                    method: "POST",
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'jwt ' + await getAppToken()
+                    },
+                    body: "{\"group\": \"" + tenant + "\"}"
+                })
+            let data = await response.json();
+
+            return data.id
+        }
+
+        qr.checkStatus = async (id) => {
+            let endpoint = certifyServer + '/admin/v1/issuanceRequests/' + id;
+            let response = await fetch(
+                endpoint,
+                {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'jwt ' + await getAppToken(),
+                    }
+                }
+            );
+
+            let json = response.status === 200 ? await response.json() : null;
+
+            if (json.status == 'READY') {
+                qr.sessionData = processData(json?.validator?.verifiablePresentation);
+            }
+
+            return json.status === 'READY' ? RESULT_STATUS.SUCCESS : json.status === 'PENDING' ? RESULT_STATUS.ONGOING : RESULT_STATUS.FAILED;
+        }
+
+        qr.successCallback = (data, token) => {
+            alert("Issuance process OK: " + qr.sessionData['email']) //e.g. email. The session data has mapped the required credentials. You can invoke whichever you need here, depending on what you requested on the tenant configuration.
+        };
+
+        qr.errorCallback = () => {
+            alert("Wrong credentials!")
+        };
+
+    </script>
+</body>
+
+</html>
+```
 
 ## Properties
 
