@@ -1,0 +1,3548 @@
+{
+  "timestamp": "2022-11-18T12:11:15",
+  "compiler": {
+    "name": "node",
+    "version": "15.14.0"
+  },
+  "app": {
+    "namespace": "gatacaqr",
+    "fsNamespace": "gatacaqr",
+    "components": 4,
+    "entries": 4,
+    "bundles": 55,
+    "outputs": [
+      {
+        "name": "dist-collection",
+        "files": 7,
+        "generatedFiles": [
+          "./dist/collection/components/gataca-qr/gataca-qr.js",
+          "./dist/collection/components/gataca-qrdisplay/gataca-qrdisplay.js",
+          "./dist/collection/components/gataca-qrws/gataca-qrws.js",
+          "./dist/collection/components/gataca-ssibutton/gataca-ssibutton.js",
+          "./dist/collection/index.js",
+          "./dist/collection/utils/index.js",
+          "./dist/collection/utils/utils.js"
+        ]
+      },
+      {
+        "name": "dist-custom-elements",
+        "files": 13,
+        "generatedFiles": [
+          "./dist/components/gat-icon-refresh.js",
+          "./dist/components/gataca-qr.d.ts",
+          "./dist/components/gataca-qr.js",
+          "./dist/components/gataca-qr2.js",
+          "./dist/components/gataca-qrdisplay.d.ts",
+          "./dist/components/gataca-qrdisplay.js",
+          "./dist/components/gataca-qrdisplay2.js",
+          "./dist/components/gataca-qrws.d.ts",
+          "./dist/components/gataca-qrws.js",
+          "./dist/components/gataca-ssibutton.d.ts",
+          "./dist/components/gataca-ssibutton.js",
+          "./dist/components/index.d.ts",
+          "./dist/components/index.js"
+        ]
+      },
+      {
+        "name": "dist-lazy",
+        "files": 32,
+        "generatedFiles": [
+          "./dist/cjs/gataca-qr_3.cjs.entry.js",
+          "./dist/cjs/gataca-qrws.cjs.entry.js",
+          "./dist/cjs/gatacaqr.cjs.js",
+          "./dist/cjs/index-0b7a1532.js",
+          "./dist/cjs/index.cjs.js",
+          "./dist/cjs/loader.cjs.js",
+          "./dist/cjs/qr-code-styling-1d430fdb.js",
+          "./dist/cjs/utils-383ee834.js",
+          "./dist/esm/gataca-qr_3.entry.js",
+          "./dist/esm/gataca-qrws.entry.js",
+          "./dist/esm/gatacaqr.js",
+          "./dist/esm/index-19eef502.js",
+          "./dist/esm/index.js",
+          "./dist/esm/loader.js",
+          "./dist/esm/qr-code-styling-f9286084.js",
+          "./dist/esm/utils-05ba6c9f.js",
+          "./dist/gatacaqr/gatacaqr.esm.js",
+          "./dist/gatacaqr/index.esm.js",
+          "./dist/gatacaqr/p-07d70cc6.js",
+          "./dist/gatacaqr/p-43177fb0.entry.js",
+          "./dist/gatacaqr/p-6c9a7e96.entry.js",
+          "./dist/gatacaqr/p-a6f85341.js",
+          "./dist/gatacaqr/p-b8ba109f.js",
+          "./dist/index.cjs.js",
+          "./dist/index.js",
+          "./www/build/gatacaqr.esm.js",
+          "./www/build/index.esm.js",
+          "./www/build/p-07d70cc6.js",
+          "./www/build/p-43177fb0.entry.js",
+          "./www/build/p-6c9a7e96.entry.js",
+          "./www/build/p-a6f85341.js",
+          "./www/build/p-b8ba109f.js"
+        ]
+      },
+      {
+        "name": "dist-types",
+        "files": 1,
+        "generatedFiles": [
+          "./dist/types/stencil-public-runtime.d.ts"
+        ]
+      },
+      {
+        "name": "www",
+        "files": 2,
+        "generatedFiles": [
+          "./www/host.config.json",
+          "./www/index.html"
+        ]
+      }
+    ]
+  },
+  "options": {
+    "minifyJs": true,
+    "minifyCss": true,
+    "hashFileNames": true,
+    "hashedFileNameLength": 8,
+    "buildEs5": false
+  },
+  "formats": {
+    "esmBrowser": [
+      {
+        "key": "gataca-qr.gataca-qrdisplay.gataca-ssibutton.entry",
+        "components": [
+          "gataca-qr",
+          "gataca-qrdisplay",
+          "gataca-ssibutton"
+        ],
+        "bundleId": "p-6c9a7e96",
+        "fileName": "p-6c9a7e96.entry.js",
+        "imports": [
+          "p-a6f85341.js",
+          "p-07d70cc6.js",
+          "p-b8ba109f.js"
+        ],
+        "originalByteSize": 17188
+      },
+      {
+        "key": "gataca-qrws.entry",
+        "components": [
+          "gataca-qrws"
+        ],
+        "bundleId": "p-43177fb0",
+        "fileName": "p-43177fb0.entry.js",
+        "imports": [
+          "p-a6f85341.js",
+          "p-07d70cc6.js",
+          "p-b8ba109f.js"
+        ],
+        "originalByteSize": 11183
+      }
+    ],
+    "esm": [
+      {
+        "key": "gataca-qr.gataca-qrdisplay.gataca-ssibutton.entry",
+        "components": [
+          "gataca-qr",
+          "gataca-qrdisplay",
+          "gataca-ssibutton"
+        ],
+        "bundleId": "gataca-qr_3",
+        "fileName": "gataca-qr_3.entry.js",
+        "imports": [
+          "index-19eef502.js",
+          "qr-code-styling-f9286084.js",
+          "utils-05ba6c9f.js"
+        ],
+        "originalByteSize": 17210
+      },
+      {
+        "key": "gataca-qrws.entry",
+        "components": [
+          "gataca-qrws"
+        ],
+        "bundleId": "gataca-qrws",
+        "fileName": "gataca-qrws.entry.js",
+        "imports": [
+          "index-19eef502.js",
+          "qr-code-styling-f9286084.js",
+          "utils-05ba6c9f.js"
+        ],
+        "originalByteSize": 11205
+      }
+    ],
+    "es5": [],
+    "system": [],
+    "commonjs": [
+      {
+        "key": "gataca-qr.gataca-qrdisplay.gataca-ssibutton.entry",
+        "components": [
+          "gataca-qr",
+          "gataca-qrdisplay",
+          "gataca-ssibutton"
+        ],
+        "bundleId": "gataca-qr_3.cjs",
+        "fileName": "gataca-qr_3.cjs.entry.js",
+        "imports": [
+          "index-0b7a1532.js",
+          "qr-code-styling-1d430fdb.js",
+          "utils-383ee834.js"
+        ],
+        "originalByteSize": 17551
+      },
+      {
+        "key": "gataca-qrws.entry",
+        "components": [
+          "gataca-qrws"
+        ],
+        "bundleId": "gataca-qrws.cjs",
+        "fileName": "gataca-qrws.cjs.entry.js",
+        "imports": [
+          "index-0b7a1532.js",
+          "qr-code-styling-1d430fdb.js",
+          "utils-383ee834.js"
+        ],
+        "originalByteSize": 11434
+      }
+    ]
+  },
+  "components": [
+    {
+      "tag": "gataca-qr",
+      "path": "./src/components/gataca-qr/gataca-qr.js",
+      "source": "./src/components/gataca-qr/gataca-qr.tsx",
+      "elementRef": null,
+      "componentClassName": "GatacaQR",
+      "assetsDirs": [],
+      "dependencies": [
+        "gataca-qrdisplay"
+      ],
+      "dependents": [
+        "gataca-ssibutton"
+      ],
+      "directDependencies": [
+        "gataca-qrdisplay"
+      ],
+      "directDependents": [
+        "gataca-ssibutton"
+      ],
+      "docs": {
+        "tags": [],
+        "text": ""
+      },
+      "encapsulation": "shadow",
+      "excludeFromCollection": false,
+      "events": [
+        {
+          "name": "gatacaLoginCompleted",
+          "method": "gatacaLoginCompleted",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": {
+            "tags": [],
+            "text": "GatacaLoginCompleted event, triggered with session data upon login success"
+          },
+          "complexType": {
+            "original": "any",
+            "resolved": "any",
+            "references": {}
+          },
+          "internal": false
+        },
+        {
+          "name": "gatacaLoginFailed",
+          "method": "gatacaLoginFailed",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": {
+            "tags": [],
+            "text": "GatacaLoginFailed event, triggered with error upon login failure"
+          },
+          "complexType": {
+            "original": "any",
+            "resolved": "any",
+            "references": {}
+          },
+          "internal": false
+        }
+      ],
+      "internal": false,
+      "legacyConnect": [],
+      "legacyContext": [],
+      "listeners": [],
+      "methods": [
+        {
+          "name": "display",
+          "docs": {
+            "text": "Force manually the display of a QR",
+            "tags": []
+          },
+          "complexType": {
+            "signature": "() => Promise<void>",
+            "parameters": [],
+            "references": {
+              "Promise": {
+                "location": "global"
+              },
+              "RESULT_STATUS": {
+                "location": "import",
+                "path": "../../utils/utils"
+              }
+            },
+            "return": "Promise<void>"
+          },
+          "internal": false
+        },
+        {
+          "name": "stop",
+          "docs": {
+            "text": "Stop manually an ongoing session",
+            "tags": []
+          },
+          "complexType": {
+            "signature": "() => Promise<void>",
+            "parameters": [],
+            "references": {
+              "Promise": {
+                "location": "global"
+              }
+            },
+            "return": "Promise<void>"
+          },
+          "internal": false
+        },
+        {
+          "name": "getSessionData",
+          "docs": {
+            "text": "Retrieve manually the session data on a successful login",
+            "tags": []
+          },
+          "complexType": {
+            "signature": "() => Promise<any>",
+            "parameters": [],
+            "references": {
+              "Promise": {
+                "location": "global"
+              }
+            },
+            "return": "Promise<any>"
+          },
+          "internal": false
+        }
+      ],
+      "potentialCmpRefs": [
+        "gataca-qrdisplay"
+      ],
+      "properties": [
+        {
+          "name": "checkStatus",
+          "type": "unknown",
+          "reflect": false,
+          "mutable": false,
+          "required": false,
+          "optional": true,
+          "defaultValue": "undefined",
+          "complexType": {
+            "original": "(\n    id?: string\n  ) => Promise<{ result: RESULT_STATUS; data?: any }>",
+            "resolved": "(id?: string) => Promise<{ result: RESULT_STATUS; data?: any; }>",
+            "references": {
+              "Promise": {
+                "location": "global"
+              },
+              "RESULT_STATUS": {
+                "location": "import",
+                "path": "../../utils/utils"
+              }
+            }
+          },
+          "docs": {
+            "tags": [],
+            "text": "***Mandatory***\nCheck status function to query the current status of the session\nThe function must query a client endpoint to check the status. That endpoint must return an error if the session has expired."
+          },
+          "internal": false
+        },
+        {
+          "name": "createSession",
+          "type": "unknown",
+          "reflect": false,
+          "mutable": false,
+          "required": false,
+          "optional": true,
+          "defaultValue": "undefined",
+          "complexType": {
+            "original": "() => Promise<{\n    sessionId: string;\n    authenticationRequest?: string;\n  }>",
+            "resolved": "() => Promise<{ sessionId: string; authenticationRequest?: string; }>",
+            "references": {
+              "Promise": {
+                "location": "global"
+              }
+            }
+          },
+          "docs": {
+            "tags": [],
+            "text": "***Mandatory***\nCreate session function to generate a new Session\nUsing V1, it can provide just a session Id\nUsing V2, it must provide also the authentication request. The session Id is the id of the presentation definition"
+          },
+          "internal": false
+        },
+        {
+          "name": "successCallback",
+          "type": "unknown",
+          "reflect": false,
+          "mutable": false,
+          "required": false,
+          "optional": false,
+          "defaultValue": "undefined",
+          "complexType": {
+            "original": "(data?: any) => void",
+            "resolved": "(data?: any) => void",
+            "references": {}
+          },
+          "docs": {
+            "tags": [],
+            "text": "***Mandatory***\nCallback fired upon session correctly verified\nIf not set, session validation wouldn't trigger any action\nThe session data and a possible token will be sent as parameters to the callback"
+          },
+          "internal": false
+        },
+        {
+          "name": "errorCallback",
+          "type": "unknown",
+          "reflect": false,
+          "mutable": false,
+          "required": false,
+          "optional": false,
+          "defaultValue": "undefined",
+          "complexType": {
+            "original": "(error?: Error) => void",
+            "resolved": "(error?: Error) => void",
+            "references": {
+              "Error": {
+                "location": "global"
+              }
+            }
+          },
+          "docs": {
+            "tags": [],
+            "text": "***Mandatory***\nCallback fired upon session expired or invalid\nIf not set, session error would not be handled\nAn error containing information will be passed as parameter"
+          },
+          "internal": false
+        },
+        {
+          "name": "qrRole",
+          "type": "string",
+          "attribute": "qr-role",
+          "reflect": false,
+          "mutable": false,
+          "required": false,
+          "optional": false,
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "docs": {
+            "tags": [],
+            "text": "***Mandatory***\nDecide if scanning the credential as a verifier to request credentials\nor as an issuer too issue credentials.\nOptions: connect | certify"
+          },
+          "internal": false
+        },
+        {
+          "name": "callbackServer",
+          "type": "string",
+          "attribute": "callback-server",
+          "reflect": false,
+          "mutable": false,
+          "required": false,
+          "optional": false,
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "docs": {
+            "tags": [],
+            "text": "***Mandatory just for V1***\nConnect/Certify Server where the wallet will send the data"
+          },
+          "internal": false
+        },
+        {
+          "name": "autostart",
+          "type": "boolean",
+          "attribute": "autostart",
+          "reflect": false,
+          "mutable": false,
+          "required": false,
+          "optional": false,
+          "defaultValue": "true",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "docs": {
+            "tags": [],
+            "text": "_[Optional]_\nSet to enable autoload when the QR is displayed. By default it is true"
+          },
+          "internal": false
+        },
+        {
+          "name": "autorefresh",
+          "type": "boolean",
+          "attribute": "autorefresh",
+          "reflect": false,
+          "mutable": false,
+          "required": false,
+          "optional": false,
+          "defaultValue": "false",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "docs": {
+            "tags": [],
+            "text": "_[Optional]_\nSet to refresh the session automatically upon expiration. By default it is false"
+          },
+          "internal": false
+        },
+        {
+          "name": "v2",
+          "type": "boolean",
+          "attribute": "v-2",
+          "reflect": false,
+          "mutable": false,
+          "required": false,
+          "optional": true,
+          "defaultValue": "false",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "docs": {
+            "tags": [],
+            "text": "_[Optional]_\nSet to use v2 links. The create session must be providing both an authentication request and a session Id"
+          },
+          "internal": false
+        },
+        {
+          "name": "qrModalTitle",
+          "type": "string",
+          "attribute": "qr-modal-title",
+          "reflect": false,
+          "mutable": false,
+          "required": false,
+          "optional": true,
+          "defaultValue": "\"Quick Access\"",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "docs": {
+            "tags": [],
+            "text": "_[Optional]_\nModifies the qr headline title"
+          },
+          "internal": false
+        },
+        {
+          "name": "qrModalDescription",
+          "type": "string",
+          "attribute": "qr-modal-description",
+          "reflect": false,
+          "mutable": false,
+          "required": false,
+          "optional": true,
+          "defaultValue": "\"Sign up or sign in by scanning the QR Code with the Gataca Wallet\"",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "docs": {
+            "tags": [],
+            "text": "_[Optional]_\nModifies the Modal description"
+          },
+          "internal": false
+        },
+        {
+          "name": "hideBrandTitle",
+          "type": "boolean",
+          "attribute": "hide-brand-title",
+          "reflect": false,
+          "mutable": false,
+          "required": false,
+          "optional": true,
+          "defaultValue": "false",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "docs": {
+            "tags": [],
+            "text": "_[Optional]_\nBoolean to show or not show the gataca brand title"
+          },
+          "internal": false
+        },
+        {
+          "name": "sessionTimeout",
+          "type": "number",
+          "attribute": "session-timeout",
+          "reflect": false,
+          "mutable": false,
+          "required": false,
+          "optional": true,
+          "defaultValue": "DEFAULT_SESSION_TIMEOUT",
+          "complexType": {
+            "original": "number",
+            "resolved": "number",
+            "references": {}
+          },
+          "docs": {
+            "tags": [],
+            "text": "_[Optional]_\nMaximum time window to display the session"
+          },
+          "internal": false
+        },
+        {
+          "name": "pollingFrequency",
+          "type": "number",
+          "attribute": "polling-frequency",
+          "reflect": false,
+          "mutable": false,
+          "required": false,
+          "optional": true,
+          "defaultValue": "DEFAULT_POLLING_FREQ",
+          "complexType": {
+            "original": "number",
+            "resolved": "number",
+            "references": {}
+          },
+          "docs": {
+            "tags": [],
+            "text": "_[Optional]_\nFrequency in seconds to check if the session has been validated"
+          },
+          "internal": false
+        },
+        {
+          "name": "dynamicLink",
+          "type": "boolean",
+          "attribute": "dynamic-link",
+          "reflect": false,
+          "mutable": false,
+          "required": false,
+          "optional": true,
+          "defaultValue": "true",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "docs": {
+            "tags": [],
+            "text": "_[Optional]_\nDisplay a link containing a dynamic link to invoke the wallet if closed"
+          },
+          "internal": false
+        }
+      ],
+      "shadowDelegatesFocus": false,
+      "states": [
+        {
+          "name": "sessionId"
+        },
+        {
+          "name": "authenticationRequest"
+        },
+        {
+          "name": "sessionData"
+        },
+        {
+          "name": "result"
+        }
+      ]
+    },
+    {
+      "tag": "gataca-qrdisplay",
+      "path": "./src/components/gataca-qrdisplay/gataca-qrdisplay.js",
+      "source": "./src/components/gataca-qrdisplay/gataca-qrdisplay.tsx",
+      "elementRef": null,
+      "componentClassName": "GatacaQRDisplay",
+      "assetsDirs": [],
+      "dependencies": [],
+      "dependents": [
+        "gataca-qr",
+        "gataca-qrws",
+        "gataca-ssibutton"
+      ],
+      "directDependencies": [],
+      "directDependents": [
+        "gataca-qr",
+        "gataca-qrws"
+      ],
+      "docs": {
+        "tags": [],
+        "text": ""
+      },
+      "encapsulation": "none",
+      "excludeFromCollection": false,
+      "events": [],
+      "internal": false,
+      "legacyConnect": [],
+      "legacyContext": [],
+      "listeners": [],
+      "methods": [],
+      "potentialCmpRefs": [],
+      "properties": [
+        {
+          "name": "qrData",
+          "type": "string",
+          "attribute": "qr-data",
+          "reflect": false,
+          "mutable": false,
+          "required": false,
+          "optional": false,
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "docs": {
+            "tags": [],
+            "text": "_[Mandatory]_\nSets the contenst of the QR"
+          },
+          "internal": false
+        },
+        {
+          "name": "size",
+          "type": "number",
+          "attribute": "size",
+          "reflect": false,
+          "mutable": false,
+          "required": false,
+          "optional": true,
+          "defaultValue": "256",
+          "complexType": {
+            "original": "number",
+            "resolved": "number",
+            "references": {}
+          },
+          "docs": {
+            "tags": [],
+            "text": "_[Optional]_\nSize of the QR Displayed"
+          },
+          "internal": false
+        },
+        {
+          "name": "logoSize",
+          "type": "number",
+          "attribute": "logo-size",
+          "reflect": false,
+          "mutable": false,
+          "required": false,
+          "optional": true,
+          "defaultValue": "0",
+          "complexType": {
+            "original": "number",
+            "resolved": "number",
+            "references": {}
+          },
+          "docs": {
+            "tags": [],
+            "text": "_[Optional]_\nSize of the logo to display. 0 means no logo will be displayed. Default is the GATACA logo."
+          },
+          "internal": false
+        },
+        {
+          "name": "logoSrc",
+          "type": "string",
+          "attribute": "logo-src",
+          "reflect": false,
+          "mutable": false,
+          "required": false,
+          "optional": true,
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "docs": {
+            "tags": [],
+            "text": "_[Optional]_\nLogo to display, just if the logo size is greater than 0. No logo is the GATACA logo."
+          },
+          "internal": false
+        },
+        {
+          "name": "qrColor",
+          "type": "string",
+          "attribute": "qr-color",
+          "reflect": false,
+          "mutable": false,
+          "required": false,
+          "optional": true,
+          "defaultValue": "\"#181B5E\"",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "docs": {
+            "tags": [],
+            "text": "_[Optional]_\nQR Color"
+          },
+          "internal": false
+        },
+        {
+          "name": "rounded",
+          "type": "boolean",
+          "attribute": "rounded",
+          "reflect": false,
+          "mutable": false,
+          "required": false,
+          "optional": true,
+          "defaultValue": "true",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "docs": {
+            "tags": [],
+            "text": "_[Optional]_\nRound usage"
+          },
+          "internal": false
+        }
+      ],
+      "shadowDelegatesFocus": null,
+      "states": []
+    },
+    {
+      "tag": "gataca-qrws",
+      "path": "./src/components/gataca-qrws/gataca-qrws.js",
+      "source": "./src/components/gataca-qrws/gataca-qrws.tsx",
+      "elementRef": null,
+      "componentClassName": "GatacaQRWS",
+      "assetsDirs": [],
+      "dependencies": [
+        "gataca-qrdisplay"
+      ],
+      "dependents": [],
+      "directDependencies": [
+        "gataca-qrdisplay"
+      ],
+      "directDependents": [],
+      "docs": {
+        "tags": [],
+        "text": ""
+      },
+      "encapsulation": "shadow",
+      "excludeFromCollection": false,
+      "events": [
+        {
+          "name": "gatacaLoginCompleted",
+          "method": "gatacaLoginCompleted",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": {
+            "tags": [],
+            "text": "GatacaLoginCompleted event, triggered with session data upon login success"
+          },
+          "complexType": {
+            "original": "any",
+            "resolved": "any",
+            "references": {}
+          },
+          "internal": false
+        },
+        {
+          "name": "gatacaLoginFailed",
+          "method": "gatacaLoginFailed",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": {
+            "tags": [],
+            "text": "GatacaLoginFailed event, triggered with error upon login failure"
+          },
+          "complexType": {
+            "original": "any",
+            "resolved": "any",
+            "references": {}
+          },
+          "internal": false
+        }
+      ],
+      "internal": false,
+      "legacyConnect": [],
+      "legacyContext": [],
+      "listeners": [
+        {
+          "name": "sessionMsg",
+          "method": "sessionCreated",
+          "capture": true,
+          "passive": false
+        }
+      ],
+      "methods": [
+        {
+          "name": "display",
+          "docs": {
+            "text": "Force manually the display of a QR",
+            "tags": []
+          },
+          "complexType": {
+            "signature": "() => Promise<void>",
+            "parameters": [],
+            "references": {
+              "Promise": {
+                "location": "global"
+              },
+              "MessageEvent": {
+                "location": "global"
+              },
+              "WSResponse": {
+                "location": "import",
+                "path": "../../utils/utils"
+              }
+            },
+            "return": "Promise<void>"
+          },
+          "internal": false
+        },
+        {
+          "name": "stop",
+          "docs": {
+            "text": "Stop manually an ongoing session",
+            "tags": []
+          },
+          "complexType": {
+            "signature": "() => Promise<void>",
+            "parameters": [],
+            "references": {
+              "Promise": {
+                "location": "global"
+              }
+            },
+            "return": "Promise<void>"
+          },
+          "internal": false
+        },
+        {
+          "name": "getSessionData",
+          "docs": {
+            "text": "Retrieve manually the session data on a successful login",
+            "tags": []
+          },
+          "complexType": {
+            "signature": "() => Promise<any>",
+            "parameters": [],
+            "references": {
+              "Promise": {
+                "location": "global"
+              }
+            },
+            "return": "Promise<any>"
+          },
+          "internal": false
+        }
+      ],
+      "potentialCmpRefs": [
+        "gataca-qrdisplay"
+      ],
+      "properties": [
+        {
+          "name": "successCallback",
+          "type": "unknown",
+          "reflect": false,
+          "mutable": false,
+          "required": false,
+          "optional": false,
+          "defaultValue": "undefined",
+          "complexType": {
+            "original": "(data?: any) => void",
+            "resolved": "(data?: any) => void",
+            "references": {}
+          },
+          "docs": {
+            "tags": [],
+            "text": "***Mandatory***\nCallback fired upon session correctly verified\nIf not set, session validation wouldn't trigger any action\nThe session data and a possible token will be sent as parameters to the callback"
+          },
+          "internal": false
+        },
+        {
+          "name": "errorCallback",
+          "type": "unknown",
+          "reflect": false,
+          "mutable": false,
+          "required": false,
+          "optional": false,
+          "defaultValue": "undefined",
+          "complexType": {
+            "original": "(error?: Error) => void",
+            "resolved": "(error?: Error) => void",
+            "references": {
+              "Error": {
+                "location": "global"
+              }
+            }
+          },
+          "docs": {
+            "tags": [],
+            "text": "***Mandatory***\nCallback fired upon session expired or invalid\nIf not set, session error would not be handled\nAn error containing information will be passed as parameter"
+          },
+          "internal": false
+        },
+        {
+          "name": "qrRole",
+          "type": "string",
+          "attribute": "qr-role",
+          "reflect": false,
+          "mutable": false,
+          "required": false,
+          "optional": false,
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "docs": {
+            "tags": [],
+            "text": "***Mandatory***\nDecide if scanning the credential as a verifier to request credentials\nor as an issuer too issue credentials.\nOptions: connect | certify"
+          },
+          "internal": false
+        },
+        {
+          "name": "callbackServer",
+          "type": "string",
+          "attribute": "callback-server",
+          "reflect": false,
+          "mutable": false,
+          "required": false,
+          "optional": false,
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "docs": {
+            "tags": [],
+            "text": "***Mandatory just for V1***\nConnect/Certify Server where the wallet will send the data"
+          },
+          "internal": false
+        },
+        {
+          "name": "socketEndpoint",
+          "type": "string",
+          "attribute": "socket-endpoint",
+          "reflect": false,
+          "mutable": false,
+          "required": false,
+          "optional": false,
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "docs": {
+            "tags": [],
+            "text": "***Mandatory***\nWS Endpoint on your service to be invoked upon display"
+          },
+          "internal": false
+        },
+        {
+          "name": "sessionTimeout",
+          "type": "number",
+          "attribute": "session-timeout",
+          "reflect": false,
+          "mutable": false,
+          "required": false,
+          "optional": true,
+          "defaultValue": "DEFAULT_SESSION_TIMEOUT",
+          "complexType": {
+            "original": "number",
+            "resolved": "number",
+            "references": {}
+          },
+          "docs": {
+            "tags": [],
+            "text": "***Mandatory***\nMaximum time window to display the session and keep the websocket connection. It's needed to ensure the socket is closed."
+          },
+          "internal": false
+        },
+        {
+          "name": "wsOnOpen",
+          "type": "unknown",
+          "reflect": false,
+          "mutable": false,
+          "required": false,
+          "optional": false,
+          "complexType": {
+            "original": "(socket: WebSocket) => void",
+            "resolved": "(socket: WebSocket) => void",
+            "references": {
+              "WebSocket": {
+                "location": "global"
+              }
+            }
+          },
+          "docs": {
+            "tags": [],
+            "text": "[Optional]\nFunction to send a message to the server upon socket creation"
+          },
+          "internal": false
+        },
+        {
+          "name": "wsOnMessage",
+          "type": "unknown",
+          "reflect": false,
+          "mutable": false,
+          "required": false,
+          "optional": false,
+          "complexType": {
+            "original": "(socket: WebSocket, msg: MessageEvent) => void",
+            "resolved": "(socket: WebSocket, msg: MessageEvent<any>) => void",
+            "references": {
+              "WebSocket": {
+                "location": "global"
+              },
+              "MessageEvent": {
+                "location": "global"
+              }
+            }
+          },
+          "docs": {
+            "tags": [],
+            "text": "**RECOMMENDED**\nCallback to invoke an a message has been received on the socket. It provides the socket itself and the message as parameters.\nIf not used, the messages provided by the server on the Socket connection must conform to the WSReponse interface\nIf used, an Event named **sessionMsg** must be triggered with a WSReponse as data"
+          },
+          "internal": false
+        },
+        {
+          "name": "autostart",
+          "type": "boolean",
+          "attribute": "autostart",
+          "reflect": false,
+          "mutable": false,
+          "required": false,
+          "optional": false,
+          "defaultValue": "true",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "docs": {
+            "tags": [],
+            "text": "_[Optional]_\nSet to enable autoload when the QR is displayed. By default it is true"
+          },
+          "internal": false
+        },
+        {
+          "name": "autorefresh",
+          "type": "boolean",
+          "attribute": "autorefresh",
+          "reflect": false,
+          "mutable": false,
+          "required": false,
+          "optional": false,
+          "defaultValue": "false",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "docs": {
+            "tags": [],
+            "text": "_[Optional]_\nSet to refresh the session automatically upon expiration. By default it is false"
+          },
+          "internal": false
+        },
+        {
+          "name": "v2",
+          "type": "boolean",
+          "attribute": "v-2",
+          "reflect": false,
+          "mutable": false,
+          "required": false,
+          "optional": true,
+          "defaultValue": "false",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "docs": {
+            "tags": [],
+            "text": "**RECOMMENDED**\nSet to use v2 links. The create session must be providing both an authentication request and a session Id"
+          },
+          "internal": false
+        },
+        {
+          "name": "qrModalTitle",
+          "type": "string",
+          "attribute": "qr-modal-title",
+          "reflect": false,
+          "mutable": false,
+          "required": false,
+          "optional": true,
+          "defaultValue": "\"Quick Access\"",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "docs": {
+            "tags": [],
+            "text": "_[Optional]_\nModifies the qr headline title"
+          },
+          "internal": false
+        },
+        {
+          "name": "qrModalDescription",
+          "type": "string",
+          "attribute": "qr-modal-description",
+          "reflect": false,
+          "mutable": false,
+          "required": false,
+          "optional": true,
+          "defaultValue": "\"Sign up or sign in by scanning the QR Code with the Gataca Wallet\"",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "docs": {
+            "tags": [],
+            "text": "_[Optional]_\nModifies the Modal description"
+          },
+          "internal": false
+        },
+        {
+          "name": "hideBrandTitle",
+          "type": "boolean",
+          "attribute": "hide-brand-title",
+          "reflect": false,
+          "mutable": false,
+          "required": false,
+          "optional": true,
+          "defaultValue": "false",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "docs": {
+            "tags": [],
+            "text": "_[Optional]_\nBoolean to show or not show the gataca brand title"
+          },
+          "internal": false
+        },
+        {
+          "name": "dynamicLink",
+          "type": "boolean",
+          "attribute": "dynamic-link",
+          "reflect": false,
+          "mutable": false,
+          "required": false,
+          "optional": true,
+          "defaultValue": "true",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "docs": {
+            "tags": [],
+            "text": "_[Optional]_\nDisplay a link containing a dynamic link to invoke the wallet if closed"
+          },
+          "internal": false
+        }
+      ],
+      "shadowDelegatesFocus": false,
+      "states": [
+        {
+          "name": "sessionId"
+        },
+        {
+          "name": "authenticationRequest"
+        },
+        {
+          "name": "sessionData"
+        },
+        {
+          "name": "result"
+        },
+        {
+          "name": "socket"
+        }
+      ]
+    },
+    {
+      "tag": "gataca-ssibutton",
+      "path": "./src/components/gataca-ssibutton/gataca-ssibutton.js",
+      "source": "./src/components/gataca-ssibutton/gataca-ssibutton.tsx",
+      "elementRef": null,
+      "componentClassName": "GatacaSSIButton",
+      "assetsDirs": [],
+      "dependencies": [
+        "gataca-qr",
+        "gataca-qrdisplay"
+      ],
+      "dependents": [],
+      "directDependencies": [
+        "gataca-qr"
+      ],
+      "directDependents": [],
+      "docs": {
+        "tags": [],
+        "text": ""
+      },
+      "encapsulation": "shadow",
+      "excludeFromCollection": false,
+      "events": [
+        {
+          "name": "gatacaLoginCompleted",
+          "method": "gatacaLoginCompleted",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": {
+            "tags": [],
+            "text": "GatacaLoginCompleted event, triggered with session data upon login success"
+          },
+          "complexType": {
+            "original": "any",
+            "resolved": "any",
+            "references": {}
+          },
+          "internal": false
+        },
+        {
+          "name": "gatacaLoginFailed",
+          "method": "gatacaLoginFailed",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": {
+            "tags": [],
+            "text": "GatacaLoginFailed event, triggered with error upon login failure"
+          },
+          "complexType": {
+            "original": "any",
+            "resolved": "any",
+            "references": {}
+          },
+          "internal": false
+        }
+      ],
+      "internal": false,
+      "legacyConnect": [],
+      "legacyContext": [],
+      "listeners": [],
+      "methods": [
+        {
+          "name": "getSessionData",
+          "docs": {
+            "text": "Retrieve manually the session data on a successful login",
+            "tags": []
+          },
+          "complexType": {
+            "signature": "() => Promise<any>",
+            "parameters": [],
+            "references": {
+              "Promise": {
+                "location": "global"
+              }
+            },
+            "return": "Promise<any>"
+          },
+          "internal": false
+        }
+      ],
+      "potentialCmpRefs": [
+        "gataca-qr"
+      ],
+      "properties": [
+        {
+          "name": "buttonText",
+          "type": "string",
+          "attribute": "button-text",
+          "reflect": false,
+          "mutable": false,
+          "required": false,
+          "optional": true,
+          "defaultValue": "\"Easy login\"",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "docs": {
+            "tags": [],
+            "text": "_[Optional]_\nIn the case of being a button, modifies its text"
+          },
+          "internal": false
+        },
+        {
+          "name": "checkStatus",
+          "type": "unknown",
+          "reflect": false,
+          "mutable": false,
+          "required": false,
+          "optional": true,
+          "defaultValue": "undefined",
+          "complexType": {
+            "original": "(\n    id?: string\n  ) => Promise<{ result: RESULT_STATUS; data: any }>",
+            "resolved": "(id?: string) => Promise<{ result: RESULT_STATUS; data: any; }>",
+            "references": {
+              "Promise": {
+                "location": "global"
+              },
+              "RESULT_STATUS": {
+                "location": "import",
+                "path": "../../utils/utils"
+              }
+            }
+          },
+          "docs": {
+            "tags": [],
+            "text": "***Mandatory***\nCheck status function to query the current status of the session\nThe function must query a client endpoint to check the status. That endpoint must return an error if the session has expired."
+          },
+          "internal": false
+        },
+        {
+          "name": "createSession",
+          "type": "unknown",
+          "reflect": false,
+          "mutable": false,
+          "required": false,
+          "optional": true,
+          "defaultValue": "undefined",
+          "complexType": {
+            "original": "() => Promise<{\n    sessionId: string;\n    authenticationRequest?: string;\n  }>",
+            "resolved": "() => Promise<{ sessionId: string; authenticationRequest?: string; }>",
+            "references": {
+              "Promise": {
+                "location": "global"
+              }
+            }
+          },
+          "docs": {
+            "tags": [],
+            "text": "***Mandatory***\nCreate session function to generate a new Session\nUsing V1, it can provide just a session Id\nUsing V2, it must provide also the authentication request. The session Id is the id of the presentation definition"
+          },
+          "internal": false
+        },
+        {
+          "name": "successCallback",
+          "type": "unknown",
+          "reflect": false,
+          "mutable": false,
+          "required": false,
+          "optional": false,
+          "defaultValue": "undefined",
+          "complexType": {
+            "original": "(data?: any) => void",
+            "resolved": "(data?: any) => void",
+            "references": {}
+          },
+          "docs": {
+            "tags": [],
+            "text": "***Mandatory***\nCallback fired upon session correctly verified\nIf not set, session validation wouldn't trigger any action\nThe session data and a possible token will be sent as parameters to the callback"
+          },
+          "internal": false
+        },
+        {
+          "name": "errorCallback",
+          "type": "unknown",
+          "reflect": false,
+          "mutable": false,
+          "required": false,
+          "optional": false,
+          "defaultValue": "undefined",
+          "complexType": {
+            "original": "(error?: Error) => void",
+            "resolved": "(error?: Error) => void",
+            "references": {
+              "Error": {
+                "location": "global"
+              }
+            }
+          },
+          "docs": {
+            "tags": [],
+            "text": "***Mandatory***\nCallback fired upon session expired or invalid\nIf not set, session error would not be handled\nAn error containing information will be passed as parameter"
+          },
+          "internal": false
+        },
+        {
+          "name": "qrRole",
+          "type": "string",
+          "attribute": "qr-role",
+          "reflect": false,
+          "mutable": false,
+          "required": false,
+          "optional": false,
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "docs": {
+            "tags": [],
+            "text": "***Mandatory***\nDecide if scanning the credential as a verifier to request credentials\nor as an issuer too issue credentials.\nOptions: connect | certify"
+          },
+          "internal": false
+        },
+        {
+          "name": "callbackServer",
+          "type": "string",
+          "attribute": "callback-server",
+          "reflect": false,
+          "mutable": false,
+          "required": false,
+          "optional": false,
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "docs": {
+            "tags": [],
+            "text": "***Mandatory just for V1***\nConnect/Certify Server where the wallet will send the data"
+          },
+          "internal": false
+        },
+        {
+          "name": "sessionTimeout",
+          "type": "number",
+          "attribute": "session-timeout",
+          "reflect": false,
+          "mutable": false,
+          "required": false,
+          "optional": true,
+          "complexType": {
+            "original": "number",
+            "resolved": "number",
+            "references": {}
+          },
+          "docs": {
+            "tags": [],
+            "text": "_[Optional]_\nMaximum time window to display the session"
+          },
+          "internal": false
+        },
+        {
+          "name": "pollingFrequency",
+          "type": "number",
+          "attribute": "polling-frequency",
+          "reflect": false,
+          "mutable": false,
+          "required": false,
+          "optional": true,
+          "complexType": {
+            "original": "number",
+            "resolved": "number",
+            "references": {}
+          },
+          "docs": {
+            "tags": [],
+            "text": "_[Optional]_\nFrequency in seconds to check if the session has been validated"
+          },
+          "internal": false
+        },
+        {
+          "name": "autorefresh",
+          "type": "boolean",
+          "attribute": "autorefresh",
+          "reflect": false,
+          "mutable": false,
+          "required": false,
+          "optional": false,
+          "defaultValue": "false",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "docs": {
+            "tags": [],
+            "text": "_[Optional]_\nSet to refresh the session automatically upon expiration. By default it is false"
+          },
+          "internal": false
+        },
+        {
+          "name": "v2",
+          "type": "boolean",
+          "attribute": "v-2",
+          "reflect": false,
+          "mutable": false,
+          "required": false,
+          "optional": true,
+          "defaultValue": "false",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "docs": {
+            "tags": [],
+            "text": "_[Optional]_\nSet to use v2 links. The create session must be providing both an authentication request and a session Id"
+          },
+          "internal": false
+        },
+        {
+          "name": "qrModalTitle",
+          "type": "string",
+          "attribute": "qr-modal-title",
+          "reflect": false,
+          "mutable": false,
+          "required": false,
+          "optional": true,
+          "defaultValue": "\"Quick Access\"",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "docs": {
+            "tags": [],
+            "text": "_[Optional]_\nModifies the qr headline title"
+          },
+          "internal": false
+        },
+        {
+          "name": "qrModalDescription",
+          "type": "string",
+          "attribute": "qr-modal-description",
+          "reflect": false,
+          "mutable": false,
+          "required": false,
+          "optional": true,
+          "defaultValue": "\"Sign up or sign in by scanning the QR Code with the Gataca Wallet\"",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "docs": {
+            "tags": [],
+            "text": "_[Optional]_\nModifies the Modal description"
+          },
+          "internal": false
+        },
+        {
+          "name": "hideBrandTitle",
+          "type": "boolean",
+          "attribute": "hide-brand-title",
+          "reflect": false,
+          "mutable": false,
+          "required": false,
+          "optional": true,
+          "defaultValue": "false",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "docs": {
+            "tags": [],
+            "text": "_[Optional]_\nBoolean to show or not show the gataca brand title"
+          },
+          "internal": false
+        },
+        {
+          "name": "dynamicLink",
+          "type": "boolean",
+          "attribute": "dynamic-link",
+          "reflect": false,
+          "mutable": false,
+          "required": false,
+          "optional": true,
+          "defaultValue": "true",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "docs": {
+            "tags": [],
+            "text": "_[Optional]_\nDisplay a link containing a dynamic link to invoke the wallet if closed"
+          },
+          "internal": false
+        }
+      ],
+      "shadowDelegatesFocus": false,
+      "states": [
+        {
+          "name": "open"
+        }
+      ]
+    }
+  ],
+  "entries": [
+    {
+      "cmps": [
+        {
+          "tagName": "gataca-qr",
+          "excludeFromCollection": false,
+          "isCollectionDependency": false,
+          "componentClassName": "GatacaQR",
+          "elementRef": null,
+          "encapsulation": "shadow",
+          "shadowDelegatesFocus": false,
+          "properties": [
+            {
+              "name": "checkStatus",
+              "type": "unknown",
+              "reflect": false,
+              "mutable": false,
+              "required": false,
+              "optional": true,
+              "defaultValue": "undefined",
+              "complexType": {
+                "original": "(\n    id?: string\n  ) => Promise<{ result: RESULT_STATUS; data?: any }>",
+                "resolved": "(id?: string) => Promise<{ result: RESULT_STATUS; data?: any; }>",
+                "references": {
+                  "Promise": {
+                    "location": "global"
+                  },
+                  "RESULT_STATUS": {
+                    "location": "import",
+                    "path": "../../utils/utils"
+                  }
+                }
+              },
+              "docs": {
+                "tags": [],
+                "text": "***Mandatory***\nCheck status function to query the current status of the session\nThe function must query a client endpoint to check the status. That endpoint must return an error if the session has expired."
+              },
+              "internal": false
+            },
+            {
+              "name": "createSession",
+              "type": "unknown",
+              "reflect": false,
+              "mutable": false,
+              "required": false,
+              "optional": true,
+              "defaultValue": "undefined",
+              "complexType": {
+                "original": "() => Promise<{\n    sessionId: string;\n    authenticationRequest?: string;\n  }>",
+                "resolved": "() => Promise<{ sessionId: string; authenticationRequest?: string; }>",
+                "references": {
+                  "Promise": {
+                    "location": "global"
+                  }
+                }
+              },
+              "docs": {
+                "tags": [],
+                "text": "***Mandatory***\nCreate session function to generate a new Session\nUsing V1, it can provide just a session Id\nUsing V2, it must provide also the authentication request. The session Id is the id of the presentation definition"
+              },
+              "internal": false
+            },
+            {
+              "name": "successCallback",
+              "type": "unknown",
+              "reflect": false,
+              "mutable": false,
+              "required": false,
+              "optional": false,
+              "defaultValue": "undefined",
+              "complexType": {
+                "original": "(data?: any) => void",
+                "resolved": "(data?: any) => void",
+                "references": {}
+              },
+              "docs": {
+                "tags": [],
+                "text": "***Mandatory***\nCallback fired upon session correctly verified\nIf not set, session validation wouldn't trigger any action\nThe session data and a possible token will be sent as parameters to the callback"
+              },
+              "internal": false
+            },
+            {
+              "name": "errorCallback",
+              "type": "unknown",
+              "reflect": false,
+              "mutable": false,
+              "required": false,
+              "optional": false,
+              "defaultValue": "undefined",
+              "complexType": {
+                "original": "(error?: Error) => void",
+                "resolved": "(error?: Error) => void",
+                "references": {
+                  "Error": {
+                    "location": "global"
+                  }
+                }
+              },
+              "docs": {
+                "tags": [],
+                "text": "***Mandatory***\nCallback fired upon session expired or invalid\nIf not set, session error would not be handled\nAn error containing information will be passed as parameter"
+              },
+              "internal": false
+            },
+            {
+              "name": "qrRole",
+              "type": "string",
+              "attribute": "qr-role",
+              "reflect": false,
+              "mutable": false,
+              "required": false,
+              "optional": false,
+              "complexType": {
+                "original": "string",
+                "resolved": "string",
+                "references": {}
+              },
+              "docs": {
+                "tags": [],
+                "text": "***Mandatory***\nDecide if scanning the credential as a verifier to request credentials\nor as an issuer too issue credentials.\nOptions: connect | certify"
+              },
+              "internal": false
+            },
+            {
+              "name": "callbackServer",
+              "type": "string",
+              "attribute": "callback-server",
+              "reflect": false,
+              "mutable": false,
+              "required": false,
+              "optional": false,
+              "complexType": {
+                "original": "string",
+                "resolved": "string",
+                "references": {}
+              },
+              "docs": {
+                "tags": [],
+                "text": "***Mandatory just for V1***\nConnect/Certify Server where the wallet will send the data"
+              },
+              "internal": false
+            },
+            {
+              "name": "autostart",
+              "type": "boolean",
+              "attribute": "autostart",
+              "reflect": false,
+              "mutable": false,
+              "required": false,
+              "optional": false,
+              "defaultValue": "true",
+              "complexType": {
+                "original": "boolean",
+                "resolved": "boolean",
+                "references": {}
+              },
+              "docs": {
+                "tags": [],
+                "text": "_[Optional]_\nSet to enable autoload when the QR is displayed. By default it is true"
+              },
+              "internal": false
+            },
+            {
+              "name": "autorefresh",
+              "type": "boolean",
+              "attribute": "autorefresh",
+              "reflect": false,
+              "mutable": false,
+              "required": false,
+              "optional": false,
+              "defaultValue": "false",
+              "complexType": {
+                "original": "boolean",
+                "resolved": "boolean",
+                "references": {}
+              },
+              "docs": {
+                "tags": [],
+                "text": "_[Optional]_\nSet to refresh the session automatically upon expiration. By default it is false"
+              },
+              "internal": false
+            },
+            {
+              "name": "v2",
+              "type": "boolean",
+              "attribute": "v-2",
+              "reflect": false,
+              "mutable": false,
+              "required": false,
+              "optional": true,
+              "defaultValue": "false",
+              "complexType": {
+                "original": "boolean",
+                "resolved": "boolean",
+                "references": {}
+              },
+              "docs": {
+                "tags": [],
+                "text": "_[Optional]_\nSet to use v2 links. The create session must be providing both an authentication request and a session Id"
+              },
+              "internal": false
+            },
+            {
+              "name": "qrModalTitle",
+              "type": "string",
+              "attribute": "qr-modal-title",
+              "reflect": false,
+              "mutable": false,
+              "required": false,
+              "optional": true,
+              "defaultValue": "\"Quick Access\"",
+              "complexType": {
+                "original": "string",
+                "resolved": "string",
+                "references": {}
+              },
+              "docs": {
+                "tags": [],
+                "text": "_[Optional]_\nModifies the qr headline title"
+              },
+              "internal": false
+            },
+            {
+              "name": "qrModalDescription",
+              "type": "string",
+              "attribute": "qr-modal-description",
+              "reflect": false,
+              "mutable": false,
+              "required": false,
+              "optional": true,
+              "defaultValue": "\"Sign up or sign in by scanning the QR Code with the Gataca Wallet\"",
+              "complexType": {
+                "original": "string",
+                "resolved": "string",
+                "references": {}
+              },
+              "docs": {
+                "tags": [],
+                "text": "_[Optional]_\nModifies the Modal description"
+              },
+              "internal": false
+            },
+            {
+              "name": "hideBrandTitle",
+              "type": "boolean",
+              "attribute": "hide-brand-title",
+              "reflect": false,
+              "mutable": false,
+              "required": false,
+              "optional": true,
+              "defaultValue": "false",
+              "complexType": {
+                "original": "boolean",
+                "resolved": "boolean",
+                "references": {}
+              },
+              "docs": {
+                "tags": [],
+                "text": "_[Optional]_\nBoolean to show or not show the gataca brand title"
+              },
+              "internal": false
+            },
+            {
+              "name": "sessionTimeout",
+              "type": "number",
+              "attribute": "session-timeout",
+              "reflect": false,
+              "mutable": false,
+              "required": false,
+              "optional": true,
+              "defaultValue": "DEFAULT_SESSION_TIMEOUT",
+              "complexType": {
+                "original": "number",
+                "resolved": "number",
+                "references": {}
+              },
+              "docs": {
+                "tags": [],
+                "text": "_[Optional]_\nMaximum time window to display the session"
+              },
+              "internal": false
+            },
+            {
+              "name": "pollingFrequency",
+              "type": "number",
+              "attribute": "polling-frequency",
+              "reflect": false,
+              "mutable": false,
+              "required": false,
+              "optional": true,
+              "defaultValue": "DEFAULT_POLLING_FREQ",
+              "complexType": {
+                "original": "number",
+                "resolved": "number",
+                "references": {}
+              },
+              "docs": {
+                "tags": [],
+                "text": "_[Optional]_\nFrequency in seconds to check if the session has been validated"
+              },
+              "internal": false
+            },
+            {
+              "name": "dynamicLink",
+              "type": "boolean",
+              "attribute": "dynamic-link",
+              "reflect": false,
+              "mutable": false,
+              "required": false,
+              "optional": true,
+              "defaultValue": "true",
+              "complexType": {
+                "original": "boolean",
+                "resolved": "boolean",
+                "references": {}
+              },
+              "docs": {
+                "tags": [],
+                "text": "_[Optional]_\nDisplay a link containing a dynamic link to invoke the wallet if closed"
+              },
+              "internal": false
+            }
+          ],
+          "virtualProperties": [],
+          "states": [
+            {
+              "name": "sessionId"
+            },
+            {
+              "name": "authenticationRequest"
+            },
+            {
+              "name": "sessionData"
+            },
+            {
+              "name": "result"
+            }
+          ],
+          "methods": [
+            {
+              "name": "display",
+              "docs": {
+                "text": "Force manually the display of a QR",
+                "tags": []
+              },
+              "complexType": {
+                "signature": "() => Promise<void>",
+                "parameters": [],
+                "references": {
+                  "Promise": {
+                    "location": "global"
+                  },
+                  "RESULT_STATUS": {
+                    "location": "import",
+                    "path": "../../utils/utils"
+                  }
+                },
+                "return": "Promise<void>"
+              },
+              "internal": false
+            },
+            {
+              "name": "stop",
+              "docs": {
+                "text": "Stop manually an ongoing session",
+                "tags": []
+              },
+              "complexType": {
+                "signature": "() => Promise<void>",
+                "parameters": [],
+                "references": {
+                  "Promise": {
+                    "location": "global"
+                  }
+                },
+                "return": "Promise<void>"
+              },
+              "internal": false
+            },
+            {
+              "name": "getSessionData",
+              "docs": {
+                "text": "Retrieve manually the session data on a successful login",
+                "tags": []
+              },
+              "complexType": {
+                "signature": "() => Promise<any>",
+                "parameters": [],
+                "references": {
+                  "Promise": {
+                    "location": "global"
+                  }
+                },
+                "return": "Promise<any>"
+              },
+              "internal": false
+            }
+          ],
+          "listeners": [],
+          "events": [
+            {
+              "name": "gatacaLoginCompleted",
+              "method": "gatacaLoginCompleted",
+              "bubbles": true,
+              "cancelable": true,
+              "composed": true,
+              "docs": {
+                "tags": [],
+                "text": "GatacaLoginCompleted event, triggered with session data upon login success"
+              },
+              "complexType": {
+                "original": "any",
+                "resolved": "any",
+                "references": {}
+              },
+              "internal": false
+            },
+            {
+              "name": "gatacaLoginFailed",
+              "method": "gatacaLoginFailed",
+              "bubbles": true,
+              "cancelable": true,
+              "composed": true,
+              "docs": {
+                "tags": [],
+                "text": "GatacaLoginFailed event, triggered with error upon login failure"
+              },
+              "complexType": {
+                "original": "any",
+                "resolved": "any",
+                "references": {}
+              },
+              "internal": false
+            }
+          ],
+          "watchers": [],
+          "styles": [
+            {
+              "modeName": "$",
+              "styleId": "GATACA-QR",
+              "styleStr": null,
+              "styleIdentifier": "gatacaQrStyle",
+              "externalStyles": [
+                {
+                  "absolutePath": "/Users/jsanjup/Gataca/front/gataca-QR/src/components/gataca-qr/gataca-qr.scss",
+                  "relativePath": "gataca-qr.scss",
+                  "originalComponentPath": "gataca-qr.scss"
+                }
+              ]
+            }
+          ],
+          "legacyConnect": [],
+          "legacyContext": [],
+          "internal": false,
+          "assetsDirs": [],
+          "styleDocs": [],
+          "docs": {
+            "tags": [],
+            "text": ""
+          },
+          "jsFilePath": "/Users/jsanjup/Gataca/front/gataca-QR/src/components/gataca-qr/gataca-qr.js",
+          "sourceFilePath": "/Users/jsanjup/Gataca/front/gataca-QR/src/components/gataca-qr/gataca-qr.tsx",
+          "sourceMapPath": null,
+          "hasAttributeChangedCallbackFn": false,
+          "hasComponentWillLoadFn": false,
+          "hasComponentDidLoadFn": true,
+          "hasComponentShouldUpdateFn": false,
+          "hasComponentWillUpdateFn": false,
+          "hasComponentDidUpdateFn": false,
+          "hasComponentWillRenderFn": false,
+          "hasComponentDidRenderFn": false,
+          "hasComponentDidUnloadFn": false,
+          "hasConnectedCallbackFn": false,
+          "hasDisconnectedCallbackFn": true,
+          "hasElement": false,
+          "hasEvent": true,
+          "hasLifecycle": true,
+          "hasListener": false,
+          "hasListenerTarget": false,
+          "hasListenerTargetWindow": false,
+          "hasListenerTargetDocument": false,
+          "hasListenerTargetBody": false,
+          "hasListenerTargetParent": false,
+          "hasMember": true,
+          "hasMethod": true,
+          "hasMode": false,
+          "hasAttribute": true,
+          "hasProp": true,
+          "hasPropNumber": true,
+          "hasPropBoolean": true,
+          "hasPropString": true,
+          "hasPropMutable": false,
+          "hasReflect": false,
+          "hasRenderFn": true,
+          "hasState": true,
+          "hasStyle": true,
+          "hasVdomAttribute": true,
+          "hasVdomXlink": false,
+          "hasVdomClass": true,
+          "hasVdomFunctional": false,
+          "hasVdomKey": false,
+          "hasVdomListener": true,
+          "hasVdomPropOrAttr": true,
+          "hasVdomRef": false,
+          "hasVdomRender": true,
+          "hasVdomStyle": false,
+          "hasVdomText": true,
+          "hasWatchCallback": false,
+          "isPlain": false,
+          "htmlAttrNames": [
+            "class",
+            "src",
+            "height",
+            "width",
+            "id",
+            "onClick",
+            "qrData",
+            "rounded",
+            "size",
+            "logo-size"
+          ],
+          "htmlTagNames": [
+            "div",
+            "img",
+            "p",
+            "gataca-qrdisplay",
+            "span"
+          ],
+          "htmlParts": [],
+          "isUpdateable": true,
+          "potentialCmpRefs": [
+            "gataca-qrdisplay"
+          ],
+          "directDependencies": [
+            "gataca-qrdisplay"
+          ],
+          "dependencies": [
+            "gataca-qrdisplay"
+          ],
+          "dependents": [
+            "gataca-ssibutton"
+          ],
+          "directDependents": [
+            "gataca-ssibutton"
+          ]
+        },
+        {
+          "tagName": "gataca-qrdisplay",
+          "excludeFromCollection": false,
+          "isCollectionDependency": false,
+          "componentClassName": "GatacaQRDisplay",
+          "elementRef": null,
+          "encapsulation": "none",
+          "shadowDelegatesFocus": null,
+          "properties": [
+            {
+              "name": "qrData",
+              "type": "string",
+              "attribute": "qr-data",
+              "reflect": false,
+              "mutable": false,
+              "required": false,
+              "optional": false,
+              "complexType": {
+                "original": "string",
+                "resolved": "string",
+                "references": {}
+              },
+              "docs": {
+                "tags": [],
+                "text": "_[Mandatory]_\nSets the contenst of the QR"
+              },
+              "internal": false
+            },
+            {
+              "name": "size",
+              "type": "number",
+              "attribute": "size",
+              "reflect": false,
+              "mutable": false,
+              "required": false,
+              "optional": true,
+              "defaultValue": "256",
+              "complexType": {
+                "original": "number",
+                "resolved": "number",
+                "references": {}
+              },
+              "docs": {
+                "tags": [],
+                "text": "_[Optional]_\nSize of the QR Displayed"
+              },
+              "internal": false
+            },
+            {
+              "name": "logoSize",
+              "type": "number",
+              "attribute": "logo-size",
+              "reflect": false,
+              "mutable": false,
+              "required": false,
+              "optional": true,
+              "defaultValue": "0",
+              "complexType": {
+                "original": "number",
+                "resolved": "number",
+                "references": {}
+              },
+              "docs": {
+                "tags": [],
+                "text": "_[Optional]_\nSize of the logo to display. 0 means no logo will be displayed. Default is the GATACA logo."
+              },
+              "internal": false
+            },
+            {
+              "name": "logoSrc",
+              "type": "string",
+              "attribute": "logo-src",
+              "reflect": false,
+              "mutable": false,
+              "required": false,
+              "optional": true,
+              "complexType": {
+                "original": "string",
+                "resolved": "string",
+                "references": {}
+              },
+              "docs": {
+                "tags": [],
+                "text": "_[Optional]_\nLogo to display, just if the logo size is greater than 0. No logo is the GATACA logo."
+              },
+              "internal": false
+            },
+            {
+              "name": "qrColor",
+              "type": "string",
+              "attribute": "qr-color",
+              "reflect": false,
+              "mutable": false,
+              "required": false,
+              "optional": true,
+              "defaultValue": "\"#181B5E\"",
+              "complexType": {
+                "original": "string",
+                "resolved": "string",
+                "references": {}
+              },
+              "docs": {
+                "tags": [],
+                "text": "_[Optional]_\nQR Color"
+              },
+              "internal": false
+            },
+            {
+              "name": "rounded",
+              "type": "boolean",
+              "attribute": "rounded",
+              "reflect": false,
+              "mutable": false,
+              "required": false,
+              "optional": true,
+              "defaultValue": "true",
+              "complexType": {
+                "original": "boolean",
+                "resolved": "boolean",
+                "references": {}
+              },
+              "docs": {
+                "tags": [],
+                "text": "_[Optional]_\nRound usage"
+              },
+              "internal": false
+            }
+          ],
+          "virtualProperties": [],
+          "states": [],
+          "methods": [],
+          "listeners": [],
+          "events": [],
+          "watchers": [],
+          "styles": [],
+          "legacyConnect": [],
+          "legacyContext": [],
+          "internal": false,
+          "assetsDirs": [],
+          "styleDocs": [],
+          "docs": {
+            "tags": [],
+            "text": ""
+          },
+          "jsFilePath": "/Users/jsanjup/Gataca/front/gataca-QR/src/components/gataca-qrdisplay/gataca-qrdisplay.js",
+          "sourceFilePath": "/Users/jsanjup/Gataca/front/gataca-QR/src/components/gataca-qrdisplay/gataca-qrdisplay.tsx",
+          "sourceMapPath": null,
+          "hasAttributeChangedCallbackFn": false,
+          "hasComponentWillLoadFn": false,
+          "hasComponentDidLoadFn": true,
+          "hasComponentShouldUpdateFn": false,
+          "hasComponentWillUpdateFn": false,
+          "hasComponentDidUpdateFn": false,
+          "hasComponentWillRenderFn": false,
+          "hasComponentDidRenderFn": false,
+          "hasComponentDidUnloadFn": false,
+          "hasConnectedCallbackFn": false,
+          "hasDisconnectedCallbackFn": false,
+          "hasElement": false,
+          "hasEvent": false,
+          "hasLifecycle": true,
+          "hasListener": false,
+          "hasListenerTarget": false,
+          "hasListenerTargetWindow": false,
+          "hasListenerTargetDocument": false,
+          "hasListenerTargetBody": false,
+          "hasListenerTargetParent": false,
+          "hasMember": true,
+          "hasMethod": false,
+          "hasMode": false,
+          "hasAttribute": true,
+          "hasProp": true,
+          "hasPropNumber": true,
+          "hasPropBoolean": true,
+          "hasPropString": true,
+          "hasPropMutable": false,
+          "hasReflect": false,
+          "hasRenderFn": true,
+          "hasState": false,
+          "hasStyle": false,
+          "hasVdomAttribute": true,
+          "hasVdomXlink": false,
+          "hasVdomClass": false,
+          "hasVdomFunctional": false,
+          "hasVdomKey": false,
+          "hasVdomListener": false,
+          "hasVdomPropOrAttr": false,
+          "hasVdomRef": true,
+          "hasVdomRender": true,
+          "hasVdomStyle": false,
+          "hasVdomText": false,
+          "hasWatchCallback": false,
+          "isPlain": false,
+          "htmlAttrNames": [
+            "ref"
+          ],
+          "htmlTagNames": [
+            "div"
+          ],
+          "htmlParts": [],
+          "isUpdateable": true,
+          "potentialCmpRefs": [],
+          "directDependencies": [],
+          "dependencies": [],
+          "dependents": [
+            "gataca-qr",
+            "gataca-qrws",
+            "gataca-ssibutton"
+          ],
+          "directDependents": [
+            "gataca-qr",
+            "gataca-qrws"
+          ]
+        },
+        {
+          "tagName": "gataca-ssibutton",
+          "excludeFromCollection": false,
+          "isCollectionDependency": false,
+          "componentClassName": "GatacaSSIButton",
+          "elementRef": null,
+          "encapsulation": "shadow",
+          "shadowDelegatesFocus": false,
+          "properties": [
+            {
+              "name": "buttonText",
+              "type": "string",
+              "attribute": "button-text",
+              "reflect": false,
+              "mutable": false,
+              "required": false,
+              "optional": true,
+              "defaultValue": "\"Easy login\"",
+              "complexType": {
+                "original": "string",
+                "resolved": "string",
+                "references": {}
+              },
+              "docs": {
+                "tags": [],
+                "text": "_[Optional]_\nIn the case of being a button, modifies its text"
+              },
+              "internal": false
+            },
+            {
+              "name": "checkStatus",
+              "type": "unknown",
+              "reflect": false,
+              "mutable": false,
+              "required": false,
+              "optional": true,
+              "defaultValue": "undefined",
+              "complexType": {
+                "original": "(\n    id?: string\n  ) => Promise<{ result: RESULT_STATUS; data: any }>",
+                "resolved": "(id?: string) => Promise<{ result: RESULT_STATUS; data: any; }>",
+                "references": {
+                  "Promise": {
+                    "location": "global"
+                  },
+                  "RESULT_STATUS": {
+                    "location": "import",
+                    "path": "../../utils/utils"
+                  }
+                }
+              },
+              "docs": {
+                "tags": [],
+                "text": "***Mandatory***\nCheck status function to query the current status of the session\nThe function must query a client endpoint to check the status. That endpoint must return an error if the session has expired."
+              },
+              "internal": false
+            },
+            {
+              "name": "createSession",
+              "type": "unknown",
+              "reflect": false,
+              "mutable": false,
+              "required": false,
+              "optional": true,
+              "defaultValue": "undefined",
+              "complexType": {
+                "original": "() => Promise<{\n    sessionId: string;\n    authenticationRequest?: string;\n  }>",
+                "resolved": "() => Promise<{ sessionId: string; authenticationRequest?: string; }>",
+                "references": {
+                  "Promise": {
+                    "location": "global"
+                  }
+                }
+              },
+              "docs": {
+                "tags": [],
+                "text": "***Mandatory***\nCreate session function to generate a new Session\nUsing V1, it can provide just a session Id\nUsing V2, it must provide also the authentication request. The session Id is the id of the presentation definition"
+              },
+              "internal": false
+            },
+            {
+              "name": "successCallback",
+              "type": "unknown",
+              "reflect": false,
+              "mutable": false,
+              "required": false,
+              "optional": false,
+              "defaultValue": "undefined",
+              "complexType": {
+                "original": "(data?: any) => void",
+                "resolved": "(data?: any) => void",
+                "references": {}
+              },
+              "docs": {
+                "tags": [],
+                "text": "***Mandatory***\nCallback fired upon session correctly verified\nIf not set, session validation wouldn't trigger any action\nThe session data and a possible token will be sent as parameters to the callback"
+              },
+              "internal": false
+            },
+            {
+              "name": "errorCallback",
+              "type": "unknown",
+              "reflect": false,
+              "mutable": false,
+              "required": false,
+              "optional": false,
+              "defaultValue": "undefined",
+              "complexType": {
+                "original": "(error?: Error) => void",
+                "resolved": "(error?: Error) => void",
+                "references": {
+                  "Error": {
+                    "location": "global"
+                  }
+                }
+              },
+              "docs": {
+                "tags": [],
+                "text": "***Mandatory***\nCallback fired upon session expired or invalid\nIf not set, session error would not be handled\nAn error containing information will be passed as parameter"
+              },
+              "internal": false
+            },
+            {
+              "name": "qrRole",
+              "type": "string",
+              "attribute": "qr-role",
+              "reflect": false,
+              "mutable": false,
+              "required": false,
+              "optional": false,
+              "complexType": {
+                "original": "string",
+                "resolved": "string",
+                "references": {}
+              },
+              "docs": {
+                "tags": [],
+                "text": "***Mandatory***\nDecide if scanning the credential as a verifier to request credentials\nor as an issuer too issue credentials.\nOptions: connect | certify"
+              },
+              "internal": false
+            },
+            {
+              "name": "callbackServer",
+              "type": "string",
+              "attribute": "callback-server",
+              "reflect": false,
+              "mutable": false,
+              "required": false,
+              "optional": false,
+              "complexType": {
+                "original": "string",
+                "resolved": "string",
+                "references": {}
+              },
+              "docs": {
+                "tags": [],
+                "text": "***Mandatory just for V1***\nConnect/Certify Server where the wallet will send the data"
+              },
+              "internal": false
+            },
+            {
+              "name": "sessionTimeout",
+              "type": "number",
+              "attribute": "session-timeout",
+              "reflect": false,
+              "mutable": false,
+              "required": false,
+              "optional": true,
+              "complexType": {
+                "original": "number",
+                "resolved": "number",
+                "references": {}
+              },
+              "docs": {
+                "tags": [],
+                "text": "_[Optional]_\nMaximum time window to display the session"
+              },
+              "internal": false
+            },
+            {
+              "name": "pollingFrequency",
+              "type": "number",
+              "attribute": "polling-frequency",
+              "reflect": false,
+              "mutable": false,
+              "required": false,
+              "optional": true,
+              "complexType": {
+                "original": "number",
+                "resolved": "number",
+                "references": {}
+              },
+              "docs": {
+                "tags": [],
+                "text": "_[Optional]_\nFrequency in seconds to check if the session has been validated"
+              },
+              "internal": false
+            },
+            {
+              "name": "autorefresh",
+              "type": "boolean",
+              "attribute": "autorefresh",
+              "reflect": false,
+              "mutable": false,
+              "required": false,
+              "optional": false,
+              "defaultValue": "false",
+              "complexType": {
+                "original": "boolean",
+                "resolved": "boolean",
+                "references": {}
+              },
+              "docs": {
+                "tags": [],
+                "text": "_[Optional]_\nSet to refresh the session automatically upon expiration. By default it is false"
+              },
+              "internal": false
+            },
+            {
+              "name": "v2",
+              "type": "boolean",
+              "attribute": "v-2",
+              "reflect": false,
+              "mutable": false,
+              "required": false,
+              "optional": true,
+              "defaultValue": "false",
+              "complexType": {
+                "original": "boolean",
+                "resolved": "boolean",
+                "references": {}
+              },
+              "docs": {
+                "tags": [],
+                "text": "_[Optional]_\nSet to use v2 links. The create session must be providing both an authentication request and a session Id"
+              },
+              "internal": false
+            },
+            {
+              "name": "qrModalTitle",
+              "type": "string",
+              "attribute": "qr-modal-title",
+              "reflect": false,
+              "mutable": false,
+              "required": false,
+              "optional": true,
+              "defaultValue": "\"Quick Access\"",
+              "complexType": {
+                "original": "string",
+                "resolved": "string",
+                "references": {}
+              },
+              "docs": {
+                "tags": [],
+                "text": "_[Optional]_\nModifies the qr headline title"
+              },
+              "internal": false
+            },
+            {
+              "name": "qrModalDescription",
+              "type": "string",
+              "attribute": "qr-modal-description",
+              "reflect": false,
+              "mutable": false,
+              "required": false,
+              "optional": true,
+              "defaultValue": "\"Sign up or sign in by scanning the QR Code with the Gataca Wallet\"",
+              "complexType": {
+                "original": "string",
+                "resolved": "string",
+                "references": {}
+              },
+              "docs": {
+                "tags": [],
+                "text": "_[Optional]_\nModifies the Modal description"
+              },
+              "internal": false
+            },
+            {
+              "name": "hideBrandTitle",
+              "type": "boolean",
+              "attribute": "hide-brand-title",
+              "reflect": false,
+              "mutable": false,
+              "required": false,
+              "optional": true,
+              "defaultValue": "false",
+              "complexType": {
+                "original": "boolean",
+                "resolved": "boolean",
+                "references": {}
+              },
+              "docs": {
+                "tags": [],
+                "text": "_[Optional]_\nBoolean to show or not show the gataca brand title"
+              },
+              "internal": false
+            },
+            {
+              "name": "dynamicLink",
+              "type": "boolean",
+              "attribute": "dynamic-link",
+              "reflect": false,
+              "mutable": false,
+              "required": false,
+              "optional": true,
+              "defaultValue": "true",
+              "complexType": {
+                "original": "boolean",
+                "resolved": "boolean",
+                "references": {}
+              },
+              "docs": {
+                "tags": [],
+                "text": "_[Optional]_\nDisplay a link containing a dynamic link to invoke the wallet if closed"
+              },
+              "internal": false
+            }
+          ],
+          "virtualProperties": [],
+          "states": [
+            {
+              "name": "open"
+            }
+          ],
+          "methods": [
+            {
+              "name": "getSessionData",
+              "docs": {
+                "text": "Retrieve manually the session data on a successful login",
+                "tags": []
+              },
+              "complexType": {
+                "signature": "() => Promise<any>",
+                "parameters": [],
+                "references": {
+                  "Promise": {
+                    "location": "global"
+                  }
+                },
+                "return": "Promise<any>"
+              },
+              "internal": false
+            }
+          ],
+          "listeners": [],
+          "events": [
+            {
+              "name": "gatacaLoginCompleted",
+              "method": "gatacaLoginCompleted",
+              "bubbles": true,
+              "cancelable": true,
+              "composed": true,
+              "docs": {
+                "tags": [],
+                "text": "GatacaLoginCompleted event, triggered with session data upon login success"
+              },
+              "complexType": {
+                "original": "any",
+                "resolved": "any",
+                "references": {}
+              },
+              "internal": false
+            },
+            {
+              "name": "gatacaLoginFailed",
+              "method": "gatacaLoginFailed",
+              "bubbles": true,
+              "cancelable": true,
+              "composed": true,
+              "docs": {
+                "tags": [],
+                "text": "GatacaLoginFailed event, triggered with error upon login failure"
+              },
+              "complexType": {
+                "original": "any",
+                "resolved": "any",
+                "references": {}
+              },
+              "internal": false
+            }
+          ],
+          "watchers": [],
+          "styles": [
+            {
+              "modeName": "$",
+              "styleId": "GATACA-SSIBUTTON",
+              "styleStr": null,
+              "styleIdentifier": "gatacaSsibuttonStyle",
+              "externalStyles": [
+                {
+                  "absolutePath": "/Users/jsanjup/Gataca/front/gataca-QR/src/components/gataca-ssibutton/gataca-ssibutton.scss",
+                  "relativePath": "gataca-ssibutton.scss",
+                  "originalComponentPath": "gataca-ssibutton.scss"
+                }
+              ]
+            }
+          ],
+          "legacyConnect": [],
+          "legacyContext": [],
+          "internal": false,
+          "assetsDirs": [],
+          "styleDocs": [],
+          "docs": {
+            "tags": [],
+            "text": ""
+          },
+          "jsFilePath": "/Users/jsanjup/Gataca/front/gataca-QR/src/components/gataca-ssibutton/gataca-ssibutton.js",
+          "sourceFilePath": "/Users/jsanjup/Gataca/front/gataca-QR/src/components/gataca-ssibutton/gataca-ssibutton.tsx",
+          "sourceMapPath": null,
+          "hasAttributeChangedCallbackFn": false,
+          "hasComponentWillLoadFn": false,
+          "hasComponentDidLoadFn": false,
+          "hasComponentShouldUpdateFn": false,
+          "hasComponentWillUpdateFn": false,
+          "hasComponentDidUpdateFn": false,
+          "hasComponentWillRenderFn": false,
+          "hasComponentDidRenderFn": false,
+          "hasComponentDidUnloadFn": false,
+          "hasConnectedCallbackFn": false,
+          "hasDisconnectedCallbackFn": false,
+          "hasElement": false,
+          "hasEvent": true,
+          "hasLifecycle": false,
+          "hasListener": false,
+          "hasListenerTarget": false,
+          "hasListenerTargetWindow": false,
+          "hasListenerTargetDocument": false,
+          "hasListenerTargetBody": false,
+          "hasListenerTargetParent": false,
+          "hasMember": true,
+          "hasMethod": true,
+          "hasMode": false,
+          "hasAttribute": true,
+          "hasProp": true,
+          "hasPropNumber": true,
+          "hasPropBoolean": true,
+          "hasPropString": true,
+          "hasPropMutable": false,
+          "hasReflect": false,
+          "hasRenderFn": true,
+          "hasState": true,
+          "hasStyle": true,
+          "hasVdomAttribute": true,
+          "hasVdomXlink": false,
+          "hasVdomClass": true,
+          "hasVdomFunctional": false,
+          "hasVdomKey": false,
+          "hasVdomListener": true,
+          "hasVdomPropOrAttr": true,
+          "hasVdomRef": false,
+          "hasVdomRender": true,
+          "hasVdomStyle": false,
+          "hasVdomText": true,
+          "hasWatchCallback": false,
+          "isPlain": false,
+          "htmlAttrNames": [
+            "checkStatus",
+            "createSession",
+            "successCallback",
+            "errorCallback",
+            "qrRole",
+            "callbackServer",
+            "sessionTimeout",
+            "pollingFrequency",
+            "autostart",
+            "autorefresh",
+            "v2",
+            "qrModalTitle",
+            "qrModalDescription",
+            "hideBrandTitle",
+            "dynamicLink",
+            "class",
+            "onClick",
+            "src",
+            "alt"
+          ],
+          "htmlTagNames": [
+            "gataca-qr",
+            "div",
+            "button",
+            "img",
+            "span"
+          ],
+          "htmlParts": [],
+          "isUpdateable": true,
+          "potentialCmpRefs": [
+            "gataca-qr"
+          ],
+          "directDependencies": [
+            "gataca-qr"
+          ],
+          "dependencies": [
+            "gataca-qr",
+            "gataca-qrdisplay"
+          ],
+          "dependents": [],
+          "directDependents": []
+        }
+      ],
+      "entryKey": "gataca-qr.gataca-qrdisplay.gataca-ssibutton.entry"
+    },
+    {
+      "cmps": [
+        {
+          "tagName": "gataca-qrws",
+          "excludeFromCollection": false,
+          "isCollectionDependency": false,
+          "componentClassName": "GatacaQRWS",
+          "elementRef": null,
+          "encapsulation": "shadow",
+          "shadowDelegatesFocus": false,
+          "properties": [
+            {
+              "name": "successCallback",
+              "type": "unknown",
+              "reflect": false,
+              "mutable": false,
+              "required": false,
+              "optional": false,
+              "defaultValue": "undefined",
+              "complexType": {
+                "original": "(data?: any) => void",
+                "resolved": "(data?: any) => void",
+                "references": {}
+              },
+              "docs": {
+                "tags": [],
+                "text": "***Mandatory***\nCallback fired upon session correctly verified\nIf not set, session validation wouldn't trigger any action\nThe session data and a possible token will be sent as parameters to the callback"
+              },
+              "internal": false
+            },
+            {
+              "name": "errorCallback",
+              "type": "unknown",
+              "reflect": false,
+              "mutable": false,
+              "required": false,
+              "optional": false,
+              "defaultValue": "undefined",
+              "complexType": {
+                "original": "(error?: Error) => void",
+                "resolved": "(error?: Error) => void",
+                "references": {
+                  "Error": {
+                    "location": "global"
+                  }
+                }
+              },
+              "docs": {
+                "tags": [],
+                "text": "***Mandatory***\nCallback fired upon session expired or invalid\nIf not set, session error would not be handled\nAn error containing information will be passed as parameter"
+              },
+              "internal": false
+            },
+            {
+              "name": "qrRole",
+              "type": "string",
+              "attribute": "qr-role",
+              "reflect": false,
+              "mutable": false,
+              "required": false,
+              "optional": false,
+              "complexType": {
+                "original": "string",
+                "resolved": "string",
+                "references": {}
+              },
+              "docs": {
+                "tags": [],
+                "text": "***Mandatory***\nDecide if scanning the credential as a verifier to request credentials\nor as an issuer too issue credentials.\nOptions: connect | certify"
+              },
+              "internal": false
+            },
+            {
+              "name": "callbackServer",
+              "type": "string",
+              "attribute": "callback-server",
+              "reflect": false,
+              "mutable": false,
+              "required": false,
+              "optional": false,
+              "complexType": {
+                "original": "string",
+                "resolved": "string",
+                "references": {}
+              },
+              "docs": {
+                "tags": [],
+                "text": "***Mandatory just for V1***\nConnect/Certify Server where the wallet will send the data"
+              },
+              "internal": false
+            },
+            {
+              "name": "socketEndpoint",
+              "type": "string",
+              "attribute": "socket-endpoint",
+              "reflect": false,
+              "mutable": false,
+              "required": false,
+              "optional": false,
+              "complexType": {
+                "original": "string",
+                "resolved": "string",
+                "references": {}
+              },
+              "docs": {
+                "tags": [],
+                "text": "***Mandatory***\nWS Endpoint on your service to be invoked upon display"
+              },
+              "internal": false
+            },
+            {
+              "name": "sessionTimeout",
+              "type": "number",
+              "attribute": "session-timeout",
+              "reflect": false,
+              "mutable": false,
+              "required": false,
+              "optional": true,
+              "defaultValue": "DEFAULT_SESSION_TIMEOUT",
+              "complexType": {
+                "original": "number",
+                "resolved": "number",
+                "references": {}
+              },
+              "docs": {
+                "tags": [],
+                "text": "***Mandatory***\nMaximum time window to display the session and keep the websocket connection. It's needed to ensure the socket is closed."
+              },
+              "internal": false
+            },
+            {
+              "name": "wsOnOpen",
+              "type": "unknown",
+              "reflect": false,
+              "mutable": false,
+              "required": false,
+              "optional": false,
+              "complexType": {
+                "original": "(socket: WebSocket) => void",
+                "resolved": "(socket: WebSocket) => void",
+                "references": {
+                  "WebSocket": {
+                    "location": "global"
+                  }
+                }
+              },
+              "docs": {
+                "tags": [],
+                "text": "[Optional]\nFunction to send a message to the server upon socket creation"
+              },
+              "internal": false
+            },
+            {
+              "name": "wsOnMessage",
+              "type": "unknown",
+              "reflect": false,
+              "mutable": false,
+              "required": false,
+              "optional": false,
+              "complexType": {
+                "original": "(socket: WebSocket, msg: MessageEvent) => void",
+                "resolved": "(socket: WebSocket, msg: MessageEvent<any>) => void",
+                "references": {
+                  "WebSocket": {
+                    "location": "global"
+                  },
+                  "MessageEvent": {
+                    "location": "global"
+                  }
+                }
+              },
+              "docs": {
+                "tags": [],
+                "text": "**RECOMMENDED**\nCallback to invoke an a message has been received on the socket. It provides the socket itself and the message as parameters.\nIf not used, the messages provided by the server on the Socket connection must conform to the WSReponse interface\nIf used, an Event named **sessionMsg** must be triggered with a WSReponse as data"
+              },
+              "internal": false
+            },
+            {
+              "name": "autostart",
+              "type": "boolean",
+              "attribute": "autostart",
+              "reflect": false,
+              "mutable": false,
+              "required": false,
+              "optional": false,
+              "defaultValue": "true",
+              "complexType": {
+                "original": "boolean",
+                "resolved": "boolean",
+                "references": {}
+              },
+              "docs": {
+                "tags": [],
+                "text": "_[Optional]_\nSet to enable autoload when the QR is displayed. By default it is true"
+              },
+              "internal": false
+            },
+            {
+              "name": "autorefresh",
+              "type": "boolean",
+              "attribute": "autorefresh",
+              "reflect": false,
+              "mutable": false,
+              "required": false,
+              "optional": false,
+              "defaultValue": "false",
+              "complexType": {
+                "original": "boolean",
+                "resolved": "boolean",
+                "references": {}
+              },
+              "docs": {
+                "tags": [],
+                "text": "_[Optional]_\nSet to refresh the session automatically upon expiration. By default it is false"
+              },
+              "internal": false
+            },
+            {
+              "name": "v2",
+              "type": "boolean",
+              "attribute": "v-2",
+              "reflect": false,
+              "mutable": false,
+              "required": false,
+              "optional": true,
+              "defaultValue": "false",
+              "complexType": {
+                "original": "boolean",
+                "resolved": "boolean",
+                "references": {}
+              },
+              "docs": {
+                "tags": [],
+                "text": "**RECOMMENDED**\nSet to use v2 links. The create session must be providing both an authentication request and a session Id"
+              },
+              "internal": false
+            },
+            {
+              "name": "qrModalTitle",
+              "type": "string",
+              "attribute": "qr-modal-title",
+              "reflect": false,
+              "mutable": false,
+              "required": false,
+              "optional": true,
+              "defaultValue": "\"Quick Access\"",
+              "complexType": {
+                "original": "string",
+                "resolved": "string",
+                "references": {}
+              },
+              "docs": {
+                "tags": [],
+                "text": "_[Optional]_\nModifies the qr headline title"
+              },
+              "internal": false
+            },
+            {
+              "name": "qrModalDescription",
+              "type": "string",
+              "attribute": "qr-modal-description",
+              "reflect": false,
+              "mutable": false,
+              "required": false,
+              "optional": true,
+              "defaultValue": "\"Sign up or sign in by scanning the QR Code with the Gataca Wallet\"",
+              "complexType": {
+                "original": "string",
+                "resolved": "string",
+                "references": {}
+              },
+              "docs": {
+                "tags": [],
+                "text": "_[Optional]_\nModifies the Modal description"
+              },
+              "internal": false
+            },
+            {
+              "name": "hideBrandTitle",
+              "type": "boolean",
+              "attribute": "hide-brand-title",
+              "reflect": false,
+              "mutable": false,
+              "required": false,
+              "optional": true,
+              "defaultValue": "false",
+              "complexType": {
+                "original": "boolean",
+                "resolved": "boolean",
+                "references": {}
+              },
+              "docs": {
+                "tags": [],
+                "text": "_[Optional]_\nBoolean to show or not show the gataca brand title"
+              },
+              "internal": false
+            },
+            {
+              "name": "dynamicLink",
+              "type": "boolean",
+              "attribute": "dynamic-link",
+              "reflect": false,
+              "mutable": false,
+              "required": false,
+              "optional": true,
+              "defaultValue": "true",
+              "complexType": {
+                "original": "boolean",
+                "resolved": "boolean",
+                "references": {}
+              },
+              "docs": {
+                "tags": [],
+                "text": "_[Optional]_\nDisplay a link containing a dynamic link to invoke the wallet if closed"
+              },
+              "internal": false
+            }
+          ],
+          "virtualProperties": [],
+          "states": [
+            {
+              "name": "sessionId"
+            },
+            {
+              "name": "authenticationRequest"
+            },
+            {
+              "name": "sessionData"
+            },
+            {
+              "name": "result"
+            },
+            {
+              "name": "socket"
+            }
+          ],
+          "methods": [
+            {
+              "name": "display",
+              "docs": {
+                "text": "Force manually the display of a QR",
+                "tags": []
+              },
+              "complexType": {
+                "signature": "() => Promise<void>",
+                "parameters": [],
+                "references": {
+                  "Promise": {
+                    "location": "global"
+                  },
+                  "MessageEvent": {
+                    "location": "global"
+                  },
+                  "WSResponse": {
+                    "location": "import",
+                    "path": "../../utils/utils"
+                  }
+                },
+                "return": "Promise<void>"
+              },
+              "internal": false
+            },
+            {
+              "name": "stop",
+              "docs": {
+                "text": "Stop manually an ongoing session",
+                "tags": []
+              },
+              "complexType": {
+                "signature": "() => Promise<void>",
+                "parameters": [],
+                "references": {
+                  "Promise": {
+                    "location": "global"
+                  }
+                },
+                "return": "Promise<void>"
+              },
+              "internal": false
+            },
+            {
+              "name": "getSessionData",
+              "docs": {
+                "text": "Retrieve manually the session data on a successful login",
+                "tags": []
+              },
+              "complexType": {
+                "signature": "() => Promise<any>",
+                "parameters": [],
+                "references": {
+                  "Promise": {
+                    "location": "global"
+                  }
+                },
+                "return": "Promise<any>"
+              },
+              "internal": false
+            }
+          ],
+          "listeners": [
+            {
+              "name": "sessionMsg",
+              "method": "sessionCreated",
+              "capture": true,
+              "passive": false
+            }
+          ],
+          "events": [
+            {
+              "name": "gatacaLoginCompleted",
+              "method": "gatacaLoginCompleted",
+              "bubbles": true,
+              "cancelable": true,
+              "composed": true,
+              "docs": {
+                "tags": [],
+                "text": "GatacaLoginCompleted event, triggered with session data upon login success"
+              },
+              "complexType": {
+                "original": "any",
+                "resolved": "any",
+                "references": {}
+              },
+              "internal": false
+            },
+            {
+              "name": "gatacaLoginFailed",
+              "method": "gatacaLoginFailed",
+              "bubbles": true,
+              "cancelable": true,
+              "composed": true,
+              "docs": {
+                "tags": [],
+                "text": "GatacaLoginFailed event, triggered with error upon login failure"
+              },
+              "complexType": {
+                "original": "any",
+                "resolved": "any",
+                "references": {}
+              },
+              "internal": false
+            }
+          ],
+          "watchers": [],
+          "styles": [
+            {
+              "modeName": "$",
+              "styleId": "GATACA-QRWS",
+              "styleStr": null,
+              "styleIdentifier": "gatacaQrwsStyle",
+              "externalStyles": [
+                {
+                  "absolutePath": "/Users/jsanjup/Gataca/front/gataca-QR/src/components/gataca-qrws/gataca-qrws.scss",
+                  "relativePath": "gataca-qrws.scss",
+                  "originalComponentPath": "gataca-qrws.scss"
+                }
+              ]
+            }
+          ],
+          "legacyConnect": [],
+          "legacyContext": [],
+          "internal": false,
+          "assetsDirs": [],
+          "styleDocs": [],
+          "docs": {
+            "tags": [],
+            "text": ""
+          },
+          "jsFilePath": "/Users/jsanjup/Gataca/front/gataca-QR/src/components/gataca-qrws/gataca-qrws.js",
+          "sourceFilePath": "/Users/jsanjup/Gataca/front/gataca-QR/src/components/gataca-qrws/gataca-qrws.tsx",
+          "sourceMapPath": null,
+          "hasAttributeChangedCallbackFn": false,
+          "hasComponentWillLoadFn": false,
+          "hasComponentDidLoadFn": true,
+          "hasComponentShouldUpdateFn": false,
+          "hasComponentWillUpdateFn": false,
+          "hasComponentDidUpdateFn": false,
+          "hasComponentWillRenderFn": false,
+          "hasComponentDidRenderFn": false,
+          "hasComponentDidUnloadFn": false,
+          "hasConnectedCallbackFn": false,
+          "hasDisconnectedCallbackFn": true,
+          "hasElement": false,
+          "hasEvent": true,
+          "hasLifecycle": true,
+          "hasListener": true,
+          "hasListenerTarget": false,
+          "hasListenerTargetWindow": false,
+          "hasListenerTargetDocument": false,
+          "hasListenerTargetBody": false,
+          "hasListenerTargetParent": false,
+          "hasMember": true,
+          "hasMethod": true,
+          "hasMode": false,
+          "hasAttribute": true,
+          "hasProp": true,
+          "hasPropNumber": true,
+          "hasPropBoolean": true,
+          "hasPropString": true,
+          "hasPropMutable": false,
+          "hasReflect": false,
+          "hasRenderFn": true,
+          "hasState": true,
+          "hasStyle": true,
+          "hasVdomAttribute": true,
+          "hasVdomXlink": false,
+          "hasVdomClass": true,
+          "hasVdomFunctional": false,
+          "hasVdomKey": false,
+          "hasVdomListener": true,
+          "hasVdomPropOrAttr": true,
+          "hasVdomRef": false,
+          "hasVdomRender": true,
+          "hasVdomStyle": false,
+          "hasVdomText": true,
+          "hasWatchCallback": false,
+          "isPlain": false,
+          "htmlAttrNames": [
+            "class",
+            "src",
+            "height",
+            "width",
+            "id",
+            "onClick",
+            "qrData",
+            "rounded",
+            "size",
+            "logo-size"
+          ],
+          "htmlTagNames": [
+            "div",
+            "img",
+            "p",
+            "gataca-qrdisplay",
+            "span"
+          ],
+          "htmlParts": [],
+          "isUpdateable": true,
+          "potentialCmpRefs": [
+            "gataca-qrdisplay"
+          ],
+          "directDependencies": [
+            "gataca-qrdisplay"
+          ],
+          "dependencies": [
+            "gataca-qrdisplay"
+          ],
+          "dependents": [],
+          "directDependents": []
+        }
+      ],
+      "entryKey": "gataca-qrws.entry"
+    }
+  ],
+  "componentGraph": {
+    "sc-gataca-qr": [
+      "p-a6f85341.js",
+      "p-07d70cc6.js",
+      "p-b8ba109f.js"
+    ],
+    "sc-gataca-qrdisplay": [
+      "p-a6f85341.js",
+      "p-07d70cc6.js",
+      "p-b8ba109f.js"
+    ],
+    "sc-gataca-qrws": [
+      "p-a6f85341.js",
+      "p-07d70cc6.js",
+      "p-b8ba109f.js"
+    ],
+    "sc-gataca-ssibutton": [
+      "p-a6f85341.js",
+      "p-07d70cc6.js",
+      "p-b8ba109f.js"
+    ]
+  },
+  "sourceGraph": {
+    "./src/components/gataca-qr/gataca-qr.tsx": [
+      "./src/assets/icons/gat-icon-alert.svg",
+      "./src/assets/icons/gat-icon-check.svg",
+      "./src/assets/icons/gat-icon-refresh.svg",
+      "./src/assets/images/logo_gataca.svg",
+      "./src/components/gataca-qrdisplay/gataca-qrdisplay",
+      "./src/utils/utils"
+    ],
+    "./src/components/gataca-qrdisplay/gataca-qrdisplay.tsx": [
+      "./src/assets/images/logo_gataca.svg"
+    ],
+    "./src/components/gataca-qrws/gataca-qrws.tsx": [
+      "./src/assets/icons/gat-icon-alert.svg",
+      "./src/assets/icons/gat-icon-check.svg",
+      "./src/assets/icons/gat-icon-refresh.svg",
+      "./src/assets/images/logo_gataca.svg",
+      "./src/components/gataca-qrdisplay/gataca-qrdisplay",
+      "./src/utils/utils"
+    ],
+    "./src/components/gataca-ssibutton/gataca-ssibutton.tsx": [
+      "./src/components/gataca-qrdisplay/gataca-qrdisplay"
+    ],
+    "./src/index.ts": [],
+    "./src/utils/index.ts": [],
+    "./src/utils/utils.tsx": []
+  },
+  "collections": []
+}

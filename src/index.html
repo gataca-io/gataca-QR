@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
@@ -7,38 +8,45 @@
   <script type="module" src="/build/gatacaqr.esm.js"></script>
   <script nomodule src="/build/gatacaqr.js"></script>
 </head>
+
 <body>
-<div class="your-container-styles">
+  <div>
 
-  <gataca-qr
-    id="gataca-qr"
-    callback-server="https://connect.dev.gatacaid.com:9090"
-    session-endpoint="https://connect.dev.gataca.io:9090/admin/v1/login/gataca"
-    generation-endpoint="https://connect.dev.gataca.io:9090/admin/v1/login/request"
-    qr-modal-title="Fast Sign-on"
-    qr-modal-description="Scan to sign in"
-  >
-  </gataca-qr>
+    <gataca-ssibutton id="gataca-qr" qrRole="connect" polling-frequency="1" session-timeout="5" autostart="false">
+    </gataca-ssibutton>
 
-</div>
+  </div>
 
-<script>
+  <script>
     const qr = document.getElementById('gataca-qr');
-    ​
-    qr.successCallback = () => {
-        document.getElementById("loginFinishedSubmit").submit();
-        //$.post("/login", "login_challenge={{.LoginChallenge}}")
+    var count = 0;
+    var ok = true;
+
+    qr.successCallback = (data ) => {
+      alert("ALL OK" + data)
     };
     qr.errorCallback = () => {
-        $.post("/login", "login_challenge={{.LoginChallenge}}")
+      alert("some error")
     };
 
+    qr.createSession = () => {
+      return {sessionId: "TWp3V2R1N29ZcmFMY3Nvd3ZPb3k0UlMz"}
+    }
+
+    qr.checkStatus = () => {
+      count++;
+      if (count == 10) {
+        return {result : ok? 1:2 , data: "JOSE"}
+      }
+      return {result :0}
+    }
+
     (async () => {
-        await customElements.whenDefined('gataca-qr');
-        await qr.display();
+      await customElements.whenDefined('gataca-qr');
     })();
-  
-</script>
+
+  </script>
 
 </body>
+
 </html>

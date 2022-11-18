@@ -1,6 +1,6 @@
 {
-	"name": "gatacaqr",
-	"version": "1.4.2",
+	"name": "@gataca/qr",
+	"version": "2.0.0",
 	"description": "Gataca component to display presentation requests in QR",
 	"author": "Gataca <it@gataca.io>",
 	"licenses": [
@@ -8,15 +8,18 @@
 			"license": "MIT"
 		}
 	],
-	"main": "dist/index.js",
-	"module": "dist/index.mjs",
+	"main": "dist/index.cjs.js",
+	"module": "dist/index.js",
 	"es2015": "dist/esm/index.mjs",
 	"es2017": "dist/esm/index.mjs",
 	"types": "dist/types/index.d.ts",
 	"collection": "dist/collection/collection-manifest.json",
 	"collection:main": "dist/collection/index.js",
 	"unpkg": "dist/gatacaqr/gatacaqr.js",
-	"files": [ "dist/", "loader/" ],
+	"files": [
+		"dist/",
+		"loader/"
+	],
 	"scripts": {
 		"build": "stencil build --docs",
 		"start": "stencil build --dev --watch --serve",
@@ -25,13 +28,13 @@
 		"generate": "stencil generate"
 	},
 	"devDependencies": {
-		"@stencil/core": "^1.8.8",
+		"@stencil/core": "^2.9.0",
 		"@stencil/sass": "^1.4.0",
 		"rollup-plugin-node-polyfills": "^0.2.1"
 	},
 	"license": "MIT",
 	"dependencies": {
-		"@stencil/react-output-target": "^0.0.9",
-		"qrcode-generator": "^1.4.4"
+		"@stencil/react-output-target": "^0.3.1",
+		"qr-code-styling": "^1.6.0-rc.1"
 	}
 }

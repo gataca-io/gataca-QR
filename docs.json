@@ -1,0 +1,1111 @@
+{
+  "timestamp": "2022-11-18T12:11:15",
+  "compiler": {
+    "name": "@stencil/core",
+    "version": "2.19.3",
+    "typescriptVersion": "4.7.4"
+  },
+  "components": [
+    {
+      "filePath": "./src/components/gataca-qr/gataca-qr.tsx",
+      "encapsulation": "shadow",
+      "tag": "gataca-qr",
+      "readme": "# Gataca-QR\n\nThis component built using stencyl allows an easy integration to display a gataca QR to be read by the wallet.\n\nThis component can be used with the prerequisite of having an application which can be integrated with GATACA Components: Connect  and Certify. More precisely, your application will need to be able to perform the two operations against your connect or certify servers:\n1. Create sessions\n2. Consult sessions\n\n## Integrations\n\n### Pure JS\n\nYou can include the components by importing the library, available on NPM:\n\n#### Script tag\n\nPut a script tag similar to the source [https://unpkg.com/gatacaqr/dist/gatacaqr.js](https://unpkg.com/gatacaqr/dist/gatacaqr.js) in the head of your index.html. Check for the last version:\n\n```html\n<!DOCTYPE html>\n<html dir=\"ltr\" lang=\"en\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0\">\n  <script src='https://unpkg.com/gatacaqr@2.0.0/dist/gatacaqr.js'></script>\n</head>\n...\n</html>\n```\n\n#### Example\n\n````html\n<!DOCTYPE html>\n<html dir=\"ltr\" lang=\"en\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0\">\n  <title>Gataca QR Component</title>\n  <script type=\"module\" src=\"/build/gatacaqr.esm.js\"></script>\n  <script nomodule src=\"/build/gatacaqr.js\"></script>\n</head>\n<body>\n\n<div>\n\n  <gataca-qr id=\"gataca-qr\" qrRole=\"connect\">\n  </gataca-qr>\n\n</div>\n\n<script>\n  const qr = document.getElementById('gataca-qr');\n  var count = 0;\n  var ok = true; \n\n  qr.successCallback = (data) => {\n    //TODO Change with what you want to happen when the session is validated\n    alert(\"ALL OK\" + data)\n  };\n  qr.errorCallback = () => {\n    //TODO Change with what you want to happen when the session is expired or the user provides invalid credentials\n    alert(\"some error\")\n  };\n\n  qr.createSession = () => {\n    // TODO Change with an invocation to your service to create a session (either v1 or v2)\n    // Authentication request is required only for v2\n    return { sessionId: \"TWp3V2R1N29ZcmFMY3Nvd3ZPb3k0UlMz\", authenticationRequest:\"\" }\n  }\n\n  qr.checkStatus = () => {\n    //TODO Change with and invocation to your Backend service to query the status of the session\n    count++;\n    if (count == 10) {\n      return { result: ok ? 1 : 2, data: { \"name\": \"test\", \"token\": \"x\" } }\n    }\n    return { result: 0 }\n  }\n</script>\n\n</body>\n</html>\n````\n\nYou can use this component with an already created session, which can be inserted on the sessionId property on the element, or passed via query parameter _id_ or _sessionId_ on the current URL.\nYou can also provide a method to generate a new session like in the example, or, in the rare event of matching the authorizer API, just the endpoint to your application.\n\nIn order to consult sessions, both options are also available, depending on how you want to develop your own API.\n\n### React App Integration\n\nImport the library\n\n```bash\nnpm install @gataca/qr --save\n```\n\nor \n\n```bash\nyarn add @gataca/qr\n```\n\nIn your base file index.js (or index.tsx), include:\n\n```typescript\nimport { applyPolyfills, defineCustomElements } from '@gataca/qr/loader'\n\n//before ReactDOM.render\napplyPolyfills().then(() => {\n    defineCustomElements(window)\n})\n\n```\n\nThen, on your component:\n\n\n## Updating from V1\n\nThere are some breaking changes to V2:\n\n* _sessionEndpoint_ and _generationEndpoint_ have been suppressed.\n* _createSession_ and _checkStatus_ functions are now mandatory. The returning parameters of those functions have now changed.\n* _qrRole_ is also mandatory. There is no default value. The possible values have changed to \"**connect**\" and \"**certify**\"\n* _asButton_ and _buttonText_ functionality has been suppressed. That is a different component.\n* _getLoginToken()_ has been suppressed. Any data that wants to be received from the session (from headers, body or whatever) must be provided by the _checkStatus_ result function. \n* _sessionTimeout_ can be removed by introducing a negative value. If removed, the QR will wait until the server provides an error by session expiration.\n\nImprovements:\n\n* Logs have been cleaned\n* Fix providing feedback on the process result and results either if it expires, fails or successes.\n* Stopping the component working upon disappearance\n* Autostart and autorefresh capabilities\n* Documentation and integration with the new provided components\n",
+      "docs": "This component built using stencyl allows an easy integration to display a gataca QR to be read by the wallet.\n\nThis component can be used with the prerequisite of having an application which can be integrated with GATACA Components: Connect  and Certify. More precisely, your application will need to be able to perform the two operations against your connect or certify servers:\n1. Create sessions\n2. Consult sessions",
+      "docsTags": [],
+      "usage": {},
+      "props": [
+        {
+          "name": "autorefresh",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "autorefresh",
+          "reflectToAttr": false,
+          "docs": "_[Optional]_\nSet to refresh the session automatically upon expiration. By default it is false",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "autostart",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "autostart",
+          "reflectToAttr": false,
+          "docs": "_[Optional]_\nSet to enable autoload when the QR is displayed. By default it is true",
+          "docsTags": [],
+          "default": "true",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "callbackServer",
+          "type": "string",
+          "mutable": false,
+          "attr": "callback-server",
+          "reflectToAttr": false,
+          "docs": "***Mandatory just for V1***\nConnect/Certify Server where the wallet will send the data",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "checkStatus",
+          "type": "(id?: string) => Promise<{ result: RESULT_STATUS; data?: any; }>",
+          "mutable": false,
+          "reflectToAttr": false,
+          "docs": "***Mandatory***\nCheck status function to query the current status of the session\nThe function must query a client endpoint to check the status. That endpoint must return an error if the session has expired.",
+          "docsTags": [],
+          "default": "undefined",
+          "values": [
+            {
+              "type": "(id?: string) => Promise<{ result: RESULT_STATUS; data?: any; }>"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "createSession",
+          "type": "() => Promise<{ sessionId: string; authenticationRequest?: string; }>",
+          "mutable": false,
+          "reflectToAttr": false,
+          "docs": "***Mandatory***\nCreate session function to generate a new Session\nUsing V1, it can provide just a session Id\nUsing V2, it must provide also the authentication request. The session Id is the id of the presentation definition",
+          "docsTags": [],
+          "default": "undefined",
+          "values": [
+            {
+              "type": "() => Promise<{ sessionId: string; authenticationRequest?: string; }>"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "dynamicLink",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "dynamic-link",
+          "reflectToAttr": false,
+          "docs": "_[Optional]_\nDisplay a link containing a dynamic link to invoke the wallet if closed",
+          "docsTags": [],
+          "default": "true",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "errorCallback",
+          "type": "(error?: Error) => void",
+          "mutable": false,
+          "reflectToAttr": false,
+          "docs": "***Mandatory***\nCallback fired upon session expired or invalid\nIf not set, session error would not be handled\nAn error containing information will be passed as parameter",
+          "docsTags": [],
+          "default": "undefined",
+          "values": [
+            {
+              "type": "(error?: Error) => void"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "hideBrandTitle",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "hide-brand-title",
+          "reflectToAttr": false,
+          "docs": "_[Optional]_\nBoolean to show or not show the gataca brand title",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "pollingFrequency",
+          "type": "number",
+          "mutable": false,
+          "attr": "polling-frequency",
+          "reflectToAttr": false,
+          "docs": "_[Optional]_\nFrequency in seconds to check if the session has been validated",
+          "docsTags": [],
+          "default": "DEFAULT_POLLING_FREQ",
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "qrModalDescription",
+          "type": "string",
+          "mutable": false,
+          "attr": "qr-modal-description",
+          "reflectToAttr": false,
+          "docs": "_[Optional]_\nModifies the Modal description",
+          "docsTags": [],
+          "default": "\"Sign up or sign in by scanning the QR Code with the Gataca Wallet\"",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "qrModalTitle",
+          "type": "string",
+          "mutable": false,
+          "attr": "qr-modal-title",
+          "reflectToAttr": false,
+          "docs": "_[Optional]_\nModifies the qr headline title",
+          "docsTags": [],
+          "default": "\"Quick Access\"",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "qrRole",
+          "type": "string",
+          "mutable": false,
+          "attr": "qr-role",
+          "reflectToAttr": false,
+          "docs": "***Mandatory***\nDecide if scanning the credential as a verifier to request credentials\nor as an issuer too issue credentials.\nOptions: connect | certify",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "sessionTimeout",
+          "type": "number",
+          "mutable": false,
+          "attr": "session-timeout",
+          "reflectToAttr": false,
+          "docs": "_[Optional]_\nMaximum time window to display the session",
+          "docsTags": [],
+          "default": "DEFAULT_SESSION_TIMEOUT",
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "successCallback",
+          "type": "(data?: any) => void",
+          "mutable": false,
+          "reflectToAttr": false,
+          "docs": "***Mandatory***\nCallback fired upon session correctly verified\nIf not set, session validation wouldn't trigger any action\nThe session data and a possible token will be sent as parameters to the callback",
+          "docsTags": [],
+          "default": "undefined",
+          "values": [
+            {
+              "type": "(data?: any) => void"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "v2",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "v-2",
+          "reflectToAttr": false,
+          "docs": "_[Optional]_\nSet to use v2 links. The create session must be providing both an authentication request and a session Id",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": true,
+          "required": false
+        }
+      ],
+      "methods": [
+        {
+          "name": "display",
+          "returns": {
+            "type": "Promise<void>",
+            "docs": ""
+          },
+          "signature": "display() => Promise<void>",
+          "parameters": [],
+          "docs": "Force manually the display of a QR",
+          "docsTags": []
+        },
+        {
+          "name": "getSessionData",
+          "returns": {
+            "type": "Promise<any>",
+            "docs": ""
+          },
+          "signature": "getSessionData() => Promise<any>",
+          "parameters": [],
+          "docs": "Retrieve manually the session data on a successful login",
+          "docsTags": []
+        },
+        {
+          "name": "stop",
+          "returns": {
+            "type": "Promise<void>",
+            "docs": ""
+          },
+          "signature": "stop() => Promise<void>",
+          "parameters": [],
+          "docs": "Stop manually an ongoing session",
+          "docsTags": []
+        }
+      ],
+      "events": [
+        {
+          "event": "gatacaLoginCompleted",
+          "detail": "any",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "GatacaLoginCompleted event, triggered with session data upon login success",
+          "docsTags": []
+        },
+        {
+          "event": "gatacaLoginFailed",
+          "detail": "any",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "GatacaLoginFailed event, triggered with error upon login failure",
+          "docsTags": []
+        }
+      ],
+      "listeners": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [
+        "gataca-ssibutton"
+      ],
+      "dependencies": [
+        "gataca-qrdisplay"
+      ],
+      "dependencyGraph": {
+        "gataca-qr": [
+          "gataca-qrdisplay"
+        ],
+        "gataca-ssibutton": [
+          "gataca-qr"
+        ]
+      }
+    },
+    {
+      "filePath": "./src/components/gataca-qrdisplay/gataca-qrdisplay.tsx",
+      "encapsulation": "none",
+      "tag": "gataca-qrdisplay",
+      "readme": "# Gataca-QR Display\n\nThis component built using stencyl allows an easy integration to display a QR with the gataca styles\n\nContinuing with that example, you could integrate in any HTML using the following code\n\n````html\n<!DOCTYPE html>\n<html dir=\"ltr\" lang=\"en\">\n\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0\">\n  <title>Gataca QR Display Component</title>\n  <script type=\"module\" src=\"/build/gataca-qrdisplay.esm.js\"></script>\n  <script nomodule src=\"/build/gataca-qrdisplay.js\"></script>\n</head>\n\n<body>\n  <div class=\"your-container-styles\">\n\n    <gataca-qrdisplay id=\"gataca-qr\" qr-data=\"DATA TO DISPLAY\">\n      </gataca-qr>\n\n  </div>\n</body>\n\n</html>\n````\n",
+      "docs": "This component built using stencyl allows an easy integration to display a QR with the gataca styles\n\nContinuing with that example, you could integrate in any HTML using the following code\n\n````html\n<!DOCTYPE html>\n<html dir=\"ltr\" lang=\"en\">\n\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0\">\n  <title>Gataca QR Display Component</title>\n  <script type=\"module\" src=\"/build/gataca-qrdisplay.esm.js\"></script>\n  <script nomodule src=\"/build/gataca-qrdisplay.js\"></script>\n</head>\n\n<body>\n  <div class=\"your-container-styles\">\n\n    <gataca-qrdisplay id=\"gataca-qr\" qr-data=\"DATA TO DISPLAY\">\n      </gataca-qr>\n\n  </div>\n</body>\n\n</html>\n````",
+      "docsTags": [],
+      "usage": {},
+      "props": [
+        {
+          "name": "logoSize",
+          "type": "number",
+          "mutable": false,
+          "attr": "logo-size",
+          "reflectToAttr": false,
+          "docs": "_[Optional]_\nSize of the logo to display. 0 means no logo will be displayed. Default is the GATACA logo.",
+          "docsTags": [],
+          "default": "0",
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "logoSrc",
+          "type": "string",
+          "mutable": false,
+          "attr": "logo-src",
+          "reflectToAttr": false,
+          "docs": "_[Optional]_\nLogo to display, just if the logo size is greater than 0. No logo is the GATACA logo.",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "qrColor",
+          "type": "string",
+          "mutable": false,
+          "attr": "qr-color",
+          "reflectToAttr": false,
+          "docs": "_[Optional]_\nQR Color",
+          "docsTags": [],
+          "default": "\"#181B5E\"",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "qrData",
+          "type": "string",
+          "mutable": false,
+          "attr": "qr-data",
+          "reflectToAttr": false,
+          "docs": "_[Mandatory]_\nSets the contenst of the QR",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "rounded",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "rounded",
+          "reflectToAttr": false,
+          "docs": "_[Optional]_\nRound usage",
+          "docsTags": [],
+          "default": "true",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "size",
+          "type": "number",
+          "mutable": false,
+          "attr": "size",
+          "reflectToAttr": false,
+          "docs": "_[Optional]_\nSize of the QR Displayed",
+          "docsTags": [],
+          "default": "256",
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": true,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [],
+      "listeners": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [
+        "gataca-qr",
+        "gataca-qrws"
+      ],
+      "dependencies": [],
+      "dependencyGraph": {
+        "gataca-qr": [
+          "gataca-qrdisplay"
+        ],
+        "gataca-qrws": [
+          "gataca-qrdisplay"
+        ]
+      }
+    },
+    {
+      "filePath": "./src/components/gataca-qrws/gataca-qrws.tsx",
+      "encapsulation": "shadow",
+      "tag": "gataca-qrws",
+      "readme": "# Gataca-QR\n\nThis component built using stencyl allows an easy integration to display a gataca QR.\nIt allows to integrate 2 slots, named \"title\" and \"description\", to provide further integration to the user upon display of the QR.\n\nThis component can be used with the prerequisite of having an application which can be integrated with [Gataca Connect](https://docs.gatacaid.com/connect/). More precisely, your application will need to be able to perform the two operations against your connect server:\n1. Create sessions\n2. Consult sessions\n\nTherefore, in order to make it work, you will need at least:\n1. A **connect server** (might be Gataca Connect Saas)\n2. An application integrated with that server to perform the basic operations.\n\nYou can find an example of that kind of simple application _(written in Go)_ on the [Gataca Authorizer](https://github.com/gatacaid/gataca-authorizer), which we will use as example to explain the component's usage. *Gataca Authorizer* offers the two required endpoints:\n\n1. **/validate** : _Check if the user is authenticated, if not, create a new session against the connect server_\n2. **/login** : _Check the status of the created session_\n\nContinuing with that example, you could integrate with that kind of application _(if running on http://localhost:9009)_ using the following code\n\n````html\n<!DOCTYPE html>\n<html dir=\"ltr\" lang=\"en\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0\">\n  <title>Gataca QR Component</title>\n  <script type=\"module\" src=\"/build/gatacaqr.esm.js\"></script>\n  <script nomodule src=\"/build/gatacaqr.js\"></script>\n  <script type=\"module\" src=\"/build/modal.esm.js\"></script>\n  <script nomodule src=\"/build/modal.js\"></script>\n  <style type=\"text/css\">\n  h1{\n    color: #181B5E;\n    align-self: center;\n    text-align: center;\n  }\n\n  h5{\n    color: #181B5E;\n  }\n  </style>\n</head>\n<body>\n  <gataca-qr id=\"gataca-qr\" callback-server=\"https://connect.dev.gatacaid.com:9090\" session-endpoint=\"http://localhost:9009/login?id=\">\n  <h1 slot=\"title\">Login with Gataca</h1>\n  <h5 slot=\"description\">Scan this QR to open your gataca wallet</h5></gataca-qr>\n  \n  <script>\n    const qr = document.getElementById('gataca-qr');\n    qr.successCallback = () => {\n        //replace with your logic\n      alert('LOGIN SUCCESS')\n    };\n    qr.errorCallback = () => {\n        //replace with your logic\n      alert('LOGIN ERROR')\n    };\n\n    qr.createSession = async () => {\n        let response = await fetch(\"http://localhost:9009/validate\");\n        return response.headers.get(\"X-Connect-Id\")\n    }\n  </script>\n</body>\n</html>\n````\n\nYou can use this component with an already created session, which can be inserted on the sessionId property on the element, or passed via query parameter _id_ or _sessionId_ on the current URL.\nYou can also provide a method to generate a new session like in the example, or, in the rare event of matching the authorizer API, just the endpoint to your application.\n\nIn order to consult sessions, both options are also available, depending on how you want to develop your own API.\n",
+      "docs": "This component built using stencyl allows an easy integration to display a gataca QR.\nIt allows to integrate 2 slots, named \"title\" and \"description\", to provide further integration to the user upon display of the QR.\n\nThis component can be used with the prerequisite of having an application which can be integrated with [Gataca Connect](https://docs.gatacaid.com/connect/). More precisely, your application will need to be able to perform the two operations against your connect server:\n1. Create sessions\n2. Consult sessions\n\nTherefore, in order to make it work, you will need at least:\n1. A **connect server** (might be Gataca Connect Saas)\n2. An application integrated with that server to perform the basic operations.\n\nYou can find an example of that kind of simple application _(written in Go)_ on the [Gataca Authorizer](https://github.com/gatacaid/gataca-authorizer), which we will use as example to explain the component's usage. *Gataca Authorizer* offers the two required endpoints:\n\n1. **/validate** : _Check if the user is authenticated, if not, create a new session against the connect server_\n2. **/login** : _Check the status of the created session_\n\nContinuing with that example, you could integrate with that kind of application _(if running on http://localhost:9009)_ using the following code\n\n````html\n<!DOCTYPE html>\n<html dir=\"ltr\" lang=\"en\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0\">\n  <title>Gataca QR Component</title>\n  <script type=\"module\" src=\"/build/gatacaqr.esm.js\"></script>\n  <script nomodule src=\"/build/gatacaqr.js\"></script>\n  <script type=\"module\" src=\"/build/modal.esm.js\"></script>\n  <script nomodule src=\"/build/modal.js\"></script>\n  <style type=\"text/css\">\n  h1{\n    color: #181B5E;\n    align-self: center;\n    text-align: center;\n  }\n\n  h5{\n    color: #181B5E;\n  }\n  </style>\n</head>\n<body>\n  <gataca-qr id=\"gataca-qr\" callback-server=\"https://connect.dev.gatacaid.com:9090\" session-endpoint=\"http://localhost:9009/login?id=\">\n  <h1 slot=\"title\">Login with Gataca</h1>\n  <h5 slot=\"description\">Scan this QR to open your gataca wallet</h5></gataca-qr>\n  \n  <script>\n    const qr = document.getElementById('gataca-qr');\n    qr.successCallback = () => {\n        //replace with your logic\n      alert('LOGIN SUCCESS')\n    };\n    qr.errorCallback = () => {\n        //replace with your logic\n      alert('LOGIN ERROR')\n    };\n\n    qr.createSession = async () => {\n        let response = await fetch(\"http://localhost:9009/validate\");\n        return response.headers.get(\"X-Connect-Id\")\n    }\n  </script>\n</body>\n</html>\n````\n\nYou can use this component with an already created session, which can be inserted on the sessionId property on the element, or passed via query parameter _id_ or _sessionId_ on the current URL.\nYou can also provide a method to generate a new session like in the example, or, in the rare event of matching the authorizer API, just the endpoint to your application.\n\nIn order to consult sessions, both options are also available, depending on how you want to develop your own API.",
+      "docsTags": [],
+      "usage": {},
+      "props": [
+        {
+          "name": "autorefresh",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "autorefresh",
+          "reflectToAttr": false,
+          "docs": "_[Optional]_\nSet to refresh the session automatically upon expiration. By default it is false",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "autostart",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "autostart",
+          "reflectToAttr": false,
+          "docs": "_[Optional]_\nSet to enable autoload when the QR is displayed. By default it is true",
+          "docsTags": [],
+          "default": "true",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "callbackServer",
+          "type": "string",
+          "mutable": false,
+          "attr": "callback-server",
+          "reflectToAttr": false,
+          "docs": "***Mandatory just for V1***\nConnect/Certify Server where the wallet will send the data",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "dynamicLink",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "dynamic-link",
+          "reflectToAttr": false,
+          "docs": "_[Optional]_\nDisplay a link containing a dynamic link to invoke the wallet if closed",
+          "docsTags": [],
+          "default": "true",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "errorCallback",
+          "type": "(error?: Error) => void",
+          "mutable": false,
+          "reflectToAttr": false,
+          "docs": "***Mandatory***\nCallback fired upon session expired or invalid\nIf not set, session error would not be handled\nAn error containing information will be passed as parameter",
+          "docsTags": [],
+          "default": "undefined",
+          "values": [
+            {
+              "type": "(error?: Error) => void"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "hideBrandTitle",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "hide-brand-title",
+          "reflectToAttr": false,
+          "docs": "_[Optional]_\nBoolean to show or not show the gataca brand title",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "qrModalDescription",
+          "type": "string",
+          "mutable": false,
+          "attr": "qr-modal-description",
+          "reflectToAttr": false,
+          "docs": "_[Optional]_\nModifies the Modal description",
+          "docsTags": [],
+          "default": "\"Sign up or sign in by scanning the QR Code with the Gataca Wallet\"",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "qrModalTitle",
+          "type": "string",
+          "mutable": false,
+          "attr": "qr-modal-title",
+          "reflectToAttr": false,
+          "docs": "_[Optional]_\nModifies the qr headline title",
+          "docsTags": [],
+          "default": "\"Quick Access\"",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "qrRole",
+          "type": "string",
+          "mutable": false,
+          "attr": "qr-role",
+          "reflectToAttr": false,
+          "docs": "***Mandatory***\nDecide if scanning the credential as a verifier to request credentials\nor as an issuer too issue credentials.\nOptions: connect | certify",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "sessionTimeout",
+          "type": "number",
+          "mutable": false,
+          "attr": "session-timeout",
+          "reflectToAttr": false,
+          "docs": "***Mandatory***\nMaximum time window to display the session and keep the websocket connection. It's needed to ensure the socket is closed.",
+          "docsTags": [],
+          "default": "DEFAULT_SESSION_TIMEOUT",
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "socketEndpoint",
+          "type": "string",
+          "mutable": false,
+          "attr": "socket-endpoint",
+          "reflectToAttr": false,
+          "docs": "***Mandatory***\nWS Endpoint on your service to be invoked upon display",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "successCallback",
+          "type": "(data?: any) => void",
+          "mutable": false,
+          "reflectToAttr": false,
+          "docs": "***Mandatory***\nCallback fired upon session correctly verified\nIf not set, session validation wouldn't trigger any action\nThe session data and a possible token will be sent as parameters to the callback",
+          "docsTags": [],
+          "default": "undefined",
+          "values": [
+            {
+              "type": "(data?: any) => void"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "v2",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "v-2",
+          "reflectToAttr": false,
+          "docs": "**RECOMMENDED**\nSet to use v2 links. The create session must be providing both an authentication request and a session Id",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "wsOnMessage",
+          "type": "(socket: WebSocket, msg: MessageEvent<any>) => void",
+          "mutable": false,
+          "reflectToAttr": false,
+          "docs": "**RECOMMENDED**\nCallback to invoke an a message has been received on the socket. It provides the socket itself and the message as parameters.\nIf not used, the messages provided by the server on the Socket connection must conform to the WSReponse interface\nIf used, an Event named **sessionMsg** must be triggered with a WSReponse as data",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "(socket: WebSocket, msg: MessageEvent<any>) => void"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "wsOnOpen",
+          "type": "(socket: WebSocket) => void",
+          "mutable": false,
+          "reflectToAttr": false,
+          "docs": "[Optional]\nFunction to send a message to the server upon socket creation",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "(socket: WebSocket) => void"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [
+        {
+          "name": "display",
+          "returns": {
+            "type": "Promise<void>",
+            "docs": ""
+          },
+          "signature": "display() => Promise<void>",
+          "parameters": [],
+          "docs": "Force manually the display of a QR",
+          "docsTags": []
+        },
+        {
+          "name": "getSessionData",
+          "returns": {
+            "type": "Promise<any>",
+            "docs": ""
+          },
+          "signature": "getSessionData() => Promise<any>",
+          "parameters": [],
+          "docs": "Retrieve manually the session data on a successful login",
+          "docsTags": []
+        },
+        {
+          "name": "stop",
+          "returns": {
+            "type": "Promise<void>",
+            "docs": ""
+          },
+          "signature": "stop() => Promise<void>",
+          "parameters": [],
+          "docs": "Stop manually an ongoing session",
+          "docsTags": []
+        }
+      ],
+      "events": [
+        {
+          "event": "gatacaLoginCompleted",
+          "detail": "any",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "GatacaLoginCompleted event, triggered with session data upon login success",
+          "docsTags": []
+        },
+        {
+          "event": "gatacaLoginFailed",
+          "detail": "any",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "GatacaLoginFailed event, triggered with error upon login failure",
+          "docsTags": []
+        }
+      ],
+      "listeners": [
+        {
+          "event": "sessionMsg",
+          "capture": true,
+          "passive": false
+        }
+      ],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [],
+      "dependencies": [
+        "gataca-qrdisplay"
+      ],
+      "dependencyGraph": {
+        "gataca-qrws": [
+          "gataca-qrdisplay"
+        ]
+      }
+    },
+    {
+      "filePath": "./src/components/gataca-ssibutton/gataca-ssibutton.tsx",
+      "encapsulation": "shadow",
+      "tag": "gataca-ssibutton",
+      "readme": "# Gataca-QR\n\nThis component built using stencyl allows an easy integration to display a gataca QR.\nIt allows to integrate 2 slots, named \"title\" and \"description\", to provide further integration to the user upon display of the QR.\n\nThis component can be used with the prerequisite of having an application which can be integrated with [Gataca Connect](https://docs.gatacaid.com/connect/). More precisely, your application will need to be able to perform the two operations against your connect server:\n1. Create sessions\n2. Consult sessions\n\nTherefore, in order to make it work, you will need at least:\n1. A **connect server** (might be Gataca Connect Saas)\n2. An application integrated with that server to perform the basic operations.\n\nYou can find an example of that kind of simple application _(written in Go)_ on the [Gataca Authorizer](https://github.com/gatacaid/gataca-authorizer), which we will use as example to explain the component's usage. *Gataca Authorizer* offers the two required endpoints:\n\n1. **/validate** : _Check if the user is authenticated, if not, create a new session against the connect server_\n2. **/login** : _Check the status of the created session_\n\nContinuing with that example, you could integrate with that kind of application _(if running on http://localhost:9009)_ using the following code\n\n````html\n<!DOCTYPE html>\n<html dir=\"ltr\" lang=\"en\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0\">\n  <title>Gataca QR Component</title>\n  <script type=\"module\" src=\"/build/gatacaqr.esm.js\"></script>\n  <script nomodule src=\"/build/gatacaqr.js\"></script>\n  <script type=\"module\" src=\"/build/modal.esm.js\"></script>\n  <script nomodule src=\"/build/modal.js\"></script>\n  <style type=\"text/css\">\n  h1{\n    color: #181B5E;\n    align-self: center;\n    text-align: center;\n  }\n\n  h5{\n    color: #181B5E;\n  }\n  </style>\n</head>\n<body>\n  <gataca-qr id=\"gataca-qr\" callback-server=\"https://connect.dev.gatacaid.com:9090\" session-endpoint=\"http://localhost:9009/login?id=\">\n  <h1 slot=\"title\">Login with Gataca</h1>\n  <h5 slot=\"description\">Scan this QR to open your gataca wallet</h5></gataca-qr>\n  \n  <script>\n    const qr = document.getElementById('gataca-qr');\n    qr.successCallback = () => {\n        //replace with your logic\n      alert('LOGIN SUCCESS')\n    };\n    qr.errorCallback = () => {\n        //replace with your logic\n      alert('LOGIN ERROR')\n    };\n\n    qr.createSession = async () => {\n        let response = await fetch(\"http://localhost:9009/validate\");\n        return response.headers.get(\"X-Connect-Id\")\n    }\n  </script>\n</body>\n</html>\n````\n\nYou can use this component with an already created session, which can be inserted on the sessionId property on the element, or passed via query parameter _id_ or _sessionId_ on the current URL.\nYou can also provide a method to generate a new session like in the example, or, in the rare event of matching the authorizer API, just the endpoint to your application.\n\nIn order to consult sessions, both options are also available, depending on how you want to develop your own API.\n",
+      "docs": "This component built using stencyl allows an easy integration to display a gataca QR.\nIt allows to integrate 2 slots, named \"title\" and \"description\", to provide further integration to the user upon display of the QR.\n\nThis component can be used with the prerequisite of having an application which can be integrated with [Gataca Connect](https://docs.gatacaid.com/connect/). More precisely, your application will need to be able to perform the two operations against your connect server:\n1. Create sessions\n2. Consult sessions\n\nTherefore, in order to make it work, you will need at least:\n1. A **connect server** (might be Gataca Connect Saas)\n2. An application integrated with that server to perform the basic operations.\n\nYou can find an example of that kind of simple application _(written in Go)_ on the [Gataca Authorizer](https://github.com/gatacaid/gataca-authorizer), which we will use as example to explain the component's usage. *Gataca Authorizer* offers the two required endpoints:\n\n1. **/validate** : _Check if the user is authenticated, if not, create a new session against the connect server_\n2. **/login** : _Check the status of the created session_\n\nContinuing with that example, you could integrate with that kind of application _(if running on http://localhost:9009)_ using the following code\n\n````html\n<!DOCTYPE html>\n<html dir=\"ltr\" lang=\"en\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0\">\n  <title>Gataca QR Component</title>\n  <script type=\"module\" src=\"/build/gatacaqr.esm.js\"></script>\n  <script nomodule src=\"/build/gatacaqr.js\"></script>\n  <script type=\"module\" src=\"/build/modal.esm.js\"></script>\n  <script nomodule src=\"/build/modal.js\"></script>\n  <style type=\"text/css\">\n  h1{\n    color: #181B5E;\n    align-self: center;\n    text-align: center;\n  }\n\n  h5{\n    color: #181B5E;\n  }\n  </style>\n</head>\n<body>\n  <gataca-qr id=\"gataca-qr\" callback-server=\"https://connect.dev.gatacaid.com:9090\" session-endpoint=\"http://localhost:9009/login?id=\">\n  <h1 slot=\"title\">Login with Gataca</h1>\n  <h5 slot=\"description\">Scan this QR to open your gataca wallet</h5></gataca-qr>\n  \n  <script>\n    const qr = document.getElementById('gataca-qr');\n    qr.successCallback = () => {\n        //replace with your logic\n      alert('LOGIN SUCCESS')\n    };\n    qr.errorCallback = () => {\n        //replace with your logic\n      alert('LOGIN ERROR')\n    };\n\n    qr.createSession = async () => {\n        let response = await fetch(\"http://localhost:9009/validate\");\n        return response.headers.get(\"X-Connect-Id\")\n    }\n  </script>\n</body>\n</html>\n````\n\nYou can use this component with an already created session, which can be inserted on the sessionId property on the element, or passed via query parameter _id_ or _sessionId_ on the current URL.\nYou can also provide a method to generate a new session like in the example, or, in the rare event of matching the authorizer API, just the endpoint to your application.\n\nIn order to consult sessions, both options are also available, depending on how you want to develop your own API.",
+      "docsTags": [],
+      "usage": {},
+      "props": [
+        {
+          "name": "autorefresh",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "autorefresh",
+          "reflectToAttr": false,
+          "docs": "_[Optional]_\nSet to refresh the session automatically upon expiration. By default it is false",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "buttonText",
+          "type": "string",
+          "mutable": false,
+          "attr": "button-text",
+          "reflectToAttr": false,
+          "docs": "_[Optional]_\nIn the case of being a button, modifies its text",
+          "docsTags": [],
+          "default": "\"Easy login\"",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "callbackServer",
+          "type": "string",
+          "mutable": false,
+          "attr": "callback-server",
+          "reflectToAttr": false,
+          "docs": "***Mandatory just for V1***\nConnect/Certify Server where the wallet will send the data",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "checkStatus",
+          "type": "(id?: string) => Promise<{ result: RESULT_STATUS; data: any; }>",
+          "mutable": false,
+          "reflectToAttr": false,
+          "docs": "***Mandatory***\nCheck status function to query the current status of the session\nThe function must query a client endpoint to check the status. That endpoint must return an error if the session has expired.",
+          "docsTags": [],
+          "default": "undefined",
+          "values": [
+            {
+              "type": "(id?: string) => Promise<{ result: RESULT_STATUS; data: any; }>"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "createSession",
+          "type": "() => Promise<{ sessionId: string; authenticationRequest?: string; }>",
+          "mutable": false,
+          "reflectToAttr": false,
+          "docs": "***Mandatory***\nCreate session function to generate a new Session\nUsing V1, it can provide just a session Id\nUsing V2, it must provide also the authentication request. The session Id is the id of the presentation definition",
+          "docsTags": [],
+          "default": "undefined",
+          "values": [
+            {
+              "type": "() => Promise<{ sessionId: string; authenticationRequest?: string; }>"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "dynamicLink",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "dynamic-link",
+          "reflectToAttr": false,
+          "docs": "_[Optional]_\nDisplay a link containing a dynamic link to invoke the wallet if closed",
+          "docsTags": [],
+          "default": "true",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "errorCallback",
+          "type": "(error?: Error) => void",
+          "mutable": false,
+          "reflectToAttr": false,
+          "docs": "***Mandatory***\nCallback fired upon session expired or invalid\nIf not set, session error would not be handled\nAn error containing information will be passed as parameter",
+          "docsTags": [],
+          "default": "undefined",
+          "values": [
+            {
+              "type": "(error?: Error) => void"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "hideBrandTitle",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "hide-brand-title",
+          "reflectToAttr": false,
+          "docs": "_[Optional]_\nBoolean to show or not show the gataca brand title",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "pollingFrequency",
+          "type": "number",
+          "mutable": false,
+          "attr": "polling-frequency",
+          "reflectToAttr": false,
+          "docs": "_[Optional]_\nFrequency in seconds to check if the session has been validated",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "qrModalDescription",
+          "type": "string",
+          "mutable": false,
+          "attr": "qr-modal-description",
+          "reflectToAttr": false,
+          "docs": "_[Optional]_\nModifies the Modal description",
+          "docsTags": [],
+          "default": "\"Sign up or sign in by scanning the QR Code with the Gataca Wallet\"",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "qrModalTitle",
+          "type": "string",
+          "mutable": false,
+          "attr": "qr-modal-title",
+          "reflectToAttr": false,
+          "docs": "_[Optional]_\nModifies the qr headline title",
+          "docsTags": [],
+          "default": "\"Quick Access\"",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "qrRole",
+          "type": "string",
+          "mutable": false,
+          "attr": "qr-role",
+          "reflectToAttr": false,
+          "docs": "***Mandatory***\nDecide if scanning the credential as a verifier to request credentials\nor as an issuer too issue credentials.\nOptions: connect | certify",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "sessionTimeout",
+          "type": "number",
+          "mutable": false,
+          "attr": "session-timeout",
+          "reflectToAttr": false,
+          "docs": "_[Optional]_\nMaximum time window to display the session",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "successCallback",
+          "type": "(data?: any) => void",
+          "mutable": false,
+          "reflectToAttr": false,
+          "docs": "***Mandatory***\nCallback fired upon session correctly verified\nIf not set, session validation wouldn't trigger any action\nThe session data and a possible token will be sent as parameters to the callback",
+          "docsTags": [],
+          "default": "undefined",
+          "values": [
+            {
+              "type": "(data?: any) => void"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "v2",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "v-2",
+          "reflectToAttr": false,
+          "docs": "_[Optional]_\nSet to use v2 links. The create session must be providing both an authentication request and a session Id",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": true,
+          "required": false
+        }
+      ],
+      "methods": [
+        {
+          "name": "getSessionData",
+          "returns": {
+            "type": "Promise<any>",
+            "docs": ""
+          },
+          "signature": "getSessionData() => Promise<any>",
+          "parameters": [],
+          "docs": "Retrieve manually the session data on a successful login",
+          "docsTags": []
+        }
+      ],
+      "events": [
+        {
+          "event": "gatacaLoginCompleted",
+          "detail": "any",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "GatacaLoginCompleted event, triggered with session data upon login success",
+          "docsTags": []
+        },
+        {
+          "event": "gatacaLoginFailed",
+          "detail": "any",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "GatacaLoginFailed event, triggered with error upon login failure",
+          "docsTags": []
+        }
+      ],
+      "listeners": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [],
+      "dependencies": [
+        "gataca-qr"
+      ],
+      "dependencyGraph": {
+        "gataca-ssibutton": [
+          "gataca-qr"
+        ],
+        "gataca-qr": [
+          "gataca-qrdisplay"
+        ]
+      }
+    }
+  ]
+}
