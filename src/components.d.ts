@@ -100,7 +100,7 @@ export namespace Components {
          */
         "qrColor"?: string;
         /**
-          * _[Mandatory]_ Sets the contenst of the QR
+          * _[Mandatory]_ Sets the contents of the QR
          */
         "qrData": string;
         /**
@@ -392,7 +392,7 @@ declare namespace LocalJSX {
          */
         "qrColor"?: string;
         /**
-          * _[Mandatory]_ Sets the contenst of the QR
+          * _[Mandatory]_ Sets the contents of the QR
          */
         "qrData"?: string;
         /**

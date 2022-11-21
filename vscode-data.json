@@ -75,7 +75,7 @@
         },
         {
           "name": "qr-data",
-          "description": "_[Mandatory]_\nSets the contenst of the QR"
+          "description": "_[Mandatory]_\nSets the contents of the QR"
         },
         {
           "name": "rounded",

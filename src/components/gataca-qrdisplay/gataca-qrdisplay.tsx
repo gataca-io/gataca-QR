@@ -36,7 +36,7 @@ export class GatacaQRDisplay {
 
   /**
    * _[Mandatory]_
-   * Sets the contenst of the QR
+   * Sets the contents of the QR
    */
   @Prop() qrData: string;
 

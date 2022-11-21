@@ -1,5 +1,5 @@
 {
-  "timestamp": "2022-11-21T17:26:09",
+  "timestamp": "2022-11-21T17:27:32",
   "compiler": {
     "name": "node",
     "version": "15.14.0"
@@ -709,7 +709,7 @@
           },
           "docs": {
             "tags": [],
-            "text": "_[Mandatory]_\nSets the contenst of the QR"
+            "text": "_[Mandatory]_\nSets the contents of the QR"
           },
           "internal": false
         },
@@ -2247,7 +2247,7 @@
               },
               "docs": {
                 "tags": [],
-                "text": "_[Mandatory]_\nSets the contenst of the QR"
+                "text": "_[Mandatory]_\nSets the contents of the QR"
               },
               "internal": false
             },

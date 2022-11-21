@@ -38,7 +38,7 @@ Continuing with that example, you could integrate in any HTML using the followin
 | `logoSize` | `logo-size` | _[Optional]_ Size of the logo to display in percentage to the total size [0-1]. 0 means no logo will be displayed. Default is the GATACA logo. Recommended size is around 0.33 | `number`  | `0`         |
 | `logoSrc`  | `logo-src`  | _[Optional]_ Logo to display, just if the logo size is greater than 0. No logo is the GATACA logo.                                                                             | `string`  | `undefined` |
 | `qrColor`  | `qr-color`  | _[Optional]_ QR Color.                                                                                                                                                         | `string`  | `"#181B5E"` |
-| `qrData`   | `qr-data`   | _[Mandatory]_ Sets the contenst of the QR                                                                                                                                      | `string`  | `undefined` |
+| `qrData`   | `qr-data`   | _[Mandatory]_ Sets the contents of the QR                                                                                                                                      | `string`  | `undefined` |
 | `rounded`  | `rounded`   | _[Optional]_ Round usage                                                                                                                                                       | `boolean` | `true`      |
 | `size`     | `size`      | _[Optional]_ Size of the QR Displayed                                                                                                                                          | `number`  | `256`       |
 

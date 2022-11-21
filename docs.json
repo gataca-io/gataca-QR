@@ -1,5 +1,5 @@
 {
-  "timestamp": "2022-11-21T17:26:09",
+  "timestamp": "2022-11-21T17:27:32",
   "compiler": {
     "name": "@stencil/core",
     "version": "2.19.3",
@@ -404,7 +404,7 @@
           "mutable": false,
           "attr": "qr-data",
           "reflectToAttr": false,
-          "docs": "_[Mandatory]_\nSets the contenst of the QR",
+          "docs": "_[Mandatory]_\nSets the contents of the QR",
           "docsTags": [],
           "values": [
             {
