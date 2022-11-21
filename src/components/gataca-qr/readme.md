@@ -44,7 +44,8 @@ Put a script tag similar to the source [https://unpkg.com/gatacaqr/dist/gatacaqr
 
 <div>
 
-  <gataca-qr id="gataca-qr" qrRole="connect">
+  
+   <gataca-qr id="gataca-qr" qrRole="connect" callback-server="https://connect.gataca.io"> <!-- TODO Change with your connect server-->
   </gataca-qr>
 
 </div>
@@ -114,8 +115,122 @@ applyPolyfills().then(() => {
 
 ```
 
-Then, on your component:
+The integration would depend if your using a Class Component or a Function Component. Supposing a function component (adaptation to class components is trivial), you would need to include:
 
+````typescript
+type MyProps = {
+    ...
+    verifier?: boolean
+    configId?: string
+    appToken?: string
+}
+
+
+export const dummyComponent: React.FC<MyProps> = (props) => {
+  ...
+  const { verifier, appToken, configId } = props
+  const qr = useRef(null)
+  let gqr: HTMLGatacaQrElement | undefined
+
+  useEffect(() => {
+            if (qr != null && qr.current != null) {
+                gqr = qr.current! as HTMLGatacaQrElement
+                gqr.createSession = createSession
+                gqr.checkStatus = checkStatus
+                gqr.successCallback = createSessionSuccess
+                gqr.errorCallback = createSessionError
+        }
+    })
+
+
+    //TODO Implement your own service logic invocation. This is just a dummy mimicking the Connect/Certify v1 APIs asuming you get an app token in props
+     const createSession = async (): Promise<{
+        sessionId: string
+        authenticationRequest?: string
+    }> => {
+        try {
+            let endpoint =
+                server +
+                (verifier ? '/api/v1/sessions' : '/api/v1/issuanceRequests')
+            let response = await fetch(endpoint, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: 'jwt ' + appToken,
+                },
+                body: verifier
+                    ? '{"ssiConfigId": "' + configId + '"}'
+                    : '{"group": "' + configId + '"}',
+            })
+            let data = await response.json()
+            return { sessionId: data.id! }
+        } catch (error) {
+            setSessionErrorState(true)
+            throw error
+        }
+    }
+
+    const checkStatus = async (): Promise<{
+        result: RESULT_STATUS
+        data?: any
+    }> => {
+        //TODO Implement your own service logic invocation. This is just a dummy mimicking the Connect/Certify v1 APIs asuming you get an app token in props
+        if (!appToken || error) {
+            gqr?.stop()
+        }
+        const endpoint =
+            server +
+            (verifier ? '/api/v1/sessions/' : '/admin/v1/issuanceRequests/') +
+            sessionId
+        let response = await fetch(endpoint, {
+            method: 'GET',
+            headers: {
+                Authorization: 'jwt ' + appToken,
+                'Content-Type': 'application/json',
+            },
+        })
+
+        if (verifier) {
+            let req = await response
+            return req.status === 200
+                ? { result: RESULT_STATUS.SUCCESS }
+                : req.status === 204
+                ? { result: RESULT_STATUS.ONGOING }
+                : { result: RESULT_STATUS.FAILED }
+        } else {
+            let req = await response.json()
+            return !req.status || req.status === 'PENDING'
+                ? { result: RESULT_STATUS.ONGOING }
+                : req.status === 'INVALID'
+                ? { result: RESULT_STATUS.FAILED }
+                : { result: RESULT_STATUS.SUCCESS }
+        }
+    }
+
+    const createSessionSuccess = (newdata: any) => {
+        //TODO Handle success
+    }
+
+    const createSessionError = (error: any) => {
+        //TODO Handle ERROR
+    }
+
+  //render() function in class components
+  return (
+      // @ts-ignore
+      <gataca-qr
+          callback-server={ verifier ? YOUR_CONNECT_HOST: YOUR_CERTIFY_HOST }
+          ref={qr}
+          qr-role={verifier ? "connect":"certify"}
+      />
+  )
+                  
+}
+````
+
+### Angular App Integration
+
+TBD
 
 ## Updating from V1
 

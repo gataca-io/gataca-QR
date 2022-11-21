@@ -48,7 +48,7 @@ export class GatacaQRDisplay {
 
   /**
    * _[Optional]_
-   * Size of the logo to display. 0 means no logo will be displayed. Default is the GATACA logo.
+   * Size of the logo to display in percentage to the total size [0-1]. 0 means no logo will be displayed. Default is the GATACA logo. Recommended size is around 0.33
    */
   @Prop() logoSize?: number = 0;
 
@@ -60,9 +60,9 @@ export class GatacaQRDisplay {
 
   /**
    * _[Optional]_
-   * QR Color
+   * QR Color.
    */
-  @Prop() qrColor?: string = "#181B5E"; //"#4745B7";
+  @Prop() qrColor?: string = "#181B5E"; //"#4745B7"; new purple color
 
   /**
    * _[Optional]_

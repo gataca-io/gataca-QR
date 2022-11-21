@@ -1,5 +1,5 @@
 {
-  "timestamp": "2022-11-18T12:11:15",
+  "timestamp": "2022-11-21T17:26:09",
   "compiler": {
     "name": "node",
     "version": "15.14.0"
@@ -66,7 +66,7 @@
           "./dist/gatacaqr/gatacaqr.esm.js",
           "./dist/gatacaqr/index.esm.js",
           "./dist/gatacaqr/p-07d70cc6.js",
-          "./dist/gatacaqr/p-43177fb0.entry.js",
+          "./dist/gatacaqr/p-64b58194.entry.js",
           "./dist/gatacaqr/p-6c9a7e96.entry.js",
           "./dist/gatacaqr/p-a6f85341.js",
           "./dist/gatacaqr/p-b8ba109f.js",
@@ -75,7 +75,7 @@
           "./www/build/gatacaqr.esm.js",
           "./www/build/index.esm.js",
           "./www/build/p-07d70cc6.js",
-          "./www/build/p-43177fb0.entry.js",
+          "./www/build/p-64b58194.entry.js",
           "./www/build/p-6c9a7e96.entry.js",
           "./www/build/p-a6f85341.js",
           "./www/build/p-b8ba109f.js"
@@ -128,14 +128,14 @@
         "components": [
           "gataca-qrws"
         ],
-        "bundleId": "p-43177fb0",
-        "fileName": "p-43177fb0.entry.js",
+        "bundleId": "p-64b58194",
+        "fileName": "p-64b58194.entry.js",
         "imports": [
           "p-a6f85341.js",
           "p-07d70cc6.js",
           "p-b8ba109f.js"
         ],
-        "originalByteSize": 11183
+        "originalByteSize": 11205
       }
     ],
     "esm": [
@@ -167,7 +167,7 @@
           "qr-code-styling-f9286084.js",
           "utils-05ba6c9f.js"
         ],
-        "originalByteSize": 11205
+        "originalByteSize": 11227
       }
     ],
     "es5": [],
@@ -201,7 +201,7 @@
           "qr-code-styling-1d430fdb.js",
           "utils-383ee834.js"
         ],
-        "originalByteSize": 11434
+        "originalByteSize": 11462
       }
     ]
   },
@@ -749,7 +749,7 @@
           },
           "docs": {
             "tags": [],
-            "text": "_[Optional]_\nSize of the logo to display. 0 means no logo will be displayed. Default is the GATACA logo."
+            "text": "_[Optional]_\nSize of the logo to display in percentage to the total size [0-1]. 0 means no logo will be displayed. Default is the GATACA logo. Recommended size is around 0.33"
           },
           "internal": false
         },
@@ -788,7 +788,7 @@
           },
           "docs": {
             "tags": [],
-            "text": "_[Optional]_\nQR Color"
+            "text": "_[Optional]_\nQR Color."
           },
           "internal": false
         },
@@ -879,7 +879,7 @@
       "listeners": [
         {
           "name": "sessionMsg",
-          "method": "sessionCreated",
+          "method": "sessionMsgReceived",
           "capture": true,
           "passive": false
         }
@@ -1271,9 +1271,6 @@
         },
         {
           "name": "result"
-        },
-        {
-          "name": "socket"
         }
       ]
     },
@@ -2290,7 +2287,7 @@
               },
               "docs": {
                 "tags": [],
-                "text": "_[Optional]_\nSize of the logo to display. 0 means no logo will be displayed. Default is the GATACA logo."
+                "text": "_[Optional]_\nSize of the logo to display in percentage to the total size [0-1]. 0 means no logo will be displayed. Default is the GATACA logo. Recommended size is around 0.33"
               },
               "internal": false
             },
@@ -2329,7 +2326,7 @@
               },
               "docs": {
                 "tags": [],
-                "text": "_[Optional]_\nQR Color"
+                "text": "_[Optional]_\nQR Color."
               },
               "internal": false
             },
@@ -3272,9 +3269,6 @@
             },
             {
               "name": "result"
-            },
-            {
-              "name": "socket"
             }
           ],
           "methods": [
@@ -3343,7 +3337,7 @@
           "listeners": [
             {
               "name": "sessionMsg",
-              "method": "sessionCreated",
+              "method": "sessionMsgReceived",
               "capture": true,
               "passive": false
             }

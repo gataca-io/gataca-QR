@@ -1,68 +1,126 @@
-# Gataca-QR
+# Gataca-QRWS
 
-This component built using stencyl allows an easy integration to display a gataca QR.
-It allows to integrate 2 slots, named "title" and "description", to provide further integration to the user upon display of the QR.
+This component built using stencyl allows an easy integration to display a gataca QR to be read by the wallet.
 
-This component can be used with the prerequisite of having an application which can be integrated with [Gataca Connect](https://docs.gatacaid.com/connect/). More precisely, your application will need to be able to perform the two operations against your connect server:
-1. Create sessions
-2. Consult sessions
+It does the same but using WebSockets instead of polling
 
-Therefore, in order to make it work, you will need at least:
-1. A **connect server** (might be Gataca Connect Saas)
-2. An application integrated with that server to perform the basic operations.
+This component can be used with the prerequisite of having an application which can be integrated with GATACA Components: Connect and Certify. In this case, your application must offer a WebSocket communication.
 
-You can find an example of that kind of simple application _(written in Go)_ on the [Gataca Authorizer](https://github.com/gatacaid/gataca-authorizer), which we will use as example to explain the component's usage. *Gataca Authorizer* offers the two required endpoints:
+The websocket service implemented by your service may be completely custom or use the following structure for messages -the type is exported by this library-:
 
-1. **/validate** : _Check if the user is authenticated, if not, create a new session against the connect server_
-2. **/login** : _Check the status of the created session_
+```typescript
+export type WSResponse = {
+  sessionId: string;
+  result: RESULT_STATUS;
+  authenticatedUserData?: any;
+  authenticationRequest?: string;
+  error?: string;
+};
+```
 
-Continuing with that example, you could integrate with that kind of application _(if running on http://localhost:9009)_ using the following code
+If your WS Messages implement this interface, you need to know that the QR will start when a WS message is received with result === RESULT_STATUS.ONGOING (0) and a sessionId.
+The QR will end when a message with a different result is received, depending on the result.
+
+If your server wants to implement a different interface, there is no problem, but you need to trigger an Event named **sessionMsg** with a matching WSResponse in detail for the QR Component to understand (see examples).
+
+
+## Integrations
+
+### Pure JS
+
+You can include the components by importing the library, available on NPM:
+
+#### Script tag
+
+Put a script tag similar to the source [https://unpkg.com/gatacaqr/dist/gatacaqr.js](https://unpkg.com/gatacaqr/dist/gatacaqr.js) in the head of your index.html. Check for the last version:
+
+```html
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
+  <script src='https://unpkg.com/gatacaqr@2.0.0/dist/gatacaqr.js'></script>
+</head>
+...
+</html>
+```
+
+#### Example
 
 ````html
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
   <title>Gataca QR Component</title>
   <script type="module" src="/build/gatacaqr.esm.js"></script>
   <script nomodule src="/build/gatacaqr.js"></script>
-  <script type="module" src="/build/modal.esm.js"></script>
-  <script nomodule src="/build/modal.js"></script>
-  <style type="text/css">
-  h1{
-    color: #181B5E;
-    align-self: center;
-    text-align: center;
-  }
-
-  h5{
-    color: #181B5E;
-  }
-  </style>
 </head>
+
 <body>
-  <gataca-qr id="gataca-qr" callback-server="https://connect.dev.gatacaid.com:9090" session-endpoint="http://localhost:9009/login?id=">
-  <h1 slot="title">Login with Gataca</h1>
-  <h5 slot="description">Scan this QR to open your gataca wallet</h5></gataca-qr>
-  
+
+  <div>
+
+    <gataca-qrws id="gataca-qrws" qr-role="connect" session-timeout="300"
+      socket-endpoint="ws://your_server"
+      callback-server="https://connect.gataca.io">  <!-- TODO Change with your connect server and your service socket-->
+    </gataca-qrws>
+
+  </div>
+
   <script>
-    const qr = document.getElementById('gataca-qr');
-    qr.successCallback = () => {
-        //replace with your logic
-      alert('LOGIN SUCCESS')
+    const qr = document.getElementById('gataca-qrws');
+    var count = 0;
+    var ok = true;
+
+    qr.successCallback = (data) => {
+      //TODO Change with what you want to happen when the session is validated
+      alert("ALL OK" + data)
     };
     qr.errorCallback = () => {
-        //replace with your logic
-      alert('LOGIN ERROR')
+      //TODO Change with what you want to happen when the session is expired or the user provides invalid credentials
+      alert("some error")
     };
 
-    qr.createSession = async () => {
-        let response = await fetch("http://localhost:9009/validate");
-        return response.headers.get("X-Connect-Id")
+    qr.wsOnOpen = (socket) => {
+      //TODO Use this if you need a client message to start the session request on your API
+      socket.send("SESSION_REQUEST")
     }
+
+    qr.wsOnMessage = (socket, msg) => {
+      //TODO Change with and invocation to your Backend web socket to query the status of the session
+      let sessionId = "TWp3V2R1N29ZcmFMY3Nvd3ZPb3k0UlMz";
+      let wsResponse ={
+        sessionId: sessionId;
+        result: 0;
+      }
+      const event = new CustomEvent('sessionMsg', { detail: wsResponse});
+      qr..dispatchEvent(event);
+      
+      //simulation
+      setTimeout( () => {
+      let wsResponse ={
+        sessionId: sessionId;
+        result: ok? 1:2;
+        error: ok? undefined: "Invalid user data"
+      }
+      const event = new CustomEvent('sessionMsg', { detail: wsResponse});
+      qr..dispatchEvent(event);
+      }, 10000)
+        
+    }
+
+  // (async () => {
+  //   await customElements.whenDefined('gataca-qr');
+  // })();
+
   </script>
+
 </body>
+
 </html>
 ````
 
@@ -70,6 +128,106 @@ You can use this component with an already created session, which can be inserte
 You can also provide a method to generate a new session like in the example, or, in the rare event of matching the authorizer API, just the endpoint to your application.
 
 In order to consult sessions, both options are also available, depending on how you want to develop your own API.
+
+### React App Integration
+
+Import the library
+
+```bash
+npm install @gataca/qr --save
+```
+
+or
+
+```bash
+yarn add @gataca/qr
+```
+
+In your base file index.js (or index.tsx), include:
+
+```typescript
+import { applyPolyfills, defineCustomElements } from '@gataca/qr/loader'
+
+//before ReactDOM.render
+applyPolyfills().then(() => {
+    defineCustomElements(window)
+})
+
+```
+
+The integration would depend if your using a Class Component or a Function Component. Supposing a function component (adaptation to class components is trivial), you would need to include:
+
+````typescript
+type MyProps = {
+    ...
+    verifier?: boolean
+}
+
+
+export const dummyComponent: React.FC<MyProps> = (props) => {
+  ...
+  const { verifier } = props
+  const qr = useRef(null)
+  let gqr: HTMLGatacaQrElement | undefined
+
+  useEffect(() => {
+            if (qr != null && qr.current != null) {
+                gqr = qr.current! as HTMLGatacaQrElement
+                gqr.wsOnOpen = requestSession //Optional
+                gqr.wsOnMessage = receiveMessage
+                gqr.successCallback = createSessionSuccess
+                gqr.errorCallback = createSessionError
+        }
+    })
+
+
+    //TODO Implement your own service logic invocation. This is just a dummy. Change with and invocation to your Backend websocket to query the status of the session
+     const receiveMessage = async (msg: MessageEvent): => {
+      let wsResponse = convertMyAPIMessageToWSResponse(msg)
+      const event = new CustomEvent('sessionMsg', { detail: wsResponse});
+      qr..dispatchEvent(event);        
+    }
+
+    //TODO fix with your API Data
+    const convertMyAPIMessageToWSResponse = (msg: MessageEvent) :WSResponse => {
+      //Example: session created
+      //TODO Process Message and transform to WSResponse object
+      return {
+          sessionId: 'somesession';
+          result: RESULT_STATUS.ONGOING;
+        };
+    }
+
+      //TODO Use this if you need a client message to start the session request on your API
+    const requestSession = (socket) => {
+      socket.send("SESSION_REQUEST")
+    }
+
+    const createSessionSuccess = (newdata: any) => {
+        //TODO Handle success
+    }
+
+    const createSessionError = (error: any) => {
+        //TODO Handle ERROR
+    }
+
+  //render() function in class components
+  return (
+      // @ts-ignore
+      <gataca-qrws
+          callback-server={ verifier ? YOUR_CONNECT_HOST: YOUR_CERTIFY_HOST }
+          socket-endpoint={YOUR_SERVICE}
+          ref={qr}
+          qr-role={verifier ? "connect":"certify"}
+      />
+    )
+}
+````
+
+### Angular App Integration
+
+TBD
+
 
 <!-- Auto Generated Below -->
 

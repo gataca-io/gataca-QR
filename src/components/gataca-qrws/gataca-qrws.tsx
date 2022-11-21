@@ -26,6 +26,11 @@ const DEEP_LINK_PREFIX =
 const DEFAULT_SESSION_TIMEOUT = 300;
 const QR_ROLE_CONNECT = "connect";
 
+const FUNCTION_ROLES = {
+  connect: "scan",
+  certify: "credential",
+};
+
 @Component({
   tag: "gataca-qrws",
   styleUrl: "gataca-qrws.scss",
@@ -170,50 +175,47 @@ export class GatacaQRWS {
   })
   gatacaLoginFailed: EventEmitter;
 
-  @State() socket: WebSocket;
+  socket: WebSocket;
 
   /**
    * Force manually the display of a QR
    */
   @Method()
   async display(): Promise<void> {
-    let socket = new WebSocket("ws://127.0.0.1:1323/ws");
+    let socket = new WebSocket(this.socketEndpoint);
     setTimeout(() => {
-      socket.close();
-    }, this.sessionTimeout);
+      this.socket.close(1000, "");
+    }, 1000 * this.sessionTimeout);
     this.socket = socket;
-    console.log("Attempting Connection...");
 
     socket.onopen = () => {
-      this.wsOnOpen(this.socket);
+      if (this.wsOnOpen) this.wsOnOpen(this.socket);
     };
 
-    this.socket.onmessage = (msg: MessageEvent) => {
+    socket.onmessage = (msg: MessageEvent) => {
       if (this.wsOnMessage) {
         this.wsOnMessage(this.socket, msg);
       } else {
-        if (!!(msg.data as WSResponse).result) {
-          this.handleWSResponse(msg.data);
+        let wsresp = JSON.parse(msg.data) as WSResponse;
+        if (!!wsresp.sessionId) {
+          this.handleWSResponse(wsresp);
         }
       }
     };
 
-    this.socket.onerror = (errorEvent) => {
-      console.log("Socket Error: ", errorEvent);
+    socket.onerror = () => {
       let error = new Error("Error connecting with server");
       this.result = RESULT_STATUS.FAILED;
       this.gatacaLoginFailed.emit(error);
       this.errorCallback(error);
-      socket.close();
+      socket.close(1000, "");
     };
 
-    socket.onclose = (event) => {
-      console.log("Socket Closed Connection: ", event);
-      socket.send("Client Closed!");
-      if (
-        this.result === RESULT_STATUS.ONGOING ||
-        this.result === RESULT_STATUS.EXPIRED
-      ) {
+    socket.onclose = () => {
+      if (this.result === RESULT_STATUS.ONGOING) {
+        this.result = RESULT_STATUS.EXPIRED;
+      }
+      if (this.result === RESULT_STATUS.EXPIRED) {
         if (this.autorefresh) {
           this.display();
         } else {
@@ -230,9 +232,8 @@ export class GatacaQRWS {
   }
 
   @Listen("sessionMsg", { capture: true })
-  sessionCreated(event: CustomEvent<WSResponse>) {
+  sessionMsgReceived(event: CustomEvent<WSResponse>) {
     let wsresp: WSResponse = event.detail;
-    console.log("Received the custom todoCompleted event: ", wsresp);
     this.handleWSResponse(wsresp);
   }
 
@@ -241,11 +242,12 @@ export class GatacaQRWS {
     switch (wsresp.result) {
       case RESULT_STATUS.ONGOING:
         this.sessionId = wsresp.sessionId;
+        break;
       case RESULT_STATUS.SUCCESS:
         this.sessionData = wsresp.authenticatedUserData;
         this.gatacaLoginCompleted.emit(wsresp.authenticatedUserData);
         this.successCallback(wsresp.authenticatedUserData);
-        this.socket.close();
+        this.socket.close(1000, "");
         break;
       case RESULT_STATUS.FAILED:
         this.socket.close();
@@ -291,7 +293,9 @@ export class GatacaQRWS {
     if (this.v2 && this.qrRole == QR_ROLE_CONNECT) {
       return this.authenticationRequest;
     }
-    let link = "https://gataca.page.link/" + this.qrRole + "?";
+    let op = FUNCTION_ROLES[this.qrRole];
+    console.log(FUNCTION_ROLES, this.qrRole, op);
+    let link = "https://gataca.page.link/" + op + "?";
     link +=
       this.qrRole === QR_ROLE_CONNECT
         ? "session=" + this.sessionId

@@ -88,7 +88,7 @@ export namespace Components {
     }
     interface GatacaQrdisplay {
         /**
-          * _[Optional]_ Size of the logo to display. 0 means no logo will be displayed. Default is the GATACA logo.
+          * _[Optional]_ Size of the logo to display in percentage to the total size [0-1]. 0 means no logo will be displayed. Default is the GATACA logo. Recommended size is around 0.33
          */
         "logoSize"?: number;
         /**
@@ -96,7 +96,7 @@ export namespace Components {
          */
         "logoSrc"?: string;
         /**
-          * _[Optional]_ QR Color
+          * _[Optional]_ QR Color.
          */
         "qrColor"?: string;
         /**
@@ -380,7 +380,7 @@ declare namespace LocalJSX {
     }
     interface GatacaQrdisplay {
         /**
-          * _[Optional]_ Size of the logo to display. 0 means no logo will be displayed. Default is the GATACA logo.
+          * _[Optional]_ Size of the logo to display in percentage to the total size [0-1]. 0 means no logo will be displayed. Default is the GATACA logo. Recommended size is around 0.33
          */
         "logoSize"?: number;
         /**
@@ -388,7 +388,7 @@ declare namespace LocalJSX {
          */
         "logoSrc"?: string;
         /**
-          * _[Optional]_ QR Color
+          * _[Optional]_ QR Color.
          */
         "qrColor"?: string;
         /**

@@ -10,6 +10,7 @@
 </head>
 
 <body>
+
   <div>
 
     <gataca-ssibutton id="gataca-qr" qrRole="connect" polling-frequency="1" session-timeout="5" autostart="false">
@@ -22,7 +23,7 @@
     var count = 0;
     var ok = true;
 
-    qr.successCallback = (data ) => {
+    qr.successCallback = (data) => {
       alert("ALL OK" + data)
     };
     qr.errorCallback = () => {
@@ -30,20 +31,16 @@
     };
 
     qr.createSession = () => {
-      return {sessionId: "TWp3V2R1N29ZcmFMY3Nvd3ZPb3k0UlMz"}
+      return { sessionId: "TWp3V2R1N29ZcmFMY3Nvd3ZPb3k0UlMz" }
     }
 
     qr.checkStatus = () => {
       count++;
       if (count == 10) {
-        return {result : ok? 1:2 , data: "JOSE"}
+        return { result: ok ? 1 : 2, data: { "name": "test", "token": "x" } }
       }
-      return {result :0}
+      return { result: 0 }
     }
-
-    (async () => {
-      await customElements.whenDefined('gataca-qr');
-    })();
 
   </script>
 
