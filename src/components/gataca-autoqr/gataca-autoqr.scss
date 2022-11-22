@@ -1,0 +1,117 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/*
+QR COMPONENT  
+*/
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400&display=swap');
+
+.img-fluid {
+  height: auto;
+  max-width: 50%;
+}
+
+img {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.buttonContainer {
+  display: inline-block;
+  text-align: right;
+  padding: 10px;
+  position: relative;
+}
+
+.gatacaButtonWrapper {
+  margin: 8px;
+  .gatacaButton {
+    display: flex;
+    min-width: 100px;
+    padding: 8px 8px;
+    background-color: white;
+    font-size: 12px;
+    font-family: "Work Sans", sans-serif;
+    letter-spacing: 1px;
+    font-weight: 2;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 6px;
+    border: 1px solid rgba(24, 27, 94, 0.5);
+    color: rgba(24, 27, 94, 0.8);
+    box-shadow: 0px 1px 3px rgba(48, 48, 48, 0.15);
+    cursor: pointer;
+
+    & > span {
+      margin-right: 10px;
+    }
+
+    &:hover {
+      box-shadow: 0px 2px 8px rgba(48, 48, 48, 0.10);
+    }
+
+  }
+
+  .buttonText {
+    text-align: right;
+    font-size: 8px;
+    color: rgba(24, 27, 94, 0.5);
+    font-family: "Helvetica Neue", sans-serif;
+    letter-spacing: 1px;
+    padding-right: 8px;
+    font-weight: 1;
+  }
+
+  .buttonImg {
+    height: 25px;
+    width: 25px;
+    margin: 0;
+    margin-right: 20px;
+  }
+}

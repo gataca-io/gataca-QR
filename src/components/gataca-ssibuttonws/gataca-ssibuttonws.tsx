@@ -7,33 +7,31 @@ import {
   Prop,
   State,
 } from "@stencil/core";
-import "../gataca-qrdisplay/gataca-qrdisplay";
 
-import { RESULT_STATUS } from "../../utils/utils";
-import { GatacaQR } from "../gataca-qr/gataca-qr";
+import { GatacaQRWS } from "../gataca-qrws/gataca-qrws";
 
 const PHONE_ICON =
   "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABsAAAAbCAYAAACN1PRVAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAHvSURBVHgB3ZZPTttAFMbfe3YjL7qYLopcpZXSG7Q3CDfIsqrSJpyg5QQtJ2h7glgUdVs4AeEE5AYEQSDAgtnw357Hm0hAQDaeIRFCfFKyeKPxzzPzvc+DUKCZN80GEv1ABgWOQgSdGbOwv7u0nDueV4zjTzUIKhuAZna4vdQFR828azbI0K/TI/qodaLvjlP+tLDGDCs+IKv9Lbsi7kcv0w9541Q0EREPYcoieEQ9KiyECRXHzbpBUOcnYTfPFOOaaGVx9WsLiDrSIp0iU0wFNgIx/AQyc9I/OmOjy+Y8aBvHQcDUYebewc6/Xtk8J5htcg5efEPGhk0JtqkyBjo7DuZcnuO2sqCyKv8rUDmfTS9IBURqBAL+I6CkzBjOMOs22TLY21n8fl17KzXR3uDvb/CQk0GEdfvN07QvpnAOaGfYaRT25JzU6+rnG2tTpcWAy+Cp0m3U/URLms8HWfg/rn6RFaGSs9KQkZMpvGBWNs2Vandt46ac6YNBuc0fDLMaOU5DFybQ8039p/KJ4bq4rwPewtqoM/1gsCm/NfBXvWjgHhhuDAeLyd3qVSifHQULeZkou9EqemLhmUmav8qrZ4GEMGA7ivzjKvfeqGptFV2YdWPMPHHq0cCh3DdpVdLl/XCY9J1gVvbCiWa6N+JLocPFjCsx9cAAAAAASUVORK5CYII=";
 
 @Component({
-  tag: "gataca-ssibutton",
-  styleUrl: "gataca-ssibutton.scss",
+  tag: "gataca-ssibuttonws",
+  styleUrl: "gataca-ssibuttonws.scss",
   shadow: true,
 })
-export class GatacaSSIButton {
-  qr: GatacaQR;
+export class GatacaSSIButtonWS {
+  qr: GatacaQRWS;
 
   constructor() {
     this.qr = (
-      <gataca-qr
-        checkStatus={this.checkStatus}
-        createSession={this.createSession}
+      <gataca-qrws
+        wsOnMessage={this.wsOnMessage}
+        wsOnOpen={this.wsOnOpen}
         successCallback={this.successCallback}
         errorCallback={this.errorCallback}
         qrRole={this.qrRole}
         callbackServer={this.callbackServer}
         sessionTimeout={this.sessionTimeout}
-        pollingFrequency={this.pollingFrequency}
+        socketEndpoint={this.socketEndpoint}
         autostart={true}
         autorefresh={this.autorefresh}
         v2={this.v2}
@@ -52,26 +50,6 @@ export class GatacaSSIButton {
   @Prop() buttonText?: string = "Easy login";
 
   //PROPERTIES INHERITED BY GATACA QR
-
-  /**
-   * ***Mandatory***
-   * Check status function to query the current status of the session
-   * The function must query a client endpoint to check the status. That endpoint must return an error if the session has expired.
-   */
-  @Prop() checkStatus?: (
-    id?: string
-  ) => Promise<{ result: RESULT_STATUS; data?: any }> = undefined;
-
-  /**
-   * ***Mandatory***
-   * Create session function to generate a new Session
-   * Using V1, it can provide just a session Id
-   * Using V2, it must provide also the authentication request. The session Id is the id of the presentation definition
-   */
-  @Prop() createSession?: () => Promise<{
-    sessionId: string;
-    authenticationRequest?: string;
-  }> = undefined;
 
   /**
    * ***Mandatory***
@@ -104,16 +82,36 @@ export class GatacaSSIButton {
   @Prop() callbackServer: string;
 
   /**
-   * _[Optional]_
-   * Maximum time window to display the session
+   * ***Mandatory***
+   * WS Endpoint on your service to be invoked upon display
+   */
+  @Prop() socketEndpoint: string;
+
+  /**
+   * ***Mandatory***
+   * Maximum time window to display the session and keep the websocket connection. It's needed to ensure the socket is closed.
    */
   @Prop() sessionTimeout?: number;
 
   /**
-   * _[Optional]_
-   * Frequency in seconds to check if the session has been validated
+   * [Optional]
+   * Function to send a message to the server upon socket creation
    */
-  @Prop() pollingFrequency?: number;
+  @Prop() wsOnOpen: (socket: WebSocket) => void;
+
+  /**
+   * **RECOMMENDED**
+   * Callback to invoke an a message has been received on the socket. It provides the socket itself and the message as parameters.
+   * If not used, the messages provided by the server on the Socket connection must conform to the WSReponse interface
+   * If used, an Event named **sessionMsg** must be triggered with a WSReponse as data
+   */
+  @Prop() wsOnMessage: (socket: WebSocket, msg: MessageEvent) => void;
+
+  /**
+   * _[Optional]_
+   * Set to enable autoload when the QR is displayed. By default it is true
+   */
+  @Prop() autostart: boolean = true;
 
   /**
    * _[Optional]_
@@ -122,7 +120,7 @@ export class GatacaSSIButton {
   @Prop() autorefresh: boolean = false;
 
   /**
-   * _[Optional]_
+   * **RECOMMENDED**
    * Set to use v2 links. The create session must be providing both an authentication request and a session Id
    */
   @Prop() v2?: boolean = false;

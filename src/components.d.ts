@@ -5,8 +5,48 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
-import { RESULT_STATUS, WSResponse } from "./utils/utils";
+import { RESULT_STATUS } from "./utils";
+import { RESULT_STATUS as RESULT_STATUS1, WSResponse } from "./utils/utils";
 export namespace Components {
+    interface GatacaAutoqr {
+        /**
+          * ___Just for polling flavour___ ***Mandatory*** Check status function to query the current status of the session The function must query a client endpoint to check the status. That endpoint must return an error if the session has expired.
+         */
+        "checkStatus"?: (
+    id?: string
+  ) => Promise<{ result: RESULT_STATUS; data?: any }>;
+        /**
+          * ***Mandatory*** ID of the QR configuration to display
+         */
+        "configId": any;
+        /**
+          * ***Mandatory*** Create session function to generate a new Session Using V1, it can provide just a session Id Using V2, it must provide also the authentication request. The session Id is the id of the presentation definition
+         */
+        "createSession"?: () => Promise<{
+    sessionId: string;
+    authenticationRequest?: string;
+  }>;
+        /**
+          * ___Just for polling flavour___ ***Mandatory*** Callback fired upon session expired or invalid If not set, session error would not be handled An error containing information will be passed as parameter
+         */
+        "errorCallback": (error?: Error) => void;
+        /**
+          * Retrieve manually the session data on a successful login
+         */
+        "getSessionData": () => Promise<any>;
+        /**
+          * ***Mandatory*** Callback fired upon session correctly verified If not set, session validation wouldn't trigger any action The session data and a possible token will be sent as parameters to the callback
+         */
+        "successCallback": (data?: any) => void;
+        /**
+          * ___Just for WS flavour___ **RECOMMENDED** Callback to invoke an a message has been received on the socket. It provides the socket itself and the message as parameters. If not used, the messages provided by the server on the Socket connection must conform to the WSReponse interface If used, an Event named **sessionMsg** must be triggered with a WSReponse as data
+         */
+        "wsOnMessage": (socket: WebSocket, msg: MessageEvent) => void;
+        /**
+          * ___Just for WS flavour___ [Optional] Function to send a message to the server upon socket creation
+         */
+        "wsOnOpen": (socket: WebSocket) => void;
+    }
     interface GatacaQr {
         /**
           * _[Optional]_ Set to refresh the session automatically upon expiration. By default it is false
@@ -25,7 +65,7 @@ export namespace Components {
          */
         "checkStatus"?: (
     id?: string
-  ) => Promise<{ result: RESULT_STATUS; data?: any }>;
+  ) => Promise<{ result: RESULT_STATUS1; data?: any }>;
         /**
           * ***Mandatory*** Create session function to generate a new Session Using V1, it can provide just a session Id Using V2, it must provide also the authentication request. The session Id is the id of the presentation definition
          */
@@ -204,7 +244,7 @@ export namespace Components {
          */
         "checkStatus"?: (
     id?: string
-  ) => Promise<{ result: RESULT_STATUS; data: any }>;
+  ) => Promise<{ result: RESULT_STATUS1; data?: any }>;
         /**
           * ***Mandatory*** Create session function to generate a new Session Using V1, it can provide just a session Id Using V2, it must provide also the authentication request. The session Id is the id of the presentation definition
          */
@@ -257,6 +297,80 @@ export namespace Components {
          */
         "v2"?: boolean;
     }
+    interface GatacaSsibuttonws {
+        /**
+          * _[Optional]_ Set to refresh the session automatically upon expiration. By default it is false
+         */
+        "autorefresh": boolean;
+        /**
+          * _[Optional]_ Set to enable autoload when the QR is displayed. By default it is true
+         */
+        "autostart": boolean;
+        /**
+          * _[Optional]_ In the case of being a button, modifies its text
+         */
+        "buttonText"?: string;
+        /**
+          * ***Mandatory just for V1*** Connect/Certify Server where the wallet will send the data
+         */
+        "callbackServer": string;
+        /**
+          * _[Optional]_ Display a link containing a dynamic link to invoke the wallet if closed
+         */
+        "dynamicLink"?: boolean;
+        /**
+          * ***Mandatory*** Callback fired upon session expired or invalid If not set, session error would not be handled An error containing information will be passed as parameter
+         */
+        "errorCallback": (error?: Error) => void;
+        /**
+          * Retrieve manually the session data on a successful login
+         */
+        "getSessionData": () => Promise<any>;
+        /**
+          * _[Optional]_ Boolean to show or not show the gataca brand title
+         */
+        "hideBrandTitle"?: boolean;
+        /**
+          * _[Optional]_ Modifies the Modal description
+         */
+        "qrModalDescription"?: string;
+        /**
+          * _[Optional]_ Modifies the qr headline title
+         */
+        "qrModalTitle"?: string;
+        /**
+          * ***Mandatory*** Decide if scanning the credential as a verifier to request credentials or as an issuer too issue credentials. Options: connect | certify
+         */
+        "qrRole": string;
+        /**
+          * ***Mandatory*** Maximum time window to display the session and keep the websocket connection. It's needed to ensure the socket is closed.
+         */
+        "sessionTimeout"?: number;
+        /**
+          * ***Mandatory*** WS Endpoint on your service to be invoked upon display
+         */
+        "socketEndpoint": string;
+        /**
+          * ***Mandatory*** Callback fired upon session correctly verified If not set, session validation wouldn't trigger any action The session data and a possible token will be sent as parameters to the callback
+         */
+        "successCallback": (data?: any) => void;
+        /**
+          * **RECOMMENDED** Set to use v2 links. The create session must be providing both an authentication request and a session Id
+         */
+        "v2"?: boolean;
+        /**
+          * **RECOMMENDED** Callback to invoke an a message has been received on the socket. It provides the socket itself and the message as parameters. If not used, the messages provided by the server on the Socket connection must conform to the WSReponse interface If used, an Event named **sessionMsg** must be triggered with a WSReponse as data
+         */
+        "wsOnMessage": (socket: WebSocket, msg: MessageEvent) => void;
+        /**
+          * [Optional] Function to send a message to the server upon socket creation
+         */
+        "wsOnOpen": (socket: WebSocket) => void;
+    }
+}
+export interface GatacaAutoqrCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLGatacaAutoqrElement;
 }
 export interface GatacaQrCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -270,7 +384,17 @@ export interface GatacaSsibuttonCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLGatacaSsibuttonElement;
 }
+export interface GatacaSsibuttonwsCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLGatacaSsibuttonwsElement;
+}
 declare global {
+    interface HTMLGatacaAutoqrElement extends Components.GatacaAutoqr, HTMLStencilElement {
+    }
+    var HTMLGatacaAutoqrElement: {
+        prototype: HTMLGatacaAutoqrElement;
+        new (): HTMLGatacaAutoqrElement;
+    };
     interface HTMLGatacaQrElement extends Components.GatacaQr, HTMLStencilElement {
     }
     var HTMLGatacaQrElement: {
@@ -295,14 +419,65 @@ declare global {
         prototype: HTMLGatacaSsibuttonElement;
         new (): HTMLGatacaSsibuttonElement;
     };
+    interface HTMLGatacaSsibuttonwsElement extends Components.GatacaSsibuttonws, HTMLStencilElement {
+    }
+    var HTMLGatacaSsibuttonwsElement: {
+        prototype: HTMLGatacaSsibuttonwsElement;
+        new (): HTMLGatacaSsibuttonwsElement;
+    };
     interface HTMLElementTagNameMap {
+        "gataca-autoqr": HTMLGatacaAutoqrElement;
         "gataca-qr": HTMLGatacaQrElement;
         "gataca-qrdisplay": HTMLGatacaQrdisplayElement;
         "gataca-qrws": HTMLGatacaQrwsElement;
         "gataca-ssibutton": HTMLGatacaSsibuttonElement;
+        "gataca-ssibuttonws": HTMLGatacaSsibuttonwsElement;
     }
 }
 declare namespace LocalJSX {
+    interface GatacaAutoqr {
+        /**
+          * ___Just for polling flavour___ ***Mandatory*** Check status function to query the current status of the session The function must query a client endpoint to check the status. That endpoint must return an error if the session has expired.
+         */
+        "checkStatus"?: (
+    id?: string
+  ) => Promise<{ result: RESULT_STATUS; data?: any }>;
+        /**
+          * ***Mandatory*** ID of the QR configuration to display
+         */
+        "configId"?: any;
+        /**
+          * ***Mandatory*** Create session function to generate a new Session Using V1, it can provide just a session Id Using V2, it must provide also the authentication request. The session Id is the id of the presentation definition
+         */
+        "createSession"?: () => Promise<{
+    sessionId: string;
+    authenticationRequest?: string;
+  }>;
+        /**
+          * ___Just for polling flavour___ ***Mandatory*** Callback fired upon session expired or invalid If not set, session error would not be handled An error containing information will be passed as parameter
+         */
+        "errorCallback"?: (error?: Error) => void;
+        /**
+          * GatacaLoginCompleted event, triggered with session data upon login success
+         */
+        "onGatacaLoginCompleted"?: (event: GatacaAutoqrCustomEvent<any>) => void;
+        /**
+          * GatacaLoginFailed event, triggered with error upon login failure
+         */
+        "onGatacaLoginFailed"?: (event: GatacaAutoqrCustomEvent<any>) => void;
+        /**
+          * ***Mandatory*** Callback fired upon session correctly verified If not set, session validation wouldn't trigger any action The session data and a possible token will be sent as parameters to the callback
+         */
+        "successCallback"?: (data?: any) => void;
+        /**
+          * ___Just for WS flavour___ **RECOMMENDED** Callback to invoke an a message has been received on the socket. It provides the socket itself and the message as parameters. If not used, the messages provided by the server on the Socket connection must conform to the WSReponse interface If used, an Event named **sessionMsg** must be triggered with a WSReponse as data
+         */
+        "wsOnMessage"?: (socket: WebSocket, msg: MessageEvent) => void;
+        /**
+          * ___Just for WS flavour___ [Optional] Function to send a message to the server upon socket creation
+         */
+        "wsOnOpen"?: (socket: WebSocket) => void;
+    }
     interface GatacaQr {
         /**
           * _[Optional]_ Set to refresh the session automatically upon expiration. By default it is false
@@ -321,7 +496,7 @@ declare namespace LocalJSX {
          */
         "checkStatus"?: (
     id?: string
-  ) => Promise<{ result: RESULT_STATUS; data?: any }>;
+  ) => Promise<{ result: RESULT_STATUS1; data?: any }>;
         /**
           * ***Mandatory*** Create session function to generate a new Session Using V1, it can provide just a session Id Using V2, it must provide also the authentication request. The session Id is the id of the presentation definition
          */
@@ -492,7 +667,7 @@ declare namespace LocalJSX {
          */
         "checkStatus"?: (
     id?: string
-  ) => Promise<{ result: RESULT_STATUS; data: any }>;
+  ) => Promise<{ result: RESULT_STATUS1; data?: any }>;
         /**
           * ***Mandatory*** Create session function to generate a new Session Using V1, it can provide just a session Id Using V2, it must provide also the authentication request. The session Id is the id of the presentation definition
          */
@@ -549,21 +724,99 @@ declare namespace LocalJSX {
          */
         "v2"?: boolean;
     }
+    interface GatacaSsibuttonws {
+        /**
+          * _[Optional]_ Set to refresh the session automatically upon expiration. By default it is false
+         */
+        "autorefresh"?: boolean;
+        /**
+          * _[Optional]_ Set to enable autoload when the QR is displayed. By default it is true
+         */
+        "autostart"?: boolean;
+        /**
+          * _[Optional]_ In the case of being a button, modifies its text
+         */
+        "buttonText"?: string;
+        /**
+          * ***Mandatory just for V1*** Connect/Certify Server where the wallet will send the data
+         */
+        "callbackServer"?: string;
+        /**
+          * _[Optional]_ Display a link containing a dynamic link to invoke the wallet if closed
+         */
+        "dynamicLink"?: boolean;
+        /**
+          * ***Mandatory*** Callback fired upon session expired or invalid If not set, session error would not be handled An error containing information will be passed as parameter
+         */
+        "errorCallback"?: (error?: Error) => void;
+        /**
+          * _[Optional]_ Boolean to show or not show the gataca brand title
+         */
+        "hideBrandTitle"?: boolean;
+        /**
+          * GatacaLoginCompleted event, triggered with session data upon login success
+         */
+        "onGatacaLoginCompleted"?: (event: GatacaSsibuttonwsCustomEvent<any>) => void;
+        /**
+          * GatacaLoginFailed event, triggered with error upon login failure
+         */
+        "onGatacaLoginFailed"?: (event: GatacaSsibuttonwsCustomEvent<any>) => void;
+        /**
+          * _[Optional]_ Modifies the Modal description
+         */
+        "qrModalDescription"?: string;
+        /**
+          * _[Optional]_ Modifies the qr headline title
+         */
+        "qrModalTitle"?: string;
+        /**
+          * ***Mandatory*** Decide if scanning the credential as a verifier to request credentials or as an issuer too issue credentials. Options: connect | certify
+         */
+        "qrRole"?: string;
+        /**
+          * ***Mandatory*** Maximum time window to display the session and keep the websocket connection. It's needed to ensure the socket is closed.
+         */
+        "sessionTimeout"?: number;
+        /**
+          * ***Mandatory*** WS Endpoint on your service to be invoked upon display
+         */
+        "socketEndpoint"?: string;
+        /**
+          * ***Mandatory*** Callback fired upon session correctly verified If not set, session validation wouldn't trigger any action The session data and a possible token will be sent as parameters to the callback
+         */
+        "successCallback"?: (data?: any) => void;
+        /**
+          * **RECOMMENDED** Set to use v2 links. The create session must be providing both an authentication request and a session Id
+         */
+        "v2"?: boolean;
+        /**
+          * **RECOMMENDED** Callback to invoke an a message has been received on the socket. It provides the socket itself and the message as parameters. If not used, the messages provided by the server on the Socket connection must conform to the WSReponse interface If used, an Event named **sessionMsg** must be triggered with a WSReponse as data
+         */
+        "wsOnMessage"?: (socket: WebSocket, msg: MessageEvent) => void;
+        /**
+          * [Optional] Function to send a message to the server upon socket creation
+         */
+        "wsOnOpen"?: (socket: WebSocket) => void;
+    }
     interface IntrinsicElements {
+        "gataca-autoqr": GatacaAutoqr;
         "gataca-qr": GatacaQr;
         "gataca-qrdisplay": GatacaQrdisplay;
         "gataca-qrws": GatacaQrws;
         "gataca-ssibutton": GatacaSsibutton;
+        "gataca-ssibuttonws": GatacaSsibuttonws;
     }
 }
 export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "gataca-autoqr": LocalJSX.GatacaAutoqr & JSXBase.HTMLAttributes<HTMLGatacaAutoqrElement>;
             "gataca-qr": LocalJSX.GatacaQr & JSXBase.HTMLAttributes<HTMLGatacaQrElement>;
             "gataca-qrdisplay": LocalJSX.GatacaQrdisplay & JSXBase.HTMLAttributes<HTMLGatacaQrdisplayElement>;
             "gataca-qrws": LocalJSX.GatacaQrws & JSXBase.HTMLAttributes<HTMLGatacaQrwsElement>;
             "gataca-ssibutton": LocalJSX.GatacaSsibutton & JSXBase.HTMLAttributes<HTMLGatacaSsibuttonElement>;
+            "gataca-ssibuttonws": LocalJSX.GatacaSsibuttonws & JSXBase.HTMLAttributes<HTMLGatacaSsibuttonwsElement>;
         }
     }
 }

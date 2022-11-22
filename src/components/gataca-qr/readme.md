@@ -320,6 +320,7 @@ Type: `Promise<void>`
 
 ### Used by
 
+ - [gataca-autoqr](../gataca-autoqr)
  - [gataca-ssibutton](../gataca-ssibutton)
 
 ### Depends on
@@ -330,6 +331,7 @@ Type: `Promise<void>`
 ```mermaid
 graph TD;
   gataca-qr --> gataca-qrdisplay
+  gataca-autoqr --> gataca-qr
   gataca-ssibutton --> gataca-qr
   style gataca-qr fill:#f9f,stroke:#333,stroke-width:4px
 ```

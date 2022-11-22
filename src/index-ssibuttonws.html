@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
+  <title>Gataca QR Component</title>
+  <script type="module" src="/build/gatacaqr.esm.js"></script>
+  <script nomodule src="/build/gatacaqr.js"></script>
+</head>
+
+<body>
+
+  <div>
+
+    <gataca-ssibuttonws id="gataca-qrws" qr-role="connect" session-timeout="300"
+      socket-endpoint="ws://connect.dev.gataca.io/ws/v1/users/login/gataca" callback-server="https://connect.dev.gataca.io">
+    </gataca-ssibuttonws>
+
+  </div>
+
+  <script>
+    const qr = document.getElementById('gataca-qrws');
+    var count = 0;
+    var ok = true;
+
+    qr.successCallback = (data) => {
+      alert("ALL OK" + data.email)
+    };
+    qr.errorCallback = () => {
+      alert("some error")
+    };
+
+    qr.wsOnOpen = (socket) => {
+      socket.send("SESSION_REQUEST")
+    }
+
+  // (async () => {
+  //   await customElements.whenDefined('gataca-qr');
+  // })();
+
+  </script>
+
+</body>

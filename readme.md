@@ -36,7 +36,7 @@ The integration and parameters are analogue to the GatacaQR.
 Same as the SSI Button, but with Websockets :)
 The integration and parameters are analogue to the GatacaQR.
 
-### [Gataca QRAuto](src/components/gataca-qrdisplay/readme.md)
+### [Gataca AutoQR](src/components/gataca-autoqr/readme.md)
 
 ````note
 WIP

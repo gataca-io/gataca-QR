@@ -2,6 +2,19 @@
   "version": 1.1,
   "tags": [
     {
+      "name": "gataca-autoqr",
+      "description": {
+        "kind": "markdown",
+        "value": "This component built using stencyl allows an easy integration to display a GatacaQR using a predefined generated config that is downloaded when the component is displayed.\n\nAn AutoQR Config has the following structure:\n\n```typescript\nexport type QRConfig = {\n  useButton: boolean;\n  useWs: boolean;\n\n  //To display any QR\n  qrModalTitle?: string;\n  qrModalDescription?: string;\n  hideBrandTitle?: boolean;\n\n  successCallback: (data?: any) => void;\n  errorCallback: (error?: Error) => void;\n\n  autostart: boolean;\n  autorefresh: boolean;\n  sessionTimeout?: number;\n\n  qrRole: string;\n  callbackServer: string;\n  v2?: boolean;\n  dynamicLink?: boolean;\n\n  //Just for Polling\n  checkStatus?: (id?: string) => Promise<{ result: RESULT_STATUS; data?: any }>;\n  createSession?: () => Promise<{\n    sessionId: string;\n    authenticationRequest?: string;\n  }>;\n  pollingFrequency?: number;\n\n  //Just for WS\n  socketEndpoint: string;\n  wsOnOpen?: (socket: WebSocket) => void;\n  wsOnMessage?: (socket: WebSocket, msg: MessageEvent) => void;\n\n  //Just for Buttons\n  buttonText?: string;\n};\n```\n\nDepending on the parameters **useWs\n\n| | Using Websockets  | Using Polling  |\n|---|---|---|\n|Displaying the QR |   |   |\n|Displaying an SSI Button |   |   |"
+      },
+      "attributes": [
+        {
+          "name": "config-id",
+          "description": "***Mandatory***\nID of the QR configuration to display"
+        }
+      ]
+    },
+    {
       "name": "gataca-qr",
       "description": {
         "kind": "markdown",
@@ -144,7 +157,7 @@
       "name": "gataca-ssibutton",
       "description": {
         "kind": "markdown",
-        "value": "This component built using stencyl allows an easy integration to display a gataca QR.\nIt allows to integrate 2 slots, named \"title\" and \"description\", to provide further integration to the user upon display of the QR.\n\nThis component can be used with the prerequisite of having an application which can be integrated with [Gataca Connect](https://docs.gatacaid.com/connect/). More precisely, your application will need to be able to perform the two operations against your connect server:\n1. Create sessions\n2. Consult sessions\n\nTherefore, in order to make it work, you will need at least:\n1. A **connect server** (might be Gataca Connect Saas)\n2. An application integrated with that server to perform the basic operations.\n\nYou can find an example of that kind of simple application _(written in Go)_ on the [Gataca Authorizer](https://github.com/gatacaid/gataca-authorizer), which we will use as example to explain the component's usage. *Gataca Authorizer* offers the two required endpoints:\n\n1. **/validate** : _Check if the user is authenticated, if not, create a new session against the connect server_\n2. **/login** : _Check the status of the created session_\n\nContinuing with that example, you could integrate with that kind of application _(if running on http://localhost:9009)_ using the following code\n\n````html\n<!DOCTYPE html>\n<html dir=\"ltr\" lang=\"en\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0\">\n  <title>Gataca QR Component</title>\n  <script type=\"module\" src=\"/build/gatacaqr.esm.js\"></script>\n  <script nomodule src=\"/build/gatacaqr.js\"></script>\n  <script type=\"module\" src=\"/build/modal.esm.js\"></script>\n  <script nomodule src=\"/build/modal.js\"></script>\n  <style type=\"text/css\">\n  h1{\n    color: #181B5E;\n    align-self: center;\n    text-align: center;\n  }\n\n  h5{\n    color: #181B5E;\n  }\n  </style>\n</head>\n<body>\n  <gataca-qr id=\"gataca-qr\" callback-server=\"https://connect.dev.gatacaid.com:9090\" session-endpoint=\"http://localhost:9009/login?id=\">\n  <h1 slot=\"title\">Login with Gataca</h1>\n  <h5 slot=\"description\">Scan this QR to open your gataca wallet</h5></gataca-qr>\n  \n  <script>\n    const qr = document.getElementById('gataca-qr');\n    qr.successCallback = () => {\n        //replace with your logic\n      alert('LOGIN SUCCESS')\n    };\n    qr.errorCallback = () => {\n        //replace with your logic\n      alert('LOGIN ERROR')\n    };\n\n    qr.createSession = async () => {\n        let response = await fetch(\"http://localhost:9009/validate\");\n        return response.headers.get(\"X-Connect-Id\")\n    }\n  </script>\n</body>\n</html>\n````\n\nYou can use this component with an already created session, which can be inserted on the sessionId property on the element, or passed via query parameter _id_ or _sessionId_ on the current URL.\nYou can also provide a method to generate a new session like in the example, or, in the rare event of matching the authorizer API, just the endpoint to your application.\n\nIn order to consult sessions, both options are also available, depending on how you want to develop your own API."
+        "value": "This component built using stencyl allows an easy integration to display a \"Quick SSI Access Button\", with a similar to the current existing sign-in buttons for OAuth2 providers like Google, Twitter or Facebook.\n\nThis component wraps the logic to display and hide a Gataca-QR component under a button. To configure and integrate it, you need to follow the same process as the basic [Gataca-QR component](../gataca-qr/readme.md).\n\nThis component can be used with the prerequisite of having an application which can be integrated with GATACA Components: Connect  and Certify. More precisely, your application will need to be able to perform the two operations against your connect or certify servers:\n\n1. Create sessions\n2. Consult sessions"
       },
       "attributes": [
         {
@@ -190,6 +203,63 @@
         {
           "name": "v-2",
           "description": "_[Optional]_\nSet to use v2 links. The create session must be providing both an authentication request and a session Id"
+        }
+      ]
+    },
+    {
+      "name": "gataca-ssibuttonws",
+      "description": {
+        "kind": "markdown",
+        "value": "This component built using stencyl allows an easy integration to display a \"Quick SSI Access Button\", with a similar to the current existing sign-in buttons for OAuth2 providers like Google, Twitter or Facebook. The display is identical to the simple [Gataca-SSI Button](../gataca-ssibutton/readme.md), but with a component using websockets underneath.\n\nThis component wraps the logic to display and hide a Gataca-QR component under a button. To configure and integrate it, you need to follow the same process as the base [Gataca-QRWS Component](../gataca-qrws/readme.md). It is the suitable option if you wish to display an SSI Button but allowing the use of WebSockets instead of polling.\n\nThis component can be used with the prerequisite of having an application which can be integrated with GATACA Components: Connect and Certify. In this case, your application must offer a WebSocket communication.\n\nThe websocket service implemented by your service may be completely custom or use the following structure for messages -the type is exported by this library-:\n\n```typescript\nexport type WSResponse = {\n  sessionId: string;\n  result: RESULT_STATUS;\n  authenticatedUserData?: any;\n  authenticationRequest?: string;\n  error?: string;\n};\n```\n\nIf your WS Messages implement this interface, you need to know that the QR will start when a WS message is received with result === RESULT_STATUS.ONGOING (0) and a sessionId.\nThe QR will end when a message with a different result is received, depending on the result.\n\nIf your server wants to implement a different interface, there is no problem, but you need to trigger an Event named **sessionMsg** with a matching WSResponse in detail for the QR Component to understand (see examples)."
+      },
+      "attributes": [
+        {
+          "name": "autorefresh",
+          "description": "_[Optional]_\nSet to refresh the session automatically upon expiration. By default it is false"
+        },
+        {
+          "name": "autostart",
+          "description": "_[Optional]_\nSet to enable autoload when the QR is displayed. By default it is true"
+        },
+        {
+          "name": "button-text",
+          "description": "_[Optional]_\nIn the case of being a button, modifies its text"
+        },
+        {
+          "name": "callback-server",
+          "description": "***Mandatory just for V1***\nConnect/Certify Server where the wallet will send the data"
+        },
+        {
+          "name": "dynamic-link",
+          "description": "_[Optional]_\nDisplay a link containing a dynamic link to invoke the wallet if closed"
+        },
+        {
+          "name": "hide-brand-title",
+          "description": "_[Optional]_\nBoolean to show or not show the gataca brand title"
+        },
+        {
+          "name": "qr-modal-description",
+          "description": "_[Optional]_\nModifies the Modal description"
+        },
+        {
+          "name": "qr-modal-title",
+          "description": "_[Optional]_\nModifies the qr headline title"
+        },
+        {
+          "name": "qr-role",
+          "description": "***Mandatory***\nDecide if scanning the credential as a verifier to request credentials\nor as an issuer too issue credentials.\nOptions: connect | certify"
+        },
+        {
+          "name": "session-timeout",
+          "description": "***Mandatory***\nMaximum time window to display the session and keep the websocket connection. It's needed to ensure the socket is closed."
+        },
+        {
+          "name": "socket-endpoint",
+          "description": "***Mandatory***\nWS Endpoint on your service to be invoked upon display"
+        },
+        {
+          "name": "v-2",
+          "description": "**RECOMMENDED**\nSet to use v2 links. The create session must be providing both an authentication request and a session Id"
         }
       ]
     }

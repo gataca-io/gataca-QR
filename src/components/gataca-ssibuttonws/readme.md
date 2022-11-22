@@ -1,8 +1,8 @@
-# Gataca-QRWS
+# Gataca-SSIButtonWS
 
-This component built using stencyl allows an easy integration to display a gataca QR to be read by the wallet.
+This component built using stencyl allows an easy integration to display a "Quick SSI Access Button", with a similar to the current existing sign-in buttons for OAuth2 providers like Google, Twitter or Facebook. The display is identical to the simple [Gataca-SSI Button](../gataca-ssibutton/readme.md), but with a component using websockets underneath.
 
-It does the same but using WebSockets instead of polling
+This component wraps the logic to display and hide a Gataca-QR component under a button. To configure and integrate it, you need to follow the same process as the base [Gataca-QRWS Component](../gataca-qrws/readme.md). It is the suitable option if you wish to display an SSI Button but allowing the use of WebSockets instead of polling.
 
 This component can be used with the prerequisite of having an application which can be integrated with GATACA Components: Connect and Certify. In this case, your application must offer a WebSocket communication.
 
@@ -22,7 +22,6 @@ If your WS Messages implement this interface, you need to know that the QR will 
 The QR will end when a message with a different result is received, depending on the result.
 
 If your server wants to implement a different interface, there is no problem, but you need to trigger an Event named **sessionMsg** with a matching WSResponse in detail for the QR Component to understand (see examples).
-
 
 ## Integrations
 
@@ -228,7 +227,6 @@ export const dummyComponent: React.FC<MyProps> = (props) => {
 
 TBD
 
-
 <!-- Auto Generated Below -->
 
 
@@ -238,6 +236,7 @@ TBD
 | -------------------- | ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------- | --------------------------------------------------------------------- |
 | `autorefresh`        | `autorefresh`          | _[Optional]_ Set to refresh the session automatically upon expiration. By default it is false                                                                                                                                                                                                                                                     | `boolean`                                             | `false`                                                               |
 | `autostart`          | `autostart`            | _[Optional]_ Set to enable autoload when the QR is displayed. By default it is true                                                                                                                                                                                                                                                               | `boolean`                                             | `true`                                                                |
+| `buttonText`         | `button-text`          | _[Optional]_ In the case of being a button, modifies its text                                                                                                                                                                                                                                                                                     | `string`                                              | `"Easy login"`                                                        |
 | `callbackServer`     | `callback-server`      | ***Mandatory just for V1*** Connect/Certify Server where the wallet will send the data                                                                                                                                                                                                                                                            | `string`                                              | `undefined`                                                           |
 | `dynamicLink`        | `dynamic-link`         | _[Optional]_ Display a link containing a dynamic link to invoke the wallet if closed                                                                                                                                                                                                                                                              | `boolean`                                             | `true`                                                                |
 | `errorCallback`      | --                     | ***Mandatory*** Callback fired upon session expired or invalid If not set, session error would not be handled An error containing information will be passed as parameter                                                                                                                                                                         | `(error?: Error) => void`                             | `undefined`                                                           |
@@ -245,7 +244,7 @@ TBD
 | `qrModalDescription` | `qr-modal-description` | _[Optional]_ Modifies the Modal description                                                                                                                                                                                                                                                                                                       | `string`                                              | `"Sign up or sign in by scanning the QR Code with the Gataca Wallet"` |
 | `qrModalTitle`       | `qr-modal-title`       | _[Optional]_ Modifies the qr headline title                                                                                                                                                                                                                                                                                                       | `string`                                              | `"Quick Access"`                                                      |
 | `qrRole`             | `qr-role`              | ***Mandatory*** Decide if scanning the credential as a verifier to request credentials or as an issuer too issue credentials. Options: connect \| certify                                                                                                                                                                                         | `string`                                              | `undefined`                                                           |
-| `sessionTimeout`     | `session-timeout`      | ***Mandatory*** Maximum time window to display the session and keep the websocket connection. It's needed to ensure the socket is closed.                                                                                                                                                                                                         | `number`                                              | `DEFAULT_SESSION_TIMEOUT`                                             |
+| `sessionTimeout`     | `session-timeout`      | ***Mandatory*** Maximum time window to display the session and keep the websocket connection. It's needed to ensure the socket is closed.                                                                                                                                                                                                         | `number`                                              | `undefined`                                                           |
 | `socketEndpoint`     | `socket-endpoint`      | ***Mandatory*** WS Endpoint on your service to be invoked upon display                                                                                                                                                                                                                                                                            | `string`                                              | `undefined`                                                           |
 | `successCallback`    | --                     | ***Mandatory*** Callback fired upon session correctly verified If not set, session validation wouldn't trigger any action The session data and a possible token will be sent as parameters to the callback                                                                                                                                        | `(data?: any) => void`                                | `undefined`                                                           |
 | `v2`                 | `v-2`                  | **RECOMMENDED** Set to use v2 links. The create session must be providing both an authentication request and a session Id                                                                                                                                                                                                                         | `boolean`                                             | `false`                                                               |
@@ -263,16 +262,6 @@ TBD
 
 ## Methods
 
-### `display() => Promise<void>`
-
-Force manually the display of a QR
-
-#### Returns
-
-Type: `Promise<void>`
-
-
-
 ### `getSessionData() => Promise<any>`
 
 Retrieve manually the session data on a successful login
@@ -283,35 +272,24 @@ Type: `Promise<any>`
 
 
 
-### `stop() => Promise<void>`
-
-Stop manually an ongoing session
-
-#### Returns
-
-Type: `Promise<void>`
-
-
-
 
 ## Dependencies
 
 ### Used by
 
  - [gataca-autoqr](../gataca-autoqr)
- - [gataca-ssibuttonws](../gataca-ssibuttonws)
 
 ### Depends on
 
-- [gataca-qrdisplay](../gataca-qrdisplay)
+- [gataca-qrws](../gataca-qrws)
 
 ### Graph
 ```mermaid
 graph TD;
-  gataca-qrws --> gataca-qrdisplay
-  gataca-autoqr --> gataca-qrws
   gataca-ssibuttonws --> gataca-qrws
-  style gataca-qrws fill:#f9f,stroke:#333,stroke-width:4px
+  gataca-qrws --> gataca-qrdisplay
+  gataca-autoqr --> gataca-ssibuttonws
+  style gataca-ssibuttonws fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
 ----------------------------------------------

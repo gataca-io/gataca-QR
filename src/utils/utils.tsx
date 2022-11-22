@@ -35,42 +35,50 @@ export type WSResponse = {
   error?: string;
 };
 
-export type QRConfig = (QRLogin | QRButton) & {
-  ssiButton?: boolean;
-  useWs?: boolean;
+export type QRDisplay = {
+  qrModalTitle?: string;
+  qrModalDescription?: string;
+  hideBrandTitle?: boolean;
 };
 
-export type QRPolling = QRDisplay & {
-  checkStatus?: (id?: string) => Promise<{ result: RESULT_STATUS; data: any }>;
+export type QRExchange = QRDisplay & {
+  successCallback: (data?: any) => void;
+  errorCallback: (error?: Error) => void;
+
+  autostart: boolean;
+  autorefresh: boolean;
+  sessionTimeout?: number;
+
+  qrRole: string;
+  callbackServer: string;
+  v2?: boolean;
+  dynamicLink?: boolean;
+};
+
+export type QRPolling = QRExchange & {
+  checkStatus?: (id?: string) => Promise<{ result: RESULT_STATUS; data?: any }>;
 
   createSession?: () => Promise<{
     sessionId: string;
     authenticationRequest?: string;
   }>;
-
-  successCallback: (data?: any) => void;
-
-  errorCallback: (error?: Error) => void;
-  qrRole: string;
-  callbackServer: string;
-  sessionTimeout?: number;
   pollingFrequency?: number;
-  autorefresh: boolean;
-
-  v2?: boolean;
-  dynamicLink?: boolean;
 };
 
-export type QRWS = {};
+export type QRWS = QRExchange & {
+  socketEndpoint: string;
 
-export type QRLogin = QRPolling | QRWS;
+  wsOnOpen?: (socket: WebSocket) => void;
+  wsOnMessage?: (socket: WebSocket, msg: MessageEvent) => void;
+};
+
+export type QRLogin = QRPolling & QRWS;
 
 export type QRButton = QRLogin & {
   buttonText?: string;
 };
 
-export type QRDisplay = {
-  qrModalTitle?: string;
-  qrModalDescription?: string;
-  hideBrandTitle?: boolean;
+export type QRConfig = (QRLogin & QRButton) & {
+  useButton?: boolean;
+  useWs?: boolean;
 };
