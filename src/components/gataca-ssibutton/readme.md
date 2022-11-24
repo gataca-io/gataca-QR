@@ -1,8 +1,11 @@
-# Gataca-QR
+# Gataca-SSIButton
 
-This component built using stencyl allows an easy integration to display a gataca QR to be read by the wallet.
+This component built using stencyl allows an easy integration to display a "Quick SSI Access Button", with a similar to the current existing sign-in buttons for OAuth2 providers like Google, Twitter or Facebook.
+
+This component wraps the logic to display and hide a Gataca-QR component under a button. To configure and integrate it, you need to follow the same process as the basic [Gataca-QR component](../gataca-qr/readme.md).
 
 This component can be used with the prerequisite of having an application which can be integrated with GATACA Components: Connect  and Certify. More precisely, your application will need to be able to perform the two operations against your connect or certify servers:
+
 1. Create sessions
 2. Consult sessions
 
@@ -36,7 +39,7 @@ Put a script tag similar to the source [https://unpkg.com/gatacaqr/dist/gatacaqr
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
-  <title>Gataca QR Component</title>
+  <title>Gataca SSI Button</title>
   <script type="module" src="/build/gatacaqr.esm.js"></script>
   <script nomodule src="/build/gatacaqr.js"></script>
 </head>
@@ -45,8 +48,8 @@ Put a script tag similar to the source [https://unpkg.com/gatacaqr/dist/gatacaqr
 <div>
 
   
-   <gataca-qr id="gataca-qr" qrRole="connect" callback-server="https://connect.gataca.io"> <!-- TODO Change with your connect server-->
-  </gataca-qr>
+   <gataca-ssibutton id="gataca-qr" qrRole="connect" callback-server="https://connect.gataca.io"> <!-- TODO Change with your connect server-->
+  </gataca-ssibutton>
 
 </div>
 
@@ -97,7 +100,7 @@ Import the library
 npm install @gataca/qr --save
 ```
 
-or 
+or
 
 ```bash
 yarn add @gataca/qr
@@ -218,7 +221,7 @@ export const dummyComponent: React.FC<MyProps> = (props) => {
   //render() function in class components
   return (
       // @ts-ignore
-      <gataca-qr
+      <gataca-ssibutton
           callback-server={ verifier ? YOUR_CONNECT_HOST: YOUR_CERTIFY_HOST }
           ref={qr}
           qr-role={verifier ? "connect":"certify"}
@@ -232,25 +235,6 @@ export const dummyComponent: React.FC<MyProps> = (props) => {
 
 TBD
 
-## Updating from V1
-
-There are some breaking changes to V2:
-
-* _sessionEndpoint_ and _generationEndpoint_ have been suppressed.
-* _createSession_ and _checkStatus_ functions are now mandatory. The returning parameters of those functions have now changed.
-* _qrRole_ is also mandatory. There is no default value. The possible values have changed to "**connect**" and "**certify**"
-* _asButton_ and _buttonText_ functionality has been suppressed. That is a different component.
-* _getLoginToken()_ has been suppressed. Any data that wants to be received from the session (from headers, body or whatever) must be provided by the _checkStatus_ result function. 
-* _sessionTimeout_ can be removed by introducing a negative value. If removed, the QR will wait until the server provides an error by session expiration.
-
-Improvements:
-
-* Logs have been cleaned
-* Fix providing feedback on the process result and results either if it expires, fails or successes.
-* Stopping the component working upon disappearance
-* Autostart and autorefresh capabilities
-* Documentation and integration with the new provided components
-
 <!-- Auto Generated Below -->
 
 
@@ -259,18 +243,18 @@ Improvements:
 | Property             | Attribute              | Description                                                                                                                                                                                                                     | Type                                                                    | Default                                                               |
 | -------------------- | ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- | --------------------------------------------------------------------- |
 | `autorefresh`        | `autorefresh`          | _[Optional]_ Set to refresh the session automatically upon expiration. By default it is false                                                                                                                                   | `boolean`                                                               | `false`                                                               |
-| `autostart`          | `autostart`            | _[Optional]_ Set to enable autoload when the QR is displayed. By default it is true                                                                                                                                             | `boolean`                                                               | `true`                                                                |
+| `buttonText`         | `button-text`          | _[Optional]_ In the case of being a button, modifies its text                                                                                                                                                                   | `string`                                                                | `"Easy login"`                                                        |
 | `callbackServer`     | `callback-server`      | ***Mandatory just for V1*** Connect/Certify Server where the wallet will send the data                                                                                                                                          | `string`                                                                | `undefined`                                                           |
 | `checkStatus`        | --                     | ***Mandatory*** Check status function to query the current status of the session The function must query a client endpoint to check the status. That endpoint must return an error if the session has expired.                  | `(id?: string) => Promise<{ result: RESULT_STATUS; data?: any; }>`      | `undefined`                                                           |
 | `createSession`      | --                     | ***Mandatory*** Create session function to generate a new Session Using V1, it can provide just a session Id Using V2, it must provide also the authentication request. The session Id is the id of the presentation definition | `() => Promise<{ sessionId: string; authenticationRequest?: string; }>` | `undefined`                                                           |
 | `dynamicLink`        | `dynamic-link`         | _[Optional]_ Display a link containing a dynamic link to invoke the wallet if closed                                                                                                                                            | `boolean`                                                               | `true`                                                                |
 | `errorCallback`      | --                     | ***Mandatory*** Callback fired upon session expired or invalid If not set, session error would not be handled An error containing information will be passed as parameter                                                       | `(error?: Error) => void`                                               | `undefined`                                                           |
 | `hideBrandTitle`     | `hide-brand-title`     | _[Optional]_ Boolean to show or not show the gataca brand title                                                                                                                                                                 | `boolean`                                                               | `false`                                                               |
-| `pollingFrequency`   | `polling-frequency`    | _[Optional]_ Frequency in seconds to check if the session has been validated                                                                                                                                                    | `number`                                                                | `DEFAULT_POLLING_FREQ`                                                |
+| `pollingFrequency`   | `polling-frequency`    | _[Optional]_ Frequency in seconds to check if the session has been validated                                                                                                                                                    | `number`                                                                | `undefined`                                                           |
 | `qrModalDescription` | `qr-modal-description` | _[Optional]_ Modifies the Modal description                                                                                                                                                                                     | `string`                                                                | `"Sign up or sign in by scanning the QR Code with the Gataca Wallet"` |
 | `qrModalTitle`       | `qr-modal-title`       | _[Optional]_ Modifies the qr headline title                                                                                                                                                                                     | `string`                                                                | `"Quick Access"`                                                      |
 | `qrRole`             | `qr-role`              | ***Mandatory*** Decide if scanning the credential as a verifier to request credentials or as an issuer too issue credentials. Options: connect \| certify                                                                       | `string`                                                                | `undefined`                                                           |
-| `sessionTimeout`     | `session-timeout`      | _[Optional]_ Maximum time window to display the session                                                                                                                                                                         | `number`                                                                | `DEFAULT_SESSION_TIMEOUT`                                             |
+| `sessionTimeout`     | `session-timeout`      | _[Optional]_ Maximum time window to display the session                                                                                                                                                                         | `number`                                                                | `undefined`                                                           |
 | `successCallback`    | --                     | ***Mandatory*** Callback fired upon session correctly verified If not set, session validation wouldn't trigger any action The session data and a possible token will be sent as parameters to the callback                      | `(data?: any) => void`                                                  | `undefined`                                                           |
 | `v2`                 | `v-2`                  | _[Optional]_ Set to use v2 links. The create session must be providing both an authentication request and a session Id                                                                                                          | `boolean`                                                               | `false`                                                               |
 
@@ -285,16 +269,6 @@ Improvements:
 
 ## Methods
 
-### `display() => Promise<void>`
-
-Force manually the display of a QR
-
-#### Returns
-
-Type: `Promise<void>`
-
-
-
 ### `getSessionData() => Promise<any>`
 
 Retrieve manually the session data on a successful login
@@ -305,35 +279,24 @@ Type: `Promise<any>`
 
 
 
-### `stop() => Promise<void>`
-
-Stop manually an ongoing session
-
-#### Returns
-
-Type: `Promise<void>`
-
-
-
 
 ## Dependencies
 
 ### Used by
 
  - [gataca-autoqr](../gataca-autoqr)
- - [gataca-ssibutton](../gataca-ssibutton)
 
 ### Depends on
 
-- [gataca-qrdisplay](../gataca-qrdisplay)
+- [gataca-qr](../gataca-qr)
 
 ### Graph
 ```mermaid
 graph TD;
-  gataca-qr --> gataca-qrdisplay
-  gataca-autoqr --> gataca-qr
   gataca-ssibutton --> gataca-qr
-  style gataca-qr fill:#f9f,stroke:#333,stroke-width:4px
+  gataca-qr --> gataca-qrdisplay
+  gataca-autoqr --> gataca-ssibutton
+  style gataca-ssibutton fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
 ----------------------------------------------

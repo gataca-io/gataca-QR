@@ -3,6 +3,7 @@ import {
   Event,
   EventEmitter,
   h,
+  Listen,
   Method,
   Prop,
   State,
@@ -13,14 +14,16 @@ import refreshIcon from "../../assets/icons/gat-icon-refresh.svg";
 import logoGataca from "../../assets/images/logo_gataca.svg";
 import "../gataca-qrdisplay/gataca-qrdisplay";
 
-import { base64UrlEncode, checkMobile, RESULT_STATUS } from "../../utils/utils";
+import {
+  base64UrlEncode,
+  checkMobile,
+  RESULT_STATUS,
+  WSResponse,
+} from "../../utils/utils";
 
 const DEEP_LINK_PREFIX =
   "https://gataca.page.link/?apn=com.gatacaapp&ibi=com.gataca.wallet&link=";
-
-//Default values
-const DEFAULT_SESSION_TIMEOUT = 300; //5mins as in connect
-const DEFAULT_POLLING_FREQ = 3;
+const DEFAULT_SESSION_TIMEOUT = 300;
 const QR_ROLE_CONNECT = "connect";
 
 const FUNCTION_ROLES = {
@@ -29,36 +32,16 @@ const FUNCTION_ROLES = {
 };
 
 @Component({
-  tag: "gataca-qr",
-  styleUrl: "gataca-qr.scss",
+  tag: "gataca-qrws",
+  styleUrl: "gataca-qrws.scss",
   shadow: true,
 })
-export class GatacaQR {
+export class GatacaQRWS {
   constructor() {}
 
   disconnectedCallback() {
     this.stop();
   }
-
-  /**
-   * ***Mandatory***
-   * Check status function to query the current status of the session
-   * The function must query a client endpoint to check the status. That endpoint must return an error if the session has expired.
-   */
-  @Prop() checkStatus?: (
-    id?: string
-  ) => Promise<{ result: RESULT_STATUS; data?: any }> = undefined;
-
-  /**
-   * ***Mandatory***
-   * Create session function to generate a new Session
-   * Using V1, it can provide just a session Id
-   * Using V2, it must provide also the authentication request. The session Id is the id of the presentation definition
-   */
-  @Prop() createSession?: () => Promise<{
-    sessionId: string;
-    authenticationRequest?: string;
-  }> = undefined;
 
   /**
    * ***Mandatory***
@@ -91,6 +74,32 @@ export class GatacaQR {
   @Prop() callbackServer: string;
 
   /**
+   * ***Mandatory***
+   * WS Endpoint on your service to be invoked upon display
+   */
+  @Prop() socketEndpoint: string;
+
+  /**
+   * ***Mandatory***
+   * Maximum time window to display the session and keep the websocket connection. It's needed to ensure the socket is closed.
+   */
+  @Prop() sessionTimeout?: number = DEFAULT_SESSION_TIMEOUT;
+
+  /**
+   * [Optional]
+   * Function to send a message to the server upon socket creation
+   */
+  @Prop() wsOnOpen: (socket: WebSocket) => void;
+
+  /**
+   * **RECOMMENDED**
+   * Callback to invoke an a message has been received on the socket. It provides the socket itself and the message as parameters.
+   * If not used, the messages provided by the server on the Socket connection must conform to the WSReponse interface
+   * If used, an Event named **sessionMsg** must be triggered with a WSReponse as data
+   */
+  @Prop() wsOnMessage: (socket: WebSocket, msg: MessageEvent) => void;
+
+  /**
    * _[Optional]_
    * Set to enable autoload when the QR is displayed. By default it is true
    */
@@ -103,7 +112,7 @@ export class GatacaQR {
   @Prop() autorefresh: boolean = false;
 
   /**
-   * _[Optional]_
+   * **RECOMMENDED**
    * Set to use v2 links. The create session must be providing both an authentication request and a session Id
    */
   @Prop() v2?: boolean = false;
@@ -126,18 +135,6 @@ export class GatacaQR {
    * Boolean to show or not show the gataca brand title
    */
   @Prop() hideBrandTitle?: boolean = false;
-
-  /**
-   * _[Optional]_
-   * Maximum time window to display the session
-   */
-  @Prop() sessionTimeout?: number = DEFAULT_SESSION_TIMEOUT;
-
-  /**
-   * _[Optional]_
-   * Frequency in seconds to check if the session has been validated
-   */
-  @Prop() pollingFrequency?: number = DEFAULT_POLLING_FREQ;
 
   /**
    * _[Optional]_
@@ -178,38 +175,97 @@ export class GatacaQR {
   })
   gatacaLoginFailed: EventEmitter;
 
+  socket: WebSocket;
+
   /**
    * Force manually the display of a QR
    */
   @Method()
   async display(): Promise<void> {
-    await this.getSessionId();
-    this.result = RESULT_STATUS.ONGOING;
-    this.poll()
-      .then((data: any) => {
-        this.result = RESULT_STATUS.SUCCESS;
-        this.sessionData = data;
-        this.gatacaLoginCompleted.emit(data);
-        this.successCallback(data);
-      })
-      .catch((err: RESULT_STATUS) => {
-        this.clean();
-        let expired = err === RESULT_STATUS.EXPIRED;
-        if (expired && this.autorefresh) {
+    let socket = new WebSocket(this.socketEndpoint);
+    setTimeout(() => {
+      this.socket.close(1000, "");
+    }, 1000 * this.sessionTimeout);
+    this.socket = socket;
+
+    socket.onopen = () => {
+      if (this.wsOnOpen) this.wsOnOpen(this.socket);
+    };
+
+    socket.onmessage = (msg: MessageEvent) => {
+      if (this.wsOnMessage) {
+        this.wsOnMessage(this.socket, msg);
+      } else {
+        let wsresp = JSON.parse(msg.data) as WSResponse;
+        if (!!wsresp.sessionId) {
+          this.handleWSResponse(wsresp);
+        }
+      }
+    };
+
+    socket.onerror = () => {
+      let error = new Error("Error connecting with server");
+      this.result = RESULT_STATUS.FAILED;
+      this.gatacaLoginFailed.emit(error);
+      this.errorCallback(error);
+      socket.close(1000, "");
+    };
+
+    socket.onclose = () => {
+      if (this.result === RESULT_STATUS.ONGOING) {
+        this.result = RESULT_STATUS.EXPIRED;
+      }
+      if (this.result === RESULT_STATUS.EXPIRED) {
+        if (this.autorefresh) {
           this.display();
         } else {
-          if (err !== RESULT_STATUS.NOT_STARTED) {
-            let error = expired
-              ? new Error("User did not scan the QR in the alloted time")
-              : new Error("Provided user credentials couldn't be validated");
-            this.result = err;
-            this.gatacaLoginFailed.emit(error);
-            this.errorCallback(error);
-          }
+          let error = new Error("User did not scan the QR in the alloted time");
+          this.gatacaLoginFailed.emit(error);
+          this.errorCallback(error);
         }
-      });
+      }
+    };
+
     if (checkMobile() && this.dynamicLink) {
       window.location.href = this.getLink();
+    }
+  }
+
+  @Listen("sessionMsg", { capture: true })
+  sessionMsgReceived(event: CustomEvent<WSResponse>) {
+    let wsresp: WSResponse = event.detail;
+    this.handleWSResponse(wsresp);
+  }
+
+  handleWSResponse(wsresp: WSResponse) {
+    this.result = wsresp.result;
+    switch (wsresp.result) {
+      case RESULT_STATUS.ONGOING:
+        this.sessionId = wsresp.sessionId;
+        break;
+      case RESULT_STATUS.SUCCESS:
+        this.sessionData = wsresp.authenticatedUserData;
+        this.gatacaLoginCompleted.emit(wsresp.authenticatedUserData);
+        this.successCallback(wsresp.authenticatedUserData);
+        this.socket.close(1000, "");
+        break;
+      case RESULT_STATUS.FAILED:
+        this.socket.close();
+        let error = new Error(
+          "Provided user credentials couldn't be validated"
+        );
+        this.gatacaLoginFailed.emit(error);
+        this.errorCallback(error);
+        break;
+      case RESULT_STATUS.EXPIRED:
+        this.socket.close();
+        if (this.autorefresh) {
+          this.display();
+        } else {
+          let error = new Error("User did not scan the QR in the alloted time");
+          this.gatacaLoginFailed.emit(error);
+          this.errorCallback(error);
+        }
     }
   }
 
@@ -218,15 +274,9 @@ export class GatacaQR {
    */
   @Method()
   async stop(): Promise<void> {
-    this.clean();
-    if (this.result === RESULT_STATUS.ONGOING) {
-      this.result = RESULT_STATUS.NOT_STARTED;
-    }
-  }
-
-  clean(): void {
     this.sessionData = undefined;
     this.sessionId = undefined;
+    this.socket.close();
   }
 
   /**
@@ -239,21 +289,12 @@ export class GatacaQR {
       : Promise.reject(new Error("No successful login"));
   }
 
-  async getSessionId(): Promise<string> {
-    if (this.sessionId) {
-      return this.sessionId;
-    }
-    let { sessionId, authenticationRequest } = await this.createSession();
-    this.sessionId = sessionId;
-    this.authenticationRequest = authenticationRequest;
-    return this.sessionId;
-  }
-
   getLink(): string {
     if (this.v2 && this.qrRole == QR_ROLE_CONNECT) {
       return this.authenticationRequest;
     }
     let op = FUNCTION_ROLES[this.qrRole];
+    console.log(FUNCTION_ROLES, this.qrRole, op);
     let link = "https://gataca.page.link/" + op + "?";
     link +=
       this.qrRole === QR_ROLE_CONNECT
@@ -263,43 +304,6 @@ export class GatacaQR {
       "&callback=" + base64UrlEncode(encodeURIComponent(this.callbackServer));
     link = encodeURIComponent(link);
     return this.dynamicLink ? DEEP_LINK_PREFIX + link : link;
-  }
-
-  async poll() {
-    let endTime =
-      new Date().getTime() +
-      (this.sessionTimeout || DEFAULT_SESSION_TIMEOUT) * 1000;
-    let interval = (this.pollingFrequency || DEFAULT_POLLING_FREQ) * 1000;
-    let checkFunc = async (
-      component: GatacaQR
-    ): Promise<{ result: RESULT_STATUS; data?: any }> => {
-      if (component.result === RESULT_STATUS.NOT_STARTED) {
-        return { result: RESULT_STATUS.NOT_STARTED };
-      }
-      let id = await component.getSessionId();
-      return component.checkStatus(id);
-    };
-    let component = this;
-    let checkCondition = async function (resolve, reject) {
-      // If the condition is met, we're done!
-      let { result, data } = await checkFunc(component);
-      switch (result) {
-        case RESULT_STATUS.SUCCESS:
-          resolve(data);
-          break;
-        case RESULT_STATUS.ONGOING:
-          if (component.sessionTimeout > 0 && new Date().getTime() < endTime) {
-            setTimeout(checkCondition, interval, resolve, reject);
-          } else {
-            reject(RESULT_STATUS.EXPIRED);
-          }
-          break;
-        default:
-          reject(result);
-          break;
-      }
-    };
-    return new Promise(checkCondition);
   }
 
   renderQRSection() {
