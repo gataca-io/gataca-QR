@@ -13,30 +13,34 @@
 
   <div>
 
-    <gataca-qrws id="gataca-qrws" qr-role="connect" session-timeout="300"
-      socket-endpoint="ws://4fa1-81-44-164-248.ngrok.io/ws/v1/users/login/gataca"
-      callback-server="https://4fa1-81-44-164-248.ngrok.io"
-      autostart="false"
-      v-2=true>
-    </gataca-qrws>
+
+    <gataca-autoqr id="gataca-qr" config-id="23kk7PXZ2t7GLMYQtLHeKQE4bp8Vw3wq">
+      <!--//TODO Replace with your config-->
+    </gataca-autoqr>
 
   </div>
 
   <script>
-    const qr = document.getElementById('gataca-qrws');
+    //Expected config
+    // {
+    //     "id": "23kk7PXZ2t7GLMYQtLHeKQE4bp8Vw3wq",
+    //       "domain": "https://693c-2a0c-5a81-b605-e400-1c03-e4a2-b29e-1833.ngrok.io",
+    //         "useButton": false,
+    //           "useWs": true,
+    //             "qrRole": "connect",
+    //               "autorefresh": true,
+    //                 "sessionTimeout": 120,
+    //                   "v2": true,
+    //                     "socketEndpoint": "ws://gaas.dev.gataca.io/ws/v1/login/gataca"
+    //   }
+
+    const qr = document.getElementById('gataca-qr');
     var count = 0;
     var ok = true;
 
     qr.successCallback = (data) => {
-      alert("ALL OK" + data.email)
+      alert("ALL OK" + data)
     };
-    qr.errorCallback = () => {
-      alert("some error")
-    };
-
-    qr.wsOnOpen = (socket) => {
-      socket.send("SESSION_REQUEST")
-    }
 
   // (async () => {
   //   await customElements.whenDefined('gataca-qr');
@@ -45,3 +49,5 @@
   </script>
 
 </body>
+
+</html>
