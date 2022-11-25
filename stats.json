@@ -1,5 +1,5 @@
 {
-  "timestamp": "2022-11-25T12:30:36",
+  "timestamp": "2022-11-25T12:33:24",
   "compiler": {
     "name": "node",
     "version": "15.14.0"
@@ -98,7 +98,7 @@
         "imports": [
           "index-d0db23e4.js"
         ],
-        "originalByteSize": 7930
+        "originalByteSize": 7886
       },
       {
         "key": "gataca-ssibutton.entry",

@@ -14,7 +14,7 @@ import { GatacaQRWS } from "../gataca-qrws/gataca-qrws";
 import { GatacaSSIButton } from "../gataca-ssibutton/gataca-ssibutton";
 import { GatacaSSIButtonWS } from "../gataca-ssibuttonws/gataca-ssibuttonws";
 
-const DEFAULT_REPOSITORY = "http://localhost:9090/api/v1/qrconfigs"; //"https://studio.gataca.io/api/v1/qrconfigs";
+const DEFAULT_REPOSITORY = "https://studio.gataca.io/api/v1/qrconfigs";
 
 const fixFunctions = (data: QRConfig): QRConfig => {
   data.errorCallback = deserializeFunction(data.errorCallback?.toString()) as
