@@ -14,6 +14,8 @@ import { GatacaQRWS } from "../gataca-qrws/gataca-qrws";
 import { GatacaSSIButton } from "../gataca-ssibutton/gataca-ssibutton";
 import { GatacaSSIButtonWS } from "../gataca-ssibuttonws/gataca-ssibuttonws";
 
+const DEFAULT_REPOSITORY = "https://studio.gataca.io/api/v1/qrs";
+
 @Component({
   tag: "gataca-autoqr",
   styleUrl: "gataca-autoqr.scss",
@@ -23,9 +25,8 @@ export class GatacaAutoQR {
   qr: GatacaQRWS | GatacaQR | GatacaSSIButton | GatacaSSIButtonWS;
 
   constructor() {
-    //TODO config ID is now an URL. Replace with an ID to ensure that all configs are stored in the place we desire (i.e: Studio)
     this.loading = true;
-    fetch(this.configId, {
+    fetch(this.configRepository + "/" + this.configId, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -53,7 +54,13 @@ export class GatacaAutoQR {
    * ***Mandatory***
    * ID of the QR configuration to display
    */
-  @Prop() configId;
+  @Prop() configId: string;
+
+  /**
+   * ___Optional___
+   * ConfigURL Repository to download the config from
+   */
+  @Prop() configRepository: string = DEFAULT_REPOSITORY;
 
   //--------------------------------
   //Function properties inherited by subcomponents that can be overriden to avoid code inyection

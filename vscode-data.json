@@ -5,12 +5,16 @@
       "name": "gataca-autoqr",
       "description": {
         "kind": "markdown",
-        "value": "This component built using stencyl allows an easy integration to display a GatacaQR using a predefined generated config that is downloaded when the component is displayed.\n\nAn AutoQR Config has the following structure:\n\n```typescript\nexport type QRConfig = {\n  useButton: boolean;\n  useWs: boolean;\n\n  //To display any QR\n  qrModalTitle?: string;\n  qrModalDescription?: string;\n  hideBrandTitle?: boolean;\n\n  successCallback: (data?: any) => void;\n  errorCallback: (error?: Error) => void;\n\n  autostart: boolean;\n  autorefresh: boolean;\n  sessionTimeout?: number;\n\n  qrRole: string;\n  callbackServer: string;\n  v2?: boolean;\n  dynamicLink?: boolean;\n\n  //Just for Polling\n  checkStatus?: (id?: string) => Promise<{ result: RESULT_STATUS; data?: any }>;\n  createSession?: () => Promise<{\n    sessionId: string;\n    authenticationRequest?: string;\n  }>;\n  pollingFrequency?: number;\n\n  //Just for WS\n  socketEndpoint: string;\n  wsOnOpen?: (socket: WebSocket) => void;\n  wsOnMessage?: (socket: WebSocket, msg: MessageEvent) => void;\n\n  //Just for Buttons\n  buttonText?: string;\n};\n```\n\nDepending on the parameters **useWs\n\n| | Using Websockets  | Using Polling  |\n|---|---|---|\n|Displaying the QR |   |   |\n|Displaying an SSI Button |   |   |"
+        "value": "This component built using stencyl allows an easy integration to display a GatacaQR using a predefined generated config that is downloaded when the component is displayed.\n\nAn AutoQR Config has the following structure:\n\n```typescript\nexport type QRConfig = {\n  useButton: boolean;\n  useWs: boolean;\n\n  //To display any QR\n  qrModalTitle?: string;\n  qrModalDescription?: string;\n  hideBrandTitle?: boolean;\n\n  successCallback: (data?: any) => void;\n  errorCallback: (error?: Error) => void;\n\n  autostart: boolean;\n  autorefresh: boolean;\n  sessionTimeout?: number;\n\n  qrRole: string;\n  callbackServer: string;\n  v2?: boolean;\n  dynamicLink?: boolean;\n\n  //Just for Polling\n  checkStatus?: (id?: string) => Promise<{ result: RESULT_STATUS; data?: any }>;\n  createSession?: () => Promise<{\n    sessionId: string;\n    authenticationRequest?: string;\n  }>;\n  pollingFrequency?: number;\n\n  //Just for WS\n  socketEndpoint: string;\n  wsOnOpen?: (socket: WebSocket) => void;\n  wsOnMessage?: (socket: WebSocket, msg: MessageEvent) => void;\n\n  //Just for Buttons\n  buttonText?: string;\n};\n```\n\nDepending on the parameters **useWs** and **useButton**, it will automatically load the corresponding component of the 4 possible options, with all the configuration loaded.\n\n| **useButton** \\ **useWs** | _false_: Using Polling    | _true_: Using Websockets |\n|---|---|---|\n| _false_: Displaying the QR | [Gataca QR](../gataca-qr/readme.md)   |  [Gataca QRWS](../gataca-qrws/readme.md) |\n| _true_: Displaying an SSI Button | [Gataca SSIButton](../gataca-ssibutton/readme.md)  | [Gataca SSIButtonWS](../gataca-ssibuttonws/readme.md)  |"
       },
       "attributes": [
         {
           "name": "config-id",
           "description": "***Mandatory***\nID of the QR configuration to display"
+        },
+        {
+          "name": "config-repository",
+          "description": "___Optional___\nConfigURL Repository to download the config from"
         }
       ]
     },
