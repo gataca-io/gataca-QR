@@ -65,11 +65,9 @@ export class GatacaAutoQR {
       },
     })
       .then((response) => {
-        console.log("Got RESPONSE", response);
         response
           .json()
           .then((data: QRConfig) => {
-            console.log("Got DATA", data);
             data = fixFunctions(data);
             this.config = data;
             this.loading = false;
