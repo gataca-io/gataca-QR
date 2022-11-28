@@ -11,12 +11,26 @@
 
 <div>
 
-  <gataca-autoqr id="gataca-qr" configId="your_config"><!--//TODO Replace with your config-->
+
+  <gataca-autoqr id="gataca-qr" config-id="23kk7PXZ2t7GLMYQtLHeKQE4bp8Vw3wq"><!--//TODO Replace with your config-->
   </gataca-autoqr>
 
 </div>
 
 <script>
+  //Expected config
+  // {
+  //     "id": "23kk7PXZ2t7GLMYQtLHeKQE4bp8Vw3wq",
+  //       "domain": "https://693c-2a0c-5a81-b605-e400-1c03-e4a2-b29e-1833.ngrok.io",
+  //         "useButton": false,
+  //           "useWs": true,
+  //             "qrRole": "connect",
+  //               "autorefresh": true,
+  //                 "sessionTimeout": 120,
+  //                   "v2": true,
+  //                     "socketEndpoint": "ws://gaas.dev.gataca.io/ws/v1/login/gataca"
+  //   }
+
   const qr = document.getElementById('gataca-qr');
   var count = 0;
   var ok = true;
@@ -27,18 +41,6 @@
   qr.errorCallback = () => {
     alert("some error")
   };
-
-  qr.createSession = () => {
-    return { sessionId: "TWp3V2R1N29ZcmFMY3Nvd3ZPb3k0UlMz" }
-  }
-
-  qr.checkStatus = () => {
-    count++;
-    if (count == 10) {
-      return { result: ok ? 1 : 2, data: { "name": "test", "token": "x" } }
-    }
-    return { result: 0 }
-  }
 
   // (async () => {
   //   await customElements.whenDefined('gataca-qr');

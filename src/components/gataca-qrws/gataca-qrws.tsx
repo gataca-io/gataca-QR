@@ -242,6 +242,7 @@ export class GatacaQRWS {
     switch (wsresp.result) {
       case RESULT_STATUS.ONGOING:
         this.sessionId = wsresp.sessionId;
+        this.authenticationRequest = wsresp.authenticationRequest;
         break;
       case RESULT_STATUS.SUCCESS:
         this.sessionData = wsresp.authenticatedUserData;
@@ -276,7 +277,7 @@ export class GatacaQRWS {
   async stop(): Promise<void> {
     this.sessionData = undefined;
     this.sessionId = undefined;
-    this.socket.close();
+    this.socket.close(1000, "Client stopped the connection");
   }
 
   /**
@@ -294,7 +295,6 @@ export class GatacaQRWS {
       return this.authenticationRequest;
     }
     let op = FUNCTION_ROLES[this.qrRole];
-    console.log(FUNCTION_ROLES, this.qrRole, op);
     let link = "https://gataca.page.link/" + op + "?";
     link +=
       this.qrRole === QR_ROLE_CONNECT

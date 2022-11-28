@@ -18,7 +18,11 @@ export namespace Components {
         /**
           * ***Mandatory*** ID of the QR configuration to display
          */
-        "configId": any;
+        "configId": string;
+        /**
+          * ___Optional___ ConfigURL Repository to download the config from
+         */
+        "configRepository": string;
         /**
           * ***Mandatory*** Create session function to generate a new Session Using V1, it can provide just a session Id Using V2, it must provide also the authentication request. The session Id is the id of the presentation definition
          */
@@ -445,7 +449,11 @@ declare namespace LocalJSX {
         /**
           * ***Mandatory*** ID of the QR configuration to display
          */
-        "configId"?: any;
+        "configId"?: string;
+        /**
+          * ___Optional___ ConfigURL Repository to download the config from
+         */
+        "configRepository"?: string;
         /**
           * ***Mandatory*** Create session function to generate a new Session Using V1, it can provide just a session Id Using V2, it must provide also the authentication request. The session Id is the id of the presentation definition
          */
