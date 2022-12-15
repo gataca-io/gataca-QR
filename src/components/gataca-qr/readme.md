@@ -22,7 +22,8 @@ Put a script tag similar to the source [https://unpkg.com/gatacaqr/dist/gatacaqr
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
-  <script src='https://unpkg.com/gatacaqr@2.0.0/dist/gatacaqr.js'></script>
+  <script type="module" src="https://unpkg.com/@gataca/qr@2.0.1/dist/gatacaqr/gatacaqr.esm.js"></script>
+  <script nomodule="" src="https://unpkg.com/@gataca/qr@2.0.1/dist/index.js"></script>
 </head>
 ...
 </html>
@@ -37,14 +38,13 @@ Put a script tag similar to the source [https://unpkg.com/gatacaqr/dist/gatacaqr
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
   <title>Gataca QR Component</title>
-  <script type="module" src="/build/gatacaqr.esm.js"></script>
-  <script nomodule src="/build/gatacaqr.js"></script>
+  <script type="module" src="https://unpkg.com/@gataca/qr@2.0.1/dist/gatacaqr/gatacaqr.esm.js"></script>
+  <script nomodule="" src="https://unpkg.com/@gataca/qr@2.0.1/dist/index.js"></script>
 </head>
 <body>
 
 <div>
 
-  
    <gataca-qr id="gataca-qr" qrRole="connect" callback-server="https://connect.gataca.io"> <!-- TODO Change with your connect server-->
   </gataca-qr>
 
