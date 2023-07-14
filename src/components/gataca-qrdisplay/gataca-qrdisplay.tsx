@@ -62,7 +62,7 @@ export class GatacaQRDisplay {
    * _[Optional]_
    * QR Color.
    */
-  @Prop() qrColor?: string = "#181B5E"; //"#4745B7"; new purple color
+  @Prop() qrColor?: string = "#1E1E20"; //"#4745B7"; new purple color
 
   /**
    * _[Optional]_

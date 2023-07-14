@@ -1,7 +1,10 @@
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@100;300;400;500;600;700&display=swap");
+
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
    License: none (public domain)
 */
+
 
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -92,7 +95,7 @@ img {
     width: 300px;
     padding: 1px;
     background-color: white;
-    min-height: 408px;
+    min-height: 350px;
     border-radius: 12px;
     //max-height: 480px;
     -webkit-transition: opacity 0.5s, visibility 0s 0.5s;
@@ -105,14 +108,17 @@ img {
       text-align: left;
     }
     p {
-      font-family: "Work Sans", "Helvetica Neue", sans-serif;
-      font-weight: normal;
-      font-size: 12px;
+      font-family: "Ubuntu", "Work Sans", "Helvetica Neue", sans-serif;
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 24px; 
+      margin-top: 10px;
       letter-spacing: 1px;
-      color: #181B5E;
+      color: #1e1e20;
     }
     .qrTitleContainer{
-      padding: 24px;
+      padding: 14px 24px;
       padding-bottom: 0px;
       //margin-bottom: 20px;
     }
@@ -253,10 +259,16 @@ img {
     padding: 0px;
 
     .successMsg{
-      margin-top: 20px;
-      font-size: 20px;
-      font-weight: 600;
+      
       line-height: 23.5px;
+      color: var(--neutral-1000, #1E1E20);
+      text-align: center;
+      /* Heading/6 */
+      font-family: "Ubuntu", "Work Sans", "Helvetica Neue", sans-serif;
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 24px; /* 120% */
     }
   }
 

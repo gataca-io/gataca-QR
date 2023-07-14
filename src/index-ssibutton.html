@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
@@ -7,40 +8,50 @@
   <script type="module" src="/build/gatacaqr.esm.js"></script>
   <script nomodule src="/build/gatacaqr.js"></script>
 </head>
+
 <body>
 
-<div>
+  <div>
 
-  <gataca-ssibutton id="gataca-qr" qrRole="connect" polling-frequency="1" session-timeout="5">
-  </gataca-ssibutton>
+    <gataca-ssibutton id="gataca-qr" qrRole="connect" polling-frequency="1" session-timeout="5" logo-size="0.33"
+      logo-src="https://uploads-ssl.webflow.com/6312535109af3402143e250c/6312535109af3426f83e2678_nike_-%20logo-300x303.png"
+      qr-code-expired-label="Cógido QR Expirado" credentials-not-validated-label="Credenciales de usuario no validadas"
+      click-inside-box-label="Pincha en la caja" refresh-qr-label="Refrescar el QR" scan-qr-label="Escanear el QR"
+      user-not-scan-in-time-error-label="Qr no escaneado en el tiempo permitido" ,
+      creds-not-validated-error-label="Las Credenciales no se han podido validar" qr-modal-title="Acceso rápido"
+      modal-title-color="#4745B7" failed-login-error-label="Inicio de sesión fallido"
+      success-login-label="Inicio de sesión exitoso" by-brand-label="By Nike"
+      waiting-start-session-label="Esperando inicio de sesión" hide-qr-modal-description="true" hide-brand-title="true">
+    </gataca-ssibutton>
 
-</div>
+  </div>
 
-<script>
-  const qr = document.getElementById('gataca-qr');
-  var count = 0;
-  var ok = true;
+  <script>
+    const qr = document.getElementById('gataca-qr');
+    var count = 0;
+    var ok = true;
 
-  qr.successCallback = (data) => {
-    alert("ALL OK" + data)
-  };
-  qr.errorCallback = () => {
-    alert("some error")
-  };
+    qr.successCallback = (data) => {
+      alert("ALL OK" + data)
+    };
+    qr.errorCallback = () => {
+      alert("some error")
+    };
 
-  qr.createSession = () => {
-    return { sessionId: "TWp3V2R1N29ZcmFMY3Nvd3ZPb3k0UlMz" }
-  }
-
-  qr.checkStatus = () => {
-    count++;
-    if (count == 10) {
-      return { result: ok ? 1 : 2, data: {"name":"test","token":"x"} }
+    qr.createSession = () => {
+      return { sessionId: "TWp3V2R1N29ZcmFMY3Nvd3ZPb3k0UlMz" }
     }
-    return { result: 0 }
-  }
 
-</script>
+    qr.checkStatus = () => {
+      count++;
+      if (count == 10) {
+        return { result: ok ? 1 : 2, data: { "name": "test", "token": "x" } }
+      }
+      return { result: 0 }
+    }
+
+  </script>
 
 </body>
+
 </html>
