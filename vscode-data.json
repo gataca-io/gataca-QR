@@ -99,7 +99,7 @@
         },
         {
           "name": "qr-role",
-          "description": "***Mandatory***\nDecide if scanning the credential as a verifier to request credentials\nor as an issuer too issue credentials.\nOptions: connect | certify"
+          "description": "***Mandatory just for V1***\nDecide if scanning the credential as a verifier to request credentials\nor as an issuer too issue credentials.\nOptions: connect | certify"
         },
         {
           "name": "refresh-qr-label",
