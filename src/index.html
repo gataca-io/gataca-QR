@@ -13,42 +13,131 @@
 
   <div>
 
-
-    <gataca-autoqr id="gataca-qr" config-id="23kk7PXZ2t7GLMYQtLHeKQE4bp8Vw3wq"
-      config-repository="http://localhost:9090/api/v1/qrconfigs">
-      <!--//TODO Replace with your config-->
-    </gataca-autoqr>
+    <gataca-qr id="gataca-qr" qr-role="fill_if_v1" polling-frequency="50" session-timeout="300" autostart="true"
+      callback-server="fill_if_v1">
+    </gataca-qr>
 
   </div>
 
   <script>
-    //Expected config
-    // {
-    //     "id": "23kk7PXZ2t7GLMYQtLHeKQE4bp8Vw3wq",
-    //       "domain": "https://693c-2a0c-5a81-b605-e400-1c03-e4a2-b29e-1833.ngrok.io",
-    //         "useButton": false,
-    //           "useWs": true,
-    //             "qrRole": "connect",
-    //               "autorefresh": true,
-    //                 "sessionTimeout": 120,
-    //                   "v2": true,
-    //                     "socketEndpoint": "ws://gaas.dev.gataca.io/ws/v1/login/gataca"
-    //   }
-
     const qr = document.getElementById('gataca-qr');
-    var count = 0;
-    var ok = true;
+    const server = 'https://certify.dev.gataca.io';
+    const loginServer = 'https://nucleus.dev.gataca.io';
+    const verifier = false;
+    const configId = 'gatacaEmployee';
+    const apiKey = '******';
+    const password = '********';
+    let v2 = true;
+
+    const paths = {
+      true: {
+        true: "/api/v2/sessions",
+        false: "/api/v3/oidc-issuance/credential-offer",
+      }, false: {
+        true: "/api/v1/sessions",
+        false: "/api/v1/issuanceRequests",
+      }
+    }
+
+    const RESULT_STATUS = {
+      ONGOING: 0,
+      SUCCESS: 1,
+      FAILED: 2,
+    }
+    let sessionId = ''
+
+    qr.v2 = v2;
 
     qr.successCallback = (data) => {
-      alert("ALL OK" + data)
+      alert("ALL OK" + data?.email)
+    };
+    qr.errorCallback = () => {
+      alert("some error")
     };
 
-  // (async () => {
-  //   await customElements.whenDefined('gataca-qr');
-  // })();
+    getAppToken = async () => {
+      // console.log('sessionID', sessionId)
+      let response = await fetch(loginServer + '/admin/v1/api_keys/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: 'Basic ' + btoa(apiKey + ':' + password),
+        },
+        body: '{}',
+      })
+      return response?.headers?.get('Token')
+    }
+
+    qr.createSession = async () => {
+      let endpoint =
+        server +
+        paths[v2][verifier]
+      let response = await fetch(endpoint, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: 'jwt ' + await getAppToken(),
+        },
+        body: verifier
+          ? '{"ssiConfigId": "' + configId + '"}'
+          : '{"group": "' + configId + '"}',
+      })
+      let data = await response.json()
+      if (v2) {
+        if (verifier) {
+          return { sessionId: data.presentation_definition.id, authenticationRequest: data.authentication_request }
+        }
+        sessionId = getSessionIdFromCredentialOfferUri(data.credential_offer_uri)
+        return { sessionId: sessionId, authenticationRequest: data.credential_offer_uri }
+      }
+      return { sessionId: data.id, authenticationRequest: data.authentication_request }
+
+    }
+
+    const getSessionIdFromCredentialOfferUri = (credOfferUri) => {
+      let requrl = new URL(credOfferUri);
+      let credOffer = requrl.searchParams.get('credential_offer_uri');
+      if (credOffer) {
+        requrl = new URL(credOffer)
+        let parts = requrl.pathname.split("/")
+        let sessionId = parts[parts.length - 1]
+        return sessionId
+      }
+      return
+    }
+
+    qr.checkStatus = async () => {
+      //TODO Implement your own service logic invocation. This is just a dummy mimicking the Connect/Certify v1 APIs asuming you get an app token in props
+      const endpoint =
+        server +
+        (verifier ? (v2 ? '/api/v2/sessions/' : '/api/v1/sessions/') : '/admin/v1/issuanceRequests/') +
+        sessionId
+      let response = await fetch(endpoint, {
+        method: 'GET',
+        headers: {
+          Authorization: 'jwt ' + await getAppToken(),
+          'Content-Type': 'application/json',
+        },
+      })
+
+      if (verifier) {
+        let req = await response
+        let ongoing = v2 ? 202 : 204
+        return req.status === 200
+          ? { result: RESULT_STATUS.SUCCESS }
+          : req.status === ongoing
+            ? { result: RESULT_STATUS.ONGOING }
+            : { result: RESULT_STATUS.FAILED }
+      } else {
+        let req = await response.json()
+        return !req.status || req.status === 'PENDING'
+          ? { result: RESULT_STATUS.ONGOING }
+          : req.status === 'INVALID'
+            ? { result: RESULT_STATUS.FAILED }
+            : { result: RESULT_STATUS.SUCCESS }
+      }
+    }
 
   </script>
 
 </body>
-
-</html>
