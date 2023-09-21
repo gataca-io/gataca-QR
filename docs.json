@@ -1,5 +1,5 @@
 {
-  "timestamp": "2023-07-17T10:49:29",
+  "timestamp": "2023-09-19T09:20:36",
   "compiler": {
     "name": "@stencil/core",
     "version": "2.19.3",
@@ -576,7 +576,7 @@
           "mutable": false,
           "attr": "qr-role",
           "reflectToAttr": false,
-          "docs": "***Mandatory***\nDecide if scanning the credential as a verifier to request credentials\nor as an issuer too issue credentials.\nOptions: connect | certify",
+          "docs": "***Mandatory just for V1***\nDecide if scanning the credential as a verifier to request credentials\nor as an issuer too issue credentials.\nOptions: connect | certify",
           "docsTags": [],
           "values": [
             {

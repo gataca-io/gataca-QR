@@ -1,6 +1,6 @@
 {
 	"name": "@gataca/qr",
-	"version": "2.0.3",
+	"version": "2.0.4",
 	"description": "Gataca component to display presentation requests in QR",
 	"author": "Gataca <it@gataca.io>",
 	"licenses": [
@@ -34,7 +34,7 @@
 	},
 	"license": "MIT",
 	"dependencies": {
-		"@stencil/react-output-target": "^0.3.1",
+		"@stencil/react-output-target": "^0.4.0",
 		"qr-code-styling": "^1.6.0-rc.1"
 	}
 }

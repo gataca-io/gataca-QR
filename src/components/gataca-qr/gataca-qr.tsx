@@ -77,7 +77,7 @@ export class GatacaQR {
   @Prop() errorCallback: (error?: Error) => void = undefined;
 
   /**
-   * ***Mandatory***
+   * ***Mandatory just for V1***
    * Decide if scanning the credential as a verifier to request credentials
    * or as an issuer too issue credentials.
    * Options: connect | certify
@@ -343,7 +343,7 @@ export class GatacaQR {
   }
 
   getLink(): string {
-    if (this.v2 && this.qrRole == QR_ROLE_CONNECT) {
+    if (this.v2) {
       return this.authenticationRequest;
     }
     let op = FUNCTION_ROLES[this.qrRole];

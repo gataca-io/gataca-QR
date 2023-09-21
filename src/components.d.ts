@@ -150,7 +150,7 @@ export namespace Components {
          */
         "qrModalTitle"?: string;
         /**
-          * ***Mandatory*** Decide if scanning the credential as a verifier to request credentials or as an issuer too issue credentials. Options: connect | certify
+          * ***Mandatory just for V1*** Decide if scanning the credential as a verifier to request credentials or as an issuer too issue credentials. Options: connect | certify
          */
         "qrRole": string;
         /**
@@ -705,7 +705,7 @@ declare namespace LocalJSX {
          */
         "qrModalTitle"?: string;
         /**
-          * ***Mandatory*** Decide if scanning the credential as a verifier to request credentials or as an issuer too issue credentials. Options: connect | certify
+          * ***Mandatory just for V1*** Decide if scanning the credential as a verifier to request credentials or as an issuer too issue credentials. Options: connect | certify
          */
         "qrRole"?: string;
         /**
