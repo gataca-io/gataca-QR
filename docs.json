@@ -1,5 +1,5 @@
 {
-  "timestamp": "2023-09-19T09:20:36",
+  "timestamp": "2024-02-07T15:16:13",
   "compiler": {
     "name": "@stencil/core",
     "version": "2.19.3",
@@ -435,6 +435,40 @@
           "required": false
         },
         {
+          "name": "hideModalBoxShadow",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "hide-modal-box-shadow",
+          "reflectToAttr": false,
+          "docs": "_[Optional]_\nBoolean to show or not show the modal title, brandTitle and description",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "hideModalTexts",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "hide-modal-texts",
+          "reflectToAttr": false,
+          "docs": "_[Optional]_\nBoolean to show or not show the modal title, brandTitle and description",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
           "name": "hideQrModalDescription",
           "type": "boolean",
           "mutable": false,
@@ -486,6 +520,22 @@
           "required": false
         },
         {
+          "name": "modalHeight",
+          "type": "number",
+          "mutable": false,
+          "attr": "modal-height",
+          "reflectToAttr": false,
+          "docs": "_[Optional]_\nHeight of the modal",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
           "name": "modalTitleColor",
           "type": "string",
           "mutable": false,
@@ -497,6 +547,23 @@
           "values": [
             {
               "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "modalWidth",
+          "type": "number",
+          "mutable": false,
+          "attr": "modal-width",
+          "reflectToAttr": false,
+          "docs": "_[Optional]_\nWidth of the modal",
+          "docsTags": [],
+          "default": "300",
+          "values": [
+            {
+              "type": "number"
             }
           ],
           "optional": true,
@@ -584,6 +651,23 @@
             }
           ],
           "optional": false,
+          "required": false
+        },
+        {
+          "name": "qrSize",
+          "type": "number",
+          "mutable": false,
+          "attr": "qr-size",
+          "reflectToAttr": false,
+          "docs": "_[Optional]_\nSize of QR Displayed",
+          "docsTags": [],
+          "default": "300",
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": true,
           "required": false
         },
         {

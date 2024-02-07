@@ -66,6 +66,14 @@
           "description": "_[Optional]_\nBoolean to show or not show the gataca brand title"
         },
         {
+          "name": "hide-modal-box-shadow",
+          "description": "_[Optional]_\nBoolean to show or not show the modal title, brandTitle and description"
+        },
+        {
+          "name": "hide-modal-texts",
+          "description": "_[Optional]_\nBoolean to show or not show the modal title, brandTitle and description"
+        },
+        {
           "name": "hide-qr-modal-description",
           "description": "_[Optional]_\nBoolean to show or not show the QR Modal description"
         },
@@ -78,8 +86,16 @@
           "description": "_[Optional]_\nLogo to display, just if the logo size is greater than 0. No logo is the GATACA logo."
         },
         {
+          "name": "modal-height",
+          "description": "_[Optional]_\nHeight of the modal"
+        },
+        {
           "name": "modal-title-color",
           "description": "_[Optional]_\nString to set Modal title color"
+        },
+        {
+          "name": "modal-width",
+          "description": "_[Optional]_\nWidth of the modal"
         },
         {
           "name": "polling-frequency",
@@ -100,6 +116,10 @@
         {
           "name": "qr-role",
           "description": "***Mandatory just for V1***\nDecide if scanning the credential as a verifier to request credentials\nor as an issuer too issue credentials.\nOptions: connect | certify"
+        },
+        {
+          "name": "qr-size",
+          "description": "_[Optional]_\nSize of QR Displayed"
         },
         {
           "name": "refresh-qr-label",

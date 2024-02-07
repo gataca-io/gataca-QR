@@ -118,6 +118,14 @@ export namespace Components {
          */
         "hideBrandTitle"?: boolean;
         /**
+          * _[Optional]_ Boolean to show or not show the modal title, brandTitle and description
+         */
+        "hideModalBoxShadow"?: boolean;
+        /**
+          * _[Optional]_ Boolean to show or not show the modal title, brandTitle and description
+         */
+        "hideModalTexts"?: boolean;
+        /**
           * _[Optional]_ Boolean to show or not show the QR Modal description
          */
         "hideQrModalDescription"?: boolean;
@@ -130,9 +138,17 @@ export namespace Components {
          */
         "logoSrc"?: string;
         /**
+          * _[Optional]_ Height of the modal
+         */
+        "modalHeight"?: number;
+        /**
           * _[Optional]_ String to set Modal title color
          */
         "modalTitleColor"?: string;
+        /**
+          * _[Optional]_ Width of the modal
+         */
+        "modalWidth"?: number;
         /**
           * _[Optional]_ Frequency in seconds to check if the session has been validated
          */
@@ -153,6 +169,10 @@ export namespace Components {
           * ***Mandatory just for V1*** Decide if scanning the credential as a verifier to request credentials or as an issuer too issue credentials. Options: connect | certify
          */
         "qrRole": string;
+        /**
+          * _[Optional]_ Size of QR Displayed
+         */
+        "qrSize"?: number;
         /**
           * _[Optional]_ String to show "refresh QR" label
          */
@@ -665,6 +685,14 @@ declare namespace LocalJSX {
          */
         "hideBrandTitle"?: boolean;
         /**
+          * _[Optional]_ Boolean to show or not show the modal title, brandTitle and description
+         */
+        "hideModalBoxShadow"?: boolean;
+        /**
+          * _[Optional]_ Boolean to show or not show the modal title, brandTitle and description
+         */
+        "hideModalTexts"?: boolean;
+        /**
           * _[Optional]_ Boolean to show or not show the QR Modal description
          */
         "hideQrModalDescription"?: boolean;
@@ -677,9 +705,17 @@ declare namespace LocalJSX {
          */
         "logoSrc"?: string;
         /**
+          * _[Optional]_ Height of the modal
+         */
+        "modalHeight"?: number;
+        /**
           * _[Optional]_ String to set Modal title color
          */
         "modalTitleColor"?: string;
+        /**
+          * _[Optional]_ Width of the modal
+         */
+        "modalWidth"?: number;
         /**
           * GatacaLoginCompleted event, triggered with session data upon login success
          */
@@ -708,6 +744,10 @@ declare namespace LocalJSX {
           * ***Mandatory just for V1*** Decide if scanning the credential as a verifier to request credentials or as an issuer too issue credentials. Options: connect | certify
          */
         "qrRole"?: string;
+        /**
+          * _[Optional]_ Size of QR Displayed
+         */
+        "qrSize"?: number;
         /**
           * _[Optional]_ String to show "refresh QR" label
          */

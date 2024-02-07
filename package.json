@@ -30,6 +30,10 @@
 	"devDependencies": {
 		"@stencil/core": "^2.9.0",
 		"@stencil/sass": "^1.4.0",
+		"@types/jest": "^27.0.3",
+		"jest": "^27.0.3",
+		"jest-cli": "^27.4.5",
+		"puppeteer": "^10.0.0",
 		"rollup-plugin-node-polyfills": "^0.2.1"
 	},
 	"license": "MIT",
