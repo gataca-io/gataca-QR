@@ -458,7 +458,15 @@ export class GatacaQR {
 
   renderRetryButton(errorMessage?: string) {
     return (
-      <div class="reload">
+      <div
+        class="reload"
+        style={{
+          width: (this.modalWidth - 50).toString() + "px",
+          height: this.modalWidth
+            ? (this.modalWidth - 50)?.toString() + "px"
+            : "",
+        }}
+      >
         <div id="notify" onClick={() => this.display()}>
           <img src={refreshIcon} height={24} width={24} />
           <p class="qrDescription">{this.clickInsideBoxLabel} </p>
@@ -468,13 +476,20 @@ export class GatacaQR {
             <p class="qrDescription bold">{this.scanQrLabel}e</p>
           )}
           {errorMessage && (
-            <div class="alert">
+            <div
+              class="alert"
+              style={{
+                width: (this.modalWidth - 50).toString() + "px",
+              }}
+            >
               <img src={alertIcon} height={24} width={24}></img>
               <p>{errorMessage}</p>
             </div>
           )}
         </div>
-        <div id="qrwait">{this.renderQR(this.waitingStartSessionLabel)}</div>
+        <div id="qrwait">
+          {this.renderRetryQR(this.waitingStartSessionLabel)}
+        </div>
       </div>
     );
   }
@@ -491,7 +506,20 @@ export class GatacaQR {
     );
   }
 
+  renderRetryQR(value: string, useLogo?: boolean) {
+    return (
+      <gataca-qrdisplay
+        qrData={value}
+        rounded={true}
+        size={this.qrSize - 50}
+        logo-size={useLogo ? 0.33 : 0}
+        logo-src={this.logoSrc}
+      />
+    );
+  }
+
   render() {
+    console.log("result", this.result);
     return (
       <div class="popUpContainer">
         <div
@@ -533,7 +561,17 @@ export class GatacaQR {
                   <p class="qrDescription">{this.qrModalDescription}</p>
                 )}
             </div>
-            <div class="qrSection">{this.renderQRSection()}</div>
+            <div
+              class="qrSection"
+              style={{
+                width: this.modalWidth.toString() + "px",
+                height: this.modalWidth
+                  ? this.modalWidth?.toString() + "px"
+                  : "",
+              }}
+            >
+              {this.renderQRSection()}
+            </div>
           </div>
         </div>
       </div>
