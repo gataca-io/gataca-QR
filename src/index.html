@@ -1,143 +1,48 @@
-<!DOCTYPE html>
-<html dir="ltr" lang="en">
-
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
   <title>Gataca QR Component</title>
   <script type="module" src="/build/gatacaqr.esm.js"></script>
   <script nomodule src="/build/gatacaqr.js"></script>
 </head>
 
 <body>
-
   <div>
-
-    <gataca-qr id="gataca-qr" qr-role="fill_if_v1" polling-frequency="50" session-timeout="300" autostart="true"
-      callback-server="fill_if_v1">
+    <gataca-qr id="gataca-qr" qrRole="connect" hide-modal-texts="true" hide-modal-box-shadow="true" modal-width="300"
+      modal-height="300" qr-size="300" callback-server="https://connect.gataca.io">
+      <!-- TODO Change with your connect server-->
     </gataca-qr>
-
   </div>
 
   <script>
-    const qr = document.getElementById('gataca-qr');
-    const server = 'https://certify.dev.gataca.io';
-    const loginServer = 'https://nucleus.dev.gataca.io';
-    const verifier = false;
-    const configId = 'gatacaEmployee';
-    const apiKey = '******';
-    const password = '********';
-    let v2 = true;
-
-    const paths = {
-      true: {
-        true: "/api/v2/sessions",
-        false: "/api/v3/oidc-issuance/credential-offer",
-      }, false: {
-        true: "/api/v1/sessions",
-        false: "/api/v1/issuanceRequests",
-      }
-    }
-
-    const RESULT_STATUS = {
-      ONGOING: 0,
-      SUCCESS: 1,
-      FAILED: 2,
-    }
-    let sessionId = ''
-
-    qr.v2 = v2;
-
+    const qr = document.getElementById("gataca-qr");
+    var count = 0;
+    var ok = true;
     qr.successCallback = (data) => {
-      alert("ALL OK" + data?.email)
+      //TODO Change with what you want to happen when the session is validated
+      alert("ALL OK" + data);
     };
     qr.errorCallback = () => {
-      alert("some error")
+      //TODO Change with what you want to happen when the session is expired or the user provides invalid credentials
+      alert("some error");
     };
-
-    getAppToken = async () => {
-      // console.log('sessionID', sessionId)
-      let response = await fetch(loginServer + '/admin/v1/api_keys/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: 'Basic ' + btoa(apiKey + ':' + password),
-        },
-        body: '{}',
-      })
-      return response?.headers?.get('Token')
-    }
-
-    qr.createSession = async () => {
-      let endpoint =
-        server +
-        paths[v2][verifier]
-      let response = await fetch(endpoint, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: 'jwt ' + await getAppToken(),
-        },
-        body: verifier
-          ? '{"ssiConfigId": "' + configId + '"}'
-          : '{"group": "' + configId + '"}',
-      })
-      let data = await response.json()
-      if (v2) {
-        if (verifier) {
-          return { sessionId: data.presentation_definition.id, authenticationRequest: data.authentication_request }
-        }
-        sessionId = getSessionIdFromCredentialOfferUri(data.credential_offer_uri)
-        return { sessionId: sessionId, authenticationRequest: data.credential_offer_uri }
+    qr.createSession = () => {
+      // TODO Change with an invocation to your service to create a session (either v1 or v2)
+      // Authentication request is required only for v2
+      return {
+        sessionId: "TWp3V2R1N29ZcmFMY3Nvd3ZPb3k0UlMz",
+        authenticationRequest: "",
+      };
+    };
+    qr.checkStatus = () => {
+      //TODO Change with and invocation to your Backend service to query the status of the session
+      count++;
+      if (count == 10) {
+        return { result: ok ? 1 : 2, data: { name: "test", token: "x" } };
       }
-      return { sessionId: data.id, authenticationRequest: data.authentication_request }
-
-    }
-
-    const getSessionIdFromCredentialOfferUri = (credOfferUri) => {
-      let requrl = new URL(credOfferUri);
-      let credOffer = requrl.searchParams.get('credential_offer_uri');
-      if (credOffer) {
-        requrl = new URL(credOffer)
-        let parts = requrl.pathname.split("/")
-        let sessionId = parts[parts.length - 1]
-        return sessionId
-      }
-      return
-    }
-
-    qr.checkStatus = async () => {
-      //TODO Implement your own service logic invocation. This is just a dummy mimicking the Connect/Certify v1 APIs asuming you get an app token in props
-      const endpoint =
-        server +
-        (verifier ? (v2 ? '/api/v2/sessions/' : '/api/v1/sessions/') : '/admin/v1/issuanceRequests/') +
-        sessionId
-      let response = await fetch(endpoint, {
-        method: 'GET',
-        headers: {
-          Authorization: 'jwt ' + await getAppToken(),
-          'Content-Type': 'application/json',
-        },
-      })
-
-      if (verifier) {
-        let req = await response
-        let ongoing = v2 ? 202 : 204
-        return req.status === 200
-          ? { result: RESULT_STATUS.SUCCESS }
-          : req.status === ongoing
-            ? { result: RESULT_STATUS.ONGOING }
-            : { result: RESULT_STATUS.FAILED }
-      } else {
-        let req = await response.json()
-        return !req.status || req.status === 'PENDING'
-          ? { result: RESULT_STATUS.ONGOING }
-          : req.status === 'INVALID'
-            ? { result: RESULT_STATUS.FAILED }
-            : { result: RESULT_STATUS.SUCCESS }
-      }
-    }
-
+      return { result: 0 };
+    };
   </script>
-
 </body>
+
+</html>

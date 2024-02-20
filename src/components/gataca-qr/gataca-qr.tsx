@@ -129,6 +129,18 @@ export class GatacaQR {
 
   /**
    * _[Optional]_
+   * Boolean to show or not show the modal title, brandTitle and description
+   */
+  @Prop() hideModalTexts?: boolean = false;
+
+  /**
+   * _[Optional]_
+   * Boolean to show or not show the modal title, brandTitle and description
+   */
+  @Prop() hideModalBoxShadow?: boolean = false;
+
+  /**
+   * _[Optional]_
    * Boolean to show or not show the gataca brand title
    */
   @Prop() hideBrandTitle?: boolean = false;
@@ -144,6 +156,24 @@ export class GatacaQR {
    * Logo to display, just if the logo size is greater than 0. No logo is the GATACA logo.
    */
   @Prop() logoSrc?: string = logoGataca;
+
+  /**
+   * _[Optional]_
+   * Size of QR Displayed
+   */
+  @Prop() qrSize?: number = 300;
+
+  /**
+   * _[Optional]_
+   * Width of the modal
+   */
+  @Prop() modalWidth?: number = 300;
+
+  /**
+   * _[Optional]_
+   * Height of the modal
+   */
+  @Prop() modalHeight?: number;
 
   /**
    * _[Optional]_
@@ -400,7 +430,7 @@ export class GatacaQR {
       case RESULT_STATUS.NOT_STARTED:
         return this.renderRetryButton();
       case RESULT_STATUS.ONGOING:
-        return this.renderQR(this.getLink(), 300, true);
+        return this.renderQR(this.getLink(), true);
       case RESULT_STATUS.EXPIRED:
         return this.renderRetryButton(this.qrCodeExpiredLabel);
       case RESULT_STATUS.FAILED:
@@ -412,7 +442,14 @@ export class GatacaQR {
 
   renderSuccess() {
     return (
-      <div class="success">
+      <div
+        class="success"
+        style={{
+          height: this.modalHeight
+            ? this.modalHeight?.toString() + "px"
+            : "300px",
+        }}
+      >
         <img src={successIcon} height={52} width={52}></img>
         <p class="successMsg">{this.successLoginLabel}</p>
       </div>
@@ -421,7 +458,15 @@ export class GatacaQR {
 
   renderRetryButton(errorMessage?: string) {
     return (
-      <div class="reload">
+      <div
+        class="reload"
+        style={{
+          width: (this.modalWidth - 50).toString() + "px",
+          height: this.modalWidth
+            ? (this.modalWidth - 50)?.toString() + "px"
+            : "",
+        }}
+      >
         <div id="notify" onClick={() => this.display()}>
           <img src={refreshIcon} height={24} width={24} />
           <p class="qrDescription">{this.clickInsideBoxLabel} </p>
@@ -431,25 +476,42 @@ export class GatacaQR {
             <p class="qrDescription bold">{this.scanQrLabel}e</p>
           )}
           {errorMessage && (
-            <div class="alert">
+            <div
+              class="alert"
+              style={{
+                width: (this.modalWidth - 50).toString() + "px",
+              }}
+            >
               <img src={alertIcon} height={24} width={24}></img>
               <p>{errorMessage}</p>
             </div>
           )}
         </div>
         <div id="qrwait">
-          {this.renderQR(this.waitingStartSessionLabel, 250)}
+          {this.renderRetryQR(this.waitingStartSessionLabel)}
         </div>
       </div>
     );
   }
 
-  renderQR(value: string, size: number, useLogo?: boolean) {
+  renderQR(value: string, useLogo?: boolean) {
     return (
       <gataca-qrdisplay
         qrData={value}
         rounded={true}
-        size={size}
+        size={this.qrSize}
+        logo-size={useLogo ? 0.33 : 0}
+        logo-src={this.logoSrc}
+      />
+    );
+  }
+
+  renderRetryQR(value: string, useLogo?: boolean) {
+    return (
+      <gataca-qrdisplay
+        qrData={value}
+        rounded={true}
+        size={this.qrSize - 50}
         logo-size={useLogo ? 0.33 : 0}
         logo-src={this.logoSrc}
       />
@@ -457,16 +519,29 @@ export class GatacaQR {
   }
 
   render() {
+    console.log("result", this.result);
     return (
       <div class="popUpContainer">
         <div
-          class={"modal-window is-visible"}
+          class={`is-visible modal-window ${
+            this.hideModalTexts ? "" : "large-modal"
+          } ${this.hideModalBoxShadow ? "noBoxShadow" : ""}`}
+          style={{
+            width: (this.modalWidth - 2).toString() + "px",
+            height: this.modalHeight
+              ? (this.modalHeight - 2)?.toString() + "px"
+              : "",
+          }}
           onClick={(event) => {
             event.stopPropagation();
           }}
         >
           <div class="modal-window__content">
-            <div class="qrTitleContainer">
+            <div
+              class={`qrTitleContainer ${
+                this.hideModalTexts ? "hidenText" : ""
+              }`}
+            >
               <p
                 class="qrTitle"
                 style={{ color: this.modalTitleColor || "#1e1e20" }}
@@ -486,7 +561,17 @@ export class GatacaQR {
                   <p class="qrDescription">{this.qrModalDescription}</p>
                 )}
             </div>
-            <div class="qrSection">{this.renderQRSection()}</div>
+            <div
+              class="qrSection"
+              style={{
+                width: this.modalWidth.toString() + "px",
+                height: this.modalWidth
+                  ? this.modalWidth?.toString() + "px"
+                  : "",
+              }}
+            >
+              {this.renderQRSection()}
+            </div>
           </div>
         </div>
       </div>
