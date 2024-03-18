@@ -471,9 +471,9 @@ export class GatacaQR {
           <img src={refreshIcon} height={24} width={24} />
           <p class="qrDescription">{this.clickInsideBoxLabel} </p>
           {errorMessage ? (
-            <p class="qrDescription bold">{this.refreshQrLabel}</p>
+            <p class="">{this.refreshQrLabel}</p>
           ) : (
-            <p class="qrDescription bold">{this.scanQrLabel}e</p>
+            <p class="qrDescription bold">{this.scanQrLabel}</p>
           )}
           {errorMessage && (
             <div
