@@ -1,5 +1,5 @@
 {
-  "timestamp": "2024-03-08T11:07:41",
+  "timestamp": "2024-03-19T09:20:57",
   "compiler": {
     "name": "node",
     "version": "18.17.0"
@@ -9,7 +9,7 @@
     "fsNamespace": "gatacaqr",
     "components": 6,
     "entries": 6,
-    "bundles": 44,
+    "bundles": 42,
     "outputs": [
       {
         "name": "dist-custom-elements",
@@ -26,7 +26,7 @@
       },
       {
         "name": "dist-lazy",
-        "files": 34,
+        "files": 32,
         "generatedFiles": [
           "./dist/gatacaqr/app-globals-0f993ce5.js",
           "./dist/gatacaqr/css-shim-b7d3d95f.js",
@@ -35,7 +35,6 @@
           "./dist/gatacaqr/gataca-autoqr.entry.js",
           "./dist/gatacaqr/gataca-qr.entry.js",
           "./dist/gatacaqr/gataca-qrdisplay-a674dc4c.js",
-          "./dist/gatacaqr/gataca-qrdisplay-e17f464f.js",
           "./dist/gatacaqr/gataca-qrdisplay.entry.js",
           "./dist/gatacaqr/gataca-qrws.entry.js",
           "./dist/gatacaqr/gataca-ssibutton.entry.js",
@@ -52,7 +51,6 @@
           "./www/build/gataca-autoqr.entry.js",
           "./www/build/gataca-qr.entry.js",
           "./www/build/gataca-qrdisplay-a674dc4c.js",
-          "./www/build/gataca-qrdisplay-e17f464f.js",
           "./www/build/gataca-qrdisplay.entry.js",
           "./www/build/gataca-qrws.entry.js",
           "./www/build/gataca-ssibutton.entry.js",
@@ -140,7 +138,7 @@
           "gataca-qrdisplay-a674dc4c.js",
           "utils-05ba6c9f.js"
         ],
-        "originalByteSize": 14068
+        "originalByteSize": 14063
       },
       {
         "key": "gataca-qrws.entry",
@@ -6556,7 +6554,9 @@
     ]
   },
   "sourceGraph": {
+    "./src/components/gataca-autoqr/gataca-autoqr.e2e.ts": [],
     "./src/components/gataca-autoqr/gataca-autoqr.tsx": [],
+    "./src/components/gataca-qr/gataca-qr.e2e.ts": [],
     "./src/components/gataca-qr/gataca-qr.tsx": [
       "./src/assets/icons/gat-icon-alert.svg",
       "./src/assets/icons/gat-icon-check.svg",
@@ -6565,9 +6565,11 @@
       "./src/components/gataca-qrdisplay/gataca-qrdisplay",
       "./src/utils/utils"
     ],
+    "./src/components/gataca-qrdisplay/gataca-qrdisplay.e2e.ts": [],
     "./src/components/gataca-qrdisplay/gataca-qrdisplay.tsx": [
       "./src/assets/images/logo_gataca.svg"
     ],
+    "./src/components/gataca-qrws/gataca-qrws.e2e.ts": [],
     "./src/components/gataca-qrws/gataca-qrws.tsx": [
       "./src/assets/icons/gat-icon-alert.svg",
       "./src/assets/icons/gat-icon-check.svg",
@@ -6576,9 +6578,11 @@
       "./src/components/gataca-qrdisplay/gataca-qrdisplay",
       "./src/utils/utils"
     ],
+    "./src/components/gataca-ssibutton/gataca-ssibutton.e2e.ts": [],
     "./src/components/gataca-ssibutton/gataca-ssibutton.tsx": [
       "./src/components/gataca-qrdisplay/gataca-qrdisplay"
     ],
+    "./src/components/gataca-ssibuttonws/gataca-ssibuttonws.e2e.ts": [],
     "./src/components/gataca-ssibuttonws/gataca-ssibuttonws.tsx": [],
     "./src/index.ts": [],
     "./src/utils/index.ts": [],
