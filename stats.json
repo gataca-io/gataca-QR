@@ -1,5 +1,5 @@
 {
-  "timestamp": "2024-03-08T11:07:41",
+  "timestamp": "2024-03-19T09:18:21",
   "compiler": {
     "name": "node",
     "version": "18.17.0"
@@ -9,7 +9,7 @@
     "fsNamespace": "gatacaqr",
     "components": 6,
     "entries": 6,
-    "bundles": 44,
+    "bundles": 42,
     "outputs": [
       {
         "name": "dist-custom-elements",
@@ -26,7 +26,7 @@
       },
       {
         "name": "dist-lazy",
-        "files": 34,
+        "files": 32,
         "generatedFiles": [
           "./dist/gatacaqr/app-globals-0f993ce5.js",
           "./dist/gatacaqr/css-shim-b7d3d95f.js",
@@ -35,7 +35,6 @@
           "./dist/gatacaqr/gataca-autoqr.entry.js",
           "./dist/gatacaqr/gataca-qr.entry.js",
           "./dist/gatacaqr/gataca-qrdisplay-a674dc4c.js",
-          "./dist/gatacaqr/gataca-qrdisplay-e17f464f.js",
           "./dist/gatacaqr/gataca-qrdisplay.entry.js",
           "./dist/gatacaqr/gataca-qrws.entry.js",
           "./dist/gatacaqr/gataca-ssibutton.entry.js",
@@ -52,7 +51,6 @@
           "./www/build/gataca-autoqr.entry.js",
           "./www/build/gataca-qr.entry.js",
           "./www/build/gataca-qrdisplay-a674dc4c.js",
-          "./www/build/gataca-qrdisplay-e17f464f.js",
           "./www/build/gataca-qrdisplay.entry.js",
           "./www/build/gataca-qrws.entry.js",
           "./www/build/gataca-ssibutton.entry.js",
