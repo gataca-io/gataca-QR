@@ -473,7 +473,7 @@ export class GatacaQR {
           {errorMessage ? (
             <p class="qrDescription bold">{this.refreshQrLabel}</p>
           ) : (
-            <p class="qrDescription bold">{this.scanQrLabel}e</p>
+            <p class="qrDescription bold">{this.scanQrLabel}</p>
           )}
           {errorMessage && (
             <div
