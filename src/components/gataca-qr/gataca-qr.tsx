@@ -7,13 +7,12 @@ import {
   Prop,
   State,
 } from "@stencil/core";
-import alertIcon from "../../assets/icons/gat-icon-alert.svg";
-import successIcon from "../../assets/icons/gat-icon-check.svg";
-import refreshIcon from "../../assets/icons/gat-icon-refresh.svg";
 import logoGataca from "../../assets/images/logo_gataca.svg";
 import "../gataca-qrdisplay/gataca-qrdisplay";
-
 import { base64UrlEncode, checkMobile, RESULT_STATUS } from "../../utils/utils";
+import { Success } from "./components/success/Success";
+import { RetryButton } from "./components/retryButton/RetryButton";
+import { QR } from "./components/qr/QR";
 
 const DEEP_LINK_PREFIX =
   "https://gataca.page.link/?apn=com.gatacaapp&ibi=com.gataca.wallet&link=";
@@ -442,78 +441,46 @@ export class GatacaQR {
 
   renderSuccess() {
     return (
-      <div
-        class="success"
-        style={{
-          height: this.modalHeight
-            ? this.modalHeight?.toString() + "px"
-            : "300px",
-        }}
-      >
-        <img src={successIcon} height={52} width={52}></img>
-        <p class="successMsg">{this.successLoginLabel}</p>
-      </div>
+      <Success
+        modalHeight={this?.modalHeight}
+        successLoginLabel={this?.successLoginLabel}
+      />
     );
   }
 
   renderRetryButton(errorMessage?: string) {
     return (
-      <div
-        class="reload"
-        style={{
-          width: (this.modalWidth - 50).toString() + "px",
-          height: this.modalWidth
-            ? (this.modalWidth - 50)?.toString() + "px"
-            : "",
-        }}
-      >
-        <div id="notify" onClick={() => this.display()}>
-          <img src={refreshIcon} height={24} width={24} />
-          <p class="qrDescription">{this.clickInsideBoxLabel} </p>
-          {errorMessage ? (
-            <p class="qrDescription bold">{this.refreshQrLabel}</p>
-          ) : (
-            <p class="qrDescription bold">{this.scanQrLabel}</p>
-          )}
-          {errorMessage && (
-            <div
-              class="alert"
-              style={{
-                width: (this.modalWidth - 50).toString() + "px",
-              }}
-            >
-              <img src={alertIcon} height={24} width={24}></img>
-              <p>{errorMessage}</p>
-            </div>
-          )}
-        </div>
-        <div id="qrwait">
-          {this.renderRetryQR(this.waitingStartSessionLabel)}
-        </div>
-      </div>
+      <RetryButton
+        errorMessage={errorMessage}
+        modalWidth={this?.modalWidth}
+        clickInsideBoxLabel={this?.clickInsideBoxLabel}
+        refreshQrLabel={this?.refreshQrLabel}
+        scanQrLabel={this?.scanQrLabel}
+        waitingStartSessionLabel={this?.waitingStartSessionLabel}
+        display={this?.display}
+        renderRetryQR={this?.renderRetryQR}
+      />
     );
   }
 
   renderQR(value: string, useLogo?: boolean) {
     return (
-      <gataca-qrdisplay
-        qrData={value}
-        rounded={true}
-        size={this.qrSize}
-        logo-size={useLogo ? 0.33 : 0}
-        logo-src={this.logoSrc}
+      <QR
+        value={value}
+        useLogo={useLogo}
+        size={this?.qrSize || undefined}
+        logoSrc={this?.logoSrc}
       />
     );
   }
 
   renderRetryQR(value: string, useLogo?: boolean) {
     return (
-      <gataca-qrdisplay
-        qrData={value}
-        rounded={true}
-        size={this.qrSize - 50}
-        logo-size={useLogo ? 0.33 : 0}
-        logo-src={this.logoSrc}
+      <QR
+        value={value}
+        useLogo={useLogo}
+        size={this?.qrSize ? this?.qrSize - 50 : undefined}
+        logoSrc={this?.logoSrc}
       />
     );
   }
@@ -543,13 +510,13 @@ export class GatacaQR {
               }`}
             >
               <p
-                class="qrTitle"
+                class="qrTitle modalText"
                 style={{ color: this.modalTitleColor || "#1e1e20" }}
               >
                 {this.qrModalTitle}
               </p>
               {!this.hideBrandTitle && (
-                <p class="qrBrand">
+                <p class="qrBrand modalText">
                   {this.byBrandLabel}{" "}
                   <span>
                     <img src={logoGataca} />
@@ -558,7 +525,9 @@ export class GatacaQR {
               )}
               {this.result !== RESULT_STATUS.SUCCESS &&
                 !this.hideQrModalDescription && (
-                  <p class="qrDescription">{this.qrModalDescription}</p>
+                  <p class="qrDescription modalText">
+                    {this.qrModalDescription}
+                  </p>
                 )}
             </div>
             <div
