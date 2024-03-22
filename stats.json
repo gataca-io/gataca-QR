@@ -1,5 +1,5 @@
 {
-  "timestamp": "2024-02-09T13:09:08",
+  "timestamp": "2024-03-22T12:13:57",
   "compiler": {
     "name": "node",
     "version": "16.20.2"
@@ -31,32 +31,32 @@
           "./dist/gatacaqr/app-globals-0f993ce5.js",
           "./dist/gatacaqr/css-shim-8eec97b3.js",
           "./dist/gatacaqr/dom-1b0cf05d.js",
-          "./dist/gatacaqr/gat-icon-refresh-8d3dc25f.js",
+          "./dist/gatacaqr/gat-icon-alert-13a1894e.js",
           "./dist/gatacaqr/gataca-autoqr.entry.js",
           "./dist/gatacaqr/gataca-qr.entry.js",
-          "./dist/gatacaqr/gataca-qrdisplay-2cf776ce.js",
+          "./dist/gatacaqr/gataca-qrdisplay-2431e1c0.js",
           "./dist/gatacaqr/gataca-qrdisplay.entry.js",
           "./dist/gatacaqr/gataca-qrws.entry.js",
           "./dist/gatacaqr/gataca-ssibutton.entry.js",
           "./dist/gatacaqr/gataca-ssibuttonws.entry.js",
           "./dist/gatacaqr/gatacaqr.esm.js",
-          "./dist/gatacaqr/index-3b0e94d4.js",
+          "./dist/gatacaqr/index-4bc6f36b.js",
           "./dist/gatacaqr/index.esm.js",
           "./dist/gatacaqr/shadow-css-146f2f6f.js",
           "./dist/gatacaqr/utils-05ba6c9f.js",
           "./www/build/app-globals-0f993ce5.js",
           "./www/build/css-shim-8eec97b3.js",
           "./www/build/dom-1b0cf05d.js",
-          "./www/build/gat-icon-refresh-8d3dc25f.js",
+          "./www/build/gat-icon-alert-13a1894e.js",
           "./www/build/gataca-autoqr.entry.js",
           "./www/build/gataca-qr.entry.js",
-          "./www/build/gataca-qrdisplay-2cf776ce.js",
+          "./www/build/gataca-qrdisplay-2431e1c0.js",
           "./www/build/gataca-qrdisplay.entry.js",
           "./www/build/gataca-qrws.entry.js",
           "./www/build/gataca-ssibutton.entry.js",
           "./www/build/gataca-ssibuttonws.entry.js",
           "./www/build/gatacaqr.esm.js",
-          "./www/build/index-3b0e94d4.js",
+          "./www/build/index-4bc6f36b.js",
           "./www/build/index.esm.js",
           "./www/build/shadow-css-146f2f6f.js",
           "./www/build/utils-05ba6c9f.js"
@@ -96,7 +96,7 @@
         "bundleId": "gataca-autoqr",
         "fileName": "gataca-autoqr.entry.js",
         "imports": [
-          "index-3b0e94d4.js"
+          "index-4bc6f36b.js"
         ],
         "originalByteSize": 7802
       },
@@ -108,8 +108,8 @@
         "bundleId": "gataca-ssibutton",
         "fileName": "gataca-ssibutton.entry.js",
         "imports": [
-          "index-3b0e94d4.js",
-          "gataca-qrdisplay-2cf776ce.js"
+          "index-4bc6f36b.js",
+          "gataca-qrdisplay-2431e1c0.js"
         ],
         "originalByteSize": 6496
       },
@@ -121,7 +121,7 @@
         "bundleId": "gataca-ssibuttonws",
         "fileName": "gataca-ssibuttonws.entry.js",
         "imports": [
-          "index-3b0e94d4.js"
+          "index-4bc6f36b.js"
         ],
         "originalByteSize": 5012
       },
@@ -133,12 +133,12 @@
         "bundleId": "gataca-qr",
         "fileName": "gataca-qr.entry.js",
         "imports": [
-          "index-3b0e94d4.js",
-          "gat-icon-refresh-8d3dc25f.js",
-          "gataca-qrdisplay-2cf776ce.js",
-          "utils-05ba6c9f.js"
+          "index-4bc6f36b.js",
+          "gataca-qrdisplay-2431e1c0.js",
+          "utils-05ba6c9f.js",
+          "gat-icon-alert-13a1894e.js"
         ],
-        "originalByteSize": 14068
+        "originalByteSize": 15632
       },
       {
         "key": "gataca-qrws.entry",
@@ -148,12 +148,12 @@
         "bundleId": "gataca-qrws",
         "fileName": "gataca-qrws.entry.js",
         "imports": [
-          "index-3b0e94d4.js",
-          "gat-icon-refresh-8d3dc25f.js",
-          "gataca-qrdisplay-2cf776ce.js",
+          "index-4bc6f36b.js",
+          "gat-icon-alert-13a1894e.js",
+          "gataca-qrdisplay-2431e1c0.js",
           "utils-05ba6c9f.js"
         ],
-        "originalByteSize": 11371
+        "originalByteSize": 11369
       },
       {
         "key": "gataca-qrdisplay.entry",
@@ -163,8 +163,8 @@
         "bundleId": "gataca-qrdisplay",
         "fileName": "gataca-qrdisplay.entry.js",
         "imports": [
-          "gataca-qrdisplay-2cf776ce.js",
-          "index-3b0e94d4.js"
+          "gataca-qrdisplay-2431e1c0.js",
+          "index-4bc6f36b.js"
         ],
         "originalByteSize": 102
       }
@@ -5693,7 +5693,7 @@
           "hasVdomAttribute": true,
           "hasVdomXlink": false,
           "hasVdomClass": true,
-          "hasVdomFunctional": false,
+          "hasVdomFunctional": true,
           "hasVdomKey": false,
           "hasVdomListener": true,
           "hasVdomPropOrAttr": true,
@@ -5704,25 +5704,38 @@
           "hasWatchCallback": false,
           "isPlain": false,
           "htmlAttrNames": [
+            "modalHeight",
+            "successLoginLabel",
+            "errorMessage",
+            "modalWidth",
+            "clickInsideBoxLabel",
+            "refreshQrLabel",
+            "scanQrLabel",
+            "waitingStartSessionLabel",
+            "display",
+            "renderRetryQR",
+            "value",
+            "useLogo",
+            "size",
+            "logoSrc",
             "class",
             "style",
+            "onClick",
             "src",
             "height",
             "width",
             "id",
-            "onClick",
             "qrData",
             "rounded",
-            "size",
             "logo-size",
             "logo-src"
           ],
           "htmlTagNames": [
             "div",
-            "img",
             "p",
-            "gataca-qrdisplay",
-            "span"
+            "span",
+            "img",
+            "gataca-qrdisplay"
           ],
           "htmlParts": [],
           "isUpdateable": true,
@@ -6527,39 +6540,47 @@
   ],
   "componentGraph": {
     "sc-gataca-autoqr": [
-      "index-3b0e94d4.js"
+      "index-4bc6f36b.js"
     ],
     "sc-gataca-qr": [
-      "index-3b0e94d4.js",
-      "gat-icon-refresh-8d3dc25f.js",
-      "gataca-qrdisplay-2cf776ce.js",
-      "utils-05ba6c9f.js"
+      "index-4bc6f36b.js",
+      "gataca-qrdisplay-2431e1c0.js",
+      "utils-05ba6c9f.js",
+      "gat-icon-alert-13a1894e.js"
     ],
     "sc-gataca-qrdisplay": [
-      "gataca-qrdisplay-2cf776ce.js",
-      "index-3b0e94d4.js"
+      "gataca-qrdisplay-2431e1c0.js",
+      "index-4bc6f36b.js"
     ],
     "sc-gataca-qrws": [
-      "index-3b0e94d4.js",
-      "gat-icon-refresh-8d3dc25f.js",
-      "gataca-qrdisplay-2cf776ce.js",
+      "index-4bc6f36b.js",
+      "gat-icon-alert-13a1894e.js",
+      "gataca-qrdisplay-2431e1c0.js",
       "utils-05ba6c9f.js"
     ],
     "sc-gataca-ssibutton": [
-      "index-3b0e94d4.js",
-      "gataca-qrdisplay-2cf776ce.js"
+      "index-4bc6f36b.js",
+      "gataca-qrdisplay-2431e1c0.js"
     ],
     "sc-gataca-ssibuttonws": [
-      "index-3b0e94d4.js"
+      "index-4bc6f36b.js"
     ]
   },
   "sourceGraph": {
     "./src/components/gataca-autoqr/gataca-autoqr.tsx": [],
-    "./src/components/gataca-qr/gataca-qr.tsx": [
+    "./src/components/gataca-qr/components/qr/QR.tsx": [],
+    "./src/components/gataca-qr/components/retryButton/RetryButton.tsx": [
       "./src/assets/icons/gat-icon-alert.svg",
-      "./src/assets/icons/gat-icon-check.svg",
-      "./src/assets/icons/gat-icon-refresh.svg",
+      "./src/assets/icons/gat-icon-refresh.svg"
+    ],
+    "./src/components/gataca-qr/components/success/Success.tsx": [
+      "./src/assets/icons/gat-icon-check.svg"
+    ],
+    "./src/components/gataca-qr/gataca-qr.tsx": [
       "./src/assets/images/logo_gataca.svg",
+      "./src/components/gataca-qr/components/qr/QR",
+      "./src/components/gataca-qr/components/retryButton/RetryButton",
+      "./src/components/gataca-qr/components/success/Success",
       "./src/components/gataca-qrdisplay/gataca-qrdisplay",
       "./src/utils/utils"
     ],
