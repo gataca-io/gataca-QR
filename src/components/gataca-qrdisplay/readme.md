@@ -4,7 +4,7 @@ This component built using stencyl allows an easy integration to display a QR wi
 
 Continuing with that example, you could integrate in any HTML using the following code
 
-````html
+```html
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
 
@@ -26,7 +26,7 @@ Continuing with that example, you could integrate in any HTML using the followin
 </body>
 
 </html>
-````
+```
 
 <!-- Auto Generated Below -->
 
@@ -37,7 +37,7 @@ Continuing with that example, you could integrate in any HTML using the followin
 | ---------- | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------- | ----------- |
 | `logoSize` | `logo-size` | _[Optional]_ Size of the logo to display in percentage to the total size [0-1]. 0 means no logo will be displayed. Default is the GATACA logo. Recommended size is around 0.33 | `number`  | `0`         |
 | `logoSrc`  | `logo-src`  | _[Optional]_ Logo to display, just if the logo size is greater than 0. No logo is the GATACA logo.                                                                             | `string`  | `undefined` |
-| `qrColor`  | `qr-color`  | _[Optional]_ QR Color.                                                                                                                                                         | `string`  | `"#181B5E"` |
+| `qrColor`  | `qr-color`  | _[Optional]_ QR Color.                                                                                                                                                         | `string`  | `"#1E1E20"` |
 | `qrData`   | `qr-data`   | _[Mandatory]_ Sets the contents of the QR                                                                                                                                      | `string`  | `undefined` |
 | `rounded`  | `rounded`   | _[Optional]_ Round usage                                                                                                                                                       | `boolean` | `true`      |
 | `size`     | `size`      | _[Optional]_ Size of the QR Displayed                                                                                                                                          | `number`  | `256`       |

@@ -1,5 +1,5 @@
 {
-  "timestamp": "2022-11-28T13:07:31",
+  "timestamp": "2024-02-09T13:08:58",
   "compiler": {
     "name": "@stencil/core",
     "version": "2.19.3",
@@ -212,8 +212,8 @@
       "filePath": "./src/components/gataca-qr/gataca-qr.tsx",
       "encapsulation": "shadow",
       "tag": "gataca-qr",
-      "readme": "# Gataca-QR\n\nThis component built using stencyl allows an easy integration to display a gataca QR to be read by the wallet.\n\nThis component can be used with the prerequisite of having an application which can be integrated with GATACA Components: Connect  and Certify. More precisely, your application will need to be able to perform the two operations against your connect or certify servers:\n1. Create sessions\n2. Consult sessions\n\n## Integrations\n\n### Pure JS\n\nYou can include the components by importing the library, available on NPM:\n\n#### Script tag\n\nPut a script tag similar to the source [https://unpkg.com/gatacaqr/dist/gatacaqr.js](https://unpkg.com/gatacaqr/dist/gatacaqr.js) in the head of your index.html. Check for the last version:\n\n```html\n<!DOCTYPE html>\n<html dir=\"ltr\" lang=\"en\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0\">\n  <script src='https://unpkg.com/gatacaqr@2.0.0/dist/gatacaqr.js'></script>\n</head>\n...\n</html>\n```\n\n#### Example\n\n````html\n<!DOCTYPE html>\n<html dir=\"ltr\" lang=\"en\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0\">\n  <title>Gataca QR Component</title>\n  <script type=\"module\" src=\"/build/gatacaqr.esm.js\"></script>\n  <script nomodule src=\"/build/gatacaqr.js\"></script>\n</head>\n<body>\n\n<div>\n\n  \n   <gataca-qr id=\"gataca-qr\" qrRole=\"connect\" callback-server=\"https://connect.gataca.io\"> <!-- TODO Change with your connect server-->\n  </gataca-qr>\n\n</div>\n\n<script>\n  const qr = document.getElementById('gataca-qr');\n  var count = 0;\n  var ok = true; \n\n  qr.successCallback = (data) => {\n    //TODO Change with what you want to happen when the session is validated\n    alert(\"ALL OK\" + data)\n  };\n  qr.errorCallback = () => {\n    //TODO Change with what you want to happen when the session is expired or the user provides invalid credentials\n    alert(\"some error\")\n  };\n\n  qr.createSession = () => {\n    // TODO Change with an invocation to your service to create a session (either v1 or v2)\n    // Authentication request is required only for v2\n    return { sessionId: \"TWp3V2R1N29ZcmFMY3Nvd3ZPb3k0UlMz\", authenticationRequest:\"\" }\n  }\n\n  qr.checkStatus = () => {\n    //TODO Change with and invocation to your Backend service to query the status of the session\n    count++;\n    if (count == 10) {\n      return { result: ok ? 1 : 2, data: { \"name\": \"test\", \"token\": \"x\" } }\n    }\n    return { result: 0 }\n  }\n</script>\n\n</body>\n</html>\n````\n\nYou can use this component with an already created session, which can be inserted on the sessionId property on the element, or passed via query parameter _id_ or _sessionId_ on the current URL.\nYou can also provide a method to generate a new session like in the example, or, in the rare event of matching the authorizer API, just the endpoint to your application.\n\nIn order to consult sessions, both options are also available, depending on how you want to develop your own API.\n\n### React App Integration\n\nImport the library\n\n```bash\nnpm install @gataca/qr --save\n```\n\nor \n\n```bash\nyarn add @gataca/qr\n```\n\nIn your base file index.js (or index.tsx), include:\n\n```typescript\nimport { applyPolyfills, defineCustomElements } from '@gataca/qr/loader'\n\n//before ReactDOM.render\napplyPolyfills().then(() => {\n    defineCustomElements(window)\n})\n\n```\n\nThe integration would depend if your using a Class Component or a Function Component. Supposing a function component (adaptation to class components is trivial), you would need to include:\n\n````typescript\ntype MyProps = {\n    ...\n    verifier?: boolean\n    configId?: string\n    appToken?: string\n}\n\n\nexport const dummyComponent: React.FC<MyProps> = (props) => {\n  ...\n  const { verifier, appToken, configId } = props\n  const qr = useRef(null)\n  let gqr: HTMLGatacaQrElement | undefined\n\n  useEffect(() => {\n            if (qr != null && qr.current != null) {\n                gqr = qr.current! as HTMLGatacaQrElement\n                gqr.createSession = createSession\n                gqr.checkStatus = checkStatus\n                gqr.successCallback = createSessionSuccess\n                gqr.errorCallback = createSessionError\n        }\n    })\n\n\n    //TODO Implement your own service logic invocation. This is just a dummy mimicking the Connect/Certify v1 APIs asuming you get an app token in props\n     const createSession = async (): Promise<{\n        sessionId: string\n        authenticationRequest?: string\n    }> => {\n        try {\n            let endpoint =\n                server +\n                (verifier ? '/api/v1/sessions' : '/api/v1/issuanceRequests')\n            let response = await fetch(endpoint, {\n                method: 'POST',\n                headers: {\n                    'Content-Type': 'application/json',\n                    Authorization: 'jwt ' + appToken,\n                },\n                body: verifier\n                    ? '{\"ssiConfigId\": \"' + configId + '\"}'\n                    : '{\"group\": \"' + configId + '\"}',\n            })\n            let data = await response.json()\n            return { sessionId: data.id! }\n        } catch (error) {\n            setSessionErrorState(true)\n            throw error\n        }\n    }\n\n    const checkStatus = async (): Promise<{\n        result: RESULT_STATUS\n        data?: any\n    }> => {\n        //TODO Implement your own service logic invocation. This is just a dummy mimicking the Connect/Certify v1 APIs asuming you get an app token in props\n        if (!appToken || error) {\n            gqr?.stop()\n        }\n        const endpoint =\n            server +\n            (verifier ? '/api/v1/sessions/' : '/admin/v1/issuanceRequests/') +\n            sessionId\n        let response = await fetch(endpoint, {\n            method: 'GET',\n            headers: {\n                Authorization: 'jwt ' + appToken,\n                'Content-Type': 'application/json',\n            },\n        })\n\n        if (verifier) {\n            let req = await response\n            return req.status === 200\n                ? { result: RESULT_STATUS.SUCCESS }\n                : req.status === 204\n                ? { result: RESULT_STATUS.ONGOING }\n                : { result: RESULT_STATUS.FAILED }\n        } else {\n            let req = await response.json()\n            return !req.status || req.status === 'PENDING'\n                ? { result: RESULT_STATUS.ONGOING }\n                : req.status === 'INVALID'\n                ? { result: RESULT_STATUS.FAILED }\n                : { result: RESULT_STATUS.SUCCESS }\n        }\n    }\n\n    const createSessionSuccess = (newdata: any) => {\n        //TODO Handle success\n    }\n\n    const createSessionError = (error: any) => {\n        //TODO Handle ERROR\n    }\n\n  //render() function in class components\n  return (\n      // @ts-ignore\n      <gataca-qr\n          callback-server={ verifier ? YOUR_CONNECT_HOST: YOUR_CERTIFY_HOST }\n          ref={qr}\n          qr-role={verifier ? \"connect\":\"certify\"}\n      />\n  )\n                  \n}\n````\n\n### Angular App Integration\n\nTBD\n\n## Updating from V1\n\nThere are some breaking changes to V2:\n\n* _sessionEndpoint_ and _generationEndpoint_ have been suppressed.\n* _createSession_ and _checkStatus_ functions are now mandatory. The returning parameters of those functions have now changed.\n* _qrRole_ is also mandatory. There is no default value. The possible values have changed to \"**connect**\" and \"**certify**\"\n* _asButton_ and _buttonText_ functionality has been suppressed. That is a different component.\n* _getLoginToken()_ has been suppressed. Any data that wants to be received from the session (from headers, body or whatever) must be provided by the _checkStatus_ result function. \n* _sessionTimeout_ can be removed by introducing a negative value. If removed, the QR will wait until the server provides an error by session expiration.\n\nImprovements:\n\n* Logs have been cleaned\n* Fix providing feedback on the process result and results either if it expires, fails or successes.\n* Stopping the component working upon disappearance\n* Autostart and autorefresh capabilities\n* Documentation and integration with the new provided components\n",
-      "docs": "This component built using stencyl allows an easy integration to display a gataca QR to be read by the wallet.\n\nThis component can be used with the prerequisite of having an application which can be integrated with GATACA Components: Connect  and Certify. More precisely, your application will need to be able to perform the two operations against your connect or certify servers:\n1. Create sessions\n2. Consult sessions",
+      "readme": "# Gataca-QR\n\nThis component built using stencyl allows an easy integration to display a gataca QR to be read by the wallet.\n\nThis component can be used with the prerequisite of having an application which can be integrated with GATACA Components: Connect and Certify. More precisely, your application will need to be able to perform the two operations against your connect or certify servers:\n\n1. Create sessions\n2. Consult sessions\n\n## Integrations\n\n### Pure JS\n\nYou can include the components by importing the library, available on NPM:\n\n#### Script tag\n\nPut a script tag similar to the source [https://unpkg.com/gatacaqr/dist/gatacaqr.js](https://unpkg.com/gatacaqr/dist/gatacaqr.js) in the head of your index.html. Check for the last version:\n\n```html\n<!DOCTYPE html>\n<html dir=\"ltr\" lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <meta\n      name=\"viewport\"\n      content=\"width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0\"\n    />\n    <script\n      type=\"module\"\n      src=\"https://unpkg.com/@gataca/qr@2.0.1/dist/gatacaqr/gatacaqr.esm.js\"\n    ></script>\n    <script\n      nomodule=\"\"\n      src=\"https://unpkg.com/@gataca/qr@2.0.1/dist/index.js\"\n    ></script>\n  </head>\n  ...\n</html>\n```\n\n#### Example\n\n```html\n<!DOCTYPE html>\n<html dir=\"ltr\" lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <meta\n      name=\"viewport\"\n      content=\"width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0\"\n    />\n    <title>Gataca QR Component</title>\n    <script\n      type=\"module\"\n      src=\"https://unpkg.com/@gataca/qr@2.0.1/dist/gatacaqr/gatacaqr.esm.js\"\n    ></script>\n    <script\n      nomodule=\"\"\n      src=\"https://unpkg.com/@gataca/qr@2.0.1/dist/index.js\"\n    ></script>\n  </head>\n  <body>\n    <div>\n      <gataca-qr\n        id=\"gataca-qr\"\n        qrRole=\"connect\"\n        callback-server=\"https://connect.gataca.io\"\n      >\n        <!-- TODO Change with your connect server-->\n      </gataca-qr>\n    </div>\n\n    <script>\n      const qr = document.getElementById(\"gataca-qr\");\n      var count = 0;\n      var ok = true;\n\n      qr.successCallback = (data) => {\n        //TODO Change with what you want to happen when the session is validated\n        alert(\"ALL OK\" + data);\n      };\n      qr.errorCallback = () => {\n        //TODO Change with what you want to happen when the session is expired or the user provides invalid credentials\n        alert(\"some error\");\n      };\n\n      qr.createSession = () => {\n        // TODO Change with an invocation to your service to create a session (either v1 or v2)\n        // Authentication request is required only for v2\n        return {\n          sessionId: \"TWp3V2R1N29ZcmFMY3Nvd3ZPb3k0UlMz\",\n          authenticationRequest: \"\",\n        };\n      };\n\n      qr.checkStatus = () => {\n        //TODO Change with and invocation to your Backend service to query the status of the session\n        count++;\n        if (count == 10) {\n          return { result: ok ? 1 : 2, data: { name: \"test\", token: \"x\" } };\n        }\n        return { result: 0 };\n      };\n    </script>\n  </body>\n</html>\n```\n\nYou can use this component with an already created session, which can be inserted on the sessionId property on the element, or passed via query parameter _id_ or _sessionId_ on the current URL.\nYou can also provide a method to generate a new session like in the example, or, in the rare event of matching the authorizer API, just the endpoint to your application.\n\nIn order to consult sessions, both options are also available, depending on how you want to develop your own API.\n\n### React App Integration\n\nImport the library\n\n```bash\nnpm install @gataca/qr --save\n```\n\nor\n\n```bash\nyarn add @gataca/qr\n```\n\nIn your base file index.js (or index.tsx), include:\n\n```typescript\nimport { applyPolyfills, defineCustomElements } from \"@gataca/qr/loader\";\n\n//before ReactDOM.render\napplyPolyfills().then(() => {\n  defineCustomElements(window);\n});\n```\n\nThe integration would depend if your using a Class Component or a Function Component. Supposing a function component (adaptation to class components is trivial), you would need to include:\n\n```typescript\ntype MyProps = {\n    ...\n    verifier?: boolean\n    configId?: string\n    appToken?: string\n}\n\n\nexport const dummyComponent: React.FC<MyProps> = (props) => {\n  ...\n  const { verifier, appToken, configId } = props\n  const qr = useRef(null)\n  let gqr: HTMLGatacaQrElement | undefined\n\n  useEffect(() => {\n            if (qr != null && qr.current != null) {\n                gqr = qr.current! as HTMLGatacaQrElement\n                gqr.createSession = createSession\n                gqr.checkStatus = checkStatus\n                gqr.successCallback = createSessionSuccess\n                gqr.errorCallback = createSessionError\n        }\n    })\n\n\n    //TODO Implement your own service logic invocation. This is just a dummy mimicking the Connect/Certify v1 APIs asuming you get an app token in props\n     const createSession = async (): Promise<{\n        sessionId: string\n        authenticationRequest?: string\n    }> => {\n        try {\n            let endpoint =\n                server +\n                (verifier ? '/api/v1/sessions' : '/api/v1/issuanceRequests')\n            let response = await fetch(endpoint, {\n                method: 'POST',\n                headers: {\n                    'Content-Type': 'application/json',\n                    Authorization: 'jwt ' + appToken,\n                },\n                body: verifier\n                    ? '{\"ssiConfigId\": \"' + configId + '\"}'\n                    : '{\"group\": \"' + configId + '\"}',\n            })\n            let data = await response.json()\n            return { sessionId: data.id! }\n        } catch (error) {\n            setSessionErrorState(true)\n            throw error\n        }\n    }\n\n    const checkStatus = async (): Promise<{\n        result: RESULT_STATUS\n        data?: any\n    }> => {\n        //TODO Implement your own service logic invocation. This is just a dummy mimicking the Connect/Certify v1 APIs asuming you get an app token in props\n        if (!appToken || error) {\n            gqr?.stop()\n        }\n        const endpoint =\n            server +\n            (verifier ? '/api/v1/sessions/' : '/admin/v1/issuanceRequests/') +\n            sessionId\n        let response = await fetch(endpoint, {\n            method: 'GET',\n            headers: {\n                Authorization: 'jwt ' + appToken,\n                'Content-Type': 'application/json',\n            },\n        })\n\n        if (verifier) {\n            let req = await response\n            return req.status === 200\n                ? { result: RESULT_STATUS.SUCCESS }\n                : req.status === 204\n                ? { result: RESULT_STATUS.ONGOING }\n                : { result: RESULT_STATUS.FAILED }\n        } else {\n            let req = await response.json()\n            return !req.status || req.status === 'PENDING'\n                ? { result: RESULT_STATUS.ONGOING }\n                : req.status === 'INVALID'\n                ? { result: RESULT_STATUS.FAILED }\n                : { result: RESULT_STATUS.SUCCESS }\n        }\n    }\n\n    const createSessionSuccess = (newdata: any) => {\n        //TODO Handle success\n    }\n\n    const createSessionError = (error: any) => {\n        //TODO Handle ERROR\n    }\n\n  //render() function in class components\n  return (\n      // @ts-ignore\n      <gataca-qr\n          callback-server={ verifier ? YOUR_CONNECT_HOST: YOUR_CERTIFY_HOST }\n          ref={qr}\n          qr-role={verifier ? \"connect\":\"certify\"}\n      />\n  )\n\n}\n```\n\n### Angular App Integration\n\nTBD\n\n## Updating from V1\n\nThere are some breaking changes to V2:\n\n- _sessionEndpoint_ and _generationEndpoint_ have been suppressed.\n- _createSession_ and _checkStatus_ functions are now mandatory. The returning parameters of those functions have now changed.\n- _qrRole_ is also mandatory. There is no default value. The possible values have changed to \"**connect**\" and \"**certify**\"\n- _asButton_ and _buttonText_ functionality has been suppressed. That is a different component.\n- _getLoginToken()_ has been suppressed. Any data that wants to be received from the session (from headers, body or whatever) must be provided by the _checkStatus_ result function.\n- _sessionTimeout_ can be removed by introducing a negative value. If removed, the QR will wait until the server provides an error by session expiration.\n\nImprovements:\n\n- Logs have been cleaned\n- Fix providing feedback on the process result and results either if it expires, fails or successes.\n- Stopping the component working upon disappearance\n- Autostart and autorefresh capabilities\n- Documentation and integration with the new provided components\n",
+      "docs": "This component built using stencyl allows an easy integration to display a gataca QR to be read by the wallet.\n\nThis component can be used with the prerequisite of having an application which can be integrated with GATACA Components: Connect and Certify. More precisely, your application will need to be able to perform the two operations against your connect or certify servers:\n\n1. Create sessions\n2. Consult sessions",
       "docsTags": [],
       "usage": {},
       "props": [
@@ -252,6 +252,23 @@
           "required": false
         },
         {
+          "name": "byBrandLabel",
+          "type": "string",
+          "mutable": false,
+          "attr": "by-brand-label",
+          "reflectToAttr": false,
+          "docs": "_[Optional]_\nString to show \"by brand\" label",
+          "docsTags": [],
+          "default": "\"by Gataca\"",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
           "name": "callbackServer",
           "type": "string",
           "mutable": false,
@@ -284,6 +301,23 @@
           "required": false
         },
         {
+          "name": "clickInsideBoxLabel",
+          "type": "string",
+          "mutable": false,
+          "attr": "click-inside-box-label",
+          "reflectToAttr": false,
+          "docs": "_[Optional]_\nString to show \"click inside\" label",
+          "docsTags": [],
+          "default": "\"Click inside the box to\"",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
           "name": "createSession",
           "type": "() => Promise<{ sessionId: string; authenticationRequest?: string; }>",
           "mutable": false,
@@ -294,6 +328,40 @@
           "values": [
             {
               "type": "() => Promise<{ sessionId: string; authenticationRequest?: string; }>"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "credentialsNotValidatedLabel",
+          "type": "string",
+          "mutable": false,
+          "attr": "credentials-not-validated-label",
+          "reflectToAttr": false,
+          "docs": "_[Optional]_\nString to show when credentials not validatedd",
+          "docsTags": [],
+          "default": "\"User credentials not validated\"",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "credsNotValidatedErrorLabel",
+          "type": "string",
+          "mutable": false,
+          "attr": "creds-not-validated-error-label",
+          "reflectToAttr": false,
+          "docs": "_[Optional]_\nString to show \"provided credentials not validates\" error",
+          "docsTags": [],
+          "default": "\"Provided user credentials couldn't be validated\"",
+          "values": [
+            {
+              "type": "string"
             }
           ],
           "optional": true,
@@ -333,6 +401,23 @@
           "required": false
         },
         {
+          "name": "failedLoginErrorLabel",
+          "type": "string",
+          "mutable": false,
+          "attr": "failed-login-error-label",
+          "reflectToAttr": false,
+          "docs": "_[Optional]_\nString to show \"failed login\" error",
+          "docsTags": [],
+          "default": "\"No successful login\"",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
           "name": "hideBrandTitle",
           "type": "boolean",
           "mutable": false,
@@ -350,6 +435,141 @@
           "required": false
         },
         {
+          "name": "hideModalBoxShadow",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "hide-modal-box-shadow",
+          "reflectToAttr": false,
+          "docs": "_[Optional]_\nBoolean to show or not show the modal title, brandTitle and description",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "hideModalTexts",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "hide-modal-texts",
+          "reflectToAttr": false,
+          "docs": "_[Optional]_\nBoolean to show or not show the modal title, brandTitle and description",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "hideQrModalDescription",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "hide-qr-modal-description",
+          "reflectToAttr": false,
+          "docs": "_[Optional]_\nBoolean to show or not show the QR Modal description",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "logoSize",
+          "type": "number",
+          "mutable": false,
+          "attr": "logo-size",
+          "reflectToAttr": false,
+          "docs": "_[Optional]_\nSize of the logo to display in percentage to the total size [0-1]. 0 means no logo will be displayed. Default is the GATACA logo. Recommended size is around 0.33",
+          "docsTags": [],
+          "default": "0",
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "logoSrc",
+          "type": "string",
+          "mutable": false,
+          "attr": "logo-src",
+          "reflectToAttr": false,
+          "docs": "_[Optional]_\nLogo to display, just if the logo size is greater than 0. No logo is the GATACA logo.",
+          "docsTags": [],
+          "default": "logoGataca",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "modalHeight",
+          "type": "number",
+          "mutable": false,
+          "attr": "modal-height",
+          "reflectToAttr": false,
+          "docs": "_[Optional]_\nHeight of the modal",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "modalTitleColor",
+          "type": "string",
+          "mutable": false,
+          "attr": "modal-title-color",
+          "reflectToAttr": false,
+          "docs": "_[Optional]_\nString to set Modal title color",
+          "docsTags": [],
+          "default": "\"#4745B7\"",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "modalWidth",
+          "type": "number",
+          "mutable": false,
+          "attr": "modal-width",
+          "reflectToAttr": false,
+          "docs": "_[Optional]_\nWidth of the modal",
+          "docsTags": [],
+          "default": "300",
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
           "name": "pollingFrequency",
           "type": "number",
           "mutable": false,
@@ -361,6 +581,23 @@
           "values": [
             {
               "type": "number"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "qrCodeExpiredLabel",
+          "type": "string",
+          "mutable": false,
+          "attr": "qr-code-expired-label",
+          "reflectToAttr": false,
+          "docs": "_[Optional]_\nString to show when qr code expired",
+          "docsTags": [],
+          "default": "\"QR Code expired\"",
+          "values": [
+            {
+              "type": "string"
             }
           ],
           "optional": true,
@@ -406,7 +643,7 @@
           "mutable": false,
           "attr": "qr-role",
           "reflectToAttr": false,
-          "docs": "***Mandatory***\nDecide if scanning the credential as a verifier to request credentials\nor as an issuer too issue credentials.\nOptions: connect | certify",
+          "docs": "***Mandatory just for V1***\nDecide if scanning the credential as a verifier to request credentials\nor as an issuer too issue credentials.\nOptions: connect | certify",
           "docsTags": [],
           "values": [
             {
@@ -414,6 +651,57 @@
             }
           ],
           "optional": false,
+          "required": false
+        },
+        {
+          "name": "qrSize",
+          "type": "number",
+          "mutable": false,
+          "attr": "qr-size",
+          "reflectToAttr": false,
+          "docs": "_[Optional]_\nSize of QR Displayed",
+          "docsTags": [],
+          "default": "300",
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "refreshQrLabel",
+          "type": "string",
+          "mutable": false,
+          "attr": "refresh-qr-label",
+          "reflectToAttr": false,
+          "docs": "_[Optional]_\nString to show \"refresh QR\" label",
+          "docsTags": [],
+          "default": "\"Refresh QR Code\"",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "scanQrLabel",
+          "type": "string",
+          "mutable": false,
+          "attr": "scan-qr-label",
+          "reflectToAttr": false,
+          "docs": "_[Optional]_\nString to show \"scan QR\" label",
+          "docsTags": [],
+          "default": "\"Scan QR Code\"",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
           "required": false
         },
         {
@@ -450,6 +738,40 @@
           "required": false
         },
         {
+          "name": "successLoginLabel",
+          "type": "string",
+          "mutable": false,
+          "attr": "success-login-label",
+          "reflectToAttr": false,
+          "docs": "_[Optional]_\nString to show \"successful login\" label",
+          "docsTags": [],
+          "default": "\"Successful Connection!\"",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "userNotScanInTimeErrorLabel",
+          "type": "string",
+          "mutable": false,
+          "attr": "user-not-scan-in-time-error-label",
+          "reflectToAttr": false,
+          "docs": "_[Optional]_\nString to show \"user not scan in time\" error",
+          "docsTags": [],
+          "default": "\"User did not scan the QR in the allowed time\"",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
           "name": "v2",
           "type": "boolean",
           "mutable": false,
@@ -461,6 +783,23 @@
           "values": [
             {
               "type": "boolean"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "waitingStartSessionLabel",
+          "type": "string",
+          "mutable": false,
+          "attr": "waiting-start-session-label",
+          "reflectToAttr": false,
+          "docs": "_[Optional]_\nString to show \"waiting start session\" label",
+          "docsTags": [],
+          "default": "\"waiting to start a session\"",
+          "values": [
+            {
+              "type": "string"
             }
           ],
           "optional": true,
@@ -549,8 +888,8 @@
       "filePath": "./src/components/gataca-qrdisplay/gataca-qrdisplay.tsx",
       "encapsulation": "none",
       "tag": "gataca-qrdisplay",
-      "readme": "# Gataca-QR Display\n\nThis component built using stencyl allows an easy integration to display a QR with the gataca styles\n\nContinuing with that example, you could integrate in any HTML using the following code\n\n````html\n<!DOCTYPE html>\n<html dir=\"ltr\" lang=\"en\">\n\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0\">\n  <title>Gataca QR Display Component</title>\n  <script type=\"module\" src=\"/build/gataca-qrdisplay.esm.js\"></script>\n  <script nomodule src=\"/build/gataca-qrdisplay.js\"></script>\n</head>\n\n<body>\n  <div class=\"your-container-styles\">\n\n    <gataca-qrdisplay id=\"gataca-qr\" qr-data=\"DATA TO DISPLAY\">\n      </gataca-qr>\n\n  </div>\n</body>\n\n</html>\n````\n",
-      "docs": "This component built using stencyl allows an easy integration to display a QR with the gataca styles\n\nContinuing with that example, you could integrate in any HTML using the following code\n\n````html\n<!DOCTYPE html>\n<html dir=\"ltr\" lang=\"en\">\n\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0\">\n  <title>Gataca QR Display Component</title>\n  <script type=\"module\" src=\"/build/gataca-qrdisplay.esm.js\"></script>\n  <script nomodule src=\"/build/gataca-qrdisplay.js\"></script>\n</head>\n\n<body>\n  <div class=\"your-container-styles\">\n\n    <gataca-qrdisplay id=\"gataca-qr\" qr-data=\"DATA TO DISPLAY\">\n      </gataca-qr>\n\n  </div>\n</body>\n\n</html>\n````",
+      "readme": "# Gataca-QR Display\n\nThis component built using stencyl allows an easy integration to display a QR with the gataca styles\n\nContinuing with that example, you could integrate in any HTML using the following code\n\n```html\n<!DOCTYPE html>\n<html dir=\"ltr\" lang=\"en\">\n\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0\">\n  <title>Gataca QR Display Component</title>\n  <script type=\"module\" src=\"/build/gataca-qrdisplay.esm.js\"></script>\n  <script nomodule src=\"/build/gataca-qrdisplay.js\"></script>\n</head>\n\n<body>\n  <div class=\"your-container-styles\">\n\n    <gataca-qrdisplay id=\"gataca-qr\" qr-data=\"DATA TO DISPLAY\">\n      </gataca-qr>\n\n  </div>\n</body>\n\n</html>\n```\n",
+      "docs": "This component built using stencyl allows an easy integration to display a QR with the gataca styles\n\nContinuing with that example, you could integrate in any HTML using the following code\n\n```html\n<!DOCTYPE html>\n<html dir=\"ltr\" lang=\"en\">\n\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0\">\n  <title>Gataca QR Display Component</title>\n  <script type=\"module\" src=\"/build/gataca-qrdisplay.esm.js\"></script>\n  <script nomodule src=\"/build/gataca-qrdisplay.js\"></script>\n</head>\n\n<body>\n  <div class=\"your-container-styles\">\n\n    <gataca-qrdisplay id=\"gataca-qr\" qr-data=\"DATA TO DISPLAY\">\n      </gataca-qr>\n\n  </div>\n</body>\n\n</html>\n```",
       "docsTags": [],
       "usage": {},
       "props": [
@@ -595,7 +934,7 @@
           "reflectToAttr": false,
           "docs": "_[Optional]_\nQR Color.",
           "docsTags": [],
-          "default": "\"#181B5E\"",
+          "default": "\"#1E1E20\"",
           "values": [
             {
               "type": "string"
@@ -1019,8 +1358,8 @@
       "filePath": "./src/components/gataca-ssibutton/gataca-ssibutton.tsx",
       "encapsulation": "shadow",
       "tag": "gataca-ssibutton",
-      "readme": "# Gataca-SSIButton\n\nThis component built using stencyl allows an easy integration to display a \"Quick SSI Access Button\", with a similar to the current existing sign-in buttons for OAuth2 providers like Google, Twitter or Facebook.\n\nThis component wraps the logic to display and hide a Gataca-QR component under a button. To configure and integrate it, you need to follow the same process as the basic [Gataca-QR component](../gataca-qr/readme.md).\n\nThis component can be used with the prerequisite of having an application which can be integrated with GATACA Components: Connect  and Certify. More precisely, your application will need to be able to perform the two operations against your connect or certify servers:\n\n1. Create sessions\n2. Consult sessions\n\n## Integrations\n\n### Pure JS\n\nYou can include the components by importing the library, available on NPM:\n\n#### Script tag\n\nPut a script tag similar to the source [https://unpkg.com/gatacaqr/dist/gatacaqr.js](https://unpkg.com/gatacaqr/dist/gatacaqr.js) in the head of your index.html. Check for the last version:\n\n```html\n<!DOCTYPE html>\n<html dir=\"ltr\" lang=\"en\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0\">\n  <script src='https://unpkg.com/gatacaqr@2.0.0/dist/gatacaqr.js'></script>\n</head>\n...\n</html>\n```\n\n#### Example\n\n````html\n<!DOCTYPE html>\n<html dir=\"ltr\" lang=\"en\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0\">\n  <title>Gataca SSI Button</title>\n  <script type=\"module\" src=\"/build/gatacaqr.esm.js\"></script>\n  <script nomodule src=\"/build/gatacaqr.js\"></script>\n</head>\n<body>\n\n<div>\n\n  \n   <gataca-ssibutton id=\"gataca-qr\" qrRole=\"connect\" callback-server=\"https://connect.gataca.io\"> <!-- TODO Change with your connect server-->\n  </gataca-ssibutton>\n\n</div>\n\n<script>\n  const qr = document.getElementById('gataca-qr');\n  var count = 0;\n  var ok = true; \n\n  qr.successCallback = (data) => {\n    //TODO Change with what you want to happen when the session is validated\n    alert(\"ALL OK\" + data)\n  };\n  qr.errorCallback = () => {\n    //TODO Change with what you want to happen when the session is expired or the user provides invalid credentials\n    alert(\"some error\")\n  };\n\n  qr.createSession = () => {\n    // TODO Change with an invocation to your service to create a session (either v1 or v2)\n    // Authentication request is required only for v2\n    return { sessionId: \"TWp3V2R1N29ZcmFMY3Nvd3ZPb3k0UlMz\", authenticationRequest:\"\" }\n  }\n\n  qr.checkStatus = () => {\n    //TODO Change with and invocation to your Backend service to query the status of the session\n    count++;\n    if (count == 10) {\n      return { result: ok ? 1 : 2, data: { \"name\": \"test\", \"token\": \"x\" } }\n    }\n    return { result: 0 }\n  }\n</script>\n\n</body>\n</html>\n````\n\nYou can use this component with an already created session, which can be inserted on the sessionId property on the element, or passed via query parameter _id_ or _sessionId_ on the current URL.\nYou can also provide a method to generate a new session like in the example, or, in the rare event of matching the authorizer API, just the endpoint to your application.\n\nIn order to consult sessions, both options are also available, depending on how you want to develop your own API.\n\n### React App Integration\n\nImport the library\n\n```bash\nnpm install @gataca/qr --save\n```\n\nor\n\n```bash\nyarn add @gataca/qr\n```\n\nIn your base file index.js (or index.tsx), include:\n\n```typescript\nimport { applyPolyfills, defineCustomElements } from '@gataca/qr/loader'\n\n//before ReactDOM.render\napplyPolyfills().then(() => {\n    defineCustomElements(window)\n})\n\n```\n\nThe integration would depend if your using a Class Component or a Function Component. Supposing a function component (adaptation to class components is trivial), you would need to include:\n\n````typescript\ntype MyProps = {\n    ...\n    verifier?: boolean\n    configId?: string\n    appToken?: string\n}\n\n\nexport const dummyComponent: React.FC<MyProps> = (props) => {\n  ...\n  const { verifier, appToken, configId } = props\n  const qr = useRef(null)\n  let gqr: HTMLGatacaQrElement | undefined\n\n  useEffect(() => {\n            if (qr != null && qr.current != null) {\n                gqr = qr.current! as HTMLGatacaQrElement\n                gqr.createSession = createSession\n                gqr.checkStatus = checkStatus\n                gqr.successCallback = createSessionSuccess\n                gqr.errorCallback = createSessionError\n        }\n    })\n\n\n    //TODO Implement your own service logic invocation. This is just a dummy mimicking the Connect/Certify v1 APIs asuming you get an app token in props\n     const createSession = async (): Promise<{\n        sessionId: string\n        authenticationRequest?: string\n    }> => {\n        try {\n            let endpoint =\n                server +\n                (verifier ? '/api/v1/sessions' : '/api/v1/issuanceRequests')\n            let response = await fetch(endpoint, {\n                method: 'POST',\n                headers: {\n                    'Content-Type': 'application/json',\n                    Authorization: 'jwt ' + appToken,\n                },\n                body: verifier\n                    ? '{\"ssiConfigId\": \"' + configId + '\"}'\n                    : '{\"group\": \"' + configId + '\"}',\n            })\n            let data = await response.json()\n            return { sessionId: data.id! }\n        } catch (error) {\n            setSessionErrorState(true)\n            throw error\n        }\n    }\n\n    const checkStatus = async (): Promise<{\n        result: RESULT_STATUS\n        data?: any\n    }> => {\n        //TODO Implement your own service logic invocation. This is just a dummy mimicking the Connect/Certify v1 APIs asuming you get an app token in props\n        if (!appToken || error) {\n            gqr?.stop()\n        }\n        const endpoint =\n            server +\n            (verifier ? '/api/v1/sessions/' : '/admin/v1/issuanceRequests/') +\n            sessionId\n        let response = await fetch(endpoint, {\n            method: 'GET',\n            headers: {\n                Authorization: 'jwt ' + appToken,\n                'Content-Type': 'application/json',\n            },\n        })\n\n        if (verifier) {\n            let req = await response\n            return req.status === 200\n                ? { result: RESULT_STATUS.SUCCESS }\n                : req.status === 204\n                ? { result: RESULT_STATUS.ONGOING }\n                : { result: RESULT_STATUS.FAILED }\n        } else {\n            let req = await response.json()\n            return !req.status || req.status === 'PENDING'\n                ? { result: RESULT_STATUS.ONGOING }\n                : req.status === 'INVALID'\n                ? { result: RESULT_STATUS.FAILED }\n                : { result: RESULT_STATUS.SUCCESS }\n        }\n    }\n\n    const createSessionSuccess = (newdata: any) => {\n        //TODO Handle success\n    }\n\n    const createSessionError = (error: any) => {\n        //TODO Handle ERROR\n    }\n\n  //render() function in class components\n  return (\n      // @ts-ignore\n      <gataca-ssibutton\n          callback-server={ verifier ? YOUR_CONNECT_HOST: YOUR_CERTIFY_HOST }\n          ref={qr}\n          qr-role={verifier ? \"connect\":\"certify\"}\n      />\n  )\n                  \n}\n````\n\n### Angular App Integration\n\nTBD\n",
-      "docs": "This component built using stencyl allows an easy integration to display a \"Quick SSI Access Button\", with a similar to the current existing sign-in buttons for OAuth2 providers like Google, Twitter or Facebook.\n\nThis component wraps the logic to display and hide a Gataca-QR component under a button. To configure and integrate it, you need to follow the same process as the basic [Gataca-QR component](../gataca-qr/readme.md).\n\nThis component can be used with the prerequisite of having an application which can be integrated with GATACA Components: Connect  and Certify. More precisely, your application will need to be able to perform the two operations against your connect or certify servers:\n\n1. Create sessions\n2. Consult sessions",
+      "readme": "# Gataca-SSIButton\n\nThis component built using stencyl allows an easy integration to display a \"Quick SSI Access Button\", with a similar to the current existing sign-in buttons for OAuth2 providers like Google, Twitter or Facebook.\n\nThis component wraps the logic to display and hide a Gataca-QR component under a button. To configure and integrate it, you need to follow the same process as the basic [Gataca-QR component](../gataca-qr/readme.md).\n\nThis component can be used with the prerequisite of having an application which can be integrated with GATACA Components: Connect and Certify. More precisely, your application will need to be able to perform the two operations against your connect or certify servers:\n\n1. Create sessions\n2. Consult sessions\n\n## Integrations\n\n### Pure JS\n\nYou can include the components by importing the library, available on NPM:\n\n#### Script tag\n\nPut a script tag similar to the source [https://unpkg.com/gatacaqr/dist/gatacaqr.js](https://unpkg.com/gatacaqr/dist/gatacaqr.js) in the head of your index.html. Check for the last version:\n\n```html\n<!DOCTYPE html>\n<html dir=\"ltr\" lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <meta\n      name=\"viewport\"\n      content=\"width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0\"\n    />\n    <script src=\"https://unpkg.com/gatacaqr@2.0.0/dist/gatacaqr.js\"></script>\n  </head>\n  ...\n</html>\n```\n\n#### Example\n\n```html\n<!DOCTYPE html>\n<html dir=\"ltr\" lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <meta\n      name=\"viewport\"\n      content=\"width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0\"\n    />\n    <title>Gataca SSI Button</title>\n    <script type=\"module\" src=\"/build/gatacaqr.esm.js\"></script>\n    <script nomodule src=\"/build/gatacaqr.js\"></script>\n  </head>\n  <body>\n    <div>\n      <gataca-ssibutton\n        id=\"gataca-qr\"\n        qrRole=\"connect\"\n        callback-server=\"https://connect.gataca.io\"\n      >\n        <!-- TODO Change with your connect server-->\n      </gataca-ssibutton>\n    </div>\n\n    <script>\n      const qr = document.getElementById(\"gataca-qr\");\n      var count = 0;\n      var ok = true;\n\n      qr.successCallback = (data) => {\n        //TODO Change with what you want to happen when the session is validated\n        alert(\"ALL OK\" + data);\n      };\n      qr.errorCallback = () => {\n        //TODO Change with what you want to happen when the session is expired or the user provides invalid credentials\n        alert(\"some error\");\n      };\n\n      qr.createSession = () => {\n        // TODO Change with an invocation to your service to create a session (either v1 or v2)\n        // Authentication request is required only for v2\n        return {\n          sessionId: \"TWp3V2R1N29ZcmFMY3Nvd3ZPb3k0UlMz\",\n          authenticationRequest: \"\",\n        };\n      };\n\n      qr.checkStatus = () => {\n        //TODO Change with and invocation to your Backend service to query the status of the session\n        count++;\n        if (count == 10) {\n          return { result: ok ? 1 : 2, data: { name: \"test\", token: \"x\" } };\n        }\n        return { result: 0 };\n      };\n    </script>\n  </body>\n</html>\n```\n\nYou can use this component with an already created session, which can be inserted on the sessionId property on the element, or passed via query parameter _id_ or _sessionId_ on the current URL.\nYou can also provide a method to generate a new session like in the example, or, in the rare event of matching the authorizer API, just the endpoint to your application.\n\nIn order to consult sessions, both options are also available, depending on how you want to develop your own API.\n\n### React App Integration\n\nImport the library\n\n```bash\nnpm install @gataca/qr --save\n```\n\nor\n\n```bash\nyarn add @gataca/qr\n```\n\nIn your base file index.js (or index.tsx), include:\n\n```typescript\nimport { applyPolyfills, defineCustomElements } from \"@gataca/qr/loader\";\n\n//before ReactDOM.render\napplyPolyfills().then(() => {\n  defineCustomElements(window);\n});\n```\n\nThe integration would depend if your using a Class Component or a Function Component. Supposing a function component (adaptation to class components is trivial), you would need to include:\n\n```typescript\ntype MyProps = {\n    ...\n    verifier?: boolean\n    configId?: string\n    appToken?: string\n}\n\n\nexport const dummyComponent: React.FC<MyProps> = (props) => {\n  ...\n  const { verifier, appToken, configId } = props\n  const qr = useRef(null)\n  let gqr: HTMLGatacaQrElement | undefined\n\n  useEffect(() => {\n            if (qr != null && qr.current != null) {\n                gqr = qr.current! as HTMLGatacaQrElement\n                gqr.createSession = createSession\n                gqr.checkStatus = checkStatus\n                gqr.successCallback = createSessionSuccess\n                gqr.errorCallback = createSessionError\n        }\n    })\n\n\n    //TODO Implement your own service logic invocation. This is just a dummy mimicking the Connect/Certify v1 APIs asuming you get an app token in props\n     const createSession = async (): Promise<{\n        sessionId: string\n        authenticationRequest?: string\n    }> => {\n        try {\n            let endpoint =\n                server +\n                (verifier ? '/api/v1/sessions' : '/api/v1/issuanceRequests')\n            let response = await fetch(endpoint, {\n                method: 'POST',\n                headers: {\n                    'Content-Type': 'application/json',\n                    Authorization: 'jwt ' + appToken,\n                },\n                body: verifier\n                    ? '{\"ssiConfigId\": \"' + configId + '\"}'\n                    : '{\"group\": \"' + configId + '\"}',\n            })\n            let data = await response.json()\n            return { sessionId: data.id! }\n        } catch (error) {\n            setSessionErrorState(true)\n            throw error\n        }\n    }\n\n    const checkStatus = async (): Promise<{\n        result: RESULT_STATUS\n        data?: any\n    }> => {\n        //TODO Implement your own service logic invocation. This is just a dummy mimicking the Connect/Certify v1 APIs asuming you get an app token in props\n        if (!appToken || error) {\n            gqr?.stop()\n        }\n        const endpoint =\n            server +\n            (verifier ? '/api/v1/sessions/' : '/admin/v1/issuanceRequests/') +\n            sessionId\n        let response = await fetch(endpoint, {\n            method: 'GET',\n            headers: {\n                Authorization: 'jwt ' + appToken,\n                'Content-Type': 'application/json',\n            },\n        })\n\n        if (verifier) {\n            let req = await response\n            return req.status === 200\n                ? { result: RESULT_STATUS.SUCCESS }\n                : req.status === 204\n                ? { result: RESULT_STATUS.ONGOING }\n                : { result: RESULT_STATUS.FAILED }\n        } else {\n            let req = await response.json()\n            return !req.status || req.status === 'PENDING'\n                ? { result: RESULT_STATUS.ONGOING }\n                : req.status === 'INVALID'\n                ? { result: RESULT_STATUS.FAILED }\n                : { result: RESULT_STATUS.SUCCESS }\n        }\n    }\n\n    const createSessionSuccess = (newdata: any) => {\n        //TODO Handle success\n    }\n\n    const createSessionError = (error: any) => {\n        //TODO Handle ERROR\n    }\n\n  //render() function in class components\n  return (\n      // @ts-ignore\n      <gataca-ssibutton\n          callback-server={ verifier ? YOUR_CONNECT_HOST: YOUR_CERTIFY_HOST }\n          ref={qr}\n          qr-role={verifier ? \"connect\":\"certify\"}\n      />\n  )\n\n}\n```\n\n### Angular App Integration\n\nTBD\n",
+      "docs": "This component built using stencyl allows an easy integration to display a \"Quick SSI Access Button\", with a similar to the current existing sign-in buttons for OAuth2 providers like Google, Twitter or Facebook.\n\nThis component wraps the logic to display and hide a Gataca-QR component under a button. To configure and integrate it, you need to follow the same process as the basic [Gataca-QR component](../gataca-qr/readme.md).\n\nThis component can be used with the prerequisite of having an application which can be integrated with GATACA Components: Connect and Certify. More precisely, your application will need to be able to perform the two operations against your connect or certify servers:\n\n1. Create sessions\n2. Consult sessions",
       "docsTags": [],
       "usage": {},
       "props": [
@@ -1050,6 +1389,23 @@
           "docs": "_[Optional]_\nIn the case of being a button, modifies its text",
           "docsTags": [],
           "default": "\"Easy login\"",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "byBrandLabel",
+          "type": "string",
+          "mutable": false,
+          "attr": "by-brand-label",
+          "reflectToAttr": false,
+          "docs": "_[Optional]_\nString to show \"by brand\" label",
+          "docsTags": [],
+          "default": "\"by Gataca\"",
           "values": [
             {
               "type": "string"
@@ -1091,6 +1447,23 @@
           "required": false
         },
         {
+          "name": "clickInsideBoxLabel",
+          "type": "string",
+          "mutable": false,
+          "attr": "click-inside-box-label",
+          "reflectToAttr": false,
+          "docs": "_[Optional]_\nString to show \"click inside\" label",
+          "docsTags": [],
+          "default": "\"Click inside the box to\"",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
           "name": "createSession",
           "type": "() => Promise<{ sessionId: string; authenticationRequest?: string; }>",
           "mutable": false,
@@ -1101,6 +1474,40 @@
           "values": [
             {
               "type": "() => Promise<{ sessionId: string; authenticationRequest?: string; }>"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "credentialsNotValidatedLabel",
+          "type": "string",
+          "mutable": false,
+          "attr": "credentials-not-validated-label",
+          "reflectToAttr": false,
+          "docs": "_[Optional]_\nString to show when credentials not validatedd",
+          "docsTags": [],
+          "default": "\"User credentials not validated\"",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "credsNotValidatedErrorLabel",
+          "type": "string",
+          "mutable": false,
+          "attr": "creds-not-validated-error-label",
+          "reflectToAttr": false,
+          "docs": "_[Optional]_\nString to show \"provided credentials not validates\" error",
+          "docsTags": [],
+          "default": "\"Provided user credentials couldn't be validated\"",
+          "values": [
+            {
+              "type": "string"
             }
           ],
           "optional": true,
@@ -1140,6 +1547,23 @@
           "required": false
         },
         {
+          "name": "failedLoginErrorLabel",
+          "type": "string",
+          "mutable": false,
+          "attr": "failed-login-error-label",
+          "reflectToAttr": false,
+          "docs": "_[Optional]_\nString to show \"failed login\" error",
+          "docsTags": [],
+          "default": "\"No successful login\"",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
           "name": "hideBrandTitle",
           "type": "boolean",
           "mutable": false,
@@ -1157,6 +1581,73 @@
           "required": false
         },
         {
+          "name": "hideQrModalDescription",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "hide-qr-modal-description",
+          "reflectToAttr": false,
+          "docs": "_[Optional]_\nBoolean to show or not show the QR Modal description",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "logoSize",
+          "type": "number",
+          "mutable": false,
+          "attr": "logo-size",
+          "reflectToAttr": false,
+          "docs": "_[Optional]_\nSize of the logo to display in percentage to the total size [0-1]. 0 means no logo will be displayed. Default is the GATACA logo. Recommended size is around 0.33",
+          "docsTags": [],
+          "default": "0",
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "logoSrc",
+          "type": "string",
+          "mutable": false,
+          "attr": "logo-src",
+          "reflectToAttr": false,
+          "docs": "_[Optional]_\nLogo to display, just if the logo size is greater than 0. No logo is the GATACA logo.",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "modalTitleColor",
+          "type": "string",
+          "mutable": false,
+          "attr": "modal-title-color",
+          "reflectToAttr": false,
+          "docs": "_[Optional]_\nString to set Modal title color",
+          "docsTags": [],
+          "default": "\"#4745B7\"",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
           "name": "pollingFrequency",
           "type": "number",
           "mutable": false,
@@ -1167,6 +1658,23 @@
           "values": [
             {
               "type": "number"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "qrCodeExpiredLabel",
+          "type": "string",
+          "mutable": false,
+          "attr": "qr-code-expired-label",
+          "reflectToAttr": false,
+          "docs": "_[Optional]_\nString to show when qr code expired",
+          "docsTags": [],
+          "default": "\"QR Code expired\"",
+          "values": [
+            {
+              "type": "string"
             }
           ],
           "optional": true,
@@ -1223,6 +1731,40 @@
           "required": false
         },
         {
+          "name": "refreshQrLabel",
+          "type": "string",
+          "mutable": false,
+          "attr": "refresh-qr-label",
+          "reflectToAttr": false,
+          "docs": "_[Optional]_\nString to show \"refresh QR\" label",
+          "docsTags": [],
+          "default": "\"Refresh QR Code\"",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "scanQrLabel",
+          "type": "string",
+          "mutable": false,
+          "attr": "scan-qr-label",
+          "reflectToAttr": false,
+          "docs": "_[Optional]_\nString to show \"scan QR\" label",
+          "docsTags": [],
+          "default": "\"Scan QR Code\"",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
           "name": "sessionTimeout",
           "type": "number",
           "mutable": false,
@@ -1255,6 +1797,40 @@
           "required": false
         },
         {
+          "name": "successLoginLabel",
+          "type": "string",
+          "mutable": false,
+          "attr": "success-login-label",
+          "reflectToAttr": false,
+          "docs": "_[Optional]_\nString to show \"successful login\" label",
+          "docsTags": [],
+          "default": "\"Successful Connection!\"",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "userNotScanInTimeErrorLabel",
+          "type": "string",
+          "mutable": false,
+          "attr": "user-not-scan-in-time-error-label",
+          "reflectToAttr": false,
+          "docs": "_[Optional]_\nString to show \"user not scan in time\" error",
+          "docsTags": [],
+          "default": "\"User did not scan the QR in the allowed time\"",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
           "name": "v2",
           "type": "boolean",
           "mutable": false,
@@ -1266,6 +1842,23 @@
           "values": [
             {
               "type": "boolean"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "waitingStartSessionLabel",
+          "type": "string",
+          "mutable": false,
+          "attr": "waiting-start-session-label",
+          "reflectToAttr": false,
+          "docs": "_[Optional]_\nString to show \"waiting start session\" label",
+          "docsTags": [],
+          "default": "\"waiting to start a session\"",
+          "values": [
+            {
+              "type": "string"
             }
           ],
           "optional": true,

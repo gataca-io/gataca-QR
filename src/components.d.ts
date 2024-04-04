@@ -61,6 +61,10 @@ export namespace Components {
          */
         "autostart": boolean;
         /**
+          * _[Optional]_ String to show "by brand" label
+         */
+        "byBrandLabel"?: string;
+        /**
           * ***Mandatory just for V1*** Connect/Certify Server where the wallet will send the data
          */
         "callbackServer": string;
@@ -71,12 +75,24 @@ export namespace Components {
     id?: string
   ) => Promise<{ result: RESULT_STATUS1; data?: any }>;
         /**
+          * _[Optional]_ String to show "click inside" label
+         */
+        "clickInsideBoxLabel"?: string;
+        /**
           * ***Mandatory*** Create session function to generate a new Session Using V1, it can provide just a session Id Using V2, it must provide also the authentication request. The session Id is the id of the presentation definition
          */
         "createSession"?: () => Promise<{
     sessionId: string;
     authenticationRequest?: string;
   }>;
+        /**
+          * _[Optional]_ String to show when credentials not validatedd
+         */
+        "credentialsNotValidatedLabel"?: string;
+        /**
+          * _[Optional]_ String to show "provided credentials not validates" error
+         */
+        "credsNotValidatedErrorLabel"?: string;
         /**
           * Force manually the display of a QR
          */
@@ -90,6 +106,10 @@ export namespace Components {
          */
         "errorCallback": (error?: Error) => void;
         /**
+          * _[Optional]_ String to show "failed login" error
+         */
+        "failedLoginErrorLabel"?: string;
+        /**
           * Retrieve manually the session data on a successful login
          */
         "getSessionData": () => Promise<any>;
@@ -98,9 +118,45 @@ export namespace Components {
          */
         "hideBrandTitle"?: boolean;
         /**
+          * _[Optional]_ Boolean to show or not show the modal title, brandTitle and description
+         */
+        "hideModalBoxShadow"?: boolean;
+        /**
+          * _[Optional]_ Boolean to show or not show the modal title, brandTitle and description
+         */
+        "hideModalTexts"?: boolean;
+        /**
+          * _[Optional]_ Boolean to show or not show the QR Modal description
+         */
+        "hideQrModalDescription"?: boolean;
+        /**
+          * _[Optional]_ Size of the logo to display in percentage to the total size [0-1]. 0 means no logo will be displayed. Default is the GATACA logo. Recommended size is around 0.33
+         */
+        "logoSize"?: number;
+        /**
+          * _[Optional]_ Logo to display, just if the logo size is greater than 0. No logo is the GATACA logo.
+         */
+        "logoSrc"?: string;
+        /**
+          * _[Optional]_ Height of the modal
+         */
+        "modalHeight"?: number;
+        /**
+          * _[Optional]_ String to set Modal title color
+         */
+        "modalTitleColor"?: string;
+        /**
+          * _[Optional]_ Width of the modal
+         */
+        "modalWidth"?: number;
+        /**
           * _[Optional]_ Frequency in seconds to check if the session has been validated
          */
         "pollingFrequency"?: number;
+        /**
+          * _[Optional]_ String to show when qr code expired
+         */
+        "qrCodeExpiredLabel"?: string;
         /**
           * _[Optional]_ Modifies the Modal description
          */
@@ -110,9 +166,21 @@ export namespace Components {
          */
         "qrModalTitle"?: string;
         /**
-          * ***Mandatory*** Decide if scanning the credential as a verifier to request credentials or as an issuer too issue credentials. Options: connect | certify
+          * ***Mandatory just for V1*** Decide if scanning the credential as a verifier to request credentials or as an issuer too issue credentials. Options: connect | certify
          */
         "qrRole": string;
+        /**
+          * _[Optional]_ Size of QR Displayed
+         */
+        "qrSize"?: number;
+        /**
+          * _[Optional]_ String to show "refresh QR" label
+         */
+        "refreshQrLabel"?: string;
+        /**
+          * _[Optional]_ String to show "scan QR" label
+         */
+        "scanQrLabel"?: string;
         /**
           * _[Optional]_ Maximum time window to display the session
          */
@@ -126,9 +194,21 @@ export namespace Components {
          */
         "successCallback": (data?: any) => void;
         /**
+          * _[Optional]_ String to show "successful login" label
+         */
+        "successLoginLabel"?: string;
+        /**
+          * _[Optional]_ String to show "user not scan in time" error
+         */
+        "userNotScanInTimeErrorLabel"?: string;
+        /**
           * _[Optional]_ Set to use v2 links. The create session must be providing both an authentication request and a session Id
          */
         "v2"?: boolean;
+        /**
+          * _[Optional]_ String to show "waiting start session" label
+         */
+        "waitingStartSessionLabel"?: string;
     }
     interface GatacaQrdisplay {
         /**
@@ -240,6 +320,10 @@ export namespace Components {
          */
         "buttonText"?: string;
         /**
+          * _[Optional]_ String to show "by brand" label
+         */
+        "byBrandLabel"?: string;
+        /**
           * ***Mandatory just for V1*** Connect/Certify Server where the wallet will send the data
          */
         "callbackServer": string;
@@ -250,12 +334,24 @@ export namespace Components {
     id?: string
   ) => Promise<{ result: RESULT_STATUS1; data?: any }>;
         /**
+          * _[Optional]_ String to show "click inside" label
+         */
+        "clickInsideBoxLabel"?: string;
+        /**
           * ***Mandatory*** Create session function to generate a new Session Using V1, it can provide just a session Id Using V2, it must provide also the authentication request. The session Id is the id of the presentation definition
          */
         "createSession"?: () => Promise<{
     sessionId: string;
     authenticationRequest?: string;
   }>;
+        /**
+          * _[Optional]_ String to show when credentials not validatedd
+         */
+        "credentialsNotValidatedLabel"?: string;
+        /**
+          * _[Optional]_ String to show "provided credentials not validates" error
+         */
+        "credsNotValidatedErrorLabel"?: string;
         /**
           * _[Optional]_ Display a link containing a dynamic link to invoke the wallet if closed
          */
@@ -265,6 +361,10 @@ export namespace Components {
          */
         "errorCallback": (error?: Error) => void;
         /**
+          * _[Optional]_ String to show "failed login" error
+         */
+        "failedLoginErrorLabel"?: string;
+        /**
           * Retrieve manually the session data on a successful login
          */
         "getSessionData": () => Promise<any>;
@@ -273,9 +373,29 @@ export namespace Components {
          */
         "hideBrandTitle"?: boolean;
         /**
+          * _[Optional]_ Boolean to show or not show the QR Modal description
+         */
+        "hideQrModalDescription"?: boolean;
+        /**
+          * _[Optional]_ Size of the logo to display in percentage to the total size [0-1]. 0 means no logo will be displayed. Default is the GATACA logo. Recommended size is around 0.33
+         */
+        "logoSize"?: number;
+        /**
+          * _[Optional]_ Logo to display, just if the logo size is greater than 0. No logo is the GATACA logo.
+         */
+        "logoSrc"?: string;
+        /**
+          * _[Optional]_ String to set Modal title color
+         */
+        "modalTitleColor"?: string;
+        /**
           * _[Optional]_ Frequency in seconds to check if the session has been validated
          */
         "pollingFrequency"?: number;
+        /**
+          * _[Optional]_ String to show when qr code expired
+         */
+        "qrCodeExpiredLabel"?: string;
         /**
           * _[Optional]_ Modifies the Modal description
          */
@@ -289,6 +409,14 @@ export namespace Components {
          */
         "qrRole": string;
         /**
+          * _[Optional]_ String to show "refresh QR" label
+         */
+        "refreshQrLabel"?: string;
+        /**
+          * _[Optional]_ String to show "scan QR" label
+         */
+        "scanQrLabel"?: string;
+        /**
           * _[Optional]_ Maximum time window to display the session
          */
         "sessionTimeout"?: number;
@@ -297,9 +425,21 @@ export namespace Components {
          */
         "successCallback": (data?: any) => void;
         /**
+          * _[Optional]_ String to show "successful login" label
+         */
+        "successLoginLabel"?: string;
+        /**
+          * _[Optional]_ String to show "user not scan in time" error
+         */
+        "userNotScanInTimeErrorLabel"?: string;
+        /**
           * _[Optional]_ Set to use v2 links. The create session must be providing both an authentication request and a session Id
          */
         "v2"?: boolean;
+        /**
+          * _[Optional]_ String to show "waiting start session" label
+         */
+        "waitingStartSessionLabel"?: string;
     }
     interface GatacaSsibuttonws {
         /**
@@ -496,6 +636,10 @@ declare namespace LocalJSX {
          */
         "autostart"?: boolean;
         /**
+          * _[Optional]_ String to show "by brand" label
+         */
+        "byBrandLabel"?: string;
+        /**
           * ***Mandatory just for V1*** Connect/Certify Server where the wallet will send the data
          */
         "callbackServer"?: string;
@@ -506,12 +650,24 @@ declare namespace LocalJSX {
     id?: string
   ) => Promise<{ result: RESULT_STATUS1; data?: any }>;
         /**
+          * _[Optional]_ String to show "click inside" label
+         */
+        "clickInsideBoxLabel"?: string;
+        /**
           * ***Mandatory*** Create session function to generate a new Session Using V1, it can provide just a session Id Using V2, it must provide also the authentication request. The session Id is the id of the presentation definition
          */
         "createSession"?: () => Promise<{
     sessionId: string;
     authenticationRequest?: string;
   }>;
+        /**
+          * _[Optional]_ String to show when credentials not validatedd
+         */
+        "credentialsNotValidatedLabel"?: string;
+        /**
+          * _[Optional]_ String to show "provided credentials not validates" error
+         */
+        "credsNotValidatedErrorLabel"?: string;
         /**
           * _[Optional]_ Display a link containing a dynamic link to invoke the wallet if closed
          */
@@ -521,9 +677,45 @@ declare namespace LocalJSX {
          */
         "errorCallback"?: (error?: Error) => void;
         /**
+          * _[Optional]_ String to show "failed login" error
+         */
+        "failedLoginErrorLabel"?: string;
+        /**
           * _[Optional]_ Boolean to show or not show the gataca brand title
          */
         "hideBrandTitle"?: boolean;
+        /**
+          * _[Optional]_ Boolean to show or not show the modal title, brandTitle and description
+         */
+        "hideModalBoxShadow"?: boolean;
+        /**
+          * _[Optional]_ Boolean to show or not show the modal title, brandTitle and description
+         */
+        "hideModalTexts"?: boolean;
+        /**
+          * _[Optional]_ Boolean to show or not show the QR Modal description
+         */
+        "hideQrModalDescription"?: boolean;
+        /**
+          * _[Optional]_ Size of the logo to display in percentage to the total size [0-1]. 0 means no logo will be displayed. Default is the GATACA logo. Recommended size is around 0.33
+         */
+        "logoSize"?: number;
+        /**
+          * _[Optional]_ Logo to display, just if the logo size is greater than 0. No logo is the GATACA logo.
+         */
+        "logoSrc"?: string;
+        /**
+          * _[Optional]_ Height of the modal
+         */
+        "modalHeight"?: number;
+        /**
+          * _[Optional]_ String to set Modal title color
+         */
+        "modalTitleColor"?: string;
+        /**
+          * _[Optional]_ Width of the modal
+         */
+        "modalWidth"?: number;
         /**
           * GatacaLoginCompleted event, triggered with session data upon login success
          */
@@ -537,6 +729,10 @@ declare namespace LocalJSX {
          */
         "pollingFrequency"?: number;
         /**
+          * _[Optional]_ String to show when qr code expired
+         */
+        "qrCodeExpiredLabel"?: string;
+        /**
           * _[Optional]_ Modifies the Modal description
          */
         "qrModalDescription"?: string;
@@ -545,9 +741,21 @@ declare namespace LocalJSX {
          */
         "qrModalTitle"?: string;
         /**
-          * ***Mandatory*** Decide if scanning the credential as a verifier to request credentials or as an issuer too issue credentials. Options: connect | certify
+          * ***Mandatory just for V1*** Decide if scanning the credential as a verifier to request credentials or as an issuer too issue credentials. Options: connect | certify
          */
         "qrRole"?: string;
+        /**
+          * _[Optional]_ Size of QR Displayed
+         */
+        "qrSize"?: number;
+        /**
+          * _[Optional]_ String to show "refresh QR" label
+         */
+        "refreshQrLabel"?: string;
+        /**
+          * _[Optional]_ String to show "scan QR" label
+         */
+        "scanQrLabel"?: string;
         /**
           * _[Optional]_ Maximum time window to display the session
          */
@@ -557,9 +765,21 @@ declare namespace LocalJSX {
          */
         "successCallback"?: (data?: any) => void;
         /**
+          * _[Optional]_ String to show "successful login" label
+         */
+        "successLoginLabel"?: string;
+        /**
+          * _[Optional]_ String to show "user not scan in time" error
+         */
+        "userNotScanInTimeErrorLabel"?: string;
+        /**
           * _[Optional]_ Set to use v2 links. The create session must be providing both an authentication request and a session Id
          */
         "v2"?: boolean;
+        /**
+          * _[Optional]_ String to show "waiting start session" label
+         */
+        "waitingStartSessionLabel"?: string;
     }
     interface GatacaQrdisplay {
         /**
@@ -667,6 +887,10 @@ declare namespace LocalJSX {
          */
         "buttonText"?: string;
         /**
+          * _[Optional]_ String to show "by brand" label
+         */
+        "byBrandLabel"?: string;
+        /**
           * ***Mandatory just for V1*** Connect/Certify Server where the wallet will send the data
          */
         "callbackServer"?: string;
@@ -677,12 +901,24 @@ declare namespace LocalJSX {
     id?: string
   ) => Promise<{ result: RESULT_STATUS1; data?: any }>;
         /**
+          * _[Optional]_ String to show "click inside" label
+         */
+        "clickInsideBoxLabel"?: string;
+        /**
           * ***Mandatory*** Create session function to generate a new Session Using V1, it can provide just a session Id Using V2, it must provide also the authentication request. The session Id is the id of the presentation definition
          */
         "createSession"?: () => Promise<{
     sessionId: string;
     authenticationRequest?: string;
   }>;
+        /**
+          * _[Optional]_ String to show when credentials not validatedd
+         */
+        "credentialsNotValidatedLabel"?: string;
+        /**
+          * _[Optional]_ String to show "provided credentials not validates" error
+         */
+        "credsNotValidatedErrorLabel"?: string;
         /**
           * _[Optional]_ Display a link containing a dynamic link to invoke the wallet if closed
          */
@@ -692,9 +928,29 @@ declare namespace LocalJSX {
          */
         "errorCallback"?: (error?: Error) => void;
         /**
+          * _[Optional]_ String to show "failed login" error
+         */
+        "failedLoginErrorLabel"?: string;
+        /**
           * _[Optional]_ Boolean to show or not show the gataca brand title
          */
         "hideBrandTitle"?: boolean;
+        /**
+          * _[Optional]_ Boolean to show or not show the QR Modal description
+         */
+        "hideQrModalDescription"?: boolean;
+        /**
+          * _[Optional]_ Size of the logo to display in percentage to the total size [0-1]. 0 means no logo will be displayed. Default is the GATACA logo. Recommended size is around 0.33
+         */
+        "logoSize"?: number;
+        /**
+          * _[Optional]_ Logo to display, just if the logo size is greater than 0. No logo is the GATACA logo.
+         */
+        "logoSrc"?: string;
+        /**
+          * _[Optional]_ String to set Modal title color
+         */
+        "modalTitleColor"?: string;
         /**
           * GatacaLoginCompleted event, triggered with session data upon login success
          */
@@ -708,6 +964,10 @@ declare namespace LocalJSX {
          */
         "pollingFrequency"?: number;
         /**
+          * _[Optional]_ String to show when qr code expired
+         */
+        "qrCodeExpiredLabel"?: string;
+        /**
           * _[Optional]_ Modifies the Modal description
          */
         "qrModalDescription"?: string;
@@ -720,6 +980,14 @@ declare namespace LocalJSX {
          */
         "qrRole"?: string;
         /**
+          * _[Optional]_ String to show "refresh QR" label
+         */
+        "refreshQrLabel"?: string;
+        /**
+          * _[Optional]_ String to show "scan QR" label
+         */
+        "scanQrLabel"?: string;
+        /**
           * _[Optional]_ Maximum time window to display the session
          */
         "sessionTimeout"?: number;
@@ -728,9 +996,21 @@ declare namespace LocalJSX {
          */
         "successCallback"?: (data?: any) => void;
         /**
+          * _[Optional]_ String to show "successful login" label
+         */
+        "successLoginLabel"?: string;
+        /**
+          * _[Optional]_ String to show "user not scan in time" error
+         */
+        "userNotScanInTimeErrorLabel"?: string;
+        /**
           * _[Optional]_ Set to use v2 links. The create session must be providing both an authentication request and a session Id
          */
         "v2"?: boolean;
+        /**
+          * _[Optional]_ String to show "waiting start session" label
+         */
+        "waitingStartSessionLabel"?: string;
     }
     interface GatacaSsibuttonws {
         /**

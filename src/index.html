@@ -1,54 +1,48 @@
-<!DOCTYPE html>
-<html dir="ltr" lang="en">
-
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
   <title>Gataca QR Component</title>
   <script type="module" src="/build/gatacaqr.esm.js"></script>
   <script nomodule src="/build/gatacaqr.js"></script>
 </head>
 
 <body>
-
   <div>
-
-
-    <gataca-autoqr id="gataca-qr" config-id="23kk7PXZ2t7GLMYQtLHeKQE4bp8Vw3wq"
-    config-repository="http://localhost:9090/api/v1/qrconfigs">
-      <!--//TODO Replace with your config-->
-    </gataca-autoqr>
-
+    <gataca-qr id="gataca-qr" qrRole="connect" hide-modal-texts="true" hide-modal-box-shadow="true" modal-width="300"
+      modal-height="300" qr-size="300" callback-server="https://connect.gataca.io">
+      <!-- TODO Change with your connect server-->
+    </gataca-qr>
   </div>
 
   <script>
-    //Expected config
-    // {
-    //     "id": "23kk7PXZ2t7GLMYQtLHeKQE4bp8Vw3wq",
-    //       "domain": "https://693c-2a0c-5a81-b605-e400-1c03-e4a2-b29e-1833.ngrok.io",
-    //         "useButton": false,
-    //           "useWs": true,
-    //             "qrRole": "connect",
-    //               "autorefresh": true,
-    //                 "sessionTimeout": 120,
-    //                   "v2": true,
-    //                     "socketEndpoint": "ws://gaas.dev.gataca.io/ws/v1/login/gataca"
-    //   }
-
-    const qr = document.getElementById('gataca-qr');
+    const qr = document.getElementById("gataca-qr");
     var count = 0;
     var ok = true;
-
     qr.successCallback = (data) => {
-      alert("ALL OK" + data)
+      //TODO Change with what you want to happen when the session is validated
+      alert("ALL OK" + data);
     };
-
-  // (async () => {
-  //   await customElements.whenDefined('gataca-qr');
-  // })();
-
+    qr.errorCallback = () => {
+      //TODO Change with what you want to happen when the session is expired or the user provides invalid credentials
+      alert("some error");
+    };
+    qr.createSession = () => {
+      // TODO Change with an invocation to your service to create a session (either v1 or v2)
+      // Authentication request is required only for v2
+      return {
+        sessionId: "TWp3V2R1N29ZcmFMY3Nvd3ZPb3k0UlMz",
+        authenticationRequest: "",
+      };
+    };
+    qr.checkStatus = () => {
+      //TODO Change with and invocation to your Backend service to query the status of the session
+      count++;
+      if (count == 10) {
+        return { result: ok ? 1 : 2, data: { name: "test", token: "x" } };
+      }
+      return { result: 0 };
+    };
   </script>
-
 </body>
 
 </html>

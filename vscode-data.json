@@ -22,7 +22,7 @@
       "name": "gataca-qr",
       "description": {
         "kind": "markdown",
-        "value": "This component built using stencyl allows an easy integration to display a gataca QR to be read by the wallet.\n\nThis component can be used with the prerequisite of having an application which can be integrated with GATACA Components: Connect  and Certify. More precisely, your application will need to be able to perform the two operations against your connect or certify servers:\n1. Create sessions\n2. Consult sessions"
+        "value": "This component built using stencyl allows an easy integration to display a gataca QR to be read by the wallet.\n\nThis component can be used with the prerequisite of having an application which can be integrated with GATACA Components: Connect and Certify. More precisely, your application will need to be able to perform the two operations against your connect or certify servers:\n\n1. Create sessions\n2. Consult sessions"
       },
       "attributes": [
         {
@@ -34,20 +34,76 @@
           "description": "_[Optional]_\nSet to enable autoload when the QR is displayed. By default it is true"
         },
         {
+          "name": "by-brand-label",
+          "description": "_[Optional]_\nString to show \"by brand\" label"
+        },
+        {
           "name": "callback-server",
           "description": "***Mandatory just for V1***\nConnect/Certify Server where the wallet will send the data"
+        },
+        {
+          "name": "click-inside-box-label",
+          "description": "_[Optional]_\nString to show \"click inside\" label"
+        },
+        {
+          "name": "credentials-not-validated-label",
+          "description": "_[Optional]_\nString to show when credentials not validatedd"
+        },
+        {
+          "name": "creds-not-validated-error-label",
+          "description": "_[Optional]_\nString to show \"provided credentials not validates\" error"
         },
         {
           "name": "dynamic-link",
           "description": "_[Optional]_\nDisplay a link containing a dynamic link to invoke the wallet if closed"
         },
         {
+          "name": "failed-login-error-label",
+          "description": "_[Optional]_\nString to show \"failed login\" error"
+        },
+        {
           "name": "hide-brand-title",
           "description": "_[Optional]_\nBoolean to show or not show the gataca brand title"
         },
         {
+          "name": "hide-modal-box-shadow",
+          "description": "_[Optional]_\nBoolean to show or not show the modal title, brandTitle and description"
+        },
+        {
+          "name": "hide-modal-texts",
+          "description": "_[Optional]_\nBoolean to show or not show the modal title, brandTitle and description"
+        },
+        {
+          "name": "hide-qr-modal-description",
+          "description": "_[Optional]_\nBoolean to show or not show the QR Modal description"
+        },
+        {
+          "name": "logo-size",
+          "description": "_[Optional]_\nSize of the logo to display in percentage to the total size [0-1]. 0 means no logo will be displayed. Default is the GATACA logo. Recommended size is around 0.33"
+        },
+        {
+          "name": "logo-src",
+          "description": "_[Optional]_\nLogo to display, just if the logo size is greater than 0. No logo is the GATACA logo."
+        },
+        {
+          "name": "modal-height",
+          "description": "_[Optional]_\nHeight of the modal"
+        },
+        {
+          "name": "modal-title-color",
+          "description": "_[Optional]_\nString to set Modal title color"
+        },
+        {
+          "name": "modal-width",
+          "description": "_[Optional]_\nWidth of the modal"
+        },
+        {
           "name": "polling-frequency",
           "description": "_[Optional]_\nFrequency in seconds to check if the session has been validated"
+        },
+        {
+          "name": "qr-code-expired-label",
+          "description": "_[Optional]_\nString to show when qr code expired"
         },
         {
           "name": "qr-modal-description",
@@ -59,15 +115,39 @@
         },
         {
           "name": "qr-role",
-          "description": "***Mandatory***\nDecide if scanning the credential as a verifier to request credentials\nor as an issuer too issue credentials.\nOptions: connect | certify"
+          "description": "***Mandatory just for V1***\nDecide if scanning the credential as a verifier to request credentials\nor as an issuer too issue credentials.\nOptions: connect | certify"
+        },
+        {
+          "name": "qr-size",
+          "description": "_[Optional]_\nSize of QR Displayed"
+        },
+        {
+          "name": "refresh-qr-label",
+          "description": "_[Optional]_\nString to show \"refresh QR\" label"
+        },
+        {
+          "name": "scan-qr-label",
+          "description": "_[Optional]_\nString to show \"scan QR\" label"
         },
         {
           "name": "session-timeout",
           "description": "_[Optional]_\nMaximum time window to display the session"
         },
         {
+          "name": "success-login-label",
+          "description": "_[Optional]_\nString to show \"successful login\" label"
+        },
+        {
+          "name": "user-not-scan-in-time-error-label",
+          "description": "_[Optional]_\nString to show \"user not scan in time\" error"
+        },
+        {
           "name": "v-2",
           "description": "_[Optional]_\nSet to use v2 links. The create session must be providing both an authentication request and a session Id"
+        },
+        {
+          "name": "waiting-start-session-label",
+          "description": "_[Optional]_\nString to show \"waiting start session\" label"
         }
       ]
     },
@@ -75,7 +155,7 @@
       "name": "gataca-qrdisplay",
       "description": {
         "kind": "markdown",
-        "value": "This component built using stencyl allows an easy integration to display a QR with the gataca styles\n\nContinuing with that example, you could integrate in any HTML using the following code\n\n````html\n<!DOCTYPE html>\n<html dir=\"ltr\" lang=\"en\">\n\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0\">\n  <title>Gataca QR Display Component</title>\n  <script type=\"module\" src=\"/build/gataca-qrdisplay.esm.js\"></script>\n  <script nomodule src=\"/build/gataca-qrdisplay.js\"></script>\n</head>\n\n<body>\n  <div class=\"your-container-styles\">\n\n    <gataca-qrdisplay id=\"gataca-qr\" qr-data=\"DATA TO DISPLAY\">\n      </gataca-qr>\n\n  </div>\n</body>\n\n</html>\n````"
+        "value": "This component built using stencyl allows an easy integration to display a QR with the gataca styles\n\nContinuing with that example, you could integrate in any HTML using the following code\n\n```html\n<!DOCTYPE html>\n<html dir=\"ltr\" lang=\"en\">\n\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0\">\n  <title>Gataca QR Display Component</title>\n  <script type=\"module\" src=\"/build/gataca-qrdisplay.esm.js\"></script>\n  <script nomodule src=\"/build/gataca-qrdisplay.js\"></script>\n</head>\n\n<body>\n  <div class=\"your-container-styles\">\n\n    <gataca-qrdisplay id=\"gataca-qr\" qr-data=\"DATA TO DISPLAY\">\n      </gataca-qr>\n\n  </div>\n</body>\n\n</html>\n```"
       },
       "attributes": [
         {
@@ -161,7 +241,7 @@
       "name": "gataca-ssibutton",
       "description": {
         "kind": "markdown",
-        "value": "This component built using stencyl allows an easy integration to display a \"Quick SSI Access Button\", with a similar to the current existing sign-in buttons for OAuth2 providers like Google, Twitter or Facebook.\n\nThis component wraps the logic to display and hide a Gataca-QR component under a button. To configure and integrate it, you need to follow the same process as the basic [Gataca-QR component](../gataca-qr/readme.md).\n\nThis component can be used with the prerequisite of having an application which can be integrated with GATACA Components: Connect  and Certify. More precisely, your application will need to be able to perform the two operations against your connect or certify servers:\n\n1. Create sessions\n2. Consult sessions"
+        "value": "This component built using stencyl allows an easy integration to display a \"Quick SSI Access Button\", with a similar to the current existing sign-in buttons for OAuth2 providers like Google, Twitter or Facebook.\n\nThis component wraps the logic to display and hide a Gataca-QR component under a button. To configure and integrate it, you need to follow the same process as the basic [Gataca-QR component](../gataca-qr/readme.md).\n\nThis component can be used with the prerequisite of having an application which can be integrated with GATACA Components: Connect and Certify. More precisely, your application will need to be able to perform the two operations against your connect or certify servers:\n\n1. Create sessions\n2. Consult sessions"
       },
       "attributes": [
         {
@@ -173,20 +253,60 @@
           "description": "_[Optional]_\nIn the case of being a button, modifies its text"
         },
         {
+          "name": "by-brand-label",
+          "description": "_[Optional]_\nString to show \"by brand\" label"
+        },
+        {
           "name": "callback-server",
           "description": "***Mandatory just for V1***\nConnect/Certify Server where the wallet will send the data"
+        },
+        {
+          "name": "click-inside-box-label",
+          "description": "_[Optional]_\nString to show \"click inside\" label"
+        },
+        {
+          "name": "credentials-not-validated-label",
+          "description": "_[Optional]_\nString to show when credentials not validatedd"
+        },
+        {
+          "name": "creds-not-validated-error-label",
+          "description": "_[Optional]_\nString to show \"provided credentials not validates\" error"
         },
         {
           "name": "dynamic-link",
           "description": "_[Optional]_\nDisplay a link containing a dynamic link to invoke the wallet if closed"
         },
         {
+          "name": "failed-login-error-label",
+          "description": "_[Optional]_\nString to show \"failed login\" error"
+        },
+        {
           "name": "hide-brand-title",
           "description": "_[Optional]_\nBoolean to show or not show the gataca brand title"
         },
         {
+          "name": "hide-qr-modal-description",
+          "description": "_[Optional]_\nBoolean to show or not show the QR Modal description"
+        },
+        {
+          "name": "logo-size",
+          "description": "_[Optional]_\nSize of the logo to display in percentage to the total size [0-1]. 0 means no logo will be displayed. Default is the GATACA logo. Recommended size is around 0.33"
+        },
+        {
+          "name": "logo-src",
+          "description": "_[Optional]_\nLogo to display, just if the logo size is greater than 0. No logo is the GATACA logo."
+        },
+        {
+          "name": "modal-title-color",
+          "description": "_[Optional]_\nString to set Modal title color"
+        },
+        {
           "name": "polling-frequency",
           "description": "_[Optional]_\nFrequency in seconds to check if the session has been validated"
+        },
+        {
+          "name": "qr-code-expired-label",
+          "description": "_[Optional]_\nString to show when qr code expired"
         },
         {
           "name": "qr-modal-description",
@@ -201,12 +321,32 @@
           "description": "***Mandatory***\nDecide if scanning the credential as a verifier to request credentials\nor as an issuer too issue credentials.\nOptions: connect | certify"
         },
         {
+          "name": "refresh-qr-label",
+          "description": "_[Optional]_\nString to show \"refresh QR\" label"
+        },
+        {
+          "name": "scan-qr-label",
+          "description": "_[Optional]_\nString to show \"scan QR\" label"
+        },
+        {
           "name": "session-timeout",
           "description": "_[Optional]_\nMaximum time window to display the session"
         },
         {
+          "name": "success-login-label",
+          "description": "_[Optional]_\nString to show \"successful login\" label"
+        },
+        {
+          "name": "user-not-scan-in-time-error-label",
+          "description": "_[Optional]_\nString to show \"user not scan in time\" error"
+        },
+        {
           "name": "v-2",
           "description": "_[Optional]_\nSet to use v2 links. The create session must be providing both an authentication request and a session Id"
+        },
+        {
+          "name": "waiting-start-session-label",
+          "description": "_[Optional]_\nString to show \"waiting start session\" label"
         }
       ]
     },
