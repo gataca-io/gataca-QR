@@ -486,7 +486,6 @@ export class GatacaQR {
   }
 
   render() {
-    console.log("result", this.result);
     return (
       <div class="popUpContainer">
         <div

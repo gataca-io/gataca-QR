@@ -6,6 +6,7 @@
    License: none (public domain)
 */
 
+
 html,
 body,
 div,
@@ -284,7 +285,11 @@ img {
   align-items: center;
   padding: 0px;
 
-  .successMsg {
+  & > img {
+    padding-bottom: 12px;
+  }
+
+  & > .successMsg {
     line-height: 23.5px;
     color: var(--neutral-1000, #1e1e20);
     text-align: center;
@@ -334,15 +339,9 @@ img {
   justify-content: center;
   align-items: center;
   align-content: center;
-  align-self: center;
   display: flex;
   flex-direction: column;
-  padding: 24px;
   box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   padding: 20px;
   background: rgba(255, 255, 255, 0.95);
 
@@ -354,7 +353,6 @@ img {
 .alert {
   display: flex;
   flex-direction: row;
-  align-items: center;
   justify-content: start;
   width: 252px;
   position: absolute;
@@ -367,6 +365,10 @@ img {
   padding: 12px;
   align-items: center;
   gap: 12px;
+
+  & > img {
+    margin: 0;
+  }
 
   & > p {
     font-family: "Poppins", "Ubuntu", "Work Sans", "Helvetica Neue", sans-serif;;
@@ -386,4 +388,5 @@ img {
   font-weight: 400;
   line-height: 16px;
   color: #707074;
+  text-align: center;
 }
