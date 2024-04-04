@@ -200,16 +200,72 @@
           "description": "_[Optional]_\nSet to enable autoload when the QR is displayed. By default it is true"
         },
         {
+          "name": "by-brand-label",
+          "description": "_[Optional]_\nString to show \"by brand\" label"
+        },
+        {
           "name": "callback-server",
           "description": "***Mandatory just for V1***\nConnect/Certify Server where the wallet will send the data"
+        },
+        {
+          "name": "click-inside-box-label",
+          "description": "_[Optional]_\nString to show \"click inside\" label"
+        },
+        {
+          "name": "credentials-not-validated-label",
+          "description": "_[Optional]_\nString to show when credentials not validatedd"
+        },
+        {
+          "name": "creds-not-validated-error-label",
+          "description": "_[Optional]_\nString to show \"provided credentials not validates\" error"
         },
         {
           "name": "dynamic-link",
           "description": "_[Optional]_\nDisplay a link containing a dynamic link to invoke the wallet if closed"
         },
         {
+          "name": "failed-login-error-label",
+          "description": "_[Optional]_\nString to show \"failed login\" error"
+        },
+        {
           "name": "hide-brand-title",
           "description": "_[Optional]_\nBoolean to show or not show the gataca brand title"
+        },
+        {
+          "name": "hide-modal-box-shadow",
+          "description": "_[Optional]_\nBoolean to show or not show the modal title, brandTitle and description"
+        },
+        {
+          "name": "hide-modal-texts",
+          "description": "_[Optional]_\nBoolean to show or not show the modal title, brandTitle and description"
+        },
+        {
+          "name": "hide-qr-modal-description",
+          "description": "_[Optional]_\nBoolean to show or not show the QR Modal description"
+        },
+        {
+          "name": "logo-size",
+          "description": "_[Optional]_\nSize of the logo to display in percentage to the total size [0-1]. 0 means no logo will be displayed. Default is the GATACA logo. Recommended size is around 0.33"
+        },
+        {
+          "name": "logo-src",
+          "description": "_[Optional]_\nLogo to display, just if the logo size is greater than 0. No logo is the GATACA logo."
+        },
+        {
+          "name": "modal-height",
+          "description": "_[Optional]_\nHeight of the modal"
+        },
+        {
+          "name": "modal-title-color",
+          "description": "_[Optional]_\nString to set Modal title color"
+        },
+        {
+          "name": "modal-width",
+          "description": "_[Optional]_\nWidth of the modal"
+        },
+        {
+          "name": "qr-code-expired-label",
+          "description": "_[Optional]_\nString to show when qr code expired"
         },
         {
           "name": "qr-modal-description",
@@ -224,6 +280,18 @@
           "description": "***Mandatory***\nDecide if scanning the credential as a verifier to request credentials\nor as an issuer too issue credentials.\nOptions: connect | certify"
         },
         {
+          "name": "qr-size",
+          "description": "_[Optional]_\nSize of QR Displayed"
+        },
+        {
+          "name": "refresh-qr-label",
+          "description": "_[Optional]_\nString to show \"refresh QR\" label"
+        },
+        {
+          "name": "scan-qr-label",
+          "description": "_[Optional]_\nString to show \"scan QR\" label"
+        },
+        {
           "name": "session-timeout",
           "description": "***Mandatory***\nMaximum time window to display the session and keep the websocket connection. It's needed to ensure the socket is closed."
         },
@@ -232,8 +300,20 @@
           "description": "***Mandatory***\nWS Endpoint on your service to be invoked upon display"
         },
         {
+          "name": "success-login-label",
+          "description": "_[Optional]_\nString to show \"successful login\" label"
+        },
+        {
+          "name": "user-not-scan-in-time-error-label",
+          "description": "_[Optional]_\nString to show \"user not scan in time\" error"
+        },
+        {
           "name": "v-2",
           "description": "**RECOMMENDED**\nSet to use v2 links. The create session must be providing both an authentication request and a session Id"
+        },
+        {
+          "name": "waiting-start-session-label",
+          "description": "_[Optional]_\nString to show \"waiting start session\" label"
         }
       ]
     },

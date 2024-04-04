@@ -6,141 +6,55 @@
    License: none (public domain)
 */
 
-html,
-body,
-div,
-span,
-applet,
-object,
-iframe,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-blockquote,
-pre,
-a,
-abbr,
-acronym,
-address,
-big,
-cite,
-code,
-del,
-dfn,
-em,
-img,
-ins,
-kbd,
-q,
-s,
-samp,
-small,
-strike,
-strong,
-sub,
-sup,
-tt,
-var,
-b,
-u,
-i,
-center,
-dl,
-dt,
-dd,
-ol,
-ul,
-li,
-fieldset,
-form,
-label,
-legend,
-table,
-caption,
-tbody,
-tfoot,
-thead,
-tr,
-th,
-td,
-article,
-aside,
-canvas,
-details,
-embed,
-figure,
-figcaption,
-footer,
-header,
-hgroup,
-menu,
-nav,
-output,
-ruby,
-section,
-summary,
-time,
-mark,
-audio,
-video {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  font-size: 100%;
-  font: inherit;
-  vertical-align: baseline;
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
 }
-
 /* HTML5 display-role reset for older browsers */
-article,
-aside,
-details,
-figcaption,
-figure,
-footer,
-header,
-hgroup,
-menu,
-nav,
-section {
-  display: block;
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
 }
-
 body {
-  line-height: 1;
+	line-height: 1;
 }
-
-ol,
-ul {
-  list-style: none;
+ol, ul {
+	list-style: none;
 }
-
-blockquote,
-q {
-  quotes: none;
+blockquote, q {
+	quotes: none;
 }
-
-blockquote:before,
-blockquote:after,
-q:before,
-q:after {
-  content: "";
-  content: none;
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
 }
-
 table {
-  border-collapse: collapse;
-  border-spacing: 0;
+	border-collapse: collapse;
+	border-spacing: 0;
 }
 
 /*
 QR COMPONENT  
 */
-@import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400&display=swap');
+
 
 .img-fluid {
   height: auto;
@@ -224,7 +138,7 @@ img {
     }
 
     .qrDescription {
-      font-family: Poppins;
+      font-family: "Poppins", "Ubuntu", "Work Sans", "Helvetica Neue", sans-serif;
       font-size: 14px;
       font-style: normal;
       font-weight: 400;
@@ -284,7 +198,11 @@ img {
   align-items: center;
   padding: 0px;
 
-  .successMsg {
+  & > img {
+    padding-bottom: 12px;
+  }
+
+  & > .successMsg {
     line-height: 23.5px;
     color: var(--neutral-1000, #1e1e20);
     text-align: center;
@@ -334,15 +252,9 @@ img {
   justify-content: center;
   align-items: center;
   align-content: center;
-  align-self: center;
   display: flex;
   flex-direction: column;
-  padding: 24px;
   box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   padding: 20px;
   background: rgba(255, 255, 255, 0.95);
 
@@ -354,7 +266,6 @@ img {
 .alert {
   display: flex;
   flex-direction: row;
-  align-items: center;
   justify-content: start;
   width: 252px;
   position: absolute;
@@ -362,14 +273,17 @@ img {
   border: 1px solid #ee888c;
   background: #ffdedf;
   border-radius: 11px;
-  display: flex;
   box-sizing: border-box;
   padding: 12px;
   align-items: center;
   gap: 12px;
 
+  & > img {
+    margin: 0;
+  }
+
   & > p {
-    font-family: "Poppins", "Ubuntu", "Work Sans", "Helvetica Neue", sans-serif;;
+    font-family: "Poppins", "Ubuntu", "Work Sans", "Helvetica Neue", sans-serif;
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
@@ -380,10 +294,11 @@ img {
 }
 
 .notify-text {
-  font-family: "Poppins", "Ubuntu", "Work Sans", "Helvetica Neue", sans-serif;;
+  font-family: "Poppins", "Ubuntu", "Work Sans", "Helvetica Neue", sans-serif;
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
   line-height: 16px;
   color: #707074;
+  text-align: center;
 }

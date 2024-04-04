@@ -246,9 +246,25 @@ export namespace Components {
          */
         "autostart": boolean;
         /**
+          * _[Optional]_ String to show "by brand" label
+         */
+        "byBrandLabel"?: string;
+        /**
           * ***Mandatory just for V1*** Connect/Certify Server where the wallet will send the data
          */
         "callbackServer": string;
+        /**
+          * _[Optional]_ String to show "click inside" label
+         */
+        "clickInsideBoxLabel"?: string;
+        /**
+          * _[Optional]_ String to show when credentials not validatedd
+         */
+        "credentialsNotValidatedLabel"?: string;
+        /**
+          * _[Optional]_ String to show "provided credentials not validates" error
+         */
+        "credsNotValidatedErrorLabel"?: string;
         /**
           * Force manually the display of a QR
          */
@@ -262,6 +278,10 @@ export namespace Components {
          */
         "errorCallback": (error?: Error) => void;
         /**
+          * _[Optional]_ String to show "failed login" error
+         */
+        "failedLoginErrorLabel"?: string;
+        /**
           * Retrieve manually the session data on a successful login
          */
         "getSessionData": () => Promise<any>;
@@ -269,6 +289,42 @@ export namespace Components {
           * _[Optional]_ Boolean to show or not show the gataca brand title
          */
         "hideBrandTitle"?: boolean;
+        /**
+          * _[Optional]_ Boolean to show or not show the modal title, brandTitle and description
+         */
+        "hideModalBoxShadow"?: boolean;
+        /**
+          * _[Optional]_ Boolean to show or not show the modal title, brandTitle and description
+         */
+        "hideModalTexts"?: boolean;
+        /**
+          * _[Optional]_ Boolean to show or not show the QR Modal description
+         */
+        "hideQrModalDescription"?: boolean;
+        /**
+          * _[Optional]_ Size of the logo to display in percentage to the total size [0-1]. 0 means no logo will be displayed. Default is the GATACA logo. Recommended size is around 0.33
+         */
+        "logoSize"?: number;
+        /**
+          * _[Optional]_ Logo to display, just if the logo size is greater than 0. No logo is the GATACA logo.
+         */
+        "logoSrc"?: string;
+        /**
+          * _[Optional]_ Height of the modal
+         */
+        "modalHeight"?: number;
+        /**
+          * _[Optional]_ String to set Modal title color
+         */
+        "modalTitleColor"?: string;
+        /**
+          * _[Optional]_ Width of the modal
+         */
+        "modalWidth"?: number;
+        /**
+          * _[Optional]_ String to show when qr code expired
+         */
+        "qrCodeExpiredLabel"?: string;
         /**
           * _[Optional]_ Modifies the Modal description
          */
@@ -281,6 +337,18 @@ export namespace Components {
           * ***Mandatory*** Decide if scanning the credential as a verifier to request credentials or as an issuer too issue credentials. Options: connect | certify
          */
         "qrRole": string;
+        /**
+          * _[Optional]_ Size of QR Displayed
+         */
+        "qrSize"?: number;
+        /**
+          * _[Optional]_ String to show "refresh QR" label
+         */
+        "refreshQrLabel"?: string;
+        /**
+          * _[Optional]_ String to show "scan QR" label
+         */
+        "scanQrLabel"?: string;
         /**
           * ***Mandatory*** Maximum time window to display the session and keep the websocket connection. It's needed to ensure the socket is closed.
          */
@@ -298,9 +366,21 @@ export namespace Components {
          */
         "successCallback": (data?: any) => void;
         /**
+          * _[Optional]_ String to show "successful login" label
+         */
+        "successLoginLabel"?: string;
+        /**
+          * _[Optional]_ String to show "user not scan in time" error
+         */
+        "userNotScanInTimeErrorLabel"?: string;
+        /**
           * **RECOMMENDED** Set to use v2 links. The create session must be providing both an authentication request and a session Id
          */
         "v2"?: boolean;
+        /**
+          * _[Optional]_ String to show "waiting start session" label
+         */
+        "waitingStartSessionLabel"?: string;
         /**
           * **RECOMMENDED** Callback to invoke an a message has been received on the socket. It provides the socket itself and the message as parameters. If not used, the messages provided by the server on the Socket connection must conform to the WSReponse interface If used, an Event named **sessionMsg** must be triggered with a WSReponse as data
          */
@@ -817,9 +897,25 @@ declare namespace LocalJSX {
          */
         "autostart"?: boolean;
         /**
+          * _[Optional]_ String to show "by brand" label
+         */
+        "byBrandLabel"?: string;
+        /**
           * ***Mandatory just for V1*** Connect/Certify Server where the wallet will send the data
          */
         "callbackServer"?: string;
+        /**
+          * _[Optional]_ String to show "click inside" label
+         */
+        "clickInsideBoxLabel"?: string;
+        /**
+          * _[Optional]_ String to show when credentials not validatedd
+         */
+        "credentialsNotValidatedLabel"?: string;
+        /**
+          * _[Optional]_ String to show "provided credentials not validates" error
+         */
+        "credsNotValidatedErrorLabel"?: string;
         /**
           * _[Optional]_ Display a link containing a dynamic link to invoke the wallet if closed
          */
@@ -829,9 +925,45 @@ declare namespace LocalJSX {
          */
         "errorCallback"?: (error?: Error) => void;
         /**
+          * _[Optional]_ String to show "failed login" error
+         */
+        "failedLoginErrorLabel"?: string;
+        /**
           * _[Optional]_ Boolean to show or not show the gataca brand title
          */
         "hideBrandTitle"?: boolean;
+        /**
+          * _[Optional]_ Boolean to show or not show the modal title, brandTitle and description
+         */
+        "hideModalBoxShadow"?: boolean;
+        /**
+          * _[Optional]_ Boolean to show or not show the modal title, brandTitle and description
+         */
+        "hideModalTexts"?: boolean;
+        /**
+          * _[Optional]_ Boolean to show or not show the QR Modal description
+         */
+        "hideQrModalDescription"?: boolean;
+        /**
+          * _[Optional]_ Size of the logo to display in percentage to the total size [0-1]. 0 means no logo will be displayed. Default is the GATACA logo. Recommended size is around 0.33
+         */
+        "logoSize"?: number;
+        /**
+          * _[Optional]_ Logo to display, just if the logo size is greater than 0. No logo is the GATACA logo.
+         */
+        "logoSrc"?: string;
+        /**
+          * _[Optional]_ Height of the modal
+         */
+        "modalHeight"?: number;
+        /**
+          * _[Optional]_ String to set Modal title color
+         */
+        "modalTitleColor"?: string;
+        /**
+          * _[Optional]_ Width of the modal
+         */
+        "modalWidth"?: number;
         /**
           * GatacaLoginCompleted event, triggered with session data upon login success
          */
@@ -840,6 +972,10 @@ declare namespace LocalJSX {
           * GatacaLoginFailed event, triggered with error upon login failure
          */
         "onGatacaLoginFailed"?: (event: GatacaQrwsCustomEvent<any>) => void;
+        /**
+          * _[Optional]_ String to show when qr code expired
+         */
+        "qrCodeExpiredLabel"?: string;
         /**
           * _[Optional]_ Modifies the Modal description
          */
@@ -853,6 +989,18 @@ declare namespace LocalJSX {
          */
         "qrRole"?: string;
         /**
+          * _[Optional]_ Size of QR Displayed
+         */
+        "qrSize"?: number;
+        /**
+          * _[Optional]_ String to show "refresh QR" label
+         */
+        "refreshQrLabel"?: string;
+        /**
+          * _[Optional]_ String to show "scan QR" label
+         */
+        "scanQrLabel"?: string;
+        /**
           * ***Mandatory*** Maximum time window to display the session and keep the websocket connection. It's needed to ensure the socket is closed.
          */
         "sessionTimeout"?: number;
@@ -865,9 +1013,21 @@ declare namespace LocalJSX {
          */
         "successCallback"?: (data?: any) => void;
         /**
+          * _[Optional]_ String to show "successful login" label
+         */
+        "successLoginLabel"?: string;
+        /**
+          * _[Optional]_ String to show "user not scan in time" error
+         */
+        "userNotScanInTimeErrorLabel"?: string;
+        /**
           * **RECOMMENDED** Set to use v2 links. The create session must be providing both an authentication request and a session Id
          */
         "v2"?: boolean;
+        /**
+          * _[Optional]_ String to show "waiting start session" label
+         */
+        "waitingStartSessionLabel"?: string;
         /**
           * **RECOMMENDED** Callback to invoke an a message has been received on the socket. It provides the socket itself and the message as parameters. If not used, the messages provided by the server on the Socket connection must conform to the WSReponse interface If used, an Event named **sessionMsg** must be triggered with a WSReponse as data
          */

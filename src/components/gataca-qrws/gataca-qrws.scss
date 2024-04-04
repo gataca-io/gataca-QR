@@ -1,3 +1,6 @@
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@100;300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600;700&display=swap");
+
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
    License: none (public domain)
@@ -67,6 +70,7 @@ img {
   padding-top: 5px;
   display: flex;
   align-items: center;
+
   .gatacaImgSmall {
     height: 13px;
     width: 13px;
@@ -76,21 +80,23 @@ img {
 }
 
 .popUpContainer {
+  .large-modal {
+    width: 300px;
+    min-height: 350px;
+  }
 
   .modal-window {
     position: relative;
     border-radius: 6px;
-  
+    overflow: hidden;
     color: rgba(24, 27, 94, 0.8);
-    box-shadow: 0px 3px 10px rgba(48, 48, 48, 0.10);
+    box-shadow: 0px 3px 10px rgba(48, 48, 48, 0.1);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
     display: flex;
     z-index: 1001;
-    width: 300px;
-    min-height: 408px;
     padding: 1px;
     background-color: white;
     border-radius: 12px;
@@ -99,175 +105,200 @@ img {
     transition: opacity 0.5s, visibility 0s 0.5s;
     visibility: hidden;
     opacity: 0;
+
     &__content {
       width: 100%;
       height: 100%;
       text-align: left;
+
+      .hidenText {
+        display: none;
+      }
     }
-    p {
-      font-family: "Work Sans", "Helvetica Neue", sans-serif;
-      font-weight: normal;
-      font-size: 12px;
+
+    .modalText {
+      font-family: "Ubuntu", "Work Sans", "Helvetica Neue", sans-serif;
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 24px;
+      margin-top: 10px;
       letter-spacing: 1px;
-      color: #1e1e20;
     }
-    .qrTitleContainer{
+
+    .qrTitleContainer {
       padding: 14px 24px;
       padding-bottom: 0px;
-      //margin-bottom: 20px;
     }
-    .qrTitle{
+
+    .qrTitle {
       font-size: 20px;
       font-weight: 600;
       line-height: 23.5px;
     }
-    .qrDescription{
-      font-weight: 400;
-      font-size: 14px;
-      line-height: 16.5px;
-      padding-top: 12px;
-      padding-bottom: 5px;
 
+    .qrDescription {
+      font-family: "Poppins", "Ubuntu", "Work Sans", "Helvetica Neue", sans-serif;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 16px;
       //font-feature-settings: 'salt' on;
-      color: #A1A1A1;
+      color: #707074;
     }
-    .bold{
+
+    .bold {
       font-weight: 600;
     }
-    .qrBrand{
+
+    .qrBrand {
       margin-top: 4px;
       font-size: 14px;
       font-weight: 400;
       line-height: 16.5px;
       display: flex;
       align-items: center;
-      img{
+
+      img {
         margin-left: 5px;
         height: 12px;
       }
     }
+
     .qr-section {
       width: 252px;
       height: 252px;
     }
   }
 
-    .reload{
-      height: 252px;
-      width: 252px;
-      border: 1px dashed #A1A1A1;
-      border-radius: 12px;
-      position: relative;
-      margin: 24px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-
-    #qrwait{
-      display: flex;
-      justify-content: center;
-    }
-
-    #qrwait,
-    #notify {
-      width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
-      border-radius: 20px;
-    }
-    #notify {
-      z-index: 10;
-      background-color: gray;
-      position: absolute;
-      //text-align: center;
-      justify-self: center;
-      justify-items: center;
-      justify-content: center;
-      align-items: center;
-      align-content: center;
-      align-self: center;
-      display: flex;
-      flex-direction: column;
-      padding: 24px;
-      box-sizing: border-box;
-
-      /* Auto layout */
-
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
-
-      background: rgba(255, 255, 255, 0.9);
-      /* Grey Colors/Grey 400 */
-    }
-
-    .notify-text{
-      font-family: 'Work Sans';
-      font-style: normal;
-      font-weight: 400;
-      font-size: 14px;
-      line-height: 16px;
-      text-align: center;
-      font-feature-settings: 'salt' on;
-      color: #8B8B8B;
-      flex: none;
-      order: 1;
-      align-self: stretch;
-      flex-grow: 0;
-    }
-
-  .alert{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: start;
-    width: 252px;
-
-    position: absolute;
-    bottom: 0;
-
-    background: #FFE5E5;
-    border-radius: 12px;
-    img {
-      margin: 12px;
-    }
-    p{
-      font-weight: 400;
-      font-size: 14px;
-      line-height: 16px;
-      color: black;
-    }
-  }
-
-  .success{
-    display: flex;
-    height: 300px;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 0px;
-
-    .successMsg{
-      margin-top: 20px;
-      font-size: 20px;
-      font-weight: 600;
-      line-height: 23.5px;
-    }
+  .noBoxShadow {
+    box-shadow: none;
   }
 
   .is-visible {
     opacity: 1;
     visibility: visible;
   }
-
 }
 
 .is-transparent {
   opacity: 0;
 }
 
+// --------------------------------------------------
+// Components
+// --------------------------------------------------
+
+// Success
+.success {
+  display: flex;
+  height: 300px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0px;
+
+  & > img {
+    padding-bottom: 12px;
+  }
+
+  & > .successMsg {
+    line-height: 23.5px;
+    color: var(--neutral-1000, #1e1e20);
+    text-align: center;
+    font-family: "Ubuntu", "Work Sans", "Helvetica Neue", sans-serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 24px;
+  }
+}
+
+// RetryButton
+
+.reload {
+  height: 252px;
+  width: 252px;
+  border: 1px dashed #a1a1a1;
+  border-radius: 12px;
+  position: relative;
+  top: 24px;
+  margin: 0 24px 24px;
+  display: flex;
+  overflow: hidden;
+  justify-content: center;
+  align-items: center;
+}
+
+#qrwait {
+  display: flex;
+  justify-content: center;
+}
+
+#qrwait,
+#notify {
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  border-radius: 20px;
+}
+
+#notify {
+  z-index: 10;
+  position: absolute;
+  justify-self: center;
+  justify-items: center;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.95);
+
+  & > img {
+    padding-bottom: 12px;
+  }
+}
+
+.alert {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  width: 252px;
+  position: absolute;
+  bottom: 0px;
+  border: 1px solid #ee888c;
+  background: #ffdedf;
+  border-radius: 11px;
+  box-sizing: border-box;
+  padding: 12px;
+  align-items: center;
+  gap: 12px;
+
+  & > img {
+    margin: 0;
+  }
+
+  & > p {
+    font-family: "Poppins", "Ubuntu", "Work Sans", "Helvetica Neue", sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    margin-top: 0;
+    line-height: 16px;
+    color: #1e1e20;
+  }
+}
+
+.notify-text {
+  font-family: "Poppins", "Ubuntu", "Work Sans", "Helvetica Neue", sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 16px;
+  color: #707074;
+  text-align: center;
+}
