@@ -138,7 +138,7 @@ img {
     }
 
     .qrDescription {
-      font-family: Poppins;
+      font-family: "Poppins", "Ubuntu", "Work Sans", "Helvetica Neue", sans-serif;
       font-size: 14px;
       font-style: normal;
       font-weight: 400;
@@ -273,7 +273,6 @@ img {
   border: 1px solid #ee888c;
   background: #ffdedf;
   border-radius: 11px;
-  display: flex;
   box-sizing: border-box;
   padding: 12px;
   align-items: center;
@@ -284,7 +283,7 @@ img {
   }
 
   & > p {
-    font-family: "Poppins", "Ubuntu", "Work Sans", "Helvetica Neue", sans-serif;;
+    font-family: "Poppins", "Ubuntu", "Work Sans", "Helvetica Neue", sans-serif;
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
@@ -295,7 +294,7 @@ img {
 }
 
 .notify-text {
-  font-family: "Poppins", "Ubuntu", "Work Sans", "Helvetica Neue", sans-serif;;
+  font-family: "Poppins", "Ubuntu", "Work Sans", "Helvetica Neue", sans-serif;
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
