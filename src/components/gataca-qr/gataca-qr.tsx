@@ -457,8 +457,8 @@ export class GatacaQR {
         refreshQrLabel={this?.refreshQrLabel}
         scanQrLabel={this?.scanQrLabel}
         waitingStartSessionLabel={this?.waitingStartSessionLabel}
-        display={this?.display}
-        renderRetryQR={this?.renderRetryQR}
+        display={this.display.bind(this)}
+        renderRetryQR={this.renderRetryQR.bind(this)}
       />
     );
   }

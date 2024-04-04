@@ -1,8 +1,8 @@
 {
-  "timestamp": "2024-04-04T13:59:03",
+  "timestamp": "2024-04-04T16:36:12",
   "compiler": {
     "name": "node",
-    "version": "18.17.0"
+    "version": "16.20.2"
   },
   "app": {
     "namespace": "gatacaqr",
@@ -29,36 +29,36 @@
         "files": 32,
         "generatedFiles": [
           "./dist/gatacaqr/app-globals-0f993ce5.js",
-          "./dist/gatacaqr/css-shim-b7d3d95f.js",
-          "./dist/gatacaqr/dom-64053c71.js",
+          "./dist/gatacaqr/css-shim-8eec97b3.js",
+          "./dist/gatacaqr/dom-1b0cf05d.js",
           "./dist/gatacaqr/gat-icon-alert-13a1894e.js",
           "./dist/gatacaqr/gataca-autoqr.entry.js",
           "./dist/gatacaqr/gataca-qr.entry.js",
-          "./dist/gatacaqr/gataca-qrdisplay-0146c456.js",
+          "./dist/gatacaqr/gataca-qrdisplay-77cbbfeb.js",
           "./dist/gatacaqr/gataca-qrdisplay.entry.js",
           "./dist/gatacaqr/gataca-qrws.entry.js",
           "./dist/gatacaqr/gataca-ssibutton.entry.js",
           "./dist/gatacaqr/gataca-ssibuttonws.entry.js",
           "./dist/gatacaqr/gatacaqr.esm.js",
-          "./dist/gatacaqr/index-34dab51c.js",
+          "./dist/gatacaqr/index-4bc6f36b.js",
           "./dist/gatacaqr/index.esm.js",
-          "./dist/gatacaqr/shadow-css-98135883.js",
+          "./dist/gatacaqr/shadow-css-146f2f6f.js",
           "./dist/gatacaqr/utils-05ba6c9f.js",
           "./www/build/app-globals-0f993ce5.js",
-          "./www/build/css-shim-b7d3d95f.js",
-          "./www/build/dom-64053c71.js",
+          "./www/build/css-shim-8eec97b3.js",
+          "./www/build/dom-1b0cf05d.js",
           "./www/build/gat-icon-alert-13a1894e.js",
           "./www/build/gataca-autoqr.entry.js",
           "./www/build/gataca-qr.entry.js",
-          "./www/build/gataca-qrdisplay-0146c456.js",
+          "./www/build/gataca-qrdisplay-77cbbfeb.js",
           "./www/build/gataca-qrdisplay.entry.js",
           "./www/build/gataca-qrws.entry.js",
           "./www/build/gataca-ssibutton.entry.js",
           "./www/build/gataca-ssibuttonws.entry.js",
           "./www/build/gatacaqr.esm.js",
-          "./www/build/index-34dab51c.js",
+          "./www/build/index-4bc6f36b.js",
           "./www/build/index.esm.js",
-          "./www/build/shadow-css-98135883.js",
+          "./www/build/shadow-css-146f2f6f.js",
           "./www/build/utils-05ba6c9f.js"
         ]
       },
@@ -96,7 +96,7 @@
         "bundleId": "gataca-autoqr",
         "fileName": "gataca-autoqr.entry.js",
         "imports": [
-          "index-34dab51c.js"
+          "index-4bc6f36b.js"
         ],
         "originalByteSize": 7802
       },
@@ -108,8 +108,8 @@
         "bundleId": "gataca-ssibutton",
         "fileName": "gataca-ssibutton.entry.js",
         "imports": [
-          "index-34dab51c.js",
-          "gataca-qrdisplay-0146c456.js"
+          "index-4bc6f36b.js",
+          "gataca-qrdisplay-77cbbfeb.js"
         ],
         "originalByteSize": 6496
       },
@@ -121,7 +121,7 @@
         "bundleId": "gataca-ssibuttonws",
         "fileName": "gataca-ssibuttonws.entry.js",
         "imports": [
-          "index-34dab51c.js"
+          "index-4bc6f36b.js"
         ],
         "originalByteSize": 5012
       },
@@ -133,12 +133,12 @@
         "bundleId": "gataca-qr",
         "fileName": "gataca-qr.entry.js",
         "imports": [
-          "index-34dab51c.js",
-          "gataca-qrdisplay-0146c456.js",
+          "index-4bc6f36b.js",
+          "gataca-qrdisplay-77cbbfeb.js",
           "utils-05ba6c9f.js",
           "gat-icon-alert-13a1894e.js"
         ],
-        "originalByteSize": 15564
+        "originalByteSize": 15498
       },
       {
         "key": "gataca-qrws.entry",
@@ -148,12 +148,12 @@
         "bundleId": "gataca-qrws",
         "fileName": "gataca-qrws.entry.js",
         "imports": [
-          "index-34dab51c.js",
-          "gataca-qrdisplay-0146c456.js",
+          "index-4bc6f36b.js",
+          "gataca-qrdisplay-77cbbfeb.js",
           "utils-05ba6c9f.js",
           "gat-icon-alert-13a1894e.js"
         ],
-        "originalByteSize": 15659
+        "originalByteSize": 15593
       },
       {
         "key": "gataca-qrdisplay.entry",
@@ -163,8 +163,8 @@
         "bundleId": "gataca-qrdisplay",
         "fileName": "gataca-qrdisplay.entry.js",
         "imports": [
-          "gataca-qrdisplay-0146c456.js",
-          "index-34dab51c.js"
+          "gataca-qrdisplay-77cbbfeb.js",
+          "index-4bc6f36b.js"
         ],
         "originalByteSize": 102
       }
@@ -3730,7 +3730,7 @@
               "styleIdentifier": "gatacaAutoqrStyle",
               "externalStyles": [
                 {
-                  "absolutePath": "/Users/mayra/Documents/Gataca-repos/gataca-QR/src/components/gataca-autoqr/gataca-autoqr.scss",
+                  "absolutePath": "/Users/angie/Desktop/projects/gataca-QR/src/components/gataca-autoqr/gataca-autoqr.scss",
                   "relativePath": "gataca-autoqr.scss",
                   "originalComponentPath": "gataca-autoqr.scss"
                 }
@@ -3746,8 +3746,8 @@
             "tags": [],
             "text": ""
           },
-          "jsFilePath": "/Users/mayra/Documents/Gataca-repos/gataca-QR/src/components/gataca-autoqr/gataca-autoqr.js",
-          "sourceFilePath": "/Users/mayra/Documents/Gataca-repos/gataca-QR/src/components/gataca-autoqr/gataca-autoqr.tsx",
+          "jsFilePath": "/Users/angie/Desktop/projects/gataca-QR/src/components/gataca-autoqr/gataca-autoqr.js",
+          "sourceFilePath": "/Users/angie/Desktop/projects/gataca-QR/src/components/gataca-autoqr/gataca-autoqr.tsx",
           "sourceMapPath": null,
           "hasAttributeChangedCallbackFn": false,
           "hasComponentWillLoadFn": false,
@@ -4541,7 +4541,7 @@
               "styleIdentifier": "gatacaSsibuttonStyle",
               "externalStyles": [
                 {
-                  "absolutePath": "/Users/mayra/Documents/Gataca-repos/gataca-QR/src/components/gataca-ssibutton/gataca-ssibutton.scss",
+                  "absolutePath": "/Users/angie/Desktop/projects/gataca-QR/src/components/gataca-ssibutton/gataca-ssibutton.scss",
                   "relativePath": "gataca-ssibutton.scss",
                   "originalComponentPath": "gataca-ssibutton.scss"
                 }
@@ -4557,8 +4557,8 @@
             "tags": [],
             "text": ""
           },
-          "jsFilePath": "/Users/mayra/Documents/Gataca-repos/gataca-QR/src/components/gataca-ssibutton/gataca-ssibutton.js",
-          "sourceFilePath": "/Users/mayra/Documents/Gataca-repos/gataca-QR/src/components/gataca-ssibutton/gataca-ssibutton.tsx",
+          "jsFilePath": "/Users/angie/Desktop/projects/gataca-QR/src/components/gataca-ssibutton/gataca-ssibutton.js",
+          "sourceFilePath": "/Users/angie/Desktop/projects/gataca-QR/src/components/gataca-ssibutton/gataca-ssibutton.tsx",
           "sourceMapPath": null,
           "hasAttributeChangedCallbackFn": false,
           "hasComponentWillLoadFn": false,
@@ -5080,7 +5080,7 @@
               "styleIdentifier": "gatacaSsibuttonwsStyle",
               "externalStyles": [
                 {
-                  "absolutePath": "/Users/mayra/Documents/Gataca-repos/gataca-QR/src/components/gataca-ssibuttonws/gataca-ssibuttonws.scss",
+                  "absolutePath": "/Users/angie/Desktop/projects/gataca-QR/src/components/gataca-ssibuttonws/gataca-ssibuttonws.scss",
                   "relativePath": "gataca-ssibuttonws.scss",
                   "originalComponentPath": "gataca-ssibuttonws.scss"
                 }
@@ -5096,8 +5096,8 @@
             "tags": [],
             "text": ""
           },
-          "jsFilePath": "/Users/mayra/Documents/Gataca-repos/gataca-QR/src/components/gataca-ssibuttonws/gataca-ssibuttonws.js",
-          "sourceFilePath": "/Users/mayra/Documents/Gataca-repos/gataca-QR/src/components/gataca-ssibuttonws/gataca-ssibuttonws.tsx",
+          "jsFilePath": "/Users/angie/Desktop/projects/gataca-QR/src/components/gataca-ssibuttonws/gataca-ssibuttonws.js",
+          "sourceFilePath": "/Users/angie/Desktop/projects/gataca-QR/src/components/gataca-ssibuttonws/gataca-ssibuttonws.tsx",
           "sourceMapPath": null,
           "hasAttributeChangedCallbackFn": false,
           "hasComponentWillLoadFn": false,
@@ -6037,7 +6037,7 @@
               "styleIdentifier": "gatacaQrStyle",
               "externalStyles": [
                 {
-                  "absolutePath": "/Users/mayra/Documents/Gataca-repos/gataca-QR/src/components/gataca-qr/gataca-qr.scss",
+                  "absolutePath": "/Users/angie/Desktop/projects/gataca-QR/src/components/gataca-qr/gataca-qr.scss",
                   "relativePath": "gataca-qr.scss",
                   "originalComponentPath": "gataca-qr.scss"
                 }
@@ -6053,8 +6053,8 @@
             "tags": [],
             "text": ""
           },
-          "jsFilePath": "/Users/mayra/Documents/Gataca-repos/gataca-QR/src/components/gataca-qr/gataca-qr.js",
-          "sourceFilePath": "/Users/mayra/Documents/Gataca-repos/gataca-QR/src/components/gataca-qr/gataca-qr.tsx",
+          "jsFilePath": "/Users/angie/Desktop/projects/gataca-QR/src/components/gataca-qr/gataca-qr.js",
+          "sourceFilePath": "/Users/angie/Desktop/projects/gataca-QR/src/components/gataca-qr/gataca-qr.tsx",
           "sourceMapPath": null,
           "hasAttributeChangedCallbackFn": false,
           "hasComponentWillLoadFn": false,
@@ -7007,7 +7007,7 @@
               "styleIdentifier": "gatacaQrwsStyle",
               "externalStyles": [
                 {
-                  "absolutePath": "/Users/mayra/Documents/Gataca-repos/gataca-QR/src/components/gataca-qrws/gataca-qrws.scss",
+                  "absolutePath": "/Users/angie/Desktop/projects/gataca-QR/src/components/gataca-qrws/gataca-qrws.scss",
                   "relativePath": "gataca-qrws.scss",
                   "originalComponentPath": "gataca-qrws.scss"
                 }
@@ -7023,8 +7023,8 @@
             "tags": [],
             "text": ""
           },
-          "jsFilePath": "/Users/mayra/Documents/Gataca-repos/gataca-QR/src/components/gataca-qrws/gataca-qrws.js",
-          "sourceFilePath": "/Users/mayra/Documents/Gataca-repos/gataca-QR/src/components/gataca-qrws/gataca-qrws.tsx",
+          "jsFilePath": "/Users/angie/Desktop/projects/gataca-QR/src/components/gataca-qrws/gataca-qrws.js",
+          "sourceFilePath": "/Users/angie/Desktop/projects/gataca-QR/src/components/gataca-qrws/gataca-qrws.tsx",
           "sourceMapPath": null,
           "hasAttributeChangedCallbackFn": false,
           "hasComponentWillLoadFn": false,
@@ -7275,8 +7275,8 @@
             "tags": [],
             "text": ""
           },
-          "jsFilePath": "/Users/mayra/Documents/Gataca-repos/gataca-QR/src/components/gataca-qrdisplay/gataca-qrdisplay.js",
-          "sourceFilePath": "/Users/mayra/Documents/Gataca-repos/gataca-QR/src/components/gataca-qrdisplay/gataca-qrdisplay.tsx",
+          "jsFilePath": "/Users/angie/Desktop/projects/gataca-QR/src/components/gataca-qrdisplay/gataca-qrdisplay.js",
+          "sourceFilePath": "/Users/angie/Desktop/projects/gataca-QR/src/components/gataca-qrdisplay/gataca-qrdisplay.tsx",
           "sourceMapPath": null,
           "hasAttributeChangedCallbackFn": false,
           "hasComponentWillLoadFn": false,
@@ -7353,30 +7353,30 @@
   ],
   "componentGraph": {
     "sc-gataca-autoqr": [
-      "index-34dab51c.js"
+      "index-4bc6f36b.js"
     ],
     "sc-gataca-qr": [
-      "index-34dab51c.js",
-      "gataca-qrdisplay-0146c456.js",
+      "index-4bc6f36b.js",
+      "gataca-qrdisplay-77cbbfeb.js",
       "utils-05ba6c9f.js",
       "gat-icon-alert-13a1894e.js"
     ],
     "sc-gataca-qrdisplay": [
-      "gataca-qrdisplay-0146c456.js",
-      "index-34dab51c.js"
+      "gataca-qrdisplay-77cbbfeb.js",
+      "index-4bc6f36b.js"
     ],
     "sc-gataca-qrws": [
-      "index-34dab51c.js",
-      "gataca-qrdisplay-0146c456.js",
+      "index-4bc6f36b.js",
+      "gataca-qrdisplay-77cbbfeb.js",
       "utils-05ba6c9f.js",
       "gat-icon-alert-13a1894e.js"
     ],
     "sc-gataca-ssibutton": [
-      "index-34dab51c.js",
-      "gataca-qrdisplay-0146c456.js"
+      "index-4bc6f36b.js",
+      "gataca-qrdisplay-77cbbfeb.js"
     ],
     "sc-gataca-ssibuttonws": [
-      "index-34dab51c.js"
+      "index-4bc6f36b.js"
     ]
   },
   "sourceGraph": {
