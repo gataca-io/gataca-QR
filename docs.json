@@ -1,5 +1,5 @@
 {
-  "timestamp": "2024-04-03T08:18:23",
+  "timestamp": "2024-04-04T10:08:47",
   "compiler": {
     "name": "@stencil/core",
     "version": "2.22.3",
@@ -1058,6 +1058,23 @@
           "required": false
         },
         {
+          "name": "byBrandLabel",
+          "type": "string",
+          "mutable": false,
+          "attr": "by-brand-label",
+          "reflectToAttr": false,
+          "docs": "_[Optional]_\nString to show \"by brand\" label",
+          "docsTags": [],
+          "default": "\"by Gataca\"",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
           "name": "callbackServer",
           "type": "string",
           "mutable": false,
@@ -1071,6 +1088,57 @@
             }
           ],
           "optional": false,
+          "required": false
+        },
+        {
+          "name": "clickInsideBoxLabel",
+          "type": "string",
+          "mutable": false,
+          "attr": "click-inside-box-label",
+          "reflectToAttr": false,
+          "docs": "_[Optional]_\nString to show \"click inside\" label",
+          "docsTags": [],
+          "default": "\"Click inside the box to\"",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "credentialsNotValidatedLabel",
+          "type": "string",
+          "mutable": false,
+          "attr": "credentials-not-validated-label",
+          "reflectToAttr": false,
+          "docs": "_[Optional]_\nString to show when credentials not validatedd",
+          "docsTags": [],
+          "default": "\"User credentials not validated\"",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "credsNotValidatedErrorLabel",
+          "type": "string",
+          "mutable": false,
+          "attr": "creds-not-validated-error-label",
+          "reflectToAttr": false,
+          "docs": "_[Optional]_\nString to show \"provided credentials not validates\" error",
+          "docsTags": [],
+          "default": "\"Provided user credentials couldn't be validated\"",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
           "required": false
         },
         {
@@ -1107,6 +1175,23 @@
           "required": false
         },
         {
+          "name": "failedLoginErrorLabel",
+          "type": "string",
+          "mutable": false,
+          "attr": "failed-login-error-label",
+          "reflectToAttr": false,
+          "docs": "_[Optional]_\nString to show \"failed login\" error",
+          "docsTags": [],
+          "default": "\"No successful login\"",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
           "name": "hideBrandTitle",
           "type": "boolean",
           "mutable": false,
@@ -1118,6 +1203,158 @@
           "values": [
             {
               "type": "boolean"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "hideModalBoxShadow",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "hide-modal-box-shadow",
+          "reflectToAttr": false,
+          "docs": "_[Optional]_\nBoolean to show or not show the modal title, brandTitle and description",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "hideModalTexts",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "hide-modal-texts",
+          "reflectToAttr": false,
+          "docs": "_[Optional]_\nBoolean to show or not show the modal title, brandTitle and description",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "hideQrModalDescription",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "hide-qr-modal-description",
+          "reflectToAttr": false,
+          "docs": "_[Optional]_\nBoolean to show or not show the QR Modal description",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "logoSize",
+          "type": "number",
+          "mutable": false,
+          "attr": "logo-size",
+          "reflectToAttr": false,
+          "docs": "_[Optional]_\nSize of the logo to display in percentage to the total size [0-1]. 0 means no logo will be displayed. Default is the GATACA logo. Recommended size is around 0.33",
+          "docsTags": [],
+          "default": "0",
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "logoSrc",
+          "type": "string",
+          "mutable": false,
+          "attr": "logo-src",
+          "reflectToAttr": false,
+          "docs": "_[Optional]_\nLogo to display, just if the logo size is greater than 0. No logo is the GATACA logo.",
+          "docsTags": [],
+          "default": "logoGataca",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "modalHeight",
+          "type": "number",
+          "mutable": false,
+          "attr": "modal-height",
+          "reflectToAttr": false,
+          "docs": "_[Optional]_\nHeight of the modal",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "modalTitleColor",
+          "type": "string",
+          "mutable": false,
+          "attr": "modal-title-color",
+          "reflectToAttr": false,
+          "docs": "_[Optional]_\nString to set Modal title color",
+          "docsTags": [],
+          "default": "\"#4745B7\"",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "modalWidth",
+          "type": "number",
+          "mutable": false,
+          "attr": "modal-width",
+          "reflectToAttr": false,
+          "docs": "_[Optional]_\nWidth of the modal",
+          "docsTags": [],
+          "default": "300",
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "qrCodeExpiredLabel",
+          "type": "string",
+          "mutable": false,
+          "attr": "qr-code-expired-label",
+          "reflectToAttr": false,
+          "docs": "_[Optional]_\nString to show when qr code expired",
+          "docsTags": [],
+          "default": "\"QR Code expired\"",
+          "values": [
+            {
+              "type": "string"
             }
           ],
           "optional": true,
@@ -1174,6 +1411,57 @@
           "required": false
         },
         {
+          "name": "qrSize",
+          "type": "number",
+          "mutable": false,
+          "attr": "qr-size",
+          "reflectToAttr": false,
+          "docs": "_[Optional]_\nSize of QR Displayed",
+          "docsTags": [],
+          "default": "300",
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "refreshQrLabel",
+          "type": "string",
+          "mutable": false,
+          "attr": "refresh-qr-label",
+          "reflectToAttr": false,
+          "docs": "_[Optional]_\nString to show \"refresh QR\" label",
+          "docsTags": [],
+          "default": "\"Refresh QR Code\"",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "scanQrLabel",
+          "type": "string",
+          "mutable": false,
+          "attr": "scan-qr-label",
+          "reflectToAttr": false,
+          "docs": "_[Optional]_\nString to show \"scan QR\" label",
+          "docsTags": [],
+          "default": "\"Scan QR Code\"",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
           "name": "sessionTimeout",
           "type": "number",
           "mutable": false,
@@ -1223,6 +1511,40 @@
           "required": false
         },
         {
+          "name": "successLoginLabel",
+          "type": "string",
+          "mutable": false,
+          "attr": "success-login-label",
+          "reflectToAttr": false,
+          "docs": "_[Optional]_\nString to show \"successful login\" label",
+          "docsTags": [],
+          "default": "\"Successful Connection!\"",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "userNotScanInTimeErrorLabel",
+          "type": "string",
+          "mutable": false,
+          "attr": "user-not-scan-in-time-error-label",
+          "reflectToAttr": false,
+          "docs": "_[Optional]_\nString to show \"user not scan in time\" error",
+          "docsTags": [],
+          "default": "\"User did not scan the QR in the allowed time\"",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
           "name": "v2",
           "type": "boolean",
           "mutable": false,
@@ -1234,6 +1556,23 @@
           "values": [
             {
               "type": "boolean"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "waitingStartSessionLabel",
+          "type": "string",
+          "mutable": false,
+          "attr": "waiting-start-session-label",
+          "reflectToAttr": false,
+          "docs": "_[Optional]_\nString to show \"waiting start session\" label",
+          "docsTags": [],
+          "default": "\"waiting to start a session\"",
+          "values": [
+            {
+              "type": "string"
             }
           ],
           "optional": true,
