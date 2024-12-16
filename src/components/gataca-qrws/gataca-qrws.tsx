@@ -253,6 +253,18 @@ export class GatacaQRWS {
 
   /**
    * _[Optional]_
+   * String to show when QR already read
+   */
+  @Prop() readedQrLabel?: string = "QR Code already scanned.";
+
+  /**
+   * _[Optional]_
+   * String to show "click inside" label for QR already read
+   */
+  @Prop() clickInsideBoxReadedQrLabel?: string = "Click the box to refresh.";
+
+  /**
+   * _[Optional]_
    * Boolean to show or not show the QR Modal description
    */
   @Prop() hideQrModalDescription?: boolean = false;
@@ -439,6 +451,11 @@ export class GatacaQRWS {
         return this.renderRetryButton(this.credentialsNotValidatedLabel);
       case RESULT_STATUS.SUCCESS:
         return this.renderSuccess();
+      case RESULT_STATUS.READED:
+        return this.renderRetryButton(null, [
+          this?.readedQrLabel,
+          this?.clickInsideBoxReadedQrLabel,
+        ]);
     }
   }
 
@@ -451,7 +468,7 @@ export class GatacaQRWS {
     );
   }
 
-  renderRetryButton(errorMessage?: string) {
+  renderRetryButton(errorMessage?: string, readedQrMessages?: string[]) {
     return (
       <RetryButton
         errorMessage={errorMessage}
@@ -462,6 +479,9 @@ export class GatacaQRWS {
         waitingStartSessionLabel={this?.waitingStartSessionLabel}
         display={this.display.bind(this)}
         renderRetryQR={this.renderRetryQR.bind(this)}
+        readedQrMessages={readedQrMessages}
+        readedQrLabel={this?.readedQrLabel}
+        clickInsideBoxReadedQrLabel={this?.clickInsideBoxReadedQrLabel}
       />
     );
   }
