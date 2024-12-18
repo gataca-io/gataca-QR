@@ -1,5 +1,5 @@
 {
-  "timestamp": "2024-04-04T17:07:20",
+  "timestamp": "2024-12-18T12:19:49",
   "compiler": {
     "name": "@stencil/core",
     "version": "2.22.3",
@@ -309,6 +309,23 @@
           "docs": "_[Optional]_\nString to show \"click inside\" label",
           "docsTags": [],
           "default": "\"Click inside the box to\"",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "clickInsideBoxReadedQrLabel",
+          "type": "string",
+          "mutable": false,
+          "attr": "click-inside-box-readed-qr-label",
+          "reflectToAttr": false,
+          "docs": "_[Optional]_\nString to show \"click inside\" label for QR already read",
+          "docsTags": [],
+          "default": "\"Click the box to refresh.\"",
           "values": [
             {
               "type": "string"
@@ -665,6 +682,23 @@
           "values": [
             {
               "type": "number"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "readedQrLabel",
+          "type": "string",
+          "mutable": false,
+          "attr": "readed-qr-label",
+          "reflectToAttr": false,
+          "docs": "_[Optional]_\nString to show when QR already read",
+          "docsTags": [],
+          "default": "\"QR Code already scanned.\"",
+          "values": [
+            {
+              "type": "string"
             }
           ],
           "optional": true,
@@ -1108,6 +1142,23 @@
           "required": false
         },
         {
+          "name": "clickInsideBoxReadedQrLabel",
+          "type": "string",
+          "mutable": false,
+          "attr": "click-inside-box-readed-qr-label",
+          "reflectToAttr": false,
+          "docs": "_[Optional]_\nString to show \"click inside\" label for QR already read",
+          "docsTags": [],
+          "default": "\"Click the box to refresh.\"",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
           "name": "credentialsNotValidatedLabel",
           "type": "string",
           "mutable": false,
@@ -1422,6 +1473,23 @@
           "values": [
             {
               "type": "number"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "readedQrLabel",
+          "type": "string",
+          "mutable": false,
+          "attr": "readed-qr-label",
+          "reflectToAttr": false,
+          "docs": "_[Optional]_\nString to show when QR already read",
+          "docsTags": [],
+          "default": "\"QR Code already scanned.\"",
+          "values": [
+            {
+              "type": "string"
             }
           ],
           "optional": true,
