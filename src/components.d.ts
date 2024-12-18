@@ -79,6 +79,10 @@ export namespace Components {
          */
         "clickInsideBoxLabel"?: string;
         /**
+          * _[Optional]_ String to show "click inside" label for QR already read
+         */
+        "clickInsideBoxReadedQrLabel"?: string;
+        /**
           * ***Mandatory*** Create session function to generate a new Session Using V1, it can provide just a session Id Using V2, it must provide also the authentication request. The session Id is the id of the presentation definition
          */
         "createSession"?: () => Promise<{
@@ -174,6 +178,10 @@ export namespace Components {
          */
         "qrSize"?: number;
         /**
+          * _[Optional]_ String to show when QR already read
+         */
+        "readedQrLabel"?: string;
+        /**
           * _[Optional]_ String to show "refresh QR" label
          */
         "refreshQrLabel"?: string;
@@ -258,6 +266,10 @@ export namespace Components {
          */
         "clickInsideBoxLabel"?: string;
         /**
+          * _[Optional]_ String to show "click inside" label for QR already read
+         */
+        "clickInsideBoxReadedQrLabel"?: string;
+        /**
           * _[Optional]_ String to show when credentials not validatedd
          */
         "credentialsNotValidatedLabel"?: string;
@@ -341,6 +353,10 @@ export namespace Components {
           * _[Optional]_ Size of QR Displayed
          */
         "qrSize"?: number;
+        /**
+          * _[Optional]_ String to show when QR already read
+         */
+        "readedQrLabel"?: string;
         /**
           * _[Optional]_ String to show "refresh QR" label
          */
@@ -734,6 +750,10 @@ declare namespace LocalJSX {
          */
         "clickInsideBoxLabel"?: string;
         /**
+          * _[Optional]_ String to show "click inside" label for QR already read
+         */
+        "clickInsideBoxReadedQrLabel"?: string;
+        /**
           * ***Mandatory*** Create session function to generate a new Session Using V1, it can provide just a session Id Using V2, it must provide also the authentication request. The session Id is the id of the presentation definition
          */
         "createSession"?: () => Promise<{
@@ -829,6 +849,10 @@ declare namespace LocalJSX {
          */
         "qrSize"?: number;
         /**
+          * _[Optional]_ String to show when QR already read
+         */
+        "readedQrLabel"?: string;
+        /**
           * _[Optional]_ String to show "refresh QR" label
          */
         "refreshQrLabel"?: string;
@@ -908,6 +932,10 @@ declare namespace LocalJSX {
           * _[Optional]_ String to show "click inside" label
          */
         "clickInsideBoxLabel"?: string;
+        /**
+          * _[Optional]_ String to show "click inside" label for QR already read
+         */
+        "clickInsideBoxReadedQrLabel"?: string;
         /**
           * _[Optional]_ String to show when credentials not validatedd
          */
@@ -992,6 +1020,10 @@ declare namespace LocalJSX {
           * _[Optional]_ Size of QR Displayed
          */
         "qrSize"?: number;
+        /**
+          * _[Optional]_ String to show when QR already read
+         */
+        "readedQrLabel"?: string;
         /**
           * _[Optional]_ String to show "refresh QR" label
          */

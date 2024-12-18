@@ -1,5 +1,5 @@
 {
-  "timestamp": "2024-04-04T17:07:21",
+  "timestamp": "2024-12-18T08:14:29",
   "compiler": {
     "name": "node",
     "version": "18.17.0"
@@ -43,7 +43,7 @@
           "./dist/gatacaqr/index-34dab51c.js",
           "./dist/gatacaqr/index.esm.js",
           "./dist/gatacaqr/shadow-css-98135883.js",
-          "./dist/gatacaqr/utils-05ba6c9f.js",
+          "./dist/gatacaqr/utils-1b406699.js",
           "./www/build/app-globals-0f993ce5.js",
           "./www/build/css-shim-b7d3d95f.js",
           "./www/build/dom-64053c71.js",
@@ -59,7 +59,7 @@
           "./www/build/index-34dab51c.js",
           "./www/build/index.esm.js",
           "./www/build/shadow-css-98135883.js",
-          "./www/build/utils-05ba6c9f.js"
+          "./www/build/utils-1b406699.js"
         ]
       },
       {
@@ -135,10 +135,10 @@
         "imports": [
           "index-34dab51c.js",
           "gataca-qrdisplay-0146c456.js",
-          "utils-05ba6c9f.js",
+          "utils-1b406699.js",
           "gat-icon-alert-13a1894e.js"
         ],
-        "originalByteSize": 15498
+        "originalByteSize": 16286
       },
       {
         "key": "gataca-qrws.entry",
@@ -150,10 +150,10 @@
         "imports": [
           "index-34dab51c.js",
           "gataca-qrdisplay-0146c456.js",
-          "utils-05ba6c9f.js",
+          "utils-1b406699.js",
           "gat-icon-alert-13a1894e.js"
         ],
-        "originalByteSize": 15593
+        "originalByteSize": 16381
       },
       {
         "key": "gataca-qrdisplay.entry",
@@ -1220,6 +1220,46 @@
           "internal": false
         },
         {
+          "name": "readedQrLabel",
+          "type": "string",
+          "attribute": "readed-qr-label",
+          "reflect": false,
+          "mutable": false,
+          "required": false,
+          "optional": true,
+          "defaultValue": "\"QR Code already scanned.\"",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "docs": {
+            "tags": [],
+            "text": "_[Optional]_\nString to show when QR already read"
+          },
+          "internal": false
+        },
+        {
+          "name": "clickInsideBoxReadedQrLabel",
+          "type": "string",
+          "attribute": "click-inside-box-readed-qr-label",
+          "reflect": false,
+          "mutable": false,
+          "required": false,
+          "optional": true,
+          "defaultValue": "\"Click the box to refresh.\"",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "docs": {
+            "tags": [],
+            "text": "_[Optional]_\nString to show \"click inside\" label for QR already read"
+          },
+          "internal": false
+        },
+        {
           "name": "hideQrModalDescription",
           "type": "boolean",
           "attribute": "hide-qr-modal-description",
@@ -2275,6 +2315,46 @@
           "docs": {
             "tags": [],
             "text": "_[Optional]_\nString to show \"waiting start session\" label"
+          },
+          "internal": false
+        },
+        {
+          "name": "readedQrLabel",
+          "type": "string",
+          "attribute": "readed-qr-label",
+          "reflect": false,
+          "mutable": false,
+          "required": false,
+          "optional": true,
+          "defaultValue": "\"QR Code already scanned.\"",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "docs": {
+            "tags": [],
+            "text": "_[Optional]_\nString to show when QR already read"
+          },
+          "internal": false
+        },
+        {
+          "name": "clickInsideBoxReadedQrLabel",
+          "type": "string",
+          "attribute": "click-inside-box-readed-qr-label",
+          "reflect": false,
+          "mutable": false,
+          "required": false,
+          "optional": true,
+          "defaultValue": "\"Click the box to refresh.\"",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "docs": {
+            "tags": [],
+            "text": "_[Optional]_\nString to show \"click inside\" label for QR already read"
           },
           "internal": false
         },
@@ -5836,6 +5916,46 @@
               "internal": false
             },
             {
+              "name": "readedQrLabel",
+              "type": "string",
+              "attribute": "readed-qr-label",
+              "reflect": false,
+              "mutable": false,
+              "required": false,
+              "optional": true,
+              "defaultValue": "\"QR Code already scanned.\"",
+              "complexType": {
+                "original": "string",
+                "resolved": "string",
+                "references": {}
+              },
+              "docs": {
+                "tags": [],
+                "text": "_[Optional]_\nString to show when QR already read"
+              },
+              "internal": false
+            },
+            {
+              "name": "clickInsideBoxReadedQrLabel",
+              "type": "string",
+              "attribute": "click-inside-box-readed-qr-label",
+              "reflect": false,
+              "mutable": false,
+              "required": false,
+              "optional": true,
+              "defaultValue": "\"Click the box to refresh.\"",
+              "complexType": {
+                "original": "string",
+                "resolved": "string",
+                "references": {}
+              },
+              "docs": {
+                "tags": [],
+                "text": "_[Optional]_\nString to show \"click inside\" label for QR already read"
+              },
+              "internal": false
+            },
+            {
               "name": "hideQrModalDescription",
               "type": "boolean",
               "attribute": "hide-qr-modal-description",
@@ -6113,6 +6233,7 @@
             "waitingStartSessionLabel",
             "display",
             "renderRetryQR",
+            "readedQrMessages",
             "value",
             "useLogo",
             "size",
@@ -6836,6 +6957,46 @@
               "internal": false
             },
             {
+              "name": "readedQrLabel",
+              "type": "string",
+              "attribute": "readed-qr-label",
+              "reflect": false,
+              "mutable": false,
+              "required": false,
+              "optional": true,
+              "defaultValue": "\"QR Code already scanned.\"",
+              "complexType": {
+                "original": "string",
+                "resolved": "string",
+                "references": {}
+              },
+              "docs": {
+                "tags": [],
+                "text": "_[Optional]_\nString to show when QR already read"
+              },
+              "internal": false
+            },
+            {
+              "name": "clickInsideBoxReadedQrLabel",
+              "type": "string",
+              "attribute": "click-inside-box-readed-qr-label",
+              "reflect": false,
+              "mutable": false,
+              "required": false,
+              "optional": true,
+              "defaultValue": "\"Click the box to refresh.\"",
+              "complexType": {
+                "original": "string",
+                "resolved": "string",
+                "references": {}
+              },
+              "docs": {
+                "tags": [],
+                "text": "_[Optional]_\nString to show \"click inside\" label for QR already read"
+              },
+              "internal": false
+            },
+            {
               "name": "hideQrModalDescription",
               "type": "boolean",
               "attribute": "hide-qr-modal-description",
@@ -7083,6 +7244,7 @@
             "waitingStartSessionLabel",
             "display",
             "renderRetryQR",
+            "readedQrMessages",
             "value",
             "useLogo",
             "size",
@@ -7358,7 +7520,7 @@
     "sc-gataca-qr": [
       "index-34dab51c.js",
       "gataca-qrdisplay-0146c456.js",
-      "utils-05ba6c9f.js",
+      "utils-1b406699.js",
       "gat-icon-alert-13a1894e.js"
     ],
     "sc-gataca-qrdisplay": [
@@ -7368,7 +7530,7 @@
     "sc-gataca-qrws": [
       "index-34dab51c.js",
       "gataca-qrdisplay-0146c456.js",
-      "utils-05ba6c9f.js",
+      "utils-1b406699.js",
       "gat-icon-alert-13a1894e.js"
     ],
     "sc-gataca-ssibutton": [
@@ -7380,7 +7542,6 @@
     ]
   },
   "sourceGraph": {
-    "./src/components/gataca-autoqr/gataca-autoqr.e2e.ts": [],
     "./src/components/gataca-autoqr/gataca-autoqr.tsx": [],
     "./src/components/gataca-qr/components/qr/QR.tsx": [],
     "./src/components/gataca-qr/components/retryButton/RetryButton.tsx": [
@@ -7390,7 +7551,6 @@
     "./src/components/gataca-qr/components/success/Success.tsx": [
       "./src/assets/icons/gat-icon-check.svg"
     ],
-    "./src/components/gataca-qr/gataca-qr.e2e.ts": [],
     "./src/components/gataca-qr/gataca-qr.tsx": [
       "./src/assets/images/logo_gataca.svg",
       "./src/components/gataca-qr/components/qr/QR",
@@ -7399,7 +7559,6 @@
       "./src/components/gataca-qrdisplay/gataca-qrdisplay",
       "./src/utils/utils"
     ],
-    "./src/components/gataca-qrdisplay/gataca-qrdisplay.e2e.ts": [],
     "./src/components/gataca-qrdisplay/gataca-qrdisplay.tsx": [
       "./src/assets/images/logo_gataca.svg"
     ],
@@ -7411,7 +7570,6 @@
     "./src/components/gataca-qrws/components/success/Success.tsx": [
       "./src/assets/icons/gat-icon-check.svg"
     ],
-    "./src/components/gataca-qrws/gataca-qrws.e2e.ts": [],
     "./src/components/gataca-qrws/gataca-qrws.tsx": [
       "./src/assets/images/logo_gataca.svg",
       "./src/components/gataca-qrdisplay/gataca-qrdisplay",
@@ -7420,11 +7578,9 @@
       "./src/components/gataca-qrws/components/success/Success",
       "./src/utils/utils"
     ],
-    "./src/components/gataca-ssibutton/gataca-ssibutton.e2e.ts": [],
     "./src/components/gataca-ssibutton/gataca-ssibutton.tsx": [
       "./src/components/gataca-qrdisplay/gataca-qrdisplay"
     ],
-    "./src/components/gataca-ssibuttonws/gataca-ssibuttonws.e2e.ts": [],
     "./src/components/gataca-ssibuttonws/gataca-ssibuttonws.tsx": [],
     "./src/index.ts": [],
     "./src/utils/index.ts": [],

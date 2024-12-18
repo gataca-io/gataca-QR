@@ -25,6 +25,7 @@ export enum RESULT_STATUS {
   SUCCESS = 1,
   FAILED = 2,
   EXPIRED = 3,
+  READED = 5,
 }
 
 export type WSResponse = {
