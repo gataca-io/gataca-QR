@@ -449,10 +449,10 @@ export class GatacaQR {
       case RESULT_STATUS.SUCCESS:
         return this.renderSuccess();
       case RESULT_STATUS.READED:
-        return this.renderRetryButton(null, [
-          this?.readedQrLabel,
-          this?.clickInsideBoxReadedQrLabel,
-        ]);
+        return this.renderRetryButton(null, {
+          title: this?.readedQrLabel,
+          description: this?.clickInsideBoxReadedQrLabel,
+        });
     }
   }
 
@@ -465,7 +465,10 @@ export class GatacaQR {
     );
   }
 
-  renderRetryButton(errorMessage?: string, readedQrMessages?: string[]) {
+  renderRetryButton(
+    errorMessage?: string,
+    readedQrMessages?: { title; description }
+  ) {
     return (
       <RetryButton
         errorMessage={errorMessage}
@@ -477,8 +480,6 @@ export class GatacaQR {
         display={this.display.bind(this)}
         renderRetryQR={this.renderRetryQR.bind(this)}
         readedQrMessages={readedQrMessages}
-        readedQrLabel={this?.readedQrLabel}
-        clickInsideBoxReadedQrLabel={this?.clickInsideBoxReadedQrLabel}
       />
     );
   }

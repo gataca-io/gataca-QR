@@ -1,5 +1,5 @@
 {
-  "timestamp": "2024-12-16T13:45:28",
+  "timestamp": "2024-12-18T08:14:29",
   "compiler": {
     "name": "node",
     "version": "18.17.0"
@@ -138,7 +138,7 @@
           "utils-1b406699.js",
           "gat-icon-alert-13a1894e.js"
         ],
-        "originalByteSize": 16350
+        "originalByteSize": 16286
       },
       {
         "key": "gataca-qrws.entry",
@@ -153,7 +153,7 @@
           "utils-1b406699.js",
           "gat-icon-alert-13a1894e.js"
         ],
-        "originalByteSize": 16445
+        "originalByteSize": 16381
       },
       {
         "key": "gataca-qrdisplay.entry",
@@ -6234,8 +6234,6 @@
             "display",
             "renderRetryQR",
             "readedQrMessages",
-            "readedQrLabel",
-            "clickInsideBoxReadedQrLabel",
             "value",
             "useLogo",
             "size",
@@ -7247,8 +7245,6 @@
             "display",
             "renderRetryQR",
             "readedQrMessages",
-            "readedQrLabel",
-            "clickInsideBoxReadedQrLabel",
             "value",
             "useLogo",
             "size",
@@ -7546,7 +7542,6 @@
     ]
   },
   "sourceGraph": {
-    "./src/components/gataca-autoqr/gataca-autoqr.e2e.ts": [],
     "./src/components/gataca-autoqr/gataca-autoqr.tsx": [],
     "./src/components/gataca-qr/components/qr/QR.tsx": [],
     "./src/components/gataca-qr/components/retryButton/RetryButton.tsx": [
@@ -7556,7 +7551,6 @@
     "./src/components/gataca-qr/components/success/Success.tsx": [
       "./src/assets/icons/gat-icon-check.svg"
     ],
-    "./src/components/gataca-qr/gataca-qr.e2e.ts": [],
     "./src/components/gataca-qr/gataca-qr.tsx": [
       "./src/assets/images/logo_gataca.svg",
       "./src/components/gataca-qr/components/qr/QR",
@@ -7565,7 +7559,6 @@
       "./src/components/gataca-qrdisplay/gataca-qrdisplay",
       "./src/utils/utils"
     ],
-    "./src/components/gataca-qrdisplay/gataca-qrdisplay.e2e.ts": [],
     "./src/components/gataca-qrdisplay/gataca-qrdisplay.tsx": [
       "./src/assets/images/logo_gataca.svg"
     ],
@@ -7577,7 +7570,6 @@
     "./src/components/gataca-qrws/components/success/Success.tsx": [
       "./src/assets/icons/gat-icon-check.svg"
     ],
-    "./src/components/gataca-qrws/gataca-qrws.e2e.ts": [],
     "./src/components/gataca-qrws/gataca-qrws.tsx": [
       "./src/assets/images/logo_gataca.svg",
       "./src/components/gataca-qrdisplay/gataca-qrdisplay",
@@ -7586,11 +7578,9 @@
       "./src/components/gataca-qrws/components/success/Success",
       "./src/utils/utils"
     ],
-    "./src/components/gataca-ssibutton/gataca-ssibutton.e2e.ts": [],
     "./src/components/gataca-ssibutton/gataca-ssibutton.tsx": [
       "./src/components/gataca-qrdisplay/gataca-qrdisplay"
     ],
-    "./src/components/gataca-ssibuttonws/gataca-ssibuttonws.e2e.ts": [],
     "./src/components/gataca-ssibuttonws/gataca-ssibuttonws.tsx": [],
     "./src/index.ts": [],
     "./src/utils/index.ts": [],
