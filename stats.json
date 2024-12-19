@@ -1,5 +1,5 @@
 {
-  "timestamp": "2024-12-19T14:57:52",
+  "timestamp": "2024-12-19T17:28:08",
   "compiler": {
     "name": "node",
     "version": "18.17.0"
@@ -9,7 +9,7 @@
     "fsNamespace": "gatacaqr",
     "components": 6,
     "entries": 6,
-    "bundles": 44,
+    "bundles": 42,
     "outputs": [
       {
         "name": "dist-custom-elements",
@@ -26,7 +26,7 @@
       },
       {
         "name": "dist-lazy",
-        "files": 34,
+        "files": 32,
         "generatedFiles": [
           "./dist/gatacaqr/app-globals-0f993ce5.js",
           "./dist/gatacaqr/css-shim-b7d3d95f.js",
@@ -43,7 +43,6 @@
           "./dist/gatacaqr/index-34dab51c.js",
           "./dist/gatacaqr/index.esm.js",
           "./dist/gatacaqr/shadow-css-98135883.js",
-          "./dist/gatacaqr/utils-1b406699.js",
           "./dist/gatacaqr/utils-63e7a33b.js",
           "./www/build/app-globals-0f993ce5.js",
           "./www/build/css-shim-b7d3d95f.js",
@@ -60,7 +59,6 @@
           "./www/build/index-34dab51c.js",
           "./www/build/index.esm.js",
           "./www/build/shadow-css-98135883.js",
-          "./www/build/utils-1b406699.js",
           "./www/build/utils-63e7a33b.js"
         ]
       },
@@ -140,7 +138,7 @@
           "utils-63e7a33b.js",
           "gat-icon-alert-13a1894e.js"
         ],
-        "originalByteSize": 22413
+        "originalByteSize": 22462
       },
       {
         "key": "gataca-qrws.entry",

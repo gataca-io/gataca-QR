@@ -422,8 +422,9 @@ export class GatacaQR {
         case RESULT_STATUS.SUCCESS:
           resolve(data);
           break;
-        case RESULT_STATUS.ONGOING:
         case RESULT_STATUS.READ:
+          component.result = RESULT_STATUS.READ;
+        case RESULT_STATUS.ONGOING:
           if (component.sessionTimeout > 0 && new Date().getTime() < endTime) {
             setTimeout(checkCondition, interval, resolve, reject);
           } else {
