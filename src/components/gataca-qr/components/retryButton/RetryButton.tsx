@@ -12,10 +12,6 @@ type IRetryButtonProps = {
   waitingStartSessionLabel?: string;
   display: (x?: any) => void;
   renderRetryQR(value: string, useLogo?: boolean): any;
-  readedQrMessages?: {
-    title?: string;
-    description?: string;
-  };
 };
 
 export const RetryButton: React.FC<IRetryButtonProps> = (props) => {
@@ -28,7 +24,6 @@ export const RetryButton: React.FC<IRetryButtonProps> = (props) => {
     waitingStartSessionLabel,
     display,
     renderRetryQR,
-    readedQrMessages,
   } = props;
 
   return (
@@ -41,15 +36,11 @@ export const RetryButton: React.FC<IRetryButtonProps> = (props) => {
     >
       <div id="notify" onClick={() => display()}>
         <img src={refreshIcon} height={24} width={24} />
-        {readedQrMessages ? (
-          <p class="notify-text">{readedQrMessages?.title} </p>
-        ) : (
-          <p class="notify-text">{clickInsideBoxLabel} </p>
-        )}
+
+        <p class="notify-text">{clickInsideBoxLabel} </p>
+
         {errorMessage ? (
           <p class="notify-text bold">{refreshQrLabel}</p>
-        ) : readedQrMessages ? (
-          <p class="notify-text bold">{readedQrMessages?.description}</p>
         ) : (
           <p class="notify-text bold">{scanQrLabel}</p>
         )}

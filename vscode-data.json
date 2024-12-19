@@ -46,10 +46,6 @@
           "description": "_[Optional]_\nString to show \"click inside\" label"
         },
         {
-          "name": "click-inside-box-readed-qr-label",
-          "description": "_[Optional]_\nString to show \"click inside\" label for QR already read"
-        },
-        {
           "name": "credentials-not-validated-label",
           "description": "_[Optional]_\nString to show when credentials not validatedd"
         },
@@ -126,8 +122,12 @@
           "description": "_[Optional]_\nSize of QR Displayed"
         },
         {
-          "name": "readed-qr-label",
-          "description": "_[Optional]_\nString to show when QR already read"
+          "name": "read-qr-description",
+          "description": "_[Optional]_\nString description to show when QR already read"
+        },
+        {
+          "name": "read-qr-title",
+          "description": "_[Optional]_\nString title to show when QR already read"
         },
         {
           "name": "refresh-qr-label",
@@ -220,10 +220,6 @@
           "description": "_[Optional]_\nString to show \"click inside\" label"
         },
         {
-          "name": "click-inside-box-readed-qr-label",
-          "description": "_[Optional]_\nString to show \"click inside\" label for QR already read"
-        },
-        {
           "name": "credentials-not-validated-label",
           "description": "_[Optional]_\nString to show when credentials not validatedd"
         },
@@ -296,8 +292,12 @@
           "description": "_[Optional]_\nSize of QR Displayed"
         },
         {
-          "name": "readed-qr-label",
-          "description": "_[Optional]_\nString to show when QR already read"
+          "name": "read-qr-description",
+          "description": "_[Optional]_\nString description to show when QR already read"
+        },
+        {
+          "name": "read-qr-title",
+          "description": "_[Optional]_\nString title to show when QR already read"
         },
         {
           "name": "refresh-qr-label",

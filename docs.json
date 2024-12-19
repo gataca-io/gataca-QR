@@ -1,5 +1,5 @@
 {
-  "timestamp": "2024-12-18T12:19:49",
+  "timestamp": "2024-12-19T14:57:51",
   "compiler": {
     "name": "@stencil/core",
     "version": "2.22.3",
@@ -309,23 +309,6 @@
           "docs": "_[Optional]_\nString to show \"click inside\" label",
           "docsTags": [],
           "default": "\"Click inside the box to\"",
-          "values": [
-            {
-              "type": "string"
-            }
-          ],
-          "optional": true,
-          "required": false
-        },
-        {
-          "name": "clickInsideBoxReadedQrLabel",
-          "type": "string",
-          "mutable": false,
-          "attr": "click-inside-box-readed-qr-label",
-          "reflectToAttr": false,
-          "docs": "_[Optional]_\nString to show \"click inside\" label for QR already read",
-          "docsTags": [],
-          "default": "\"Click the box to refresh.\"",
           "values": [
             {
               "type": "string"
@@ -688,14 +671,31 @@
           "required": false
         },
         {
-          "name": "readedQrLabel",
+          "name": "readQrDescription",
           "type": "string",
           "mutable": false,
-          "attr": "readed-qr-label",
+          "attr": "read-qr-description",
           "reflectToAttr": false,
-          "docs": "_[Optional]_\nString to show when QR already read",
+          "docs": "_[Optional]_\nString description to show when QR already read",
           "docsTags": [],
-          "default": "\"QR Code already scanned.\"",
+          "default": "\"Please wait a moment\"",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "readQrTitle",
+          "type": "string",
+          "mutable": false,
+          "attr": "read-qr-title",
+          "reflectToAttr": false,
+          "docs": "_[Optional]_\nString title to show when QR already read",
+          "docsTags": [],
+          "default": "\"Processing...\"",
           "values": [
             {
               "type": "string"
@@ -1142,23 +1142,6 @@
           "required": false
         },
         {
-          "name": "clickInsideBoxReadedQrLabel",
-          "type": "string",
-          "mutable": false,
-          "attr": "click-inside-box-readed-qr-label",
-          "reflectToAttr": false,
-          "docs": "_[Optional]_\nString to show \"click inside\" label for QR already read",
-          "docsTags": [],
-          "default": "\"Click the box to refresh.\"",
-          "values": [
-            {
-              "type": "string"
-            }
-          ],
-          "optional": true,
-          "required": false
-        },
-        {
           "name": "credentialsNotValidatedLabel",
           "type": "string",
           "mutable": false,
@@ -1479,14 +1462,31 @@
           "required": false
         },
         {
-          "name": "readedQrLabel",
+          "name": "readQrDescription",
           "type": "string",
           "mutable": false,
-          "attr": "readed-qr-label",
+          "attr": "read-qr-description",
           "reflectToAttr": false,
-          "docs": "_[Optional]_\nString to show when QR already read",
+          "docs": "_[Optional]_\nString description to show when QR already read",
           "docsTags": [],
-          "default": "\"QR Code already scanned.\"",
+          "default": "\"Please wait a moment\"",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "readQrTitle",
+          "type": "string",
+          "mutable": false,
+          "attr": "read-qr-title",
+          "reflectToAttr": false,
+          "docs": "_[Optional]_\nString title to show when QR already read",
+          "docsTags": [],
+          "default": "\"Processing...\"",
           "values": [
             {
               "type": "string"

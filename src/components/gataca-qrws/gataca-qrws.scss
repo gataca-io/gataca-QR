@@ -50,6 +50,86 @@ table {
 	border-spacing: 0;
 }
 
+// Animated Loader variables & functions
+
+$items: 8;
+$velocity: 1.2;
+$colorStart: #4745B7;
+$colorEnd: #CCCBF8;
+
+/* Sizes */
+$itemWidthSM: 9.68;
+$itemHeightSM: 4;
+$radiusSM: 10.5;
+
+/* Trigonometry helpers */
+$pi: 3.14159265359;
+$_precision: 10;
+
+@function pow($base, $exp) {
+  $value: $base;
+
+  @if $exp >1 {
+    @for $i from 2 through $exp {
+      $value: $value * $base;
+    }
+  }
+
+  @if $exp < 1 {
+    @for $i from 0 through -$exp {
+      $value: $value / $base;
+    }
+  }
+
+  @return $value;
+}
+
+@function fact($num) {
+  $fact: 1;
+
+  @if $num >0 {
+    @for $i from 1 through $num {
+      $fact: $fact * $i;
+    }
+  }
+
+  @return $fact;
+}
+
+@function _to_unitless_rad($angle) {
+  @if unit($angle)=="deg" {
+    $angle: calc($angle / 180deg) * $pi;
+  }
+
+  @if unit($angle)=="rad" {
+    $angle: calc($angle / 1rad);
+  }
+
+  @return $angle;
+}
+
+@function sin($angle) {
+  $a: _to_unitless_rad($angle);
+  $sin: $a;
+
+  @for $n from 1 through $_precision {
+    $sin: $sin + calc(pow(-1, $n) / fact(2 * $n + 1)) * pow($a, (2 * $n + 1));
+  }
+
+  @return $sin;
+}
+
+@function cos($angle) {
+  $a: _to_unitless_rad($angle);
+  $cos: 1;
+
+  @for $n from 1 through $_precision {
+    $cos: $cos + calc(pow(-1, $n) / fact(2*$n)) * pow($a, 2*$n);
+  }
+
+  @return $cos;
+}
+
 /*
 QR COMPONENT  
 */
@@ -148,7 +228,7 @@ img {
     }
 
     .bold {
-      font-weight: 600;
+      font-weight: 700;
     }
 
     .qrBrand {
@@ -216,7 +296,8 @@ img {
 
 // RetryButton
 
-.reload {
+.reload,
+.blured {
   height: 252px;
   width: 252px;
   border: 1px dashed #a1a1a1;
@@ -301,4 +382,70 @@ img {
   line-height: 16px;
   color: #707074;
   text-align: center;
+}
+
+// Animated Loader
+.containerLoader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  margin-bottom: 12px;
+}
+
+.loader {
+  position: relative;
+  margin-left: 0 !important;
+  &__item {
+    position: absolute;
+    width: $itemWidthSM + px;
+    height: $itemHeightSM + px;
+    background: transparent;
+    border-radius: calc($itemHeightSM / 2) + px;
+  }
+  @for $i from 1 through $items {
+    &__item__#{$i} {
+      $deg: calc(360deg / $items) * $i;
+      $offsetX: (
+        cos(calc(360deg / $items) * $i) * $radiusSM) - calc($itemWidthSM / 2
+      );
+      $offsetY: (
+        sin(calc(360deg / $items) * $i) * $radiusSM) - calc($itemHeightSM / 2
+      );
+      transform: translate($offsetX + px, $offsetY + px) rotate($deg);
+      -webkit-animation: translate($offsetX + px, $offsetY + px) rotate($deg);
+      -moz-animation: translate($offsetX + px, $offsetY + px) rotate($deg);
+      -o-animation: translate($offsetX + px, $offsetY + px) rotate($deg);
+
+      animation: blink #{calc(1 / $velocity)}s linear #{$i * calc(calc(1 / $velocity) / $items)}s infinite;
+      -webkit-animation: blink #{calc(1 / $velocity)}s linear #{$i * calc(calc(1 / $velocity) / $items)}s infinite;
+      -moz-animation: blink #{calc(1 / $velocity)}s linear #{$i * calc(calc(1 / $velocity) / $items)}s infinite;
+      -o-animation: blink #{calc(1 / $velocity)}s linear #{$i * calc(calc(1 / $velocity) / $items)}s infinite;
+    }
+  }
+  &__item__8 {
+    max-width: 8.5px;
+  }
+}
+
+/// Animations Loader
+@keyframes blink {
+  0% {
+    background: $colorStart;
+  }
+
+  100% {
+    background: $colorEnd;
+  }
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    background: rotate(360deg);
+  }
 }
