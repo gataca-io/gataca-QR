@@ -12,6 +12,7 @@ import "../gataca-qrdisplay/gataca-qrdisplay";
 import { base64UrlEncode, checkMobile, RESULT_STATUS } from "../../utils/utils";
 import { Success } from "./components/success/Success";
 import { RetryButton } from "./components/retryButton/RetryButton";
+import { ReadQR } from "./components/readQR/ReadQR";
 import { QR } from "./components/qr/QR";
 
 const DEEP_LINK_PREFIX =
@@ -245,15 +246,15 @@ export class GatacaQR {
 
   /**
    * _[Optional]_
-   * String to show when QR already read
+   * String title to show when QR already read
    */
-  @Prop() readedQrLabel?: string = "QR Code already scanned.";
+  @Prop() readQrTitle?: string = "Processing...";
 
   /**
    * _[Optional]_
-   * String to show "click inside" label for QR already read
+   * String description to show when QR already read
    */
-  @Prop() clickInsideBoxReadedQrLabel?: string = "Click the box to refresh.";
+  @Prop() readQrDescription?: string = "Please wait a moment";
 
   /**
    * _[Optional]_
@@ -353,7 +354,7 @@ export class GatacaQR {
   @Method()
   async stop(): Promise<void> {
     this.clean();
-    if (this.result === RESULT_STATUS.ONGOING) {
+    if (this.result === RESULT_STATUS.ONGOING || RESULT_STATUS.READ) {
       this.result = RESULT_STATUS.NOT_STARTED;
     }
   }
@@ -421,6 +422,8 @@ export class GatacaQR {
         case RESULT_STATUS.SUCCESS:
           resolve(data);
           break;
+        case RESULT_STATUS.READ:
+          component.result = RESULT_STATUS.READ;
         case RESULT_STATUS.ONGOING:
           if (component.sessionTimeout > 0 && new Date().getTime() < endTime) {
             setTimeout(checkCondition, interval, resolve, reject);
@@ -448,10 +451,10 @@ export class GatacaQR {
         return this.renderRetryButton(this.credentialsNotValidatedLabel);
       case RESULT_STATUS.SUCCESS:
         return this.renderSuccess();
-      case RESULT_STATUS.READED:
-        return this.renderRetryButton(null, {
-          title: this?.readedQrLabel,
-          description: this?.clickInsideBoxReadedQrLabel,
+      case RESULT_STATUS.READ:
+        return this.renderReadQR({
+          title: this?.readQrTitle,
+          description: this?.readQrDescription,
         });
     }
   }
@@ -465,10 +468,7 @@ export class GatacaQR {
     );
   }
 
-  renderRetryButton(
-    errorMessage?: string,
-    readedQrMessages?: { title; description }
-  ) {
+  renderRetryButton(errorMessage?: string) {
     return (
       <RetryButton
         errorMessage={errorMessage}
@@ -479,7 +479,18 @@ export class GatacaQR {
         waitingStartSessionLabel={this?.waitingStartSessionLabel}
         display={this.display.bind(this)}
         renderRetryQR={this.renderRetryQR.bind(this)}
-        readedQrMessages={readedQrMessages}
+      />
+    );
+  }
+
+  renderReadQR(readQrMessages?: { title; description }) {
+    return (
+      <ReadQR
+        modalWidth={this?.modalWidth}
+        readQrMessages={readQrMessages}
+        url={this.getLink()}
+        sizeQR={this?.qrSize ? this?.qrSize - 50 : undefined}
+        renderQR={this.renderQR}
       />
     );
   }
