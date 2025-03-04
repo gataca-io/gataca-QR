@@ -384,25 +384,13 @@ export class GatacaQR {
   }
 
   getLink(): string {
-    if (this.v !== "3") {
+    if (this.v === "2") {
       return this.authenticationRequest;
-    } else {
-      let op = FUNCTION_ROLES[this.qrRole];
-      let link = "https://gataca.page.link/" + op + "?";
-      link +=
-        this.qrRole === QR_ROLE_CONNECT
-          ? "session=" + this.sessionId
-          : "process=" + this.sessionId;
-      link +=
-        "&callback=" + base64UrlEncode(encodeURIComponent(this.callbackServer));
-      link = encodeURIComponent(link);
-      const authRequestEncoded =
-        "&dl=" + base64UrlEncode(this.authenticationRequest);
-
-      return this.dynamicLink
-        ? DEEP_LINK_PREFIX + link + authRequestEncoded
-        : link + authRequestEncoded;
     }
+    const authRequestEncoded =
+      "&dl=" + base64UrlEncode(this.authenticationRequest);
+
+    return DEEP_LINK_PREFIX + authRequestEncoded;
   }
 
   async poll() {
