@@ -36,13 +36,13 @@
     };
     qr.checkStatus = () => {
       //TODO Change with and invocation to your Backend service to query the status of the session
-      // count++;
-      // if (count == 5) {
-      //   return { result: ok ? 1 : 2, data: { name: "test", token: "x" } };
-      // }
-      // if (count >= 3) {
-      //   return { result: 5 };
-      // }
+      count++;
+      if (count == 5) {
+        return { result: ok ? 1 : 2, data: { name: "test", token: "x" } };
+      }
+      if (count >= 3) {
+        return { result: 5 };
+      }
       return { result: 0 };
     };
   </script>
