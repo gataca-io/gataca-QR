@@ -1,5 +1,7 @@
 # Gataca-QR Components
 
+Since V3, create session params in all components must be providing both an authentication request and a session Id. The case where it is not necessary has been eliminated.
+
 Since V2, this library is now a list of components provided by Gataca to help the integration of its backends components into your front services.
 
 To use this components (except for the QR Display), you will need an instance of any of the Gataca Components (Connect and Certify). You can also use it with onPremise instances over Gataca Studio.

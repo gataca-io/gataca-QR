@@ -34,7 +34,7 @@ export class GatacaSSIButtonWS {
         socketEndpoint={this.socketEndpoint}
         autostart={true}
         autorefresh={this.autorefresh}
-        v2={this.v2}
+        v={this.v}
         qrModalTitle={this.qrModalTitle}
         qrModalDescription={this.qrModalDescription}
         hideBrandTitle={this.hideBrandTitle}
@@ -121,9 +121,9 @@ export class GatacaSSIButtonWS {
 
   /**
    * **RECOMMENDED**
-   * Set to use v2 links. The create session must be providing both an authentication request and a session Id
+   * If 3, handle deeplink redirects and deprecates (remove) v1 functionality. If not, the create session must be providing both an authentication request and a session Id
    */
-  @Prop() v2?: boolean = false;
+  @Prop() v?: string = "3";
 
   /**
    * _[Optional]_

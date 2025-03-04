@@ -113,10 +113,10 @@ export class GatacaQRWS {
   @Prop() autorefresh: boolean = false;
 
   /**
-   * **RECOMMENDED**
-   * Set to use v2 links. The create session must be providing both an authentication request and a session Id
+   * _[Optional]_
+   * If 3, handle deeplink redirects and deprecates (remove) v1 functionality. If not, the create session must be providing both an authentication request and a session Id
    */
-  @Prop() v2?: boolean = false;
+  @Prop() v?: string = "3";
 
   /**
    * _[Optional]_
@@ -426,7 +426,7 @@ export class GatacaQRWS {
   }
 
   getLink(): string {
-    if (this.v2 && this.qrRole == QR_ROLE_CONNECT) {
+    if (this.v && this.qrRole == QR_ROLE_CONNECT) {
       return this.authenticationRequest;
     }
     let op = FUNCTION_ROLES[this.qrRole];

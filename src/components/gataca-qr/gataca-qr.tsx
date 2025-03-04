@@ -15,8 +15,7 @@ import { RetryButton } from "./components/retryButton/RetryButton";
 import { ReadQR } from "./components/readQR/ReadQR";
 import { QR } from "./components/qr/QR";
 
-const DEEP_LINK_PREFIX =
-  "https://gataca.page.link/?apn=com.gatacaapp&ibi=com.gataca.wallet&link=";
+const DEEP_LINK_PREFIX = "https://api.gataca.io/qr/redirect.html";
 
 //Default values
 const DEFAULT_SESSION_TIMEOUT = 300; //5mins as in connect
@@ -52,8 +51,8 @@ export class GatacaQR {
   /**
    * ***Mandatory***
    * Create session function to generate a new Session
-   * Using V1, it can provide just a session Id
-   * Using V2, it must provide also the authentication request. The session Id is the id of the presentation definition
+   * Using v="3", it can provide just a session Id
+   * Using another version, it must provide also the authentication request. The session Id is the id of the presentation definition
    */
   @Prop() createSession?: () => Promise<{
     sessionId: string;
@@ -104,9 +103,9 @@ export class GatacaQR {
 
   /**
    * _[Optional]_
-   * Set to use v2 links. The create session must be providing both an authentication request and a session Id
+   * If 3, handle deeplink redirects and deprecates (remove) v1 functionality. If not, the create session must be providing both an authentication request and a session Id
    */
-  @Prop() v2?: boolean = false;
+  @Prop() v?: string = "3";
 
   /**
    * _[Optional]_
@@ -385,19 +384,25 @@ export class GatacaQR {
   }
 
   getLink(): string {
-    if (this.v2) {
+    if (this.v !== "3") {
       return this.authenticationRequest;
+    } else {
+      let op = FUNCTION_ROLES[this.qrRole];
+      let link = "https://gataca.page.link/" + op + "?";
+      link +=
+        this.qrRole === QR_ROLE_CONNECT
+          ? "session=" + this.sessionId
+          : "process=" + this.sessionId;
+      link +=
+        "&callback=" + base64UrlEncode(encodeURIComponent(this.callbackServer));
+      link = encodeURIComponent(link);
+      const authRequestEncoded =
+        "&dl=" + base64UrlEncode(this.authenticationRequest);
+
+      return this.dynamicLink
+        ? DEEP_LINK_PREFIX + link + authRequestEncoded
+        : link + authRequestEncoded;
     }
-    let op = FUNCTION_ROLES[this.qrRole];
-    let link = "https://gataca.page.link/" + op + "?";
-    link +=
-      this.qrRole === QR_ROLE_CONNECT
-        ? "session=" + this.sessionId
-        : "process=" + this.sessionId;
-    link +=
-      "&callback=" + base64UrlEncode(encodeURIComponent(this.callbackServer));
-    link = encodeURIComponent(link);
-    return this.dynamicLink ? DEEP_LINK_PREFIX + link : link;
   }
 
   async poll() {
