@@ -9,9 +9,8 @@
 <body>
   <div>
     <gataca-qr id="gataca-qr" qrRole="connect" hide-modal-texts="true" hide-modal-box-shadow="true" modal-width="300"
-      modal-height="300" qr-size="300" callback-server="https://connect.gataca.io">
+      v="2" modal-height="300" qr-size="300" callback-server="https://connect.gataca.io">
       <!-- TODO Change with your connect server-->
-    </gataca-qr>
   </div>
 
   <script>
@@ -27,11 +26,9 @@
       alert("some error");
     };
     qr.createSession = () => {
-      // TODO Change with an invocation to your service to create a session (either v1 or v2)
-      // Authentication request is required only for v2
       return {
         sessionId: "TWp3V2R1N29ZcmFMY3Nvd3ZPb3k0UlMz",
-        authenticationRequest: "",
+        authenticationRequest: true,
       };
     };
     qr.checkStatus = () => {

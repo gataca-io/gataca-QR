@@ -36,7 +36,7 @@ export class GatacaSSIButton {
         pollingFrequency={this.pollingFrequency}
         autostart={true}
         autorefresh={this.autorefresh}
-        v2={this.v2}
+        v={this.v}
         qrModalTitle={this.qrModalTitle}
         qrModalDescription={this.qrModalDescription}
         hideBrandTitle={this.hideBrandTitle}
@@ -80,8 +80,8 @@ export class GatacaSSIButton {
   /**
    * ***Mandatory***
    * Create session function to generate a new Session
-   * Using V1, it can provide just a session Id
-   * Using V2, it must provide also the authentication request. The session Id is the id of the presentation definition
+   * Using v="3", it can provide just a session Id
+   * Using another version, it must provide also the authentication request. The session Id is the id of the presentation definition
    */
   @Prop() createSession?: () => Promise<{
     sessionId: string;
@@ -138,9 +138,9 @@ export class GatacaSSIButton {
 
   /**
    * _[Optional]_
-   * Set to use v2 links. The create session must be providing both an authentication request and a session Id
+   * If 3, handle deeplink redirects and deprecates (remove) v1 functionality. If not, the create session must be providing both an authentication request and a session Id
    */
-  @Prop() v2?: boolean = false;
+  @Prop() v?: string = "3";
 
   /**
    * _[Optional]_

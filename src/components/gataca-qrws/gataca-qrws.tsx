@@ -22,15 +22,9 @@ import { RetryButton } from "./components/retryButton/RetryButton";
 import { QR } from "./components/qr/QR";
 import { ReadQR } from "./components/readQR/ReadQR";
 
-const DEEP_LINK_PREFIX =
-  "https://gataca.page.link/?apn=com.gatacaapp&ibi=com.gataca.wallet&link=";
+const DEEP_LINK_PREFIX = "https://api.gataca.io/qr/redirect.html";
 const DEFAULT_SESSION_TIMEOUT = 300;
 const QR_ROLE_CONNECT = "connect";
-
-const FUNCTION_ROLES = {
-  connect: "scan",
-  certify: "credential",
-};
 
 @Component({
   tag: "gataca-qrws",
@@ -113,10 +107,10 @@ export class GatacaQRWS {
   @Prop() autorefresh: boolean = false;
 
   /**
-   * **RECOMMENDED**
-   * Set to use v2 links. The create session must be providing both an authentication request and a session Id
+   * _[Optional]_
+   * If 3, handle deeplink redirects and deprecates (remove) v1 functionality. If not, the create session must be providing both an authentication request and a session Id
    */
-  @Prop() v2?: boolean = false;
+  @Prop() v?: string = "3";
 
   /**
    * _[Optional]_
@@ -426,19 +420,13 @@ export class GatacaQRWS {
   }
 
   getLink(): string {
-    if (this.v2 && this.qrRole == QR_ROLE_CONNECT) {
+    if (this.v === "2" && this.qrRole == QR_ROLE_CONNECT) {
       return this.authenticationRequest;
     }
-    let op = FUNCTION_ROLES[this.qrRole];
-    let link = "https://gataca.page.link/" + op + "?";
-    link +=
-      this.qrRole === QR_ROLE_CONNECT
-        ? "session=" + this.sessionId
-        : "process=" + this.sessionId;
-    link +=
-      "&callback=" + base64UrlEncode(encodeURIComponent(this.callbackServer));
-    link = encodeURIComponent(link);
-    return this.dynamicLink ? DEEP_LINK_PREFIX + link : link;
+    const authRequestEncoded =
+      "?dl=" + base64UrlEncode(this.authenticationRequest);
+
+    return DEEP_LINK_PREFIX + authRequestEncoded;
   }
 
   renderQRSection() {

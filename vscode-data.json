@@ -5,7 +5,7 @@
       "name": "gataca-autoqr",
       "description": {
         "kind": "markdown",
-        "value": "This component built using stencyl allows an easy integration to display a GatacaQR using a predefined generated config that is downloaded when the component is displayed.\n\nAn AutoQR Config has the following structure:\n\n```typescript\nexport type QRConfig = {\n  useButton: boolean;\n  useWs: boolean;\n\n  //To display any QR\n  qrModalTitle?: string;\n  qrModalDescription?: string;\n  hideBrandTitle?: boolean;\n\n  successCallback: (data?: any) => void;\n  errorCallback: (error?: Error) => void;\n\n  autostart: boolean;\n  autorefresh: boolean;\n  sessionTimeout?: number;\n\n  qrRole: string;\n  callbackServer: string;\n  v2?: boolean;\n  dynamicLink?: boolean;\n\n  //Just for Polling\n  checkStatus?: (id?: string) => Promise<{ result: RESULT_STATUS; data?: any }>;\n  createSession?: () => Promise<{\n    sessionId: string;\n    authenticationRequest?: string;\n  }>;\n  pollingFrequency?: number;\n\n  //Just for WS\n  socketEndpoint: string;\n  wsOnOpen?: (socket: WebSocket) => void;\n  wsOnMessage?: (socket: WebSocket, msg: MessageEvent) => void;\n\n  //Just for Buttons\n  buttonText?: string;\n};\n```\n\nDepending on the parameters **useWs** and **useButton**, it will automatically load the corresponding component of the 4 possible options, with all the configuration loaded.\n\n| **useButton** \\ **useWs** | _false_: Using Polling    | _true_: Using Websockets |\n|---|---|---|\n| _false_: Displaying the QR | [Gataca QR](../gataca-qr/readme.md)   |  [Gataca QRWS](../gataca-qrws/readme.md) |\n| _true_: Displaying an SSI Button | [Gataca SSIButton](../gataca-ssibutton/readme.md)  | [Gataca SSIButtonWS](../gataca-ssibuttonws/readme.md)  |"
+        "value": "This component built using stencyl allows an easy integration to display a GatacaQR using a predefined generated config that is downloaded when the component is displayed.\n\nAn AutoQR Config has the following structure:\n\n```typescript\nexport type QRConfig = {\n  useButton: boolean;\n  useWs: boolean;\n\n  //To display any QR\n  qrModalTitle?: string;\n  qrModalDescription?: string;\n  hideBrandTitle?: boolean;\n\n  successCallback: (data?: any) => void;\n  errorCallback: (error?: Error) => void;\n\n  autostart: boolean;\n  autorefresh: boolean;\n  sessionTimeout?: number;\n\n  qrRole: string;\n  callbackServer: string;\n  v?: string;\n  dynamicLink?: boolean;\n\n  //Just for Polling\n  checkStatus?: (id?: string) => Promise<{ result: RESULT_STATUS; data?: any }>;\n  createSession?: () => Promise<{\n    sessionId: string;\n    authenticationRequest?: string;\n  }>;\n  pollingFrequency?: number;\n\n  //Just for WS\n  socketEndpoint: string;\n  wsOnOpen?: (socket: WebSocket) => void;\n  wsOnMessage?: (socket: WebSocket, msg: MessageEvent) => void;\n\n  //Just for Buttons\n  buttonText?: string;\n};\n```\n\nDepending on the parameters **useWs** and **useButton**, it will automatically load the corresponding component of the 4 possible options, with all the configuration loaded.\n\n| **useButton** \\ **useWs**        | _false_: Using Polling                            | _true_: Using Websockets                              |\n| -------------------------------- | ------------------------------------------------- | ----------------------------------------------------- |\n| _false_: Displaying the QR       | [Gataca QR](../gataca-qr/readme.md)               | [Gataca QRWS](../gataca-qrws/readme.md)               |\n| _true_: Displaying an SSI Button | [Gataca SSIButton](../gataca-ssibutton/readme.md) | [Gataca SSIButtonWS](../gataca-ssibuttonws/readme.md) |"
       },
       "attributes": [
         {
@@ -150,8 +150,8 @@
           "description": "_[Optional]_\nString to show \"user not scan in time\" error"
         },
         {
-          "name": "v-2",
-          "description": "_[Optional]_\nSet to use v2 links. The create session must be providing both an authentication request and a session Id"
+          "name": "v",
+          "description": "_[Optional]_\nIf 3, handle deeplink redirects and deprecates (remove) v1 functionality. If not, the create session must be providing both an authentication request and a session Id"
         },
         {
           "name": "waiting-start-session-label",
@@ -324,8 +324,8 @@
           "description": "_[Optional]_\nString to show \"user not scan in time\" error"
         },
         {
-          "name": "v-2",
-          "description": "**RECOMMENDED**\nSet to use v2 links. The create session must be providing both an authentication request and a session Id"
+          "name": "v",
+          "description": "_[Optional]_\nIf 3, handle deeplink redirects and deprecates (remove) v1 functionality. If not, the create session must be providing both an authentication request and a session Id"
         },
         {
           "name": "waiting-start-session-label",
@@ -437,8 +437,8 @@
           "description": "_[Optional]_\nString to show \"user not scan in time\" error"
         },
         {
-          "name": "v-2",
-          "description": "_[Optional]_\nSet to use v2 links. The create session must be providing both an authentication request and a session Id"
+          "name": "v",
+          "description": "_[Optional]_\nIf 3, handle deeplink redirects and deprecates (remove) v1 functionality. If not, the create session must be providing both an authentication request and a session Id"
         },
         {
           "name": "waiting-start-session-label",
@@ -498,8 +498,8 @@
           "description": "***Mandatory***\nWS Endpoint on your service to be invoked upon display"
         },
         {
-          "name": "v-2",
-          "description": "**RECOMMENDED**\nSet to use v2 links. The create session must be providing both an authentication request and a session Id"
+          "name": "v",
+          "description": "**RECOMMENDED**\nIf 3, handle deeplink redirects and deprecates (remove) v1 functionality. If not, the create session must be providing both an authentication request and a session Id"
         }
       ]
     }

@@ -130,8 +130,8 @@ export class GatacaAutoQR {
   /**
    * ***Mandatory***
    * Create session function to generate a new Session
-   * Using V1, it can provide just a session Id
-   * Using V2, it must provide also the authentication request. The session Id is the id of the presentation definition
+   * Using v="3", it can provide just a session Id
+   * Using another version, it must provide also the authentication request. The session Id is the id of the presentation definition
    */
   @Prop() createSession?: () => Promise<{
     sessionId: string;
@@ -205,7 +205,7 @@ export class GatacaAutoQR {
             socketEndpoint={this.config.socketEndpoint}
             autostart={true}
             autorefresh={this.config.autorefresh}
-            v2={this.config.v2}
+            v={this.config.v}
             qrModalTitle={this.config.qrModalTitle}
             qrModalDescription={this.config.qrModalDescription}
             hideBrandTitle={this.config.hideBrandTitle}
@@ -227,7 +227,7 @@ export class GatacaAutoQR {
             sessionTimeout={this.config.sessionTimeout}
             pollingFrequency={this.config.pollingFrequency}
             autorefresh={this.config.autorefresh}
-            v2={this.config.v2}
+            v={this.config.v}
             qrModalTitle={this.config.qrModalTitle}
             qrModalDescription={this.config.qrModalDescription}
             hideBrandTitle={this.config.hideBrandTitle}
@@ -251,7 +251,7 @@ export class GatacaAutoQR {
             socketEndpoint={this.config.socketEndpoint}
             autostart={this.config.autostart}
             autorefresh={this.config.autorefresh}
-            v2={this.config.v2}
+            v={this.config.v}
             qrModalTitle={this.config.qrModalTitle}
             qrModalDescription={this.config.qrModalDescription}
             hideBrandTitle={this.config.hideBrandTitle}
@@ -273,7 +273,7 @@ export class GatacaAutoQR {
             pollingFrequency={this.config.pollingFrequency}
             autostart={this.config.autostart}
             autorefresh={this.config.autorefresh}
-            v2={this.config.v2}
+            v={this.config.v}
             qrModalTitle={this.config.qrModalTitle}
             qrModalDescription={this.config.qrModalDescription}
             hideBrandTitle={this.config.hideBrandTitle}

@@ -52,7 +52,7 @@ export type QRExchange = QRDisplay & {
 
   qrRole: string;
   callbackServer: string;
-  v2?: boolean;
+  v?: string;
   dynamicLink?: boolean;
 };
 

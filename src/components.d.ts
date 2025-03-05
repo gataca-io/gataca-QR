@@ -24,7 +24,7 @@ export namespace Components {
          */
         "configRepository": string;
         /**
-          * ***Mandatory*** Create session function to generate a new Session Using V1, it can provide just a session Id Using V2, it must provide also the authentication request. The session Id is the id of the presentation definition
+          * ***Mandatory*** Create session function to generate a new Session Using v="3", it can provide just a session Id Using another version, it must provide also the authentication request. The session Id is the id of the presentation definition
          */
         "createSession"?: () => Promise<{
     sessionId: string;
@@ -79,7 +79,7 @@ export namespace Components {
          */
         "clickInsideBoxLabel"?: string;
         /**
-          * ***Mandatory*** Create session function to generate a new Session Using V1, it can provide just a session Id Using V2, it must provide also the authentication request. The session Id is the id of the presentation definition
+          * ***Mandatory*** Create session function to generate a new Session Using v="3", it can provide just a session Id Using another version, it must provide also the authentication request. The session Id is the id of the presentation definition
          */
         "createSession"?: () => Promise<{
     sessionId: string;
@@ -210,9 +210,9 @@ export namespace Components {
          */
         "userNotScanInTimeErrorLabel"?: string;
         /**
-          * _[Optional]_ Set to use v2 links. The create session must be providing both an authentication request and a session Id
+          * _[Optional]_ If 3, handle deeplink redirects and deprecates (remove) v1 functionality. If not, the create session must be providing both an authentication request and a session Id
          */
-        "v2"?: boolean;
+        "v"?: string;
         /**
           * _[Optional]_ String to show "waiting start session" label
          */
@@ -390,9 +390,9 @@ export namespace Components {
          */
         "userNotScanInTimeErrorLabel"?: string;
         /**
-          * **RECOMMENDED** Set to use v2 links. The create session must be providing both an authentication request and a session Id
+          * _[Optional]_ If 3, handle deeplink redirects and deprecates (remove) v1 functionality. If not, the create session must be providing both an authentication request and a session Id
          */
-        "v2"?: boolean;
+        "v"?: string;
         /**
           * _[Optional]_ String to show "waiting start session" label
          */
@@ -434,7 +434,7 @@ export namespace Components {
          */
         "clickInsideBoxLabel"?: string;
         /**
-          * ***Mandatory*** Create session function to generate a new Session Using V1, it can provide just a session Id Using V2, it must provide also the authentication request. The session Id is the id of the presentation definition
+          * ***Mandatory*** Create session function to generate a new Session Using v="3", it can provide just a session Id Using another version, it must provide also the authentication request. The session Id is the id of the presentation definition
          */
         "createSession"?: () => Promise<{
     sessionId: string;
@@ -529,9 +529,9 @@ export namespace Components {
          */
         "userNotScanInTimeErrorLabel"?: string;
         /**
-          * _[Optional]_ Set to use v2 links. The create session must be providing both an authentication request and a session Id
+          * _[Optional]_ If 3, handle deeplink redirects and deprecates (remove) v1 functionality. If not, the create session must be providing both an authentication request and a session Id
          */
-        "v2"?: boolean;
+        "v"?: string;
         /**
           * _[Optional]_ String to show "waiting start session" label
          */
@@ -595,9 +595,9 @@ export namespace Components {
          */
         "successCallback": (data?: any) => void;
         /**
-          * **RECOMMENDED** Set to use v2 links. The create session must be providing both an authentication request and a session Id
+          * **RECOMMENDED** If 3, handle deeplink redirects and deprecates (remove) v1 functionality. If not, the create session must be providing both an authentication request and a session Id
          */
-        "v2"?: boolean;
+        "v"?: string;
         /**
           * **RECOMMENDED** Callback to invoke an a message has been received on the socket. It provides the socket itself and the message as parameters. If not used, the messages provided by the server on the Socket connection must conform to the WSReponse interface If used, an Event named **sessionMsg** must be triggered with a WSReponse as data
          */
@@ -691,7 +691,7 @@ declare namespace LocalJSX {
          */
         "configRepository"?: string;
         /**
-          * ***Mandatory*** Create session function to generate a new Session Using V1, it can provide just a session Id Using V2, it must provide also the authentication request. The session Id is the id of the presentation definition
+          * ***Mandatory*** Create session function to generate a new Session Using v="3", it can provide just a session Id Using another version, it must provide also the authentication request. The session Id is the id of the presentation definition
          */
         "createSession"?: () => Promise<{
     sessionId: string;
@@ -750,7 +750,7 @@ declare namespace LocalJSX {
          */
         "clickInsideBoxLabel"?: string;
         /**
-          * ***Mandatory*** Create session function to generate a new Session Using V1, it can provide just a session Id Using V2, it must provide also the authentication request. The session Id is the id of the presentation definition
+          * ***Mandatory*** Create session function to generate a new Session Using v="3", it can provide just a session Id Using another version, it must provide also the authentication request. The session Id is the id of the presentation definition
          */
         "createSession"?: () => Promise<{
     sessionId: string;
@@ -877,9 +877,9 @@ declare namespace LocalJSX {
          */
         "userNotScanInTimeErrorLabel"?: string;
         /**
-          * _[Optional]_ Set to use v2 links. The create session must be providing both an authentication request and a session Id
+          * _[Optional]_ If 3, handle deeplink redirects and deprecates (remove) v1 functionality. If not, the create session must be providing both an authentication request and a session Id
          */
-        "v2"?: boolean;
+        "v"?: string;
         /**
           * _[Optional]_ String to show "waiting start session" label
          */
@@ -1053,9 +1053,9 @@ declare namespace LocalJSX {
          */
         "userNotScanInTimeErrorLabel"?: string;
         /**
-          * **RECOMMENDED** Set to use v2 links. The create session must be providing both an authentication request and a session Id
+          * _[Optional]_ If 3, handle deeplink redirects and deprecates (remove) v1 functionality. If not, the create session must be providing both an authentication request and a session Id
          */
-        "v2"?: boolean;
+        "v"?: string;
         /**
           * _[Optional]_ String to show "waiting start session" label
          */
@@ -1097,7 +1097,7 @@ declare namespace LocalJSX {
          */
         "clickInsideBoxLabel"?: string;
         /**
-          * ***Mandatory*** Create session function to generate a new Session Using V1, it can provide just a session Id Using V2, it must provide also the authentication request. The session Id is the id of the presentation definition
+          * ***Mandatory*** Create session function to generate a new Session Using v="3", it can provide just a session Id Using another version, it must provide also the authentication request. The session Id is the id of the presentation definition
          */
         "createSession"?: () => Promise<{
     sessionId: string;
@@ -1196,9 +1196,9 @@ declare namespace LocalJSX {
          */
         "userNotScanInTimeErrorLabel"?: string;
         /**
-          * _[Optional]_ Set to use v2 links. The create session must be providing both an authentication request and a session Id
+          * _[Optional]_ If 3, handle deeplink redirects and deprecates (remove) v1 functionality. If not, the create session must be providing both an authentication request and a session Id
          */
-        "v2"?: boolean;
+        "v"?: string;
         /**
           * _[Optional]_ String to show "waiting start session" label
          */
@@ -1266,9 +1266,9 @@ declare namespace LocalJSX {
          */
         "successCallback"?: (data?: any) => void;
         /**
-          * **RECOMMENDED** Set to use v2 links. The create session must be providing both an authentication request and a session Id
+          * **RECOMMENDED** If 3, handle deeplink redirects and deprecates (remove) v1 functionality. If not, the create session must be providing both an authentication request and a session Id
          */
-        "v2"?: boolean;
+        "v"?: string;
         /**
           * **RECOMMENDED** Callback to invoke an a message has been received on the socket. It provides the socket itself and the message as parameters. If not used, the messages provided by the server on the Socket connection must conform to the WSReponse interface If used, an Event named **sessionMsg** must be triggered with a WSReponse as data
          */
