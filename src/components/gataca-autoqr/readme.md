@@ -98,8 +98,7 @@ The pure JS integration of the most basic case, with polling and without button,
       };
 
       qr.createSession = () => {
-        // TODO Change with an invocation to your service to create a session (either v1 or v2)
-        // Authentication request is required only for v2
+        // Authentication request is required
         return {
           sessionId: "TWp3V2R1N29ZcmFMY3Nvd3ZPb3k0UlMz",
           authenticationRequest: "",

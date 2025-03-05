@@ -20,12 +20,6 @@ const DEEP_LINK_PREFIX = "https://api.gataca.io/qr/redirect.html";
 //Default values
 const DEFAULT_SESSION_TIMEOUT = 300; //5mins as in connect
 const DEFAULT_POLLING_FREQ = 3;
-const QR_ROLE_CONNECT = "connect";
-
-const FUNCTION_ROLES = {
-  connect: "scan",
-  certify: "credential",
-};
 
 @Component({
   tag: "gataca-qr",
@@ -388,7 +382,7 @@ export class GatacaQR {
       return this.authenticationRequest;
     }
     const authRequestEncoded =
-      "&dl=" + base64UrlEncode(this.authenticationRequest);
+      "?dl=" + base64UrlEncode(this.authenticationRequest);
 
     return DEEP_LINK_PREFIX + authRequestEncoded;
   }

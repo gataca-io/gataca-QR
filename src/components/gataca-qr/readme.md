@@ -86,8 +86,7 @@ Put a script tag similar to the source [https://unpkg.com/gatacaqr/dist/gatacaqr
       };
 
       qr.createSession = () => {
-        // TODO Change with an invocation to your service to create a session (either v1 or v2)
-        // Authentication request is required only for v2
+        // Authentication request is required
         return {
           sessionId: "TWp3V2R1N29ZcmFMY3Nvd3ZPb3k0UlMz",
           authenticationRequest: "",
