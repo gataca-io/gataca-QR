@@ -292,8 +292,44 @@ export class GatacaSSIButton {
     return this.qr.getSessionData();
   }
 
+  private qrElement!: HTMLGatacaQrElement;
+
   renderModal() {
-    return this.qr;
+    return (
+      <gataca-qr
+        ref={(el) => (this.qrElement = el as HTMLGatacaQrElement)}
+        checkStatus={this.checkStatus}
+        createSession={this.createSession}
+        successCallback={this.successCallback}
+        errorCallback={this.errorCallback}
+        qrRole={this.qrRole}
+        callbackServer={this.callbackServer}
+        sessionTimeout={this.sessionTimeout}
+        pollingFrequency={this.pollingFrequency}
+        autostart={true}
+        autorefresh={this.autorefresh}
+        v={this.v}
+        qrModalTitle={this.qrModalTitle}
+        qrModalDescription={this.qrModalDescription}
+        hideBrandTitle={this.hideBrandTitle}
+        dynamicLink={this.dynamicLink}
+        logoSize={this.logoSize}
+        logoSrc={this.logoSrc}
+        modalTitleColor={this.modalTitleColor}
+        qrCodeExpiredLabel={this.qrCodeExpiredLabel}
+        credentialsNotValidatedLabel={this.credentialsNotValidatedLabel}
+        clickInsideBoxLabel={this.clickInsideBoxLabel}
+        refreshQrLabel={this.refreshQrLabel}
+        scanQrLabel={this.scanQrLabel}
+        userNotScanInTimeErrorLabel={this.userNotScanInTimeErrorLabel}
+        credsNotValidatedErrorLabel={this.credsNotValidatedErrorLabel}
+        failedLoginErrorLabel={this.failedLoginErrorLabel}
+        successLoginLabel={this.successLoginLabel}
+        byBrandLabel={this.byBrandLabel}
+        waitingStartSessionLabel={this.waitingStartSessionLabel}
+        hideQrModalDescription={this.hideQrModalDescription}
+      />
+    );
   }
 
   renderButton() {
@@ -303,11 +339,13 @@ export class GatacaSSIButton {
           class="gatacaButton"
           onClick={() => {
             this.open = !this.open;
-            if (this.open) {
-              this.qr.display();
-            } else {
-              this.qr.stop();
-            }
+            setTimeout(() => {
+              if (this.open) {
+                this.qrElement?.display();
+              } else {
+                this.qrElement?.stop();
+              }
+            }, 0);
           }}
         >
           <img src={PHONE_ICON} class="buttonImg" alt={this.buttonText} />

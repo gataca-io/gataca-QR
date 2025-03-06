@@ -1,5 +1,5 @@
 {
-  "timestamp": "2025-03-05T09:56:18",
+  "timestamp": "2025-03-06T14:58:46",
   "compiler": {
     "name": "node",
     "version": "18.20.5"
@@ -94,7 +94,7 @@
           "./dist/gatacaqr/p-0be4566d.js",
           "./dist/gatacaqr/p-16298cb4.entry.js",
           "./dist/gatacaqr/p-2cd7b062.js",
-          "./dist/gatacaqr/p-4dc10b69.entry.js",
+          "./dist/gatacaqr/p-3d5f9318.entry.js",
           "./dist/gatacaqr/p-5ae5f952.js",
           "./dist/gatacaqr/p-9e9af27e.entry.js",
           "./dist/gatacaqr/p-ea783014.js",
@@ -106,7 +106,7 @@
           "./www/build/p-0be4566d.js",
           "./www/build/p-16298cb4.entry.js",
           "./www/build/p-2cd7b062.js",
-          "./www/build/p-4dc10b69.entry.js",
+          "./www/build/p-3d5f9318.entry.js",
           "./www/build/p-5ae5f952.js",
           "./www/build/p-9e9af27e.entry.js",
           "./www/build/p-ea783014.js"
@@ -172,13 +172,13 @@
           "gataca-ssibutton",
           "gataca-ssibuttonws"
         ],
-        "bundleId": "p-4dc10b69",
-        "fileName": "p-4dc10b69.entry.js",
+        "bundleId": "p-3d5f9318",
+        "fileName": "p-3d5f9318.entry.js",
         "imports": [
           "p-5ae5f952.js",
           "p-0be4566d.js"
         ],
-        "originalByteSize": 11389
+        "originalByteSize": 12778
       },
       {
         "key": "gataca-qrws.entry",
@@ -237,7 +237,7 @@
           "index-2be54f32.js",
           "qr-code-styling-0eeb38d5.js"
         ],
-        "originalByteSize": 11407
+        "originalByteSize": 12796
       },
       {
         "key": "gataca-qrws.entry",
@@ -298,7 +298,7 @@
           "index-93d47a75.js",
           "qr-code-styling-412bbc7a.js"
         ],
-        "originalByteSize": 11563
+        "originalByteSize": 12958
       },
       {
         "key": "gataca-qrws.entry",
@@ -6047,7 +6047,7 @@
           "hasVdomKey": false,
           "hasVdomListener": true,
           "hasVdomPropOrAttr": true,
-          "hasVdomRef": false,
+          "hasVdomRef": true,
           "hasVdomRender": true,
           "hasVdomStyle": false,
           "hasVdomText": true,
@@ -6084,6 +6084,7 @@
             "byBrandLabel",
             "waitingStartSessionLabel",
             "hideQrModalDescription",
+            "ref",
             "class",
             "onClick",
             "src",
