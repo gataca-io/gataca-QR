@@ -299,13 +299,49 @@ export class GatacaSSIButton {
     return this.qr;
   }
 
-  renderButton() {
+  isAppInstalled(appScheme, callback) {
+    let timeout;
+    let detected = false;
+
+    if (appScheme?.length) {
+      window.location.href = appScheme;
+    }
+
+    timeout = setTimeout(() => {
+      if (!detected) {
+        setTimeout(() => {
+          if (!detected) {
+            callback(false);
+          }
+          cleanup();
+        }, 1000);
+      }
+    }, 1500);
+
+    function handleVisibilityChange() {
+      if (document.hidden) {
+        detected = true;
+        callback(true);
+        cleanup();
+      }
+    }
+
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+
+    function cleanup() {
+      clearTimeout(timeout);
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+    }
+  }
+
+  renderDesktopButton() {
     return (
       <div class="gatacaButtonWrapper">
         <button
           class="gatacaButton"
           onClick={() => {
             this.open = !this.open;
+
             setTimeout(() => {
               if (this.open) {
                 this.qrElement?.display();
@@ -322,11 +358,75 @@ export class GatacaSSIButton {
     );
   }
 
+  async getAuthRequest(): Promise<string> {
+    let { authenticationRequest } = await this.createSession();
+
+    return authenticationRequest;
+  }
+
+  renderMobileButton(isAndroid: boolean, isIos: boolean) {
+    let loading = false;
+
+    const executeRedirection = async () => {
+      loading = true;
+
+      const androidStoreLink =
+        "https://play.google.com/store/apps/details?id=com.gataca.identity";
+      const iosStoreLink = "https://apps.apple.com/us/app/gataca/id1498607616";
+
+      try {
+        const appScheme = await this.getAuthRequest();
+
+        this.isAppInstalled(appScheme, (installed) => {
+          if (!installed) {
+            setTimeout(() => {
+              if (isAndroid) {
+                window.location.href = androidStoreLink;
+              } else if (isIos) {
+                window.location.href = iosStoreLink;
+              }
+            }, 500);
+          }
+          loading = false;
+        });
+      } catch (error) {
+        loading = false;
+      }
+    };
+
+    return (
+      <div class="gatacaButtonWrapper">
+        <button
+          class="gatacaButton"
+          onClick={() => {
+            executeRedirection();
+          }}
+          disabled={loading}
+        >
+          <img src={PHONE_ICON} class="buttonImg" alt={this.buttonText} />
+          <span>{this.buttonText}</span>
+        </button>
+      </div>
+    );
+  }
+
   render() {
+    const userAgent =
+      // @ts-ignore
+      navigator?.userAgent || navigator?.vendor || window?.opera;
+    const isAndroid = /android/i.test(userAgent);
+    const isIos =
+      // @ts-ignore
+      (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) ||
+      (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+    const isMobile = isAndroid || isIos;
+
     return (
       <div class="buttonContainer">
-        {this.renderButton()}
-        {this.open && this.renderModal()}
+        {isMobile && this.v === "3"
+          ? this.renderMobileButton(isAndroid, isIos)
+          : this.renderDesktopButton()}
+        {this.open && (!isMobile || this.v === "3") && this.renderModal()}
       </div>
     );
   }
