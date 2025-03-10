@@ -261,6 +261,7 @@ TBD
 | `dynamicLink`                  | `dynamic-link`                      | _[Optional]_ Display a link containing a dynamic link to invoke the wallet if closed                                                                                                                                                            | `boolean`                                                               | `true`                                                                |
 | `errorCallback`                | --                                  | ***Mandatory*** Callback fired upon session expired or invalid If not set, session error would not be handled An error containing information will be passed as parameter                                                                       | `(error?: Error) => void`                                               | `undefined`                                                           |
 | `failedLoginErrorLabel`        | `failed-login-error-label`          | _[Optional]_ String to show "failed login" error                                                                                                                                                                                                | `string`                                                                | `"No successful login"`                                               |
+| `handleCheckAppLoading`        | --                                  | _[Optional]_ Function that runs every time the loading state changes while checking if the App is installed. Only on mobile with v3.                                                                                                            | `(isCheckingApp?: boolean) => void`                                     | `undefined`                                                           |
 | `hideBrandTitle`               | `hide-brand-title`                  | _[Optional]_ Boolean to show or not show the gataca brand title                                                                                                                                                                                 | `boolean`                                                               | `false`                                                               |
 | `hideQrModalDescription`       | `hide-qr-modal-description`         | _[Optional]_ Boolean to show or not show the QR Modal description                                                                                                                                                                               | `boolean`                                                               | `false`                                                               |
 | `logoSize`                     | `logo-size`                         | _[Optional]_ Size of the logo to display in percentage to the total size [0-1]. 0 means no logo will be displayed. Default is the GATACA logo. Recommended size is around 0.33                                                                  | `number`                                                                | `0`                                                                   |
@@ -298,6 +299,26 @@ Retrieve manually the session data on a successful login
 #### Returns
 
 Type: `Promise<any>`
+
+
+
+### `startMobilePolling() => Promise<void>`
+
+Force manually the start polling
+
+#### Returns
+
+Type: `Promise<void>`
+
+
+
+### `stop() => Promise<void>`
+
+Stop manually an ongoing session
+
+#### Returns
+
+Type: `Promise<void>`
 
 
 

@@ -1,5 +1,5 @@
 {
-  "timestamp": "2025-03-07T14:21:36",
+  "timestamp": "2025-03-10T15:39:04",
   "compiler": {
     "name": "@stencil/core",
     "version": "2.19.3",
@@ -1971,6 +1971,22 @@
           "required": false
         },
         {
+          "name": "handleCheckAppLoading",
+          "type": "(isCheckingApp?: boolean) => void",
+          "mutable": false,
+          "reflectToAttr": false,
+          "docs": "_[Optional]_\nFunction that runs every time the loading state changes while checking if the App is installed. Only on mobile with v3.",
+          "docsTags": [],
+          "default": "undefined",
+          "values": [
+            {
+              "type": "(isCheckingApp?: boolean) => void"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
           "name": "hideBrandTitle",
           "type": "boolean",
           "mutable": false,
@@ -2282,6 +2298,28 @@
           "signature": "getSessionData() => Promise<any>",
           "parameters": [],
           "docs": "Retrieve manually the session data on a successful login",
+          "docsTags": []
+        },
+        {
+          "name": "startMobilePolling",
+          "returns": {
+            "type": "Promise<void>",
+            "docs": ""
+          },
+          "signature": "startMobilePolling() => Promise<void>",
+          "parameters": [],
+          "docs": "Force manually the start polling",
+          "docsTags": []
+        },
+        {
+          "name": "stop",
+          "returns": {
+            "type": "Promise<void>",
+            "docs": ""
+          },
+          "signature": "stop() => Promise<void>",
+          "parameters": [],
+          "docs": "Stop manually an ongoing session",
           "docsTags": []
         }
       ],
