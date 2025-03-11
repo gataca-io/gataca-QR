@@ -1,0 +1,44 @@
+name: Create version in npm
+
+on:
+  workflow_dispatch:
+    inputs:
+      VersionRelease:
+        type: choice
+        required: true
+        description: 'Chose version to update'
+        default: 'PATCH'
+        options:
+        - major
+        - minor
+        - patch
+
+jobs:
+  version:
+    name: Check versioning
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Import GPG key
+        id: import_gpg
+        uses: crazy-max/ghaction-import-gpg@v6
+        with:
+          gpg_private_key: ${{ secrets.GH_ACTIONS_GPG_KEY }}
+          passphrase: ${{ secrets.GH_ACTIONS_GPG_PASS }}
+          git_user_signingkey: true
+          git_commit_gpgsign: true
+
+      - name: Update version and build
+        run: |
+          npm version ${{ github.event.inputs.VersionRelease }}
+          yarn build
+          echo "Builing completed."
+          git add .
+          git commit -m"Change files from new ${{ github.event.inputs.VersionRelease }} release."
+          git push
+      
+      - name: Publish npm package
+        run: |
+          npm publish
