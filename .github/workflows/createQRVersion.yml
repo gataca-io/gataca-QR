@@ -7,7 +7,7 @@ on:
         type: choice
         required: true
         description: 'Chose version to update'
-        default: 'PATCH'
+        default: 'patch'
         options:
         - major
         - minor
@@ -15,12 +15,12 @@ on:
 
 jobs:
   version:
-    name: Check versioning
+    name: Create new version
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-
+      
       - name: Import GPG key
         id: import_gpg
         uses: crazy-max/ghaction-import-gpg@v6
@@ -30,15 +30,28 @@ jobs:
           git_user_signingkey: true
           git_commit_gpgsign: true
 
+      - name: Set up yarn
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18.20.5
+          token: ${{ secrets.NODE_AUTH_TOKEN }}
+          registry-url: "https://registry.npmjs.org"
+      
       - name: Update version and build
         run: |
+          yarn install
           npm version ${{ github.event.inputs.VersionRelease }}
           yarn build
-          echo "Builing completed."
-          git add .
+          npm ls --depth=0
+          git status 
+          git diff
+          git add docs.json
           git commit -m"Change files from new ${{ github.event.inputs.VersionRelease }} release."
           git push
       
-      - name: Publish npm package
-        run: |
-          npm publish
+#      - name: Publish npm package
+#        run: |
+#          npm publish
+#        env:
+#          NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
+#
