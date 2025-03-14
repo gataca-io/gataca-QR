@@ -1,5 +1,5 @@
 {
-  "timestamp": "2025-03-05T09:56:18",
+  "timestamp": "2025-03-14T08:18:37",
   "compiler": {
     "name": "node",
     "version": "18.20.5"
@@ -94,8 +94,8 @@
           "./dist/gatacaqr/p-0be4566d.js",
           "./dist/gatacaqr/p-16298cb4.entry.js",
           "./dist/gatacaqr/p-2cd7b062.js",
-          "./dist/gatacaqr/p-4dc10b69.entry.js",
           "./dist/gatacaqr/p-5ae5f952.js",
+          "./dist/gatacaqr/p-761647d3.entry.js",
           "./dist/gatacaqr/p-9e9af27e.entry.js",
           "./dist/gatacaqr/p-ea783014.js",
           "./dist/index.cjs.js",
@@ -106,8 +106,8 @@
           "./www/build/p-0be4566d.js",
           "./www/build/p-16298cb4.entry.js",
           "./www/build/p-2cd7b062.js",
-          "./www/build/p-4dc10b69.entry.js",
           "./www/build/p-5ae5f952.js",
+          "./www/build/p-761647d3.entry.js",
           "./www/build/p-9e9af27e.entry.js",
           "./www/build/p-ea783014.js"
         ]
@@ -172,13 +172,14 @@
           "gataca-ssibutton",
           "gataca-ssibuttonws"
         ],
-        "bundleId": "p-4dc10b69",
-        "fileName": "p-4dc10b69.entry.js",
+        "bundleId": "p-761647d3",
+        "fileName": "p-761647d3.entry.js",
         "imports": [
           "p-5ae5f952.js",
-          "p-0be4566d.js"
+          "p-0be4566d.js",
+          "p-2cd7b062.js"
         ],
-        "originalByteSize": 11389
+        "originalByteSize": 17644
       },
       {
         "key": "gataca-qrws.entry",
@@ -235,9 +236,10 @@
         "fileName": "gataca-ssibutton_2.entry.js",
         "imports": [
           "index-2be54f32.js",
-          "qr-code-styling-0eeb38d5.js"
+          "qr-code-styling-0eeb38d5.js",
+          "utils-63e7a33b.js"
         ],
-        "originalByteSize": 11407
+        "originalByteSize": 17666
       },
       {
         "key": "gataca-qrws.entry",
@@ -296,9 +298,10 @@
         "fileName": "gataca-ssibutton_2.cjs.entry.js",
         "imports": [
           "index-93d47a75.js",
-          "qr-code-styling-412bbc7a.js"
+          "qr-code-styling-412bbc7a.js",
+          "utils-ef28b844.js"
         ],
-        "originalByteSize": 11563
+        "originalByteSize": 17924
       },
       {
         "key": "gataca-qrws.entry",
@@ -2642,6 +2645,46 @@
             "return": "Promise<any>"
           },
           "internal": false
+        },
+        {
+          "name": "startMobilePolling",
+          "docs": {
+            "text": "Force manually the start polling",
+            "tags": []
+          },
+          "complexType": {
+            "signature": "() => Promise<void>",
+            "parameters": [],
+            "references": {
+              "Promise": {
+                "location": "global"
+              },
+              "RESULT_STATUS": {
+                "location": "import",
+                "path": "../../utils/utils"
+              }
+            },
+            "return": "Promise<void>"
+          },
+          "internal": false
+        },
+        {
+          "name": "stop",
+          "docs": {
+            "text": "Stop manually an ongoing session",
+            "tags": []
+          },
+          "complexType": {
+            "signature": "() => Promise<void>",
+            "parameters": [],
+            "references": {
+              "Promise": {
+                "location": "global"
+              }
+            },
+            "return": "Promise<void>"
+          },
+          "internal": false
         }
       ],
       "potentialCmpRefs": [
@@ -2757,6 +2800,25 @@
           "docs": {
             "tags": [],
             "text": "***Mandatory***\nCallback fired upon session expired or invalid\nIf not set, session error would not be handled\nAn error containing information will be passed as parameter"
+          },
+          "internal": false
+        },
+        {
+          "name": "handleCheckAppLoading",
+          "type": "unknown",
+          "reflect": false,
+          "mutable": false,
+          "required": false,
+          "optional": true,
+          "defaultValue": "undefined",
+          "complexType": {
+            "original": "(isCheckingApp?: boolean) => void",
+            "resolved": "(isCheckingApp?: boolean) => void",
+            "references": {}
+          },
+          "docs": {
+            "tags": [],
+            "text": "_[Optional]_\nFunction that runs every time the loading state changes while checking if the App is installed. Only on mobile with v3."
           },
           "internal": false
         },
@@ -3260,6 +3322,18 @@
       "states": [
         {
           "name": "open"
+        },
+        {
+          "name": "sessionId"
+        },
+        {
+          "name": "authenticationRequest"
+        },
+        {
+          "name": "sessionData"
+        },
+        {
+          "name": "result"
         }
       ]
     },
@@ -5421,6 +5495,25 @@
               "internal": false
             },
             {
+              "name": "handleCheckAppLoading",
+              "type": "unknown",
+              "reflect": false,
+              "mutable": false,
+              "required": false,
+              "optional": true,
+              "defaultValue": "undefined",
+              "complexType": {
+                "original": "(isCheckingApp?: boolean) => void",
+                "resolved": "(isCheckingApp?: boolean) => void",
+                "references": {}
+              },
+              "docs": {
+                "tags": [],
+                "text": "_[Optional]_\nFunction that runs every time the loading state changes while checking if the App is installed. Only on mobile with v3."
+              },
+              "internal": false
+            },
+            {
               "name": "qrRole",
               "type": "string",
               "attribute": "qr-role",
@@ -5920,6 +6013,18 @@
           "states": [
             {
               "name": "open"
+            },
+            {
+              "name": "sessionId"
+            },
+            {
+              "name": "authenticationRequest"
+            },
+            {
+              "name": "sessionData"
+            },
+            {
+              "name": "result"
             }
           ],
           "methods": [
@@ -5938,6 +6043,46 @@
                   }
                 },
                 "return": "Promise<any>"
+              },
+              "internal": false
+            },
+            {
+              "name": "startMobilePolling",
+              "docs": {
+                "text": "Force manually the start polling",
+                "tags": []
+              },
+              "complexType": {
+                "signature": "() => Promise<void>",
+                "parameters": [],
+                "references": {
+                  "Promise": {
+                    "location": "global"
+                  },
+                  "RESULT_STATUS": {
+                    "location": "import",
+                    "path": "../../utils/utils"
+                  }
+                },
+                "return": "Promise<void>"
+              },
+              "internal": false
+            },
+            {
+              "name": "stop",
+              "docs": {
+                "text": "Stop manually an ongoing session",
+                "tags": []
+              },
+              "complexType": {
+                "signature": "() => Promise<void>",
+                "parameters": [],
+                "references": {
+                  "Promise": {
+                    "location": "global"
+                  }
+                },
+                "return": "Promise<void>"
               },
               "internal": false
             }
@@ -6047,13 +6192,14 @@
           "hasVdomKey": false,
           "hasVdomListener": true,
           "hasVdomPropOrAttr": true,
-          "hasVdomRef": false,
+          "hasVdomRef": true,
           "hasVdomRender": true,
           "hasVdomStyle": false,
           "hasVdomText": true,
           "hasWatchCallback": false,
           "isPlain": false,
           "htmlAttrNames": [
+            "ref",
             "checkStatus",
             "createSession",
             "successCallback",
@@ -6087,7 +6233,8 @@
             "class",
             "onClick",
             "src",
-            "alt"
+            "alt",
+            "disabled"
           ],
           "htmlTagNames": [
             "gataca-qr",
@@ -7676,11 +7823,13 @@
     ],
     "sc-gataca-ssibutton": [
       "p-5ae5f952.js",
-      "p-0be4566d.js"
+      "p-0be4566d.js",
+      "p-2cd7b062.js"
     ],
     "sc-gataca-ssibuttonws": [
       "p-5ae5f952.js",
-      "p-0be4566d.js"
+      "p-0be4566d.js",
+      "p-2cd7b062.js"
     ]
   },
   "sourceGraph": {
@@ -7731,7 +7880,8 @@
       "./src/utils/utils"
     ],
     "./src/components/gataca-ssibutton/gataca-ssibutton.tsx": [
-      "./src/components/gataca-qrdisplay/gataca-qrdisplay"
+      "./src/components/gataca-qrdisplay/gataca-qrdisplay",
+      "./src/utils/utils"
     ],
     "./src/components/gataca-ssibuttonws/gataca-ssibuttonws.tsx": [],
     "./src/index.ts": [],

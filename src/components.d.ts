@@ -465,6 +465,10 @@ export namespace Components {
          */
         "getSessionData": () => Promise<any>;
         /**
+          * _[Optional]_ Function that runs every time the loading state changes while checking if the App is installed. Only on mobile with v3.
+         */
+        "handleCheckAppLoading"?: (isCheckingApp?: boolean) => void;
+        /**
           * _[Optional]_ Boolean to show or not show the gataca brand title
          */
         "hideBrandTitle"?: boolean;
@@ -516,6 +520,14 @@ export namespace Components {
           * _[Optional]_ Maximum time window to display the session
          */
         "sessionTimeout"?: number;
+        /**
+          * Force manually the start polling
+         */
+        "startMobilePolling": () => Promise<void>;
+        /**
+          * Stop manually an ongoing session
+         */
+        "stop": () => Promise<void>;
         /**
           * ***Mandatory*** Callback fired upon session correctly verified If not set, session validation wouldn't trigger any action The session data and a possible token will be sent as parameters to the callback
          */
@@ -1123,6 +1135,10 @@ declare namespace LocalJSX {
           * _[Optional]_ String to show "failed login" error
          */
         "failedLoginErrorLabel"?: string;
+        /**
+          * _[Optional]_ Function that runs every time the loading state changes while checking if the App is installed. Only on mobile with v3.
+         */
+        "handleCheckAppLoading"?: (isCheckingApp?: boolean) => void;
         /**
           * _[Optional]_ Boolean to show or not show the gataca brand title
          */

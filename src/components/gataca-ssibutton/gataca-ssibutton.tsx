@@ -15,6 +15,10 @@ import { GatacaQR } from "../gataca-qr/gataca-qr";
 const PHONE_ICON =
   "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABsAAAAbCAYAAACN1PRVAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAHvSURBVHgB3ZZPTttAFMbfe3YjL7qYLopcpZXSG7Q3CDfIsqrSJpyg5QQtJ2h7glgUdVs4AeEE5AYEQSDAgtnw357Hm0hAQDaeIRFCfFKyeKPxzzPzvc+DUKCZN80GEv1ABgWOQgSdGbOwv7u0nDueV4zjTzUIKhuAZna4vdQFR828azbI0K/TI/qodaLvjlP+tLDGDCs+IKv9Lbsi7kcv0w9541Q0EREPYcoieEQ9KiyECRXHzbpBUOcnYTfPFOOaaGVx9WsLiDrSIp0iU0wFNgIx/AQyc9I/OmOjy+Y8aBvHQcDUYebewc6/Xtk8J5htcg5efEPGhk0JtqkyBjo7DuZcnuO2sqCyKv8rUDmfTS9IBURqBAL+I6CkzBjOMOs22TLY21n8fl17KzXR3uDvb/CQk0GEdfvN07QvpnAOaGfYaRT25JzU6+rnG2tTpcWAy+Cp0m3U/URLms8HWfg/rn6RFaGSs9KQkZMpvGBWNs2Vandt46ac6YNBuc0fDLMaOU5DFybQ8039p/KJ4bq4rwPewtqoM/1gsCm/NfBXvWjgHhhuDAeLyd3qVSifHQULeZkou9EqemLhmUmav8qrZ4GEMGA7ivzjKvfeqGptFV2YdWPMPHHq0cCh3DdpVdLl/XCY9J1gVvbCiWa6N+JLocPFjCsx9cAAAAAASUVORK5CYII=";
 
+//Default values
+const DEFAULT_SESSION_TIMEOUT = 300; //5mins as in connect
+const DEFAULT_POLLING_FREQ = 3;
+
 @Component({
   tag: "gataca-ssibutton",
   styleUrl: "gataca-ssibutton.scss",
@@ -23,9 +27,12 @@ const PHONE_ICON =
 export class GatacaSSIButton {
   qr: GatacaQR;
 
+  private qrElement!: HTMLGatacaQrElement;
+
   constructor() {
     this.qr = (
       <gataca-qr
+        ref={(el) => (this.qrElement = el as HTMLGatacaQrElement)}
         checkStatus={this.checkStatus}
         createSession={this.createSession}
         successCallback={this.successCallback}
@@ -103,6 +110,12 @@ export class GatacaSSIButton {
    * An error containing information will be passed as parameter
    */
   @Prop() errorCallback: (error?: Error) => void = undefined;
+
+  /**
+   * _[Optional]_
+   * Function that runs every time the loading state changes while checking if the App is installed. Only on mobile with v3.
+   */
+  @Prop() handleCheckAppLoading?: (isCheckingApp?: boolean) => void = undefined;
 
   /**
    * ***Mandatory***
@@ -261,6 +274,10 @@ export class GatacaSSIButton {
   @Prop() hideQrModalDescription?: boolean = false;
 
   @State() open: boolean = false;
+  @State() sessionId?: string;
+  @State() authenticationRequest?: string;
+  @State() sessionData: any = undefined;
+  @State() result: RESULT_STATUS = RESULT_STATUS.NOT_STARTED;
 
   /**
    * GatacaLoginCompleted event, triggered with session data upon login success
@@ -292,22 +309,158 @@ export class GatacaSSIButton {
     return this.qr.getSessionData();
   }
 
+  async getSessionId(): Promise<string> {
+    if (this.sessionId) {
+      return this.sessionId;
+    }
+    let { sessionId, authenticationRequest } = await this.createSession();
+    this.sessionId = sessionId;
+    this.authenticationRequest = authenticationRequest;
+    return this.sessionId;
+  }
+
+  /**
+   * Force manually the start polling
+   */
+  @Method()
+  async startMobilePolling(): Promise<void> {
+    await this.getSessionId();
+    this.result = RESULT_STATUS.ONGOING;
+    this.poll()
+      .then((data: any) => {
+        this.result = RESULT_STATUS.SUCCESS;
+        this.sessionData = data;
+        this.gatacaLoginCompleted.emit(data);
+        this.successCallback(data);
+      })
+      .catch((err: RESULT_STATUS) => {
+        this.clean();
+        let expired = err === RESULT_STATUS.EXPIRED;
+        if (expired && this.autorefresh) {
+          this.startMobilePolling();
+        } else {
+          if (err !== RESULT_STATUS.NOT_STARTED) {
+            let error = expired
+              ? new Error(this.userNotScanInTimeErrorLabel)
+              : new Error(this.credsNotValidatedErrorLabel);
+            this.result = err;
+            this.gatacaLoginFailed.emit(error);
+            this.errorCallback(error);
+          }
+        }
+      });
+  }
+
+  /**
+   * Stop manually an ongoing session
+   */
+  @Method()
+  async stop(): Promise<void> {
+    this.clean();
+    if (this.result === RESULT_STATUS.ONGOING || RESULT_STATUS.READ) {
+      this.result = RESULT_STATUS.NOT_STARTED;
+    }
+  }
+
+  clean(): void {
+    this.sessionData = undefined;
+    this.sessionId = undefined;
+  }
+
   renderModal() {
     return this.qr;
   }
 
-  renderButton() {
+  async poll() {
+    let endTime =
+      new Date().getTime() +
+      (this.sessionTimeout || DEFAULT_SESSION_TIMEOUT) * 1000;
+    let interval = (this.pollingFrequency || DEFAULT_POLLING_FREQ) * 1000;
+    let checkFunc = async (
+      component: any
+    ): Promise<{ result: RESULT_STATUS; data?: any }> => {
+      if (component.result === RESULT_STATUS.NOT_STARTED) {
+        return { result: RESULT_STATUS.NOT_STARTED };
+      }
+      let id = await component.getSessionId();
+      return component.checkStatus(id);
+    };
+    let component = this;
+    let checkCondition = async function (resolve, reject) {
+      // If the condition is met, we're done!
+      let { result, data } = await checkFunc(component);
+      switch (result) {
+        case RESULT_STATUS.SUCCESS:
+          resolve(data);
+          break;
+        case RESULT_STATUS.READ:
+          component.result = RESULT_STATUS.READ;
+        case RESULT_STATUS.ONGOING:
+          if (component.sessionTimeout > 0 && new Date().getTime() < endTime) {
+            setTimeout(checkCondition, interval, resolve, reject);
+          } else {
+            reject(RESULT_STATUS.EXPIRED);
+          }
+          break;
+        default:
+          reject(result);
+          break;
+      }
+    };
+    return new Promise(checkCondition);
+  }
+
+  isAppInstalled(appScheme, callback) {
+    let timeout;
+    let detected = false;
+
+    if (appScheme?.length) {
+      window.location.href = appScheme;
+    }
+
+    timeout = setTimeout(() => {
+      if (!detected) {
+        setTimeout(() => {
+          if (!detected) {
+            callback(false);
+          }
+          cleanup();
+        }, 1000);
+      }
+    }, 1500);
+
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        detected = true;
+        callback(true);
+        this.startMobilePolling();
+        cleanup();
+      }
+    };
+
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+
+    function cleanup() {
+      clearTimeout(timeout);
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+    }
+  }
+
+  renderDesktopButton() {
     return (
       <div class="gatacaButtonWrapper">
         <button
           class="gatacaButton"
           onClick={() => {
             this.open = !this.open;
-            if (this.open) {
-              this.qr.display();
-            } else {
-              this.qr.stop();
-            }
+
+            setTimeout(() => {
+              if (this.open) {
+                this.qrElement?.display();
+              } else {
+                this.qrElement?.stop();
+              }
+            }, 0);
           }}
         >
           <img src={PHONE_ICON} class="buttonImg" alt={this.buttonText} />
@@ -317,11 +470,84 @@ export class GatacaSSIButton {
     );
   }
 
+  async getAuthRequest(): Promise<string> {
+    let { authenticationRequest } = await this.createSession();
+
+    return authenticationRequest;
+  }
+
+  renderMobileButton(isAndroid: boolean, isIos: boolean) {
+    let loading = false;
+
+    const handleLoading = (isLoading: boolean) => {
+      loading = isLoading;
+      if (this.handleCheckAppLoading) {
+        this.handleCheckAppLoading(isLoading);
+      }
+    };
+
+    const executeRedirection = async () => {
+      handleLoading(true);
+
+      const androidStoreLink =
+        "https://play.google.com/store/apps/details?id=com.gataca.identity";
+      const iosStoreLink = "https://apps.apple.com/us/app/gataca/id1498607616";
+
+      try {
+        const appScheme = await this.getAuthRequest();
+
+        this.isAppInstalled(appScheme, (installed) => {
+          if (!installed) {
+            setTimeout(() => {
+              this.stop();
+              if (isAndroid) {
+                window.location.href = androidStoreLink;
+              } else if (isIos) {
+                window.location.href = iosStoreLink;
+              }
+            }, 500);
+          }
+          handleLoading(false);
+        });
+      } catch (error) {
+        this.stop();
+        handleLoading(false);
+      }
+    };
+
+    return (
+      <div class="gatacaButtonWrapper">
+        <button
+          class="gatacaButton"
+          onClick={() => {
+            executeRedirection();
+          }}
+          disabled={loading}
+        >
+          <img src={PHONE_ICON} class="buttonImg" alt={this.buttonText} />
+          <span>{this.buttonText}</span>
+        </button>
+      </div>
+    );
+  }
+
   render() {
+    const userAgent =
+      // @ts-ignore
+      navigator?.userAgent || navigator?.vendor || window?.opera;
+    const isAndroid = /android/i.test(userAgent);
+    const isIos =
+      // @ts-ignore
+      (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) ||
+      (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+    const isMobile = isAndroid || isIos;
+
     return (
       <div class="buttonContainer">
-        {this.renderButton()}
-        {this.open && this.renderModal()}
+        {isMobile && this.v === "3"
+          ? this.renderMobileButton(isAndroid, isIos)
+          : this.renderDesktopButton()}
+        {this.open && (!isMobile || this.v === "3") && this.renderModal()}
       </div>
     );
   }
