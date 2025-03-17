@@ -424,6 +424,10 @@ export namespace Components {
          */
         "callbackServer": string;
         /**
+          * _[Optional]_ Maximum time window to check if the App is installed
+         */
+        "checkAppTimeout"?: number;
+        /**
           * ***Mandatory*** Check status function to query the current status of the session The function must query a client endpoint to check the status. That endpoint must return an error if the session has expired.
          */
         "checkStatus"?: (
@@ -1098,6 +1102,10 @@ declare namespace LocalJSX {
           * ***Mandatory just for V1*** Connect/Certify Server where the wallet will send the data
          */
         "callbackServer"?: string;
+        /**
+          * _[Optional]_ Maximum time window to check if the App is installed
+         */
+        "checkAppTimeout"?: number;
         /**
           * ***Mandatory*** Check status function to query the current status of the session The function must query a client endpoint to check the status. That endpoint must return an error if the session has expired.
          */

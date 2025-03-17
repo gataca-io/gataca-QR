@@ -357,6 +357,10 @@
           "description": "***Mandatory just for V1***\nConnect/Certify Server where the wallet will send the data"
         },
         {
+          "name": "check-app-timeout",
+          "description": "_[Optional]_\nMaximum time window to check if the App is installed"
+        },
+        {
           "name": "click-inside-box-label",
           "description": "_[Optional]_\nString to show \"click inside\" label"
         },

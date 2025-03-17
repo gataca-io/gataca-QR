@@ -118,6 +118,12 @@ export class GatacaSSIButton {
   @Prop() handleCheckAppLoading?: (isCheckingApp?: boolean) => void = undefined;
 
   /**
+   * _[Optional]_
+   * Maximum time window to check if the App is installed
+   */
+  @Prop() checkAppTimeout?: number = 6;
+
+  /**
    * ***Mandatory***
    * Decide if scanning the credential as a verifier to request credentials
    * or as an issuer too issue credentials.
@@ -418,16 +424,14 @@ export class GatacaSSIButton {
       window.location.href = appScheme;
     }
 
+    const waitTimeToCheckApp = this.checkAppTimeout * 1000;
+
     timeout = setTimeout(() => {
       if (!detected) {
-        setTimeout(() => {
-          if (!detected) {
-            callback(false);
-          }
-          cleanup();
-        }, 1000);
+        callback(false);
       }
-    }, 1500);
+      cleanup();
+    }, waitTimeToCheckApp);
 
     const handleVisibilityChange = () => {
       if (document.hidden) {
@@ -498,14 +502,12 @@ export class GatacaSSIButton {
 
         this.isAppInstalled(appScheme, (installed) => {
           if (!installed) {
-            setTimeout(() => {
-              this.stop();
-              if (isAndroid) {
-                window.location.href = androidStoreLink;
-              } else if (isIos) {
-                window.location.href = iosStoreLink;
-              }
-            }, 500);
+            this.stop();
+            if (isAndroid) {
+              window.location.href = androidStoreLink;
+            } else if (isIos) {
+              window.location.href = iosStoreLink;
+            }
           }
           handleLoading(false);
         });

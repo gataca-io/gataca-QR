@@ -1,5 +1,5 @@
 {
-  "timestamp": "2025-03-14T08:18:37",
+  "timestamp": "2025-03-17T16:33:17",
   "compiler": {
     "name": "@stencil/core",
     "version": "2.19.3",
@@ -1835,6 +1835,23 @@
             }
           ],
           "optional": false,
+          "required": false
+        },
+        {
+          "name": "checkAppTimeout",
+          "type": "number",
+          "mutable": false,
+          "attr": "check-app-timeout",
+          "reflectToAttr": false,
+          "docs": "_[Optional]_\nMaximum time window to check if the App is installed",
+          "docsTags": [],
+          "default": "6",
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": true,
           "required": false
         },
         {
