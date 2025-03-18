@@ -1,5 +1,5 @@
 {
-  "timestamp": "2025-03-17T16:33:17",
+  "timestamp": "2025-03-18T13:54:24",
   "compiler": {
     "name": "@stencil/core",
     "version": "2.19.3",
@@ -1779,6 +1779,23 @@
           "docs": "_[Optional]_\nSet to refresh the session automatically upon expiration. By default it is false",
           "docsTags": [],
           "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "autostart",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "autostart",
+          "reflectToAttr": false,
+          "docs": "_[Optional]_\nSet to start polling when button or QR is displayed. By default it is true",
+          "docsTags": [],
+          "default": "true",
           "values": [
             {
               "type": "boolean"

@@ -41,7 +41,7 @@ export class GatacaSSIButton {
         callbackServer={this.callbackServer}
         sessionTimeout={this.sessionTimeout}
         pollingFrequency={this.pollingFrequency}
-        autostart={true}
+        autostart={this.autostart}
         autorefresh={this.autorefresh}
         v={this.v}
         qrModalTitle={this.qrModalTitle}
@@ -74,6 +74,12 @@ export class GatacaSSIButton {
   @Prop() buttonText?: string = "Easy login";
 
   //PROPERTIES INHERITED BY GATACA QR
+
+  /**
+   * _[Optional]_
+   * Set to start polling when button or QR is displayed. By default it is true
+   */
+  @Prop() autostart: boolean = true;
 
   /**
    * ***Mandatory***
@@ -481,6 +487,10 @@ export class GatacaSSIButton {
   }
 
   renderMobileButton(isAndroid: boolean, isIos: boolean) {
+    if (this.autostart) {
+      this.startMobilePolling();
+    }
+
     let loading = false;
 
     const handleLoading = (isLoading: boolean) => {

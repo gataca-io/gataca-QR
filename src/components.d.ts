@@ -412,6 +412,10 @@ export namespace Components {
          */
         "autorefresh": boolean;
         /**
+          * _[Optional]_ Set to start polling when button or QR is displayed. By default it is true
+         */
+        "autostart": boolean;
+        /**
           * _[Optional]_ In the case of being a button, modifies its text
          */
         "buttonText"?: string;
@@ -1090,6 +1094,10 @@ declare namespace LocalJSX {
           * _[Optional]_ Set to refresh the session automatically upon expiration. By default it is false
          */
         "autorefresh"?: boolean;
+        /**
+          * _[Optional]_ Set to start polling when button or QR is displayed. By default it is true
+         */
+        "autostart"?: boolean;
         /**
           * _[Optional]_ In the case of being a button, modifies its text
          */

@@ -345,6 +345,10 @@
           "description": "_[Optional]_\nSet to refresh the session automatically upon expiration. By default it is false"
         },
         {
+          "name": "autostart",
+          "description": "_[Optional]_\nSet to start polling when button or QR is displayed. By default it is true"
+        },
+        {
           "name": "button-text",
           "description": "_[Optional]_\nIn the case of being a button, modifies its text"
         },
