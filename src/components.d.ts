@@ -412,6 +412,10 @@ export namespace Components {
          */
         "autorefresh": boolean;
         /**
+          * _[Optional]_ Set to start polling when button or QR is displayed. By default it is true
+         */
+        "autostart": boolean;
+        /**
           * _[Optional]_ In the case of being a button, modifies its text
          */
         "buttonText"?: string;
@@ -423,6 +427,10 @@ export namespace Components {
           * ***Mandatory just for V1*** Connect/Certify Server where the wallet will send the data
          */
         "callbackServer": string;
+        /**
+          * _[Optional]_ Maximum time window to check if the App is installed
+         */
+        "checkAppTimeout"?: number;
         /**
           * ***Mandatory*** Check status function to query the current status of the session The function must query a client endpoint to check the status. That endpoint must return an error if the session has expired.
          */
@@ -1087,6 +1095,10 @@ declare namespace LocalJSX {
          */
         "autorefresh"?: boolean;
         /**
+          * _[Optional]_ Set to start polling when button or QR is displayed. By default it is true
+         */
+        "autostart"?: boolean;
+        /**
           * _[Optional]_ In the case of being a button, modifies its text
          */
         "buttonText"?: string;
@@ -1098,6 +1110,10 @@ declare namespace LocalJSX {
           * ***Mandatory just for V1*** Connect/Certify Server where the wallet will send the data
          */
         "callbackServer"?: string;
+        /**
+          * _[Optional]_ Maximum time window to check if the App is installed
+         */
+        "checkAppTimeout"?: number;
         /**
           * ***Mandatory*** Check status function to query the current status of the session The function must query a client endpoint to check the status. That endpoint must return an error if the session has expired.
          */

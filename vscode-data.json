@@ -345,6 +345,10 @@
           "description": "_[Optional]_\nSet to refresh the session automatically upon expiration. By default it is false"
         },
         {
+          "name": "autostart",
+          "description": "_[Optional]_\nSet to start polling when button or QR is displayed. By default it is true"
+        },
+        {
           "name": "button-text",
           "description": "_[Optional]_\nIn the case of being a button, modifies its text"
         },
@@ -355,6 +359,10 @@
         {
           "name": "callback-server",
           "description": "***Mandatory just for V1***\nConnect/Certify Server where the wallet will send the data"
+        },
+        {
+          "name": "check-app-timeout",
+          "description": "_[Optional]_\nMaximum time window to check if the App is installed"
         },
         {
           "name": "click-inside-box-label",

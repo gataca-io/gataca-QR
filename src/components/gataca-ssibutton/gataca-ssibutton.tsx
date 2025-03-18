@@ -41,7 +41,7 @@ export class GatacaSSIButton {
         callbackServer={this.callbackServer}
         sessionTimeout={this.sessionTimeout}
         pollingFrequency={this.pollingFrequency}
-        autostart={true}
+        autostart={this.autostart}
         autorefresh={this.autorefresh}
         v={this.v}
         qrModalTitle={this.qrModalTitle}
@@ -74,6 +74,12 @@ export class GatacaSSIButton {
   @Prop() buttonText?: string = "Easy login";
 
   //PROPERTIES INHERITED BY GATACA QR
+
+  /**
+   * _[Optional]_
+   * Set to start polling when button or QR is displayed. By default it is true
+   */
+  @Prop() autostart: boolean = true;
 
   /**
    * ***Mandatory***
@@ -116,6 +122,12 @@ export class GatacaSSIButton {
    * Function that runs every time the loading state changes while checking if the App is installed. Only on mobile with v3.
    */
   @Prop() handleCheckAppLoading?: (isCheckingApp?: boolean) => void = undefined;
+
+  /**
+   * _[Optional]_
+   * Maximum time window to check if the App is installed
+   */
+  @Prop() checkAppTimeout?: number = 6;
 
   /**
    * ***Mandatory***
@@ -418,22 +430,22 @@ export class GatacaSSIButton {
       window.location.href = appScheme;
     }
 
+    const waitTimeToCheckApp = this.checkAppTimeout * 1000;
+
     timeout = setTimeout(() => {
       if (!detected) {
-        setTimeout(() => {
-          if (!detected) {
-            callback(false);
-          }
-          cleanup();
-        }, 1000);
+        callback(false);
       }
-    }, 1500);
+      cleanup();
+    }, waitTimeToCheckApp);
 
     const handleVisibilityChange = () => {
       if (document.hidden) {
         detected = true;
         callback(true);
-        this.startMobilePolling();
+        if (!this.autostart) {
+          this.startMobilePolling();
+        }
         cleanup();
       }
     };
@@ -477,6 +489,10 @@ export class GatacaSSIButton {
   }
 
   renderMobileButton(isAndroid: boolean, isIos: boolean) {
+    if (this.autostart) {
+      this.startMobilePolling();
+    }
+
     let loading = false;
 
     const handleLoading = (isLoading: boolean) => {
@@ -498,14 +514,12 @@ export class GatacaSSIButton {
 
         this.isAppInstalled(appScheme, (installed) => {
           if (!installed) {
-            setTimeout(() => {
-              this.stop();
-              if (isAndroid) {
-                window.location.href = androidStoreLink;
-              } else if (isIos) {
-                window.location.href = iosStoreLink;
-              }
-            }, 500);
+            this.stop();
+            if (isAndroid) {
+              window.location.href = androidStoreLink;
+            } else if (isIos) {
+              window.location.href = iosStoreLink;
+            }
           }
           handleLoading(false);
         });

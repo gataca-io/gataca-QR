@@ -1,5 +1,5 @@
 {
-  "timestamp": "2025-03-14T08:18:37",
+  "timestamp": "2025-03-18T16:10:57",
   "compiler": {
     "name": "@stencil/core",
     "version": "2.19.3",
@@ -1788,6 +1788,23 @@
           "required": false
         },
         {
+          "name": "autostart",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "autostart",
+          "reflectToAttr": false,
+          "docs": "_[Optional]_\nSet to start polling when button or QR is displayed. By default it is true",
+          "docsTags": [],
+          "default": "true",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
           "name": "buttonText",
           "type": "string",
           "mutable": false,
@@ -1835,6 +1852,23 @@
             }
           ],
           "optional": false,
+          "required": false
+        },
+        {
+          "name": "checkAppTimeout",
+          "type": "number",
+          "mutable": false,
+          "attr": "check-app-timeout",
+          "reflectToAttr": false,
+          "docs": "_[Optional]_\nMaximum time window to check if the App is installed",
+          "docsTags": [],
+          "default": "6",
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": true,
           "required": false
         },
         {
