@@ -443,7 +443,9 @@ export class GatacaSSIButton {
       if (document.hidden) {
         detected = true;
         callback(true);
-        this.startMobilePolling();
+        if (!this.autostart) {
+          this.startMobilePolling();
+        }
         cleanup();
       }
     };

@@ -1,5 +1,5 @@
 {
-  "timestamp": "2025-03-18T13:54:24",
+  "timestamp": "2025-03-18T16:10:57",
   "compiler": {
     "name": "node",
     "version": "18.20.5"
@@ -94,8 +94,8 @@
           "./dist/gatacaqr/p-0be4566d.js",
           "./dist/gatacaqr/p-16298cb4.entry.js",
           "./dist/gatacaqr/p-2cd7b062.js",
+          "./dist/gatacaqr/p-328d4254.entry.js",
           "./dist/gatacaqr/p-5ae5f952.js",
-          "./dist/gatacaqr/p-78f503dc.entry.js",
           "./dist/gatacaqr/p-9e9af27e.entry.js",
           "./dist/gatacaqr/p-ea783014.js",
           "./dist/index.cjs.js",
@@ -106,8 +106,8 @@
           "./www/build/p-0be4566d.js",
           "./www/build/p-16298cb4.entry.js",
           "./www/build/p-2cd7b062.js",
+          "./www/build/p-328d4254.entry.js",
           "./www/build/p-5ae5f952.js",
-          "./www/build/p-78f503dc.entry.js",
           "./www/build/p-9e9af27e.entry.js",
           "./www/build/p-ea783014.js"
         ]
@@ -172,14 +172,14 @@
           "gataca-ssibutton",
           "gataca-ssibuttonws"
         ],
-        "bundleId": "p-78f503dc",
-        "fileName": "p-78f503dc.entry.js",
+        "bundleId": "p-328d4254",
+        "fileName": "p-328d4254.entry.js",
         "imports": [
           "p-5ae5f952.js",
           "p-0be4566d.js",
           "p-2cd7b062.js"
         ],
-        "originalByteSize": 17692
+        "originalByteSize": 17735
       },
       {
         "key": "gataca-qrws.entry",
@@ -239,7 +239,7 @@
           "qr-code-styling-0eeb38d5.js",
           "utils-63e7a33b.js"
         ],
-        "originalByteSize": 17714
+        "originalByteSize": 17757
       },
       {
         "key": "gataca-qrws.entry",
@@ -301,7 +301,7 @@
           "qr-code-styling-412bbc7a.js",
           "utils-ef28b844.js"
         ],
-        "originalByteSize": 17972
+        "originalByteSize": 18015
       },
       {
         "key": "gataca-qrws.entry",
