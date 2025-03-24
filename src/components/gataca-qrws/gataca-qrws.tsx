@@ -492,13 +492,13 @@ export class GatacaQRWS {
     );
   }
 
-  renderQR(value: string, useLogo?: boolean) {
+  renderQR(value: string, useLogo?: boolean, sizeQR?: number) {
     return (
       <QR
         value={value}
         qrType={this.qrType}
         useLogo={useLogo}
-        size={this?.qrSize || undefined}
+        size={sizeQR || this?.qrSize || undefined}
         logoSrc={this?.logoSrc}
       />
     );
