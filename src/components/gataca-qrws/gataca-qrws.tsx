@@ -492,13 +492,13 @@ export class GatacaQRWS {
     );
   }
 
-  renderQR(value: string, useLogo?: boolean) {
+  renderQR(value: string, useLogo?: boolean, sizeQR?: number) {
     return (
       <QR
         value={value}
         qrType={this.qrType}
-        useLogo={useLogo}
-        size={this?.qrSize || undefined}
+        useLogo={useLogo && this.logoSize !== 0}
+        size={sizeQR || this?.qrSize || undefined}
         logoSrc={this?.logoSrc}
       />
     );
@@ -509,7 +509,7 @@ export class GatacaQRWS {
       <QR
         value={value}
         qrType={this.qrType}
-        useLogo={useLogo}
+        useLogo={useLogo && this.logoSize !== 0}
         size={this?.qrSize ? this?.qrSize - 50 : undefined}
         logoSrc={this?.logoSrc}
       />
