@@ -1,5 +1,5 @@
 {
-  "timestamp": "2025-03-18T16:10:57",
+  "timestamp": "2025-03-24T08:55:23",
   "compiler": {
     "name": "node",
     "version": "18.20.5"
@@ -90,25 +90,25 @@
           "./dist/esm/utils-63e7a33b.js",
           "./dist/gatacaqr/gatacaqr.esm.js",
           "./dist/gatacaqr/index.esm.js",
-          "./dist/gatacaqr/p-0381ab9a.entry.js",
           "./dist/gatacaqr/p-0be4566d.js",
-          "./dist/gatacaqr/p-16298cb4.entry.js",
           "./dist/gatacaqr/p-2cd7b062.js",
-          "./dist/gatacaqr/p-328d4254.entry.js",
           "./dist/gatacaqr/p-5ae5f952.js",
-          "./dist/gatacaqr/p-9e9af27e.entry.js",
+          "./dist/gatacaqr/p-5e81ab9e.entry.js",
+          "./dist/gatacaqr/p-92a2e6f0.entry.js",
+          "./dist/gatacaqr/p-9af5d2fe.entry.js",
+          "./dist/gatacaqr/p-dc592fa5.entry.js",
           "./dist/gatacaqr/p-ea783014.js",
           "./dist/index.cjs.js",
           "./dist/index.js",
           "./www/build/gatacaqr.esm.js",
           "./www/build/index.esm.js",
-          "./www/build/p-0381ab9a.entry.js",
           "./www/build/p-0be4566d.js",
-          "./www/build/p-16298cb4.entry.js",
           "./www/build/p-2cd7b062.js",
-          "./www/build/p-328d4254.entry.js",
           "./www/build/p-5ae5f952.js",
-          "./www/build/p-9e9af27e.entry.js",
+          "./www/build/p-5e81ab9e.entry.js",
+          "./www/build/p-92a2e6f0.entry.js",
+          "./www/build/p-9af5d2fe.entry.js",
+          "./www/build/p-dc592fa5.entry.js",
           "./www/build/p-ea783014.js"
         ]
       },
@@ -144,27 +144,27 @@
           "gataca-qr",
           "gataca-qrdisplay"
         ],
-        "bundleId": "p-16298cb4",
-        "fileName": "p-16298cb4.entry.js",
+        "bundleId": "p-9af5d2fe",
+        "fileName": "p-9af5d2fe.entry.js",
         "imports": [
           "p-5ae5f952.js",
           "p-ea783014.js",
           "p-0be4566d.js",
           "p-2cd7b062.js"
         ],
-        "originalByteSize": 23066
+        "originalByteSize": 23195
       },
       {
         "key": "gataca-autoqr.entry",
         "components": [
           "gataca-autoqr"
         ],
-        "bundleId": "p-0381ab9a",
-        "fileName": "p-0381ab9a.entry.js",
+        "bundleId": "p-5e81ab9e",
+        "fileName": "p-5e81ab9e.entry.js",
         "imports": [
           "p-5ae5f952.js"
         ],
-        "originalByteSize": 7790
+        "originalByteSize": 7899
       },
       {
         "key": "gataca-ssibutton.gataca-ssibuttonws.entry",
@@ -172,29 +172,29 @@
           "gataca-ssibutton",
           "gataca-ssibuttonws"
         ],
-        "bundleId": "p-328d4254",
-        "fileName": "p-328d4254.entry.js",
+        "bundleId": "p-92a2e6f0",
+        "fileName": "p-92a2e6f0.entry.js",
         "imports": [
           "p-5ae5f952.js",
           "p-0be4566d.js",
           "p-2cd7b062.js"
         ],
-        "originalByteSize": 17735
+        "originalByteSize": 17827
       },
       {
         "key": "gataca-qrws.entry",
         "components": [
           "gataca-qrws"
         ],
-        "bundleId": "p-9e9af27e",
-        "fileName": "p-9e9af27e.entry.js",
+        "bundleId": "p-dc592fa5",
+        "fileName": "p-dc592fa5.entry.js",
         "imports": [
           "p-5ae5f952.js",
           "p-ea783014.js",
           "p-0be4566d.js",
           "p-2cd7b062.js"
         ],
-        "originalByteSize": 22082
+        "originalByteSize": 22169
       }
     ],
     "esm": [
@@ -212,7 +212,7 @@
           "qr-code-styling-0eeb38d5.js",
           "utils-63e7a33b.js"
         ],
-        "originalByteSize": 23101
+        "originalByteSize": 23230
       },
       {
         "key": "gataca-autoqr.entry",
@@ -224,7 +224,7 @@
         "imports": [
           "index-2be54f32.js"
         ],
-        "originalByteSize": 7794
+        "originalByteSize": 7903
       },
       {
         "key": "gataca-ssibutton.gataca-ssibuttonws.entry",
@@ -239,7 +239,7 @@
           "qr-code-styling-0eeb38d5.js",
           "utils-63e7a33b.js"
         ],
-        "originalByteSize": 17757
+        "originalByteSize": 17849
       },
       {
         "key": "gataca-qrws.entry",
@@ -254,7 +254,7 @@
           "qr-code-styling-0eeb38d5.js",
           "utils-63e7a33b.js"
         ],
-        "originalByteSize": 22117
+        "originalByteSize": 22204
       }
     ],
     "es5": [],
@@ -274,7 +274,7 @@
           "qr-code-styling-412bbc7a.js",
           "utils-ef28b844.js"
         ],
-        "originalByteSize": 23554
+        "originalByteSize": 23683
       },
       {
         "key": "gataca-autoqr.entry",
@@ -286,7 +286,7 @@
         "imports": [
           "index-93d47a75.js"
         ],
-        "originalByteSize": 7887
+        "originalByteSize": 7996
       },
       {
         "key": "gataca-ssibutton.gataca-ssibuttonws.entry",
@@ -301,7 +301,7 @@
           "qr-code-styling-412bbc7a.js",
           "utils-ef28b844.js"
         ],
-        "originalByteSize": 18015
+        "originalByteSize": 18107
       },
       {
         "key": "gataca-qrws.entry",
@@ -316,7 +316,7 @@
           "qr-code-styling-412bbc7a.js",
           "utils-ef28b844.js"
         ],
-        "originalByteSize": 22506
+        "originalByteSize": 22593
       }
     ]
   },
@@ -432,6 +432,31 @@
           "docs": {
             "tags": [],
             "text": "***Mandatory***\nID of the QR configuration to display"
+          },
+          "internal": false
+        },
+        {
+          "name": "qrType",
+          "type": "string",
+          "attribute": "qr-type",
+          "reflect": false,
+          "mutable": false,
+          "required": false,
+          "optional": true,
+          "defaultValue": "\"svg\"",
+          "complexType": {
+            "original": "DrawType",
+            "resolved": "\"canvas\" | \"svg\"",
+            "references": {
+              "DrawType": {
+                "location": "import",
+                "path": "qr-code-styling"
+              }
+            }
+          },
+          "docs": {
+            "tags": [],
+            "text": "_[Optional]_\nSets the qr type. It can be \"svg\" or \"canvas\". \"svg\" by default."
           },
           "internal": false
         },
@@ -844,6 +869,31 @@
           "docs": {
             "tags": [],
             "text": "***Mandatory just for V1***\nDecide if scanning the credential as a verifier to request credentials\nor as an issuer too issue credentials.\nOptions: connect | certify"
+          },
+          "internal": false
+        },
+        {
+          "name": "qrType",
+          "type": "string",
+          "attribute": "qr-type",
+          "reflect": false,
+          "mutable": false,
+          "required": false,
+          "optional": true,
+          "defaultValue": "\"svg\"",
+          "complexType": {
+            "original": "DrawType",
+            "resolved": "\"canvas\" | \"svg\"",
+            "references": {
+              "DrawType": {
+                "location": "import",
+                "path": "qr-code-styling"
+              }
+            }
+          },
+          "docs": {
+            "tags": [],
+            "text": "_[Optional]_\nSets the qr type. It can be \"svg\" or \"canvas\". \"svg\" by default."
           },
           "internal": false
         },
@@ -1556,6 +1606,31 @@
           "internal": false
         },
         {
+          "name": "qrType",
+          "type": "string",
+          "attribute": "qr-type",
+          "reflect": false,
+          "mutable": false,
+          "required": false,
+          "optional": true,
+          "defaultValue": "\"svg\"",
+          "complexType": {
+            "original": "DrawType",
+            "resolved": "\"canvas\" | \"svg\"",
+            "references": {
+              "DrawType": {
+                "location": "import",
+                "path": "qr-code-styling"
+              }
+            }
+          },
+          "docs": {
+            "tags": [],
+            "text": "_[Optional]_\nSets the qr type. It can be \"svg\" or \"canvas\". \"svg\" by default."
+          },
+          "internal": false
+        },
+        {
           "name": "size",
           "type": "number",
           "attribute": "size",
@@ -1857,6 +1932,31 @@
           "docs": {
             "tags": [],
             "text": "***Mandatory***\nDecide if scanning the credential as a verifier to request credentials\nor as an issuer too issue credentials.\nOptions: connect | certify"
+          },
+          "internal": false
+        },
+        {
+          "name": "qrType",
+          "type": "string",
+          "attribute": "qr-type",
+          "reflect": false,
+          "mutable": false,
+          "required": false,
+          "optional": true,
+          "defaultValue": "\"svg\"",
+          "complexType": {
+            "original": "DrawType",
+            "resolved": "\"canvas\" | \"svg\"",
+            "references": {
+              "DrawType": {
+                "location": "import",
+                "path": "qr-code-styling"
+              }
+            }
+          },
+          "docs": {
+            "tags": [],
+            "text": "_[Optional]_\nSets the qr type. It can be \"svg\" or \"canvas\". \"svg\" by default."
           },
           "internal": false
         },
@@ -2712,6 +2812,31 @@
           "internal": false
         },
         {
+          "name": "qrType",
+          "type": "string",
+          "attribute": "qr-type",
+          "reflect": false,
+          "mutable": false,
+          "required": false,
+          "optional": true,
+          "defaultValue": "\"svg\"",
+          "complexType": {
+            "original": "DrawType",
+            "resolved": "\"canvas\" | \"svg\"",
+            "references": {
+              "DrawType": {
+                "location": "import",
+                "path": "qr-code-styling"
+              }
+            }
+          },
+          "docs": {
+            "tags": [],
+            "text": "_[Optional]_\nSets the qr type. It can be \"svg\" or \"canvas\". \"svg\" by default."
+          },
+          "internal": false
+        },
+        {
           "name": "autostart",
           "type": "boolean",
           "attribute": "autostart",
@@ -3530,6 +3655,31 @@
           "internal": false
         },
         {
+          "name": "qrType",
+          "type": "string",
+          "attribute": "qr-type",
+          "reflect": false,
+          "mutable": false,
+          "required": false,
+          "optional": true,
+          "defaultValue": "\"svg\"",
+          "complexType": {
+            "original": "DrawType",
+            "resolved": "\"canvas\" | \"svg\"",
+            "references": {
+              "DrawType": {
+                "location": "import",
+                "path": "qr-code-styling"
+              }
+            }
+          },
+          "docs": {
+            "tags": [],
+            "text": "_[Optional]_\nSets the qr type. It can be \"svg\" or \"canvas\". \"svg\" by default."
+          },
+          "internal": false
+        },
+        {
           "name": "qrRole",
           "type": "string",
           "attribute": "qr-role",
@@ -3921,6 +4071,31 @@
               "docs": {
                 "tags": [],
                 "text": "***Mandatory just for V1***\nDecide if scanning the credential as a verifier to request credentials\nor as an issuer too issue credentials.\nOptions: connect | certify"
+              },
+              "internal": false
+            },
+            {
+              "name": "qrType",
+              "type": "string",
+              "attribute": "qr-type",
+              "reflect": false,
+              "mutable": false,
+              "required": false,
+              "optional": true,
+              "defaultValue": "\"svg\"",
+              "complexType": {
+                "original": "DrawType",
+                "resolved": "\"canvas\" | \"svg\"",
+                "references": {
+                  "DrawType": {
+                    "location": "import",
+                    "path": "qr-code-styling"
+                  }
+                }
+              },
+              "docs": {
+                "tags": [],
+                "text": "_[Optional]_\nSets the qr type. It can be \"svg\" or \"canvas\". \"svg\" by default."
               },
               "internal": false
             },
@@ -4765,6 +4940,7 @@
             "sizeQR",
             "renderQR",
             "value",
+            "qrType",
             "useLogo",
             "size",
             "logoSrc",
@@ -4832,6 +5008,31 @@
               "docs": {
                 "tags": [],
                 "text": "_[Mandatory]_\nSets the contents of the QR"
+              },
+              "internal": false
+            },
+            {
+              "name": "qrType",
+              "type": "string",
+              "attribute": "qr-type",
+              "reflect": false,
+              "mutable": false,
+              "required": false,
+              "optional": true,
+              "defaultValue": "\"svg\"",
+              "complexType": {
+                "original": "DrawType",
+                "resolved": "\"canvas\" | \"svg\"",
+                "references": {
+                  "DrawType": {
+                    "location": "import",
+                    "path": "qr-code-styling"
+                  }
+                }
+              },
+              "docs": {
+                "tags": [],
+                "text": "_[Optional]_\nSets the qr type. It can be \"svg\" or \"canvas\". \"svg\" by default."
               },
               "internal": false
             },
@@ -5053,6 +5254,31 @@
               "docs": {
                 "tags": [],
                 "text": "***Mandatory***\nID of the QR configuration to display"
+              },
+              "internal": false
+            },
+            {
+              "name": "qrType",
+              "type": "string",
+              "attribute": "qr-type",
+              "reflect": false,
+              "mutable": false,
+              "required": false,
+              "optional": true,
+              "defaultValue": "\"svg\"",
+              "complexType": {
+                "original": "DrawType",
+                "resolved": "\"canvas\" | \"svg\"",
+                "references": {
+                  "DrawType": {
+                    "location": "import",
+                    "path": "qr-code-styling"
+                  }
+                }
+              },
+              "docs": {
+                "tags": [],
+                "text": "_[Optional]_\nSets the qr type. It can be \"svg\" or \"canvas\". \"svg\" by default."
               },
               "internal": false
             },
@@ -5362,6 +5588,7 @@
             "wsOnOpen",
             "successCallback",
             "errorCallback",
+            "qrType",
             "qrRole",
             "callbackServer",
             "sessionTimeout",
@@ -5439,6 +5666,31 @@
               "docs": {
                 "tags": [],
                 "text": "_[Optional]_\nIn the case of being a button, modifies its text"
+              },
+              "internal": false
+            },
+            {
+              "name": "qrType",
+              "type": "string",
+              "attribute": "qr-type",
+              "reflect": false,
+              "mutable": false,
+              "required": false,
+              "optional": true,
+              "defaultValue": "\"svg\"",
+              "complexType": {
+                "original": "DrawType",
+                "resolved": "\"canvas\" | \"svg\"",
+                "references": {
+                  "DrawType": {
+                    "location": "import",
+                    "path": "qr-code-styling"
+                  }
+                }
+              },
+              "docs": {
+                "tags": [],
+                "text": "_[Optional]_\nSets the qr type. It can be \"svg\" or \"canvas\". \"svg\" by default."
               },
               "internal": false
             },
@@ -6285,6 +6537,7 @@
             "successCallback",
             "errorCallback",
             "qrRole",
+            "qrType",
             "callbackServer",
             "sessionTimeout",
             "pollingFrequency",
@@ -6410,6 +6663,31 @@
               "docs": {
                 "tags": [],
                 "text": "***Mandatory***\nCallback fired upon session expired or invalid\nIf not set, session error would not be handled\nAn error containing information will be passed as parameter"
+              },
+              "internal": false
+            },
+            {
+              "name": "qrType",
+              "type": "string",
+              "attribute": "qr-type",
+              "reflect": false,
+              "mutable": false,
+              "required": false,
+              "optional": true,
+              "defaultValue": "\"svg\"",
+              "complexType": {
+                "original": "DrawType",
+                "resolved": "\"canvas\" | \"svg\"",
+                "references": {
+                  "DrawType": {
+                    "location": "import",
+                    "path": "qr-code-styling"
+                  }
+                }
+              },
+              "docs": {
+                "tags": [],
+                "text": "_[Optional]_\nSets the qr type. It can be \"svg\" or \"canvas\". \"svg\" by default."
               },
               "internal": false
             },
@@ -6820,6 +7098,7 @@
             "successCallback",
             "errorCallback",
             "qrRole",
+            "qrType",
             "callbackServer",
             "sessionTimeout",
             "socketEndpoint",
@@ -6933,6 +7212,31 @@
               "docs": {
                 "tags": [],
                 "text": "***Mandatory***\nDecide if scanning the credential as a verifier to request credentials\nor as an issuer too issue credentials.\nOptions: connect | certify"
+              },
+              "internal": false
+            },
+            {
+              "name": "qrType",
+              "type": "string",
+              "attribute": "qr-type",
+              "reflect": false,
+              "mutable": false,
+              "required": false,
+              "optional": true,
+              "defaultValue": "\"svg\"",
+              "complexType": {
+                "original": "DrawType",
+                "resolved": "\"canvas\" | \"svg\"",
+                "references": {
+                  "DrawType": {
+                    "location": "import",
+                    "path": "qr-code-styling"
+                  }
+                }
+              },
+              "docs": {
+                "tags": [],
+                "text": "_[Optional]_\nSets the qr type. It can be \"svg\" or \"canvas\". \"svg\" by default."
               },
               "internal": false
             },
@@ -7833,6 +8137,7 @@
             "sizeQR",
             "renderQR",
             "value",
+            "qrType",
             "useLogo",
             "size",
             "logoSrc",

@@ -1,5 +1,5 @@
 {
-  "timestamp": "2025-03-18T16:10:57",
+  "timestamp": "2025-03-24T08:55:23",
   "compiler": {
     "name": "@stencil/core",
     "version": "2.19.3",
@@ -94,6 +94,28 @@
             }
           ],
           "optional": false,
+          "required": false
+        },
+        {
+          "name": "qrType",
+          "type": "\"canvas\" | \"svg\"",
+          "mutable": false,
+          "attr": "qr-type",
+          "reflectToAttr": false,
+          "docs": "_[Optional]_\nSets the qr type. It can be \"svg\" or \"canvas\". \"svg\" by default.",
+          "docsTags": [],
+          "default": "\"svg\"",
+          "values": [
+            {
+              "value": "canvas",
+              "type": "string"
+            },
+            {
+              "value": "svg",
+              "type": "string"
+            }
+          ],
+          "optional": true,
           "required": false
         },
         {
@@ -671,6 +693,28 @@
           "required": false
         },
         {
+          "name": "qrType",
+          "type": "\"canvas\" | \"svg\"",
+          "mutable": false,
+          "attr": "qr-type",
+          "reflectToAttr": false,
+          "docs": "_[Optional]_\nSets the qr type. It can be \"svg\" or \"canvas\". \"svg\" by default.",
+          "docsTags": [],
+          "default": "\"svg\"",
+          "values": [
+            {
+              "value": "canvas",
+              "type": "string"
+            },
+            {
+              "value": "svg",
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
           "name": "readQrDescription",
           "type": "string",
           "mutable": false,
@@ -991,6 +1035,28 @@
             }
           ],
           "optional": false,
+          "required": false
+        },
+        {
+          "name": "qrType",
+          "type": "\"canvas\" | \"svg\"",
+          "mutable": false,
+          "attr": "qr-type",
+          "reflectToAttr": false,
+          "docs": "_[Optional]_\nSets the qr type. It can be \"svg\" or \"canvas\". \"svg\" by default.",
+          "docsTags": [],
+          "default": "\"svg\"",
+          "values": [
+            {
+              "value": "canvas",
+              "type": "string"
+            },
+            {
+              "value": "svg",
+              "type": "string"
+            }
+          ],
+          "optional": true,
           "required": false
         },
         {
@@ -1456,6 +1522,28 @@
           "values": [
             {
               "type": "number"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "qrType",
+          "type": "\"canvas\" | \"svg\"",
+          "mutable": false,
+          "attr": "qr-type",
+          "reflectToAttr": false,
+          "docs": "_[Optional]_\nSets the qr type. It can be \"svg\" or \"canvas\". \"svg\" by default.",
+          "docsTags": [],
+          "default": "\"svg\"",
+          "values": [
+            {
+              "value": "canvas",
+              "type": "string"
+            },
+            {
+              "value": "svg",
+              "type": "string"
             }
           ],
           "optional": true,
@@ -2188,6 +2276,28 @@
           "required": false
         },
         {
+          "name": "qrType",
+          "type": "\"canvas\" | \"svg\"",
+          "mutable": false,
+          "attr": "qr-type",
+          "reflectToAttr": false,
+          "docs": "_[Optional]_\nSets the qr type. It can be \"svg\" or \"canvas\". \"svg\" by default.",
+          "docsTags": [],
+          "default": "\"svg\"",
+          "values": [
+            {
+              "value": "canvas",
+              "type": "string"
+            },
+            {
+              "value": "svg",
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
           "name": "refreshQrLabel",
           "type": "string",
           "mutable": false,
@@ -2573,6 +2683,28 @@
             }
           ],
           "optional": false,
+          "required": false
+        },
+        {
+          "name": "qrType",
+          "type": "\"canvas\" | \"svg\"",
+          "mutable": false,
+          "attr": "qr-type",
+          "reflectToAttr": false,
+          "docs": "_[Optional]_\nSets the qr type. It can be \"svg\" or \"canvas\". \"svg\" by default.",
+          "docsTags": [],
+          "default": "\"svg\"",
+          "values": [
+            {
+              "value": "canvas",
+              "type": "string"
+            },
+            {
+              "value": "svg",
+              "type": "string"
+            }
+          ],
+          "optional": true,
           "required": false
         },
         {

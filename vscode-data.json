@@ -15,6 +15,18 @@
         {
           "name": "config-repository",
           "description": "___Optional___\nConfigURL Repository to download the config from"
+        },
+        {
+          "name": "qr-type",
+          "description": "_[Optional]_\nSets the qr type. It can be \"svg\" or \"canvas\". \"svg\" by default.",
+          "values": [
+            {
+              "name": "canvas"
+            },
+            {
+              "name": "svg"
+            }
+          ]
         }
       ]
     },
@@ -122,6 +134,18 @@
           "description": "_[Optional]_\nSize of QR Displayed"
         },
         {
+          "name": "qr-type",
+          "description": "_[Optional]_\nSets the qr type. It can be \"svg\" or \"canvas\". \"svg\" by default.",
+          "values": [
+            {
+              "name": "canvas"
+            },
+            {
+              "name": "svg"
+            }
+          ]
+        },
+        {
           "name": "read-qr-description",
           "description": "_[Optional]_\nString description to show when QR already read"
         },
@@ -181,6 +205,18 @@
         {
           "name": "qr-data",
           "description": "_[Mandatory]_\nSets the contents of the QR"
+        },
+        {
+          "name": "qr-type",
+          "description": "_[Optional]_\nSets the qr type. It can be \"svg\" or \"canvas\". \"svg\" by default.",
+          "values": [
+            {
+              "name": "canvas"
+            },
+            {
+              "name": "svg"
+            }
+          ]
         },
         {
           "name": "rounded",
@@ -290,6 +326,18 @@
         {
           "name": "qr-size",
           "description": "_[Optional]_\nSize of QR Displayed"
+        },
+        {
+          "name": "qr-type",
+          "description": "_[Optional]_\nSets the qr type. It can be \"svg\" or \"canvas\". \"svg\" by default.",
+          "values": [
+            {
+              "name": "canvas"
+            },
+            {
+              "name": "svg"
+            }
+          ]
         },
         {
           "name": "read-qr-description",
@@ -425,6 +473,18 @@
           "description": "***Mandatory***\nDecide if scanning the credential as a verifier to request credentials\nor as an issuer too issue credentials.\nOptions: connect | certify"
         },
         {
+          "name": "qr-type",
+          "description": "_[Optional]_\nSets the qr type. It can be \"svg\" or \"canvas\". \"svg\" by default.",
+          "values": [
+            {
+              "name": "canvas"
+            },
+            {
+              "name": "svg"
+            }
+          ]
+        },
+        {
           "name": "refresh-qr-label",
           "description": "_[Optional]_\nString to show \"refresh QR\" label"
         },
@@ -496,6 +556,18 @@
         {
           "name": "qr-role",
           "description": "***Mandatory***\nDecide if scanning the credential as a verifier to request credentials\nor as an issuer too issue credentials.\nOptions: connect | certify"
+        },
+        {
+          "name": "qr-type",
+          "description": "_[Optional]_\nSets the qr type. It can be \"svg\" or \"canvas\". \"svg\" by default.",
+          "values": [
+            {
+              "name": "canvas"
+            },
+            {
+              "name": "svg"
+            }
+          ]
         },
         {
           "name": "session-timeout",

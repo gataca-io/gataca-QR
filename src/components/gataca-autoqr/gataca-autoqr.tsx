@@ -13,6 +13,7 @@ import { GatacaQR } from "../gataca-qr/gataca-qr";
 import { GatacaQRWS } from "../gataca-qrws/gataca-qrws";
 import { GatacaSSIButton } from "../gataca-ssibutton/gataca-ssibutton";
 import { GatacaSSIButtonWS } from "../gataca-ssibuttonws/gataca-ssibuttonws";
+import { DrawType } from "qr-code-styling";
 
 const DEFAULT_REPOSITORY = "https://studio.gataca.io/api/v1/qrconfigs";
 
@@ -88,6 +89,12 @@ export class GatacaAutoQR {
    * ID of the QR configuration to display
    */
   @Prop() configId: string;
+
+  /**
+   * _[Optional]_
+   * Sets the qr type. It can be "svg" or "canvas". "svg" by default.
+   */
+  @Prop() qrType?: DrawType = "svg";
 
   /**
    * ___Optional___
@@ -199,6 +206,7 @@ export class GatacaAutoQR {
               this.successCallback || this.config.successCallback
             }
             errorCallback={this.errorCallback || this.config.errorCallback}
+            qrType={this.qrType}
             qrRole={this.config.qrRole}
             callbackServer={this.config.callbackServer}
             sessionTimeout={this.config.sessionTimeout}
@@ -222,6 +230,7 @@ export class GatacaAutoQR {
               this.successCallback || this.config.successCallback
             }
             errorCallback={this.errorCallback || this.config.errorCallback}
+            qrType={this.qrType}
             qrRole={this.config.qrRole}
             callbackServer={this.config.callbackServer}
             sessionTimeout={this.config.sessionTimeout}
@@ -244,6 +253,7 @@ export class GatacaAutoQR {
             successCallback={
               this.successCallback || this.config.successCallback
             }
+            qrType={this.qrType}
             errorCallback={this.errorCallback || this.config.errorCallback}
             qrRole={this.config.qrRole}
             callbackServer={this.config.callbackServer}
@@ -266,6 +276,7 @@ export class GatacaAutoQR {
             successCallback={
               this.successCallback || this.config.successCallback
             }
+            qrType={this.qrType}
             errorCallback={this.errorCallback || this.config.errorCallback}
             qrRole={this.config.qrRole}
             callbackServer={this.config.callbackServer}

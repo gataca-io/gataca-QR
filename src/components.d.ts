@@ -5,6 +5,7 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { DrawType } from "qr-code-styling";
 import { RESULT_STATUS } from "./utils";
 import { RESULT_STATUS as RESULT_STATUS1, WSResponse } from "./utils/utils";
 export namespace Components {
@@ -38,6 +39,10 @@ export namespace Components {
           * Retrieve manually the session data on a successful login
          */
         "getSessionData": () => Promise<any>;
+        /**
+          * _[Optional]_ Sets the qr type. It can be "svg" or "canvas". "svg" by default.
+         */
+        "qrType"?: DrawType;
         /**
           * ***Mandatory*** Callback fired upon session correctly verified If not set, session validation wouldn't trigger any action The session data and a possible token will be sent as parameters to the callback
          */
@@ -174,6 +179,10 @@ export namespace Components {
          */
         "qrSize"?: number;
         /**
+          * _[Optional]_ Sets the qr type. It can be "svg" or "canvas". "svg" by default.
+         */
+        "qrType"?: DrawType;
+        /**
           * _[Optional]_ String description to show when QR already read
          */
         "readQrDescription"?: string;
@@ -235,6 +244,10 @@ export namespace Components {
           * _[Mandatory]_ Sets the contents of the QR
          */
         "qrData": string;
+        /**
+          * _[Optional]_ Sets the qr type. It can be "svg" or "canvas". "svg" by default.
+         */
+        "qrType"?: DrawType;
         /**
           * _[Optional]_ Round usage
          */
@@ -349,6 +362,10 @@ export namespace Components {
           * _[Optional]_ Size of QR Displayed
          */
         "qrSize"?: number;
+        /**
+          * _[Optional]_ Sets the qr type. It can be "svg" or "canvas". "svg" by default.
+         */
+        "qrType"?: DrawType;
         /**
           * _[Optional]_ String description to show when QR already read
          */
@@ -517,6 +534,10 @@ export namespace Components {
          */
         "qrRole": string;
         /**
+          * _[Optional]_ Sets the qr type. It can be "svg" or "canvas". "svg" by default.
+         */
+        "qrType"?: DrawType;
+        /**
           * _[Optional]_ String to show "refresh QR" label
          */
         "refreshQrLabel"?: string;
@@ -602,6 +623,10 @@ export namespace Components {
           * ***Mandatory*** Decide if scanning the credential as a verifier to request credentials or as an issuer too issue credentials. Options: connect | certify
          */
         "qrRole": string;
+        /**
+          * _[Optional]_ Sets the qr type. It can be "svg" or "canvas". "svg" by default.
+         */
+        "qrType"?: DrawType;
         /**
           * ***Mandatory*** Maximum time window to display the session and keep the websocket connection. It's needed to ensure the socket is closed.
          */
@@ -729,6 +754,10 @@ declare namespace LocalJSX {
           * GatacaLoginFailed event, triggered with error upon login failure
          */
         "onGatacaLoginFailed"?: (event: GatacaAutoqrCustomEvent<any>) => void;
+        /**
+          * _[Optional]_ Sets the qr type. It can be "svg" or "canvas". "svg" by default.
+         */
+        "qrType"?: DrawType;
         /**
           * ***Mandatory*** Callback fired upon session correctly verified If not set, session validation wouldn't trigger any action The session data and a possible token will be sent as parameters to the callback
          */
@@ -865,6 +894,10 @@ declare namespace LocalJSX {
          */
         "qrSize"?: number;
         /**
+          * _[Optional]_ Sets the qr type. It can be "svg" or "canvas". "svg" by default.
+         */
+        "qrType"?: DrawType;
+        /**
           * _[Optional]_ String description to show when QR already read
          */
         "readQrDescription"?: string;
@@ -922,6 +955,10 @@ declare namespace LocalJSX {
           * _[Mandatory]_ Sets the contents of the QR
          */
         "qrData"?: string;
+        /**
+          * _[Optional]_ Sets the qr type. It can be "svg" or "canvas". "svg" by default.
+         */
+        "qrType"?: DrawType;
         /**
           * _[Optional]_ Round usage
          */
@@ -1036,6 +1073,10 @@ declare namespace LocalJSX {
           * _[Optional]_ Size of QR Displayed
          */
         "qrSize"?: number;
+        /**
+          * _[Optional]_ Sets the qr type. It can be "svg" or "canvas". "svg" by default.
+         */
+        "qrType"?: DrawType;
         /**
           * _[Optional]_ String description to show when QR already read
          */
@@ -1204,6 +1245,10 @@ declare namespace LocalJSX {
          */
         "qrRole"?: string;
         /**
+          * _[Optional]_ Sets the qr type. It can be "svg" or "canvas". "svg" by default.
+         */
+        "qrType"?: DrawType;
+        /**
           * _[Optional]_ String to show "refresh QR" label
          */
         "refreshQrLabel"?: string;
@@ -1285,6 +1330,10 @@ declare namespace LocalJSX {
           * ***Mandatory*** Decide if scanning the credential as a verifier to request credentials or as an issuer too issue credentials. Options: connect | certify
          */
         "qrRole"?: string;
+        /**
+          * _[Optional]_ Sets the qr type. It can be "svg" or "canvas". "svg" by default.
+         */
+        "qrType"?: DrawType;
         /**
           * ***Mandatory*** Maximum time window to display the session and keep the websocket connection. It's needed to ensure the socket is closed.
          */

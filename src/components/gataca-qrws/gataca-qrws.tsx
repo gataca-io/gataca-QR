@@ -21,6 +21,7 @@ import { Success } from "./components/success/Success";
 import { RetryButton } from "./components/retryButton/RetryButton";
 import { QR } from "./components/qr/QR";
 import { ReadQR } from "./components/readQR/ReadQR";
+import { DrawType } from "qr-code-styling";
 
 const DEEP_LINK_PREFIX = "https://api.gataca.io/qr/redirect.html";
 const DEFAULT_SESSION_TIMEOUT = 300;
@@ -61,6 +62,12 @@ export class GatacaQRWS {
    * Options: connect | certify
    */
   @Prop() qrRole: string;
+
+  /**
+   * _[Optional]_
+   * Sets the qr type. It can be "svg" or "canvas". "svg" by default.
+   */
+  @Prop() qrType?: DrawType = "svg";
 
   /**
    * ***Mandatory just for V1***
@@ -489,6 +496,7 @@ export class GatacaQRWS {
     return (
       <QR
         value={value}
+        qrType={this.qrType}
         useLogo={useLogo}
         size={this?.qrSize || undefined}
         logoSrc={this?.logoSrc}
@@ -500,6 +508,7 @@ export class GatacaQRWS {
     return (
       <QR
         value={value}
+        qrType={this.qrType}
         useLogo={useLogo}
         size={this?.qrSize ? this?.qrSize - 50 : undefined}
         logoSrc={this?.logoSrc}
