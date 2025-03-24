@@ -11,6 +11,7 @@ import "../gataca-qrdisplay/gataca-qrdisplay";
 
 import { RESULT_STATUS } from "../../utils/utils";
 import { GatacaQR } from "../gataca-qr/gataca-qr";
+import { DrawType } from "qr-code-styling";
 
 const PHONE_ICON =
   "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABsAAAAbCAYAAACN1PRVAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAHvSURBVHgB3ZZPTttAFMbfe3YjL7qYLopcpZXSG7Q3CDfIsqrSJpyg5QQtJ2h7glgUdVs4AeEE5AYEQSDAgtnw357Hm0hAQDaeIRFCfFKyeKPxzzPzvc+DUKCZN80GEv1ABgWOQgSdGbOwv7u0nDueV4zjTzUIKhuAZna4vdQFR828azbI0K/TI/qodaLvjlP+tLDGDCs+IKv9Lbsi7kcv0w9541Q0EREPYcoieEQ9KiyECRXHzbpBUOcnYTfPFOOaaGVx9WsLiDrSIp0iU0wFNgIx/AQyc9I/OmOjy+Y8aBvHQcDUYebewc6/Xtk8J5htcg5efEPGhk0JtqkyBjo7DuZcnuO2sqCyKv8rUDmfTS9IBURqBAL+I6CkzBjOMOs22TLY21n8fl17KzXR3uDvb/CQk0GEdfvN07QvpnAOaGfYaRT25JzU6+rnG2tTpcWAy+Cp0m3U/URLms8HWfg/rn6RFaGSs9KQkZMpvGBWNs2Vandt46ac6YNBuc0fDLMaOU5DFybQ8039p/KJ4bq4rwPewtqoM/1gsCm/NfBXvWjgHhhuDAeLyd3qVSifHQULeZkou9EqemLhmUmav8qrZ4GEMGA7ivzjKvfeqGptFV2YdWPMPHHq0cCh3DdpVdLl/XCY9J1gVvbCiWa6N+JLocPFjCsx9cAAAAAASUVORK5CYII=";
@@ -38,6 +39,7 @@ export class GatacaSSIButton {
         successCallback={this.successCallback}
         errorCallback={this.errorCallback}
         qrRole={this.qrRole}
+        qrType={this.qrType}
         callbackServer={this.callbackServer}
         sessionTimeout={this.sessionTimeout}
         pollingFrequency={this.pollingFrequency}
@@ -74,6 +76,12 @@ export class GatacaSSIButton {
   @Prop() buttonText?: string = "Easy login";
 
   //PROPERTIES INHERITED BY GATACA QR
+
+  /**
+   * _[Optional]_
+   * Sets the qr type. It can be "svg" or "canvas". "svg" by default.
+   */
+  @Prop() qrType?: DrawType = "svg";
 
   /**
    * _[Optional]_

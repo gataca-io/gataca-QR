@@ -33,14 +33,15 @@ Continuing with that example, you could integrate in any HTML using the followin
 
 ## Properties
 
-| Property   | Attribute   | Description                                                                                                                                                                    | Type      | Default     |
-| ---------- | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------- | ----------- |
-| `logoSize` | `logo-size` | _[Optional]_ Size of the logo to display in percentage to the total size [0-1]. 0 means no logo will be displayed. Default is the GATACA logo. Recommended size is around 0.33 | `number`  | `0`         |
-| `logoSrc`  | `logo-src`  | _[Optional]_ Logo to display, just if the logo size is greater than 0. No logo is the GATACA logo.                                                                             | `string`  | `undefined` |
-| `qrColor`  | `qr-color`  | _[Optional]_ QR Color.                                                                                                                                                         | `string`  | `"#1E1E20"` |
-| `qrData`   | `qr-data`   | _[Mandatory]_ Sets the contents of the QR                                                                                                                                      | `string`  | `undefined` |
-| `rounded`  | `rounded`   | _[Optional]_ Round usage                                                                                                                                                       | `boolean` | `true`      |
-| `size`     | `size`      | _[Optional]_ Size of the QR Displayed                                                                                                                                          | `number`  | `256`       |
+| Property   | Attribute   | Description                                                                                                                                                                    | Type                | Default     |
+| ---------- | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------- | ----------- |
+| `logoSize` | `logo-size` | _[Optional]_ Size of the logo to display in percentage to the total size [0-1]. 0 means no logo will be displayed. Default is the GATACA logo. Recommended size is around 0.33 | `number`            | `0`         |
+| `logoSrc`  | `logo-src`  | _[Optional]_ Logo to display, just if the logo size is greater than 0. No logo is the GATACA logo.                                                                             | `string`            | `undefined` |
+| `qrColor`  | `qr-color`  | _[Optional]_ QR Color.                                                                                                                                                         | `string`            | `"#1E1E20"` |
+| `qrData`   | `qr-data`   | _[Mandatory]_ Sets the contents of the QR                                                                                                                                      | `string`            | `undefined` |
+| `qrType`   | `qr-type`   | _[Optional]_ Sets the qr type. It can be "svg" or "canvas". "svg" by default.                                                                                                  | `"canvas" \| "svg"` | `"svg"`     |
+| `rounded`  | `rounded`   | _[Optional]_ Round usage                                                                                                                                                       | `boolean`           | `true`      |
+| `size`     | `size`      | _[Optional]_ Size of the QR Displayed                                                                                                                                          | `number`            | `256`       |
 
 
 ## Dependencies

@@ -1,5 +1,5 @@
 import { Component, h, Prop } from "@stencil/core";
-import QRCodeStyling from "qr-code-styling";
+import QRCodeStyling, { DrawType } from "qr-code-styling";
 import logoGataca from "../../assets/images/logo_gataca.svg";
 
 @Component({
@@ -15,7 +15,7 @@ export class GatacaQRDisplay {
       height: this.size,
       image: this.logoSize > 0 ? this.logoSrc || logoGataca : undefined,
       margin: 10,
-      type: "svg",
+      type: this.qrType,
       dotsOptions: {
         color: this.qrColor,
         type: this.rounded ? "dots" : "square",
@@ -39,6 +39,12 @@ export class GatacaQRDisplay {
    * Sets the contents of the QR
    */
   @Prop() qrData: string;
+
+  /**
+   * _[Optional]_
+   * Sets the qr type. It can be "svg" or "canvas". "svg" by default.
+   */
+  @Prop() qrType?: DrawType = "svg";
 
   /**
    * _[Optional]_
