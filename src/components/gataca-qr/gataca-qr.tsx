@@ -494,7 +494,7 @@ export class GatacaQR {
       <QR
         value={value}
         qrType={this.qrType}
-        useLogo={useLogo}
+        useLogo={useLogo && this.logoSize !== 0}
         size={sizeQR || this?.qrSize || undefined}
         logoSrc={this?.logoSrc}
       />
@@ -505,7 +505,7 @@ export class GatacaQR {
     return (
       <QR
         value={value}
-        useLogo={useLogo}
+        useLogo={useLogo && this.logoSize !== 0}
         qrType={this.qrType}
         size={this?.qrSize ? this?.qrSize - 50 : undefined}
         logoSrc={this?.logoSrc}

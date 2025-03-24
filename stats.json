@@ -1,5 +1,5 @@
 {
-  "timestamp": "2025-03-24T09:59:12",
+  "timestamp": "2025-03-24T12:40:31",
   "compiler": {
     "name": "node",
     "version": "18.20.5"
@@ -91,9 +91,9 @@
           "./dist/gatacaqr/gatacaqr.esm.js",
           "./dist/gatacaqr/index.esm.js",
           "./dist/gatacaqr/p-0be4566d.js",
-          "./dist/gatacaqr/p-0f339cfa.entry.js",
-          "./dist/gatacaqr/p-1f784e14.entry.js",
+          "./dist/gatacaqr/p-102ad702.entry.js",
           "./dist/gatacaqr/p-2cd7b062.js",
+          "./dist/gatacaqr/p-5568442b.entry.js",
           "./dist/gatacaqr/p-5ae5f952.js",
           "./dist/gatacaqr/p-5e81ab9e.entry.js",
           "./dist/gatacaqr/p-92a2e6f0.entry.js",
@@ -103,9 +103,9 @@
           "./www/build/gatacaqr.esm.js",
           "./www/build/index.esm.js",
           "./www/build/p-0be4566d.js",
-          "./www/build/p-0f339cfa.entry.js",
-          "./www/build/p-1f784e14.entry.js",
+          "./www/build/p-102ad702.entry.js",
           "./www/build/p-2cd7b062.js",
+          "./www/build/p-5568442b.entry.js",
           "./www/build/p-5ae5f952.js",
           "./www/build/p-5e81ab9e.entry.js",
           "./www/build/p-92a2e6f0.entry.js",
@@ -144,15 +144,15 @@
           "gataca-qr",
           "gataca-qrdisplay"
         ],
-        "bundleId": "p-0f339cfa",
-        "fileName": "p-0f339cfa.entry.js",
+        "bundleId": "p-5568442b",
+        "fileName": "p-5568442b.entry.js",
         "imports": [
           "p-5ae5f952.js",
           "p-ea783014.js",
           "p-0be4566d.js",
           "p-2cd7b062.js"
         ],
-        "originalByteSize": 23213
+        "originalByteSize": 23206
       },
       {
         "key": "gataca-autoqr.entry",
@@ -186,15 +186,15 @@
         "components": [
           "gataca-qrws"
         ],
-        "bundleId": "p-1f784e14",
-        "fileName": "p-1f784e14.entry.js",
+        "bundleId": "p-102ad702",
+        "fileName": "p-102ad702.entry.js",
         "imports": [
           "p-5ae5f952.js",
           "p-ea783014.js",
           "p-0be4566d.js",
           "p-2cd7b062.js"
         ],
-        "originalByteSize": 22187
+        "originalByteSize": 22180
       }
     ],
     "esm": [
@@ -212,7 +212,7 @@
           "qr-code-styling-0eeb38d5.js",
           "utils-63e7a33b.js"
         ],
-        "originalByteSize": 23248
+        "originalByteSize": 23241
       },
       {
         "key": "gataca-autoqr.entry",
@@ -254,7 +254,7 @@
           "qr-code-styling-0eeb38d5.js",
           "utils-63e7a33b.js"
         ],
-        "originalByteSize": 22222
+        "originalByteSize": 22215
       }
     ],
     "es5": [],
@@ -274,7 +274,7 @@
           "qr-code-styling-412bbc7a.js",
           "utils-ef28b844.js"
         ],
-        "originalByteSize": 23701
+        "originalByteSize": 23694
       },
       {
         "key": "gataca-autoqr.entry",
@@ -316,7 +316,7 @@
           "qr-code-styling-412bbc7a.js",
           "utils-ef28b844.js"
         ],
-        "originalByteSize": 22611
+        "originalByteSize": 22604
       }
     ]
   },

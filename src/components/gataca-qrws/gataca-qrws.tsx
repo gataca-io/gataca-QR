@@ -497,7 +497,7 @@ export class GatacaQRWS {
       <QR
         value={value}
         qrType={this.qrType}
-        useLogo={useLogo}
+        useLogo={useLogo && this.logoSize !== 0}
         size={sizeQR || this?.qrSize || undefined}
         logoSrc={this?.logoSrc}
       />
@@ -509,7 +509,7 @@ export class GatacaQRWS {
       <QR
         value={value}
         qrType={this.qrType}
-        useLogo={useLogo}
+        useLogo={useLogo && this.logoSize !== 0}
         size={this?.qrSize ? this?.qrSize - 50 : undefined}
         logoSrc={this?.logoSrc}
       />
