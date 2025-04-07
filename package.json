@@ -39,7 +39,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@stencil/react-output-target": "^0.4.0",
+    "@stencil/react-output-target": "^0.5.3",
     "qr-code-styling": "1.6.0-rc.1"
   }
 }
