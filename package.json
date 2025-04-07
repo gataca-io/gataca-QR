@@ -21,12 +21,15 @@
     "loader/"
   ],
   "scripts": {
+    "audit": "./audit.sh",
     "build": "stencil build --docs",
+    "format": "prettier --write 'src/**/*.{ts,tsx,js,jsx}'",
+    "generate": "stencil generate",
+    "licenses": "npx license-checker --direct --relativeLicensePath > licenses.txt && npx license-checker --direct --summary > licenses-summary.txt",
     "start": "stencil build --dev --watch --serve",
     "test": "stencil test --spec --e2e",
     "test.watch": "stencil test --spec --e2e --watchAll",
-    "generate": "stencil generate",
-    "audit": "./audit.sh"
+    "typescript": "tsc --noEmit --composite false"
   },
   "devDependencies": {
     "@stencil/core": "^2.9.0",
@@ -35,6 +38,8 @@
     "@types/react": "^18.2.67",
     "jest": "^27.0.3",
     "jest-cli": "^27.4.5",
+    "prettier": "^3.5.3",
+    "typescript": "^5.8.3",
     "puppeteer": "^10.0.0",
     "rollup-plugin-node-polyfills": "^0.2.1"
   },
@@ -44,6 +49,9 @@
     "qr-code-styling": "1.6.0-rc.1"
   },
     "pre-commit": [
-      "audit"
+    "format",
+    "typescript",
+    "audit",
+    "licenses"
   ]
 }
