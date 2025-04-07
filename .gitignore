@@ -8,4 +8,4 @@ yarn.lock
 .idea/**/*
 
 yarn-audit-issues.json
-yarn-audit-known-issues.json
+
