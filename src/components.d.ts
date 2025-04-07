@@ -13,9 +13,7 @@ export namespace Components {
         /**
           * ___Just for polling flavour___ ***Mandatory*** Check status function to query the current status of the session The function must query a client endpoint to check the status. That endpoint must return an error if the session has expired.
          */
-        "checkStatus"?: (
-    id?: string
-  ) => Promise<{ result: RESULT_STATUS; data?: any }>;
+        "checkStatus"?: (id?: string) => Promise<{result: RESULT_STATUS; data?: any}>;
         /**
           * ***Mandatory*** ID of the QR configuration to display
          */
@@ -28,9 +26,9 @@ export namespace Components {
           * ***Mandatory*** Create session function to generate a new Session Using v="3", it can provide just a session Id Using another version, it must provide also the authentication request. The session Id is the id of the presentation definition
          */
         "createSession"?: () => Promise<{
-    sessionId: string;
-    authenticationRequest?: string;
-  }>;
+        sessionId: string;
+        authenticationRequest?: string;
+    }>;
         /**
           * ___Just for polling flavour___ ***Mandatory*** Callback fired upon session expired or invalid If not set, session error would not be handled An error containing information will be passed as parameter
          */
@@ -76,9 +74,7 @@ export namespace Components {
         /**
           * ***Mandatory*** Check status function to query the current status of the session The function must query a client endpoint to check the status. That endpoint must return an error if the session has expired.
          */
-        "checkStatus"?: (
-    id?: string
-  ) => Promise<{ result: RESULT_STATUS1; data?: any }>;
+        "checkStatus"?: (id?: string) => Promise<{result: RESULT_STATUS1; data?: any}>;
         /**
           * _[Optional]_ String to show "click inside" label
          */
@@ -87,9 +83,9 @@ export namespace Components {
           * ***Mandatory*** Create session function to generate a new Session Using v="3", it can provide just a session Id Using another version, it must provide also the authentication request. The session Id is the id of the presentation definition
          */
         "createSession"?: () => Promise<{
-    sessionId: string;
-    authenticationRequest?: string;
-  }>;
+        sessionId: string;
+        authenticationRequest?: string;
+    }>;
         /**
           * _[Optional]_ String to show when credentials not validatedd
          */
@@ -451,9 +447,7 @@ export namespace Components {
         /**
           * ***Mandatory*** Check status function to query the current status of the session The function must query a client endpoint to check the status. That endpoint must return an error if the session has expired.
          */
-        "checkStatus"?: (
-    id?: string
-  ) => Promise<{ result: RESULT_STATUS1; data?: any }>;
+        "checkStatus"?: (id?: string) => Promise<{result: RESULT_STATUS1; data?: any}>;
         /**
           * _[Optional]_ String to show "click inside" label
          */
@@ -462,9 +456,9 @@ export namespace Components {
           * ***Mandatory*** Create session function to generate a new Session Using v="3", it can provide just a session Id Using another version, it must provide also the authentication request. The session Id is the id of the presentation definition
          */
         "createSession"?: () => Promise<{
-    sessionId: string;
-    authenticationRequest?: string;
-  }>;
+        sessionId: string;
+        authenticationRequest?: string;
+    }>;
         /**
           * _[Optional]_ String to show when credentials not validatedd
          */
@@ -724,9 +718,7 @@ declare namespace LocalJSX {
         /**
           * ___Just for polling flavour___ ***Mandatory*** Check status function to query the current status of the session The function must query a client endpoint to check the status. That endpoint must return an error if the session has expired.
          */
-        "checkStatus"?: (
-    id?: string
-  ) => Promise<{ result: RESULT_STATUS; data?: any }>;
+        "checkStatus"?: (id?: string) => Promise<{result: RESULT_STATUS; data?: any}>;
         /**
           * ***Mandatory*** ID of the QR configuration to display
          */
@@ -739,9 +731,9 @@ declare namespace LocalJSX {
           * ***Mandatory*** Create session function to generate a new Session Using v="3", it can provide just a session Id Using another version, it must provide also the authentication request. The session Id is the id of the presentation definition
          */
         "createSession"?: () => Promise<{
-    sessionId: string;
-    authenticationRequest?: string;
-  }>;
+        sessionId: string;
+        authenticationRequest?: string;
+    }>;
         /**
           * ___Just for polling flavour___ ***Mandatory*** Callback fired upon session expired or invalid If not set, session error would not be handled An error containing information will be passed as parameter
          */
@@ -791,9 +783,7 @@ declare namespace LocalJSX {
         /**
           * ***Mandatory*** Check status function to query the current status of the session The function must query a client endpoint to check the status. That endpoint must return an error if the session has expired.
          */
-        "checkStatus"?: (
-    id?: string
-  ) => Promise<{ result: RESULT_STATUS1; data?: any }>;
+        "checkStatus"?: (id?: string) => Promise<{result: RESULT_STATUS1; data?: any}>;
         /**
           * _[Optional]_ String to show "click inside" label
          */
@@ -802,9 +792,9 @@ declare namespace LocalJSX {
           * ***Mandatory*** Create session function to generate a new Session Using v="3", it can provide just a session Id Using another version, it must provide also the authentication request. The session Id is the id of the presentation definition
          */
         "createSession"?: () => Promise<{
-    sessionId: string;
-    authenticationRequest?: string;
-  }>;
+        sessionId: string;
+        authenticationRequest?: string;
+    }>;
         /**
           * _[Optional]_ String to show when credentials not validatedd
          */
@@ -1158,9 +1148,7 @@ declare namespace LocalJSX {
         /**
           * ***Mandatory*** Check status function to query the current status of the session The function must query a client endpoint to check the status. That endpoint must return an error if the session has expired.
          */
-        "checkStatus"?: (
-    id?: string
-  ) => Promise<{ result: RESULT_STATUS1; data?: any }>;
+        "checkStatus"?: (id?: string) => Promise<{result: RESULT_STATUS1; data?: any}>;
         /**
           * _[Optional]_ String to show "click inside" label
          */
@@ -1169,9 +1157,9 @@ declare namespace LocalJSX {
           * ***Mandatory*** Create session function to generate a new Session Using v="3", it can provide just a session Id Using another version, it must provide also the authentication request. The session Id is the id of the presentation definition
          */
         "createSession"?: () => Promise<{
-    sessionId: string;
-    authenticationRequest?: string;
-  }>;
+        sessionId: string;
+        authenticationRequest?: string;
+    }>;
         /**
           * _[Optional]_ String to show when credentials not validatedd
          */
