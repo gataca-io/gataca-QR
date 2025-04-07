@@ -1,6 +1,6 @@
 {
   "name": "@gataca/qr",
-  "version": "3.0.10",
+  "version": "0.0.28",
   "description": "Gataca component to display presentation requests in QR",
   "author": "Gataca <it@gataca.io>",
   "licenses": [
@@ -36,10 +36,10 @@
     "@stencil/sass": "^1.4.0",
     "@types/jest": "^27.0.3",
     "@types/react": "^18.2.67",
-    "jest": "^27.0.3",
-    "jest-cli": "^27.4.5",
+    "jest": "^29.7.0",
+    "jest-cli": "^29.7.0",
     "prettier": "^3.5.3",
-    "puppeteer": "^10.0.0",
+    "puppeteer": "^24.4.0",
     "rollup-plugin-node-polyfills": "^0.2.1",
     "typescript": "^5.8.3"
   },
@@ -54,5 +54,15 @@
     "typescript",
     "audit",
     "licenses"
-  ]
+  ],
+  "resolutions": {
+    "micromatch": "^4.0.8",
+    "cross-spawn": "^7.0.5",
+    "@babel/helpers": "^7.26.10"
+  },
+  "overrides": {
+    "micromatch": "^4.0.8",
+    "cross-spawn": "^7.0.5",
+    "@babel/helpers": "^7.26.10"
+  }
 }
