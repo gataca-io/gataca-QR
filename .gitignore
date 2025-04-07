@@ -6,3 +6,5 @@ www
 package-lock.json
 yarn.lock
 .idea/**/*
+
+yarn-audit-issues.json
