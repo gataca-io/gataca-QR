@@ -12,14 +12,14 @@
 │  ├─ url: https://babel.dev/team
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/@babel/code-frame
 │  └─ licenseFile: node_modules/@babel/code-frame/LICENSE
-├─ @babel/compat-data@7.24.4
+├─ @babel/compat-data@7.26.8
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/babel/babel
 │  ├─ publisher: The Babel Team
 │  ├─ url: https://babel.dev/team
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/@babel/compat-data
 │  └─ licenseFile: node_modules/@babel/compat-data/LICENSE
-├─ @babel/core@7.24.4
+├─ @babel/core@7.26.10
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/babel/babel
 │  ├─ publisher: The Babel Team
@@ -33,7 +33,7 @@
 │  ├─ url: https://babel.dev/team
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/@babel/generator
 │  └─ licenseFile: node_modules/@babel/generator/LICENSE
-├─ @babel/helper-compilation-targets@7.23.6
+├─ @babel/helper-compilation-targets@7.27.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/babel/babel
 │  ├─ publisher: The Babel Team
@@ -61,14 +61,14 @@
 │  ├─ url: https://babel.dev/team
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/@babel/helper-hoist-variables
 │  └─ licenseFile: node_modules/@babel/helper-hoist-variables/LICENSE
-├─ @babel/helper-module-imports@7.24.3
+├─ @babel/helper-module-imports@7.25.9
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/babel/babel
 │  ├─ publisher: The Babel Team
 │  ├─ url: https://babel.dev/team
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/@babel/helper-module-imports
 │  └─ licenseFile: node_modules/@babel/helper-module-imports/LICENSE
-├─ @babel/helper-module-transforms@7.23.3
+├─ @babel/helper-module-transforms@7.26.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/babel/babel
 │  ├─ publisher: The Babel Team
@@ -110,14 +110,14 @@
 │  ├─ url: https://babel.dev/team
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/@babel/helper-validator-identifier
 │  └─ licenseFile: node_modules/@babel/helper-validator-identifier/LICENSE
-├─ @babel/helper-validator-option@7.23.5
+├─ @babel/helper-validator-option@7.25.9
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/babel/babel
 │  ├─ publisher: The Babel Team
 │  ├─ url: https://babel.dev/team
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/@babel/helper-validator-option
 │  └─ licenseFile: node_modules/@babel/helper-validator-option/LICENSE
-├─ @babel/helpers@7.24.4
+├─ @babel/helpers@7.27.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/babel/babel
 │  ├─ publisher: The Babel Team
@@ -163,6 +163,13 @@
 │  ├─ repository: https://github.com/babel/babel/tree/master/packages/babel-plugin-syntax-json-strings
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/@babel/plugin-syntax-json-strings
 │  └─ licenseFile: node_modules/@babel/plugin-syntax-json-strings/LICENSE
+├─ @babel/plugin-syntax-jsx@7.25.9
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/babel/babel
+│  ├─ publisher: The Babel Team
+│  ├─ url: https://babel.dev/team
+│  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/@babel/plugin-syntax-jsx
+│  └─ licenseFile: node_modules/@babel/plugin-syntax-jsx/LICENSE
 ├─ @babel/plugin-syntax-logical-assignment-operators@7.10.4
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/babel/babel
@@ -214,7 +221,7 @@
 │  ├─ url: https://babel.dev/team
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/@babel/template
 │  └─ licenseFile: node_modules/@babel/template/LICENSE
-├─ @babel/traverse@7.24.1
+├─ @babel/traverse@7.27.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/babel/babel
 │  ├─ publisher: The Babel Team
@@ -236,7 +243,7 @@
 │  ├─ url: https://demurgos.net
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/@bcoe/v8-coverage
 │  └─ licenseFile: node_modules/@bcoe/v8-coverage/LICENSE.md
-├─ @gataca/qr@3.0.10
+├─ @gataca/qr@0.0.28
 │  ├─ licenses: MIT
 │  ├─ publisher: Gataca
 │  ├─ email: it@gataca.io
@@ -253,59 +260,74 @@
 │  ├─ publisher: Corey Farrell
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/@istanbuljs/schema
 │  └─ licenseFile: node_modules/@istanbuljs/schema/LICENSE
-├─ @jest/console@27.5.1
+├─ @jest/console@29.7.0
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/facebook/jest
+│  ├─ repository: https://github.com/jestjs/jest
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/@jest/console
 │  └─ licenseFile: node_modules/@jest/console/LICENSE
-├─ @jest/core@27.5.1
+├─ @jest/core@29.7.0
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/facebook/jest
+│  ├─ repository: https://github.com/jestjs/jest
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/@jest/core
 │  └─ licenseFile: node_modules/@jest/core/LICENSE
-├─ @jest/environment@27.5.1
+├─ @jest/environment@29.7.0
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/facebook/jest
+│  ├─ repository: https://github.com/jestjs/jest
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/@jest/environment
 │  └─ licenseFile: node_modules/@jest/environment/LICENSE
-├─ @jest/fake-timers@27.5.1
+├─ @jest/expect-utils@29.7.0
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/facebook/jest
+│  ├─ repository: https://github.com/jestjs/jest
+│  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/@jest/expect-utils
+│  └─ licenseFile: node_modules/@jest/expect-utils/LICENSE
+├─ @jest/expect@29.7.0
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/jestjs/jest
+│  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/@jest/expect
+│  └─ licenseFile: node_modules/@jest/expect/LICENSE
+├─ @jest/fake-timers@29.7.0
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/jestjs/jest
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/@jest/fake-timers
 │  └─ licenseFile: node_modules/@jest/fake-timers/LICENSE
-├─ @jest/globals@27.5.1
+├─ @jest/globals@29.7.0
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/facebook/jest
+│  ├─ repository: https://github.com/jestjs/jest
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/@jest/globals
 │  └─ licenseFile: node_modules/@jest/globals/LICENSE
-├─ @jest/reporters@27.5.1
+├─ @jest/reporters@29.7.0
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/facebook/jest
+│  ├─ repository: https://github.com/jestjs/jest
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/@jest/reporters
 │  └─ licenseFile: node_modules/@jest/reporters/LICENSE
-├─ @jest/source-map@27.5.1
+├─ @jest/schemas@29.6.3
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/facebook/jest
+│  ├─ repository: https://github.com/jestjs/jest
+│  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/@jest/schemas
+│  └─ licenseFile: node_modules/@jest/schemas/LICENSE
+├─ @jest/source-map@29.6.3
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/jestjs/jest
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/@jest/source-map
 │  └─ licenseFile: node_modules/@jest/source-map/LICENSE
-├─ @jest/test-result@27.5.1
+├─ @jest/test-result@29.7.0
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/facebook/jest
+│  ├─ repository: https://github.com/jestjs/jest
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/@jest/test-result
 │  └─ licenseFile: node_modules/@jest/test-result/LICENSE
-├─ @jest/test-sequencer@27.5.1
+├─ @jest/test-sequencer@29.7.0
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/facebook/jest
+│  ├─ repository: https://github.com/jestjs/jest
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/@jest/test-sequencer
 │  └─ licenseFile: node_modules/@jest/test-sequencer/LICENSE
-├─ @jest/transform@27.5.1
+├─ @jest/transform@29.7.0
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/facebook/jest
+│  ├─ repository: https://github.com/jestjs/jest
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/@jest/transform
 │  └─ licenseFile: node_modules/@jest/transform/LICENSE
-├─ @jest/types@27.5.1
+├─ @jest/types@29.6.3
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/facebook/jest
+│  ├─ repository: https://github.com/jestjs/jest
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/@jest/types
 │  └─ licenseFile: node_modules/@jest/types/LICENSE
 ├─ @jridgewell/gen-mapping@0.3.5
@@ -342,12 +364,24 @@
 │  ├─ email: justin@ridgewell.name
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/@jridgewell/trace-mapping
 │  └─ licenseFile: node_modules/@jridgewell/trace-mapping/LICENSE
-├─ @sinonjs/commons@1.8.6
+├─ @puppeteer/browsers@2.9.0
+│  ├─ licenses: Apache-2.0
+│  ├─ repository: https://github.com/puppeteer/puppeteer/tree/main/packages/browsers
+│  ├─ publisher: The Chromium Authors
+│  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/@puppeteer/browsers
+│  └─ licenseFile: node_modules/@puppeteer/browsers/README.md
+├─ @sinclair/typebox@0.27.8
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/sinclairzx81/typebox
+│  ├─ publisher: sinclairzx81
+│  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/@sinclair/typebox
+│  └─ licenseFile: node_modules/@sinclair/typebox/license
+├─ @sinonjs/commons@3.0.1
 │  ├─ licenses: BSD-3-Clause
 │  ├─ repository: https://github.com/sinonjs/commons
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/@sinonjs/commons
 │  └─ licenseFile: node_modules/@sinonjs/commons/LICENSE
-├─ @sinonjs/fake-timers@8.1.0
+├─ @sinonjs/fake-timers@10.3.0
 │  ├─ licenses: BSD-3-Clause
 │  ├─ repository: https://github.com/sinonjs/fake-timers
 │  ├─ publisher: Christian Johansen
@@ -371,13 +405,11 @@
 │  ├─ publisher: Ionic Team
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/@stencil/sass
 │  └─ licenseFile: node_modules/@stencil/sass/LICENSE
-├─ @tootallnate/once@1.1.2
+├─ @tootallnate/quickjs-emscripten@0.23.0
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/TooTallNate/once
-│  ├─ publisher: Nathan Rajlich
-│  ├─ email: nathan@tootallnate.net
-│  ├─ url: http://n8.io/
-│  └─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/@tootallnate/once
+│  ├─ repository: https://github.com/justjake/quickjs-emscripten
+│  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/@tootallnate/quickjs-emscripten
+│  └─ licenseFile: node_modules/@tootallnate/quickjs-emscripten/LICENSE
 ├─ @types/babel__core@7.20.5
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/DefinitelyTyped/DefinitelyTyped
@@ -428,11 +460,6 @@
 │  ├─ repository: https://github.com/DefinitelyTyped/DefinitelyTyped
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/@types/node
 │  └─ licenseFile: node_modules/@types/node/LICENSE
-├─ @types/prettier@2.7.3
-│  ├─ licenses: MIT
-│  ├─ repository: https://github.com/DefinitelyTyped/DefinitelyTyped
-│  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/@types/prettier
-│  └─ licenseFile: node_modules/@types/prettier/LICENSE
 ├─ @types/prop-types@15.7.12
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/DefinitelyTyped/DefinitelyTyped
@@ -453,7 +480,7 @@
 │  ├─ repository: https://github.com/DefinitelyTyped/DefinitelyTyped
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/@types/yargs-parser
 │  └─ licenseFile: node_modules/@types/yargs-parser/LICENSE
-├─ @types/yargs@16.0.9
+├─ @types/yargs@17.0.33
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/DefinitelyTyped/DefinitelyTyped
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/@types/yargs
@@ -463,37 +490,14 @@
 │  ├─ repository: https://github.com/DefinitelyTyped/DefinitelyTyped
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/@types/yauzl
 │  └─ licenseFile: node_modules/@types/yauzl/LICENSE
-├─ abab@2.0.6
-│  ├─ licenses: BSD-3-Clause
-│  ├─ repository: https://github.com/jsdom/abab
-│  ├─ publisher: Jeff Carpenter
-│  ├─ email: gcarpenterv@gmail.com
-│  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/abab
-│  └─ licenseFile: node_modules/abab/LICENSE.md
-├─ acorn-globals@6.0.0
+├─ agent-base@7.1.3
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/ForbesLindesay/acorn-globals
-│  ├─ publisher: ForbesLindesay
-│  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/acorn-globals
-│  └─ licenseFile: node_modules/acorn-globals/LICENSE
-├─ acorn-walk@7.2.0
-│  ├─ licenses: MIT
-│  ├─ repository: https://github.com/acornjs/acorn
-│  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/acorn-walk
-│  └─ licenseFile: node_modules/acorn-walk/LICENSE
-├─ acorn@8.11.3
-│  ├─ licenses: MIT
-│  ├─ repository: https://github.com/acornjs/acorn
-│  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/acorn
-│  └─ licenseFile: node_modules/acorn/LICENSE
-├─ agent-base@6.0.2
-│  ├─ licenses: MIT
-│  ├─ repository: https://github.com/TooTallNate/node-agent-base
+│  ├─ repository: https://github.com/TooTallNate/proxy-agents
 │  ├─ publisher: Nathan Rajlich
 │  ├─ email: nathan@tootallnate.net
 │  ├─ url: http://n8.io/
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/agent-base
-│  └─ licenseFile: node_modules/agent-base/README.md
+│  └─ licenseFile: node_modules/agent-base/LICENSE
 ├─ ansi-escapes@4.3.2
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/sindresorhus/ansi-escapes
@@ -525,21 +529,27 @@
 │  ├─ url: https://github.com/es128
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/anymatch
 │  └─ licenseFile: node_modules/anymatch/LICENSE
-├─ argparse@1.0.10
-│  ├─ licenses: MIT
+├─ argparse@2.0.1
+│  ├─ licenses: Python-2.0
 │  ├─ repository: https://github.com/nodeca/argparse
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/argparse
 │  └─ licenseFile: node_modules/argparse/LICENSE
-├─ asynckit@0.4.0
+├─ ast-types@0.13.4
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/alexindigo/asynckit
-│  ├─ publisher: Alex Indigo
-│  ├─ email: iam@alexindigo.com
-│  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/asynckit
-│  └─ licenseFile: node_modules/asynckit/LICENSE
-├─ babel-jest@27.5.1
+│  ├─ repository: https://github.com/benjamn/ast-types
+│  ├─ publisher: Ben Newman
+│  ├─ email: bn@cs.stanford.edu
+│  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/ast-types
+│  └─ licenseFile: node_modules/ast-types/LICENSE
+├─ b4a@1.6.7
+│  ├─ licenses: Apache-2.0
+│  ├─ repository: https://github.com/holepunchto/b4a
+│  ├─ publisher: Holepunch
+│  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/b4a
+│  └─ licenseFile: node_modules/b4a/LICENSE
+├─ babel-jest@29.7.0
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/facebook/jest
+│  ├─ repository: https://github.com/jestjs/jest
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/babel-jest
 │  └─ licenseFile: node_modules/babel-jest/LICENSE
 ├─ babel-plugin-istanbul@6.1.1
@@ -548,9 +558,9 @@
 │  ├─ publisher: Thai Pangsakulyanont @dtinth
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/babel-plugin-istanbul
 │  └─ licenseFile: node_modules/babel-plugin-istanbul/LICENSE
-├─ babel-plugin-jest-hoist@27.5.1
+├─ babel-plugin-jest-hoist@29.6.3
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/facebook/jest
+│  ├─ repository: https://github.com/jestjs/jest
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/babel-plugin-jest-hoist
 │  └─ licenseFile: node_modules/babel-plugin-jest-hoist/LICENSE
 ├─ babel-preset-current-node-syntax@1.0.1
@@ -560,9 +570,9 @@
 │  ├─ url: https://github.com/nicolo-ribaudo
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/babel-preset-current-node-syntax
 │  └─ licenseFile: node_modules/babel-preset-current-node-syntax/LICENSE
-├─ babel-preset-jest@27.5.1
+├─ babel-preset-jest@29.6.3
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/facebook/jest
+│  ├─ repository: https://github.com/jestjs/jest
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/babel-preset-jest
 │  └─ licenseFile: node_modules/babel-preset-jest/LICENSE
 ├─ balanced-match@1.0.2
@@ -573,18 +583,44 @@
 │  ├─ url: http://juliangruber.com
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/balanced-match
 │  └─ licenseFile: node_modules/balanced-match/LICENSE.md
-├─ base64-js@1.5.1
+├─ bare-events@2.5.4
+│  ├─ licenses: Apache-2.0
+│  ├─ repository: https://github.com/holepunchto/bare-events
+│  ├─ publisher: Holepunch
+│  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/bare-events
+│  └─ licenseFile: node_modules/bare-events/LICENSE
+├─ bare-fs@4.1.2
+│  ├─ licenses: Apache-2.0
+│  ├─ repository: https://github.com/holepunchto/bare-fs
+│  ├─ publisher: Holepunch
+│  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/bare-fs
+│  └─ licenseFile: node_modules/bare-fs/LICENSE
+├─ bare-os@3.6.1
+│  ├─ licenses: Apache-2.0
+│  ├─ repository: https://github.com/holepunchto/bare-os
+│  ├─ publisher: Holepunch
+│  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/bare-os
+│  └─ licenseFile: node_modules/bare-os/LICENSE
+├─ bare-path@3.0.0
+│  ├─ licenses: Apache-2.0
+│  ├─ repository: https://github.com/holepunchto/bare-path
+│  ├─ publisher: Holepunch
+│  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/bare-path
+│  ├─ licenseFile: node_modules/bare-path/LICENSE
+│  └─ noticeFile: node_modules/bare-path/NOTICE
+├─ bare-stream@2.6.5
+│  ├─ licenses: Apache-2.0
+│  ├─ repository: https://github.com/holepunchto/bare-stream
+│  ├─ publisher: Holepunch
+│  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/bare-stream
+│  └─ licenseFile: node_modules/bare-stream/LICENSE
+├─ basic-ftp@5.0.5
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/beatgammit/base64-js
-│  ├─ publisher: T. Jameson Little
-│  ├─ email: t.jameson.little@gmail.com
-│  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/base64-js
-│  └─ licenseFile: node_modules/base64-js/LICENSE
-├─ bl@4.1.0
-│  ├─ licenses: MIT
-│  ├─ repository: https://github.com/rvagg/bl
-│  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/bl
-│  └─ licenseFile: node_modules/bl/LICENSE.md
+│  ├─ repository: https://github.com/patrickjuchli/basic-ftp
+│  ├─ publisher: Patrick Juchli
+│  ├─ email: patrickjuchli@gmail.com
+│  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/basic-ftp
+│  └─ licenseFile: node_modules/basic-ftp/LICENSE.txt
 ├─ brace-expansion@1.1.11
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/juliangruber/brace-expansion
@@ -593,20 +629,14 @@
 │  ├─ url: http://juliangruber.com
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/brace-expansion
 │  └─ licenseFile: node_modules/brace-expansion/LICENSE
-├─ braces@3.0.2
+├─ braces@3.0.3
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/micromatch/braces
 │  ├─ publisher: Jon Schlinkert
 │  ├─ url: https://github.com/jonschlinkert
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/braces
 │  └─ licenseFile: node_modules/braces/LICENSE
-├─ browser-process-hrtime@1.0.0
-│  ├─ licenses: BSD-2-Clause
-│  ├─ repository: https://github.com/kumavis/browser-process-hrtime
-│  ├─ publisher: kumavis
-│  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/browser-process-hrtime
-│  └─ licenseFile: node_modules/browser-process-hrtime/LICENSE
-├─ browserslist@4.23.0
+├─ browserslist@4.24.4
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/browserslist/browserslist
 │  ├─ publisher: Andrey Sitnik
@@ -633,14 +663,6 @@
 │  ├─ repository: https://github.com/LinusU/buffer-from
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/buffer-from
 │  └─ licenseFile: node_modules/buffer-from/LICENSE
-├─ buffer@5.7.1
-│  ├─ licenses: MIT
-│  ├─ repository: https://github.com/feross/buffer
-│  ├─ publisher: Feross Aboukhadijeh
-│  ├─ email: feross@feross.org
-│  ├─ url: https://feross.org
-│  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/buffer
-│  └─ licenseFile: node_modules/buffer/LICENSE
 ├─ callsites@3.1.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/sindresorhus/callsites
@@ -657,7 +679,7 @@
 │  ├─ url: https://sindresorhus.com
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/camelcase
 │  └─ licenseFile: node_modules/camelcase/license
-├─ caniuse-lite@1.0.30001605
+├─ caniuse-lite@1.0.30001712
 │  ├─ licenses: CC-BY-4.0
 │  ├─ repository: https://github.com/browserslist/caniuse-lite
 │  ├─ publisher: Ben Briggs
@@ -677,14 +699,12 @@
 │  ├─ email: richiebendall@gmail.com
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/char-regex
 │  └─ licenseFile: node_modules/char-regex/LICENSE
-├─ chownr@1.1.4
-│  ├─ licenses: ISC
-│  ├─ repository: https://github.com/isaacs/chownr
-│  ├─ publisher: Isaac Z. Schlueter
-│  ├─ email: i@izs.me
-│  ├─ url: http://blog.izs.me/
-│  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/chownr
-│  └─ licenseFile: node_modules/chownr/LICENSE
+├─ chromium-bidi@3.0.0
+│  ├─ licenses: Apache-2.0
+│  ├─ repository: https://github.com/GoogleChromeLabs/chromium-bidi
+│  ├─ publisher: The Chromium Authors
+│  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/chromium-bidi
+│  └─ licenseFile: node_modules/chromium-bidi/LICENSE
 ├─ ci-info@3.9.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/watson/ci-info
@@ -699,7 +719,7 @@
 │  ├─ publisher: Guy Bedford
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/cjs-module-lexer
 │  └─ licenseFile: node_modules/cjs-module-lexer/LICENSE
-├─ cliui@7.0.4
+├─ cliui@8.0.1
 │  ├─ licenses: ISC
 │  ├─ repository: https://github.com/yargs/cliui
 │  ├─ publisher: Ben Coe
@@ -730,14 +750,6 @@
 │  ├─ email: dfcreative@gmail.com
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/color-name
 │  └─ licenseFile: node_modules/color-name/LICENSE
-├─ combined-stream@1.0.8
-│  ├─ licenses: MIT
-│  ├─ repository: https://github.com/felixge/node-combined-stream
-│  ├─ publisher: Felix Geisendörfer
-│  ├─ email: felix@debuggable.com
-│  ├─ url: http://debuggable.com/
-│  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/combined-stream
-│  └─ licenseFile: node_modules/combined-stream/License
 ├─ concat-map@0.0.1
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/substack/node-concat-map
@@ -753,7 +765,7 @@
 │  ├─ email: max@maxogden.com
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/concat-stream
 │  └─ licenseFile: node_modules/concat-stream/LICENSE
-├─ convert-source-map@1.9.0
+├─ convert-source-map@2.0.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/thlorenz/convert-source-map
 │  ├─ publisher: Thorsten Lorenz
@@ -769,26 +781,25 @@
 │  ├─ url: http://blog.izs.me/
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/core-util-is
 │  └─ licenseFile: node_modules/core-util-is/LICENSE
-├─ cross-spawn@5.1.0
+├─ cosmiconfig@9.0.0
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/IndigoUnited/node-cross-spawn
-│  ├─ publisher: IndigoUnited
-│  ├─ email: hello@indigounited.com
-│  ├─ url: http://indigounited.com
+│  ├─ repository: https://github.com/cosmiconfig/cosmiconfig
+│  ├─ publisher: Daniel Fischer
+│  ├─ email: daniel@d-fischer.dev
+│  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/cosmiconfig
+│  └─ licenseFile: node_modules/cosmiconfig/LICENSE
+├─ create-jest@29.7.0
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/jestjs/jest
+│  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/create-jest
+│  └─ licenseFile: node_modules/create-jest/LICENSE
+├─ cross-spawn@7.0.6
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/moxystudio/node-cross-spawn
+│  ├─ publisher: André Cruz
+│  ├─ email: andre@moxy.studio
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/cross-spawn
 │  └─ licenseFile: node_modules/cross-spawn/LICENSE
-├─ cssom@0.4.4
-│  ├─ licenses: MIT
-│  ├─ repository: https://github.com/NV/CSSOM
-│  ├─ publisher: Nikita Vasilyev
-│  ├─ email: me@elv1s.ru
-│  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/cssom
-│  └─ licenseFile: node_modules/cssom/LICENSE.txt
-├─ cssstyle@2.3.0
-│  ├─ licenses: MIT
-│  ├─ repository: https://github.com/jsdom/cssstyle
-│  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/cssstyle
-│  └─ licenseFile: node_modules/cssstyle/LICENSE
 ├─ csstype@3.1.3
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/frenic/csstype
@@ -796,14 +807,14 @@
 │  ├─ email: fredrik.nicol@gmail.com
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/csstype
 │  └─ licenseFile: node_modules/csstype/LICENSE
-├─ data-urls@2.0.0
+├─ data-uri-to-buffer@6.0.2
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/jsdom/data-urls
-│  ├─ publisher: Domenic Denicola
-│  ├─ email: d@domenic.me
-│  ├─ url: https://domenic.me/
-│  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/data-urls
-│  └─ licenseFile: node_modules/data-urls/LICENSE.txt
+│  ├─ repository: https://github.com/TooTallNate/proxy-agents
+│  ├─ publisher: Nathan Rajlich
+│  ├─ email: nathan@tootallnate.net
+│  ├─ url: http://n8.io/
+│  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/data-uri-to-buffer
+│  └─ licenseFile: node_modules/data-uri-to-buffer/LICENSE
 ├─ debug@4.3.4
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/debug-js/debug
@@ -811,34 +822,27 @@
 │  ├─ email: josh.junon@protonmail.com
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/debug
 │  └─ licenseFile: node_modules/debug/LICENSE
-├─ decimal.js@10.4.3
-│  ├─ licenses: MIT
-│  ├─ repository: https://github.com/MikeMcl/decimal.js
-│  ├─ publisher: Michael Mclaughlin
-│  ├─ email: M8ch88l@gmail.com
-│  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/decimal.js
-│  └─ licenseFile: node_modules/decimal.js/LICENCE.md
-├─ dedent@0.7.0
+├─ dedent@1.5.3
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/dmnd/dedent
 │  ├─ publisher: Desmond Brand
 │  ├─ email: dmnd@desmondbrand.com
 │  ├─ url: http://desmondbrand.com
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/dedent
-│  └─ licenseFile: node_modules/dedent/LICENSE
+│  └─ licenseFile: node_modules/dedent/LICENSE.md
 ├─ deepmerge@4.3.1
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/TehShrike/deepmerge
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/deepmerge
 │  └─ licenseFile: node_modules/deepmerge/license.txt
-├─ delayed-stream@1.0.0
+├─ degenerator@5.0.1
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/felixge/node-delayed-stream
-│  ├─ publisher: Felix Geisendörfer
-│  ├─ email: felix@debuggable.com
-│  ├─ url: http://debuggable.com/
-│  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/delayed-stream
-│  └─ licenseFile: node_modules/delayed-stream/License
+│  ├─ repository: https://github.com/TooTallNate/proxy-agents
+│  ├─ publisher: Nathan Rajlich
+│  ├─ email: nathan@tootallnate.net
+│  ├─ url: http://n8.io/
+│  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/degenerator
+│  └─ licenseFile: node_modules/degenerator/README.md
 ├─ detect-newline@3.1.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/sindresorhus/detect-newline
@@ -847,32 +851,24 @@
 │  ├─ url: sindresorhus.com
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/detect-newline
 │  └─ licenseFile: node_modules/detect-newline/license
-├─ devtools-protocol@0.0.901419
+├─ devtools-protocol@0.0.1425554
 │  ├─ licenses: BSD-3-Clause
 │  ├─ repository: https://github.com/ChromeDevTools/devtools-protocol
 │  ├─ publisher: The Chromium Authors
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/devtools-protocol
 │  └─ licenseFile: node_modules/devtools-protocol/LICENSE
-├─ diff-sequences@27.5.1
+├─ diff-sequences@29.6.3
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/facebook/jest
+│  ├─ repository: https://github.com/jestjs/jest
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/diff-sequences
 │  └─ licenseFile: node_modules/diff-sequences/LICENSE
-├─ domexception@2.0.1
-│  ├─ licenses: MIT
-│  ├─ repository: https://github.com/jsdom/domexception
-│  ├─ publisher: Domenic Denicola
-│  ├─ email: d@domenic.me
-│  ├─ url: https://domenic.me/
-│  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/domexception
-│  └─ licenseFile: node_modules/domexception/LICENSE.txt
-├─ electron-to-chromium@1.4.726
+├─ electron-to-chromium@1.5.132
 │  ├─ licenses: ISC
 │  ├─ repository: https://github.com/kilian/electron-to-chromium
 │  ├─ publisher: Kilian Valkhof
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/electron-to-chromium
 │  └─ licenseFile: node_modules/electron-to-chromium/LICENSE
-├─ emittery@0.8.1
+├─ emittery@0.13.1
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/sindresorhus/emittery
 │  ├─ publisher: Sindre Sorhus
@@ -894,6 +890,14 @@
 │  ├─ email: mathiasbuus@gmail.com
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/end-of-stream
 │  └─ licenseFile: node_modules/end-of-stream/LICENSE
+├─ env-paths@2.2.1
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/sindresorhus/env-paths
+│  ├─ publisher: Sindre Sorhus
+│  ├─ email: sindresorhus@gmail.com
+│  ├─ url: sindresorhus.com
+│  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/env-paths
+│  └─ licenseFile: node_modules/env-paths/license
 ├─ error-ex@1.3.2
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/qix-/node-error-ex
@@ -907,7 +911,7 @@
 │  ├─ url: https://lukeed.com
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/escalade
 │  └─ licenseFile: node_modules/escalade/license
-├─ escape-string-regexp@2.0.0
+├─ escape-string-regexp@1.0.5
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/sindresorhus/escape-string-regexp
 │  ├─ publisher: Sindre Sorhus
@@ -958,9 +962,9 @@
 │  ├─ url: http://benalman.com/
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/exit
 │  └─ licenseFile: node_modules/exit/LICENSE-MIT
-├─ expect@27.5.1
+├─ expect@29.7.0
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/facebook/jest
+│  ├─ repository: https://github.com/jestjs/jest
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/expect
 │  └─ licenseFile: node_modules/expect/LICENSE
 ├─ extract-zip@2.0.1
@@ -969,6 +973,13 @@
 │  ├─ publisher: max ogden
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/extract-zip
 │  └─ licenseFile: node_modules/extract-zip/LICENSE
+├─ fast-fifo@1.3.2
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/mafintosh/fast-fifo
+│  ├─ publisher: Mathias Buus
+│  ├─ url: @mafintosh
+│  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/fast-fifo
+│  └─ licenseFile: node_modules/fast-fifo/LICENSE
 ├─ fast-json-stable-stringify@2.1.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/epoberezkin/fast-json-stable-stringify
@@ -992,7 +1003,7 @@
 │  ├─ email: superjoe30@gmail.com
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/fd-slicer
 │  └─ licenseFile: node_modules/fd-slicer/LICENSE
-├─ fill-range@7.0.1
+├─ fill-range@7.1.1
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/jonschlinkert/fill-range
 │  ├─ publisher: Jon Schlinkert
@@ -1007,21 +1018,6 @@
 │  ├─ url: sindresorhus.com
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/find-up
 │  └─ licenseFile: node_modules/find-up/license
-├─ form-data@3.0.1
-│  ├─ licenses: MIT
-│  ├─ repository: https://github.com/form-data/form-data
-│  ├─ publisher: Felix Geisendörfer
-│  ├─ email: felix@debuggable.com
-│  ├─ url: http://debuggable.com/
-│  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/form-data
-│  └─ licenseFile: node_modules/form-data/License
-├─ fs-constants@1.0.0
-│  ├─ licenses: MIT
-│  ├─ repository: https://github.com/mafintosh/fs-constants
-│  ├─ publisher: Mathias Buus
-│  ├─ url: @mafintosh
-│  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/fs-constants
-│  └─ licenseFile: node_modules/fs-constants/LICENSE
 ├─ fs.realpath@1.0.0
 │  ├─ licenses: ISC
 │  ├─ repository: https://github.com/isaacs/fs.realpath
@@ -1069,6 +1065,14 @@
 │  ├─ url: https://sindresorhus.com
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/get-stream
 │  └─ licenseFile: node_modules/get-stream/license
+├─ get-uri@6.0.4
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/TooTallNate/proxy-agents
+│  ├─ publisher: Nathan Rajlich
+│  ├─ email: nathan@tootallnate.net
+│  ├─ url: http://n8.io/
+│  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/get-uri
+│  └─ licenseFile: node_modules/get-uri/LICENSE
 ├─ glob@7.2.3
 │  ├─ licenses: ISC
 │  ├─ repository: https://github.com/isaacs/node-glob
@@ -1105,36 +1109,28 @@
 │  ├─ email: ljharb@gmail.com
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/hasown
 │  └─ licenseFile: node_modules/hasown/LICENSE
-├─ html-encoding-sniffer@2.0.1
-│  ├─ licenses: MIT
-│  ├─ repository: https://github.com/jsdom/html-encoding-sniffer
-│  ├─ publisher: Domenic Denicola
-│  ├─ email: d@domenic.me
-│  ├─ url: https://domenic.me/
-│  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/html-encoding-sniffer
-│  └─ licenseFile: node_modules/html-encoding-sniffer/LICENSE.txt
 ├─ html-escaper@2.0.2
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/WebReflection/html-escaper
 │  ├─ publisher: Andrea Giammarchi
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/html-escaper
 │  └─ licenseFile: node_modules/html-escaper/LICENSE.txt
-├─ http-proxy-agent@4.0.1
+├─ http-proxy-agent@7.0.2
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/TooTallNate/node-http-proxy-agent
+│  ├─ repository: https://github.com/TooTallNate/proxy-agents
 │  ├─ publisher: Nathan Rajlich
 │  ├─ email: nathan@tootallnate.net
 │  ├─ url: http://n8.io/
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/http-proxy-agent
-│  └─ licenseFile: node_modules/http-proxy-agent/README.md
-├─ https-proxy-agent@5.0.0
+│  └─ licenseFile: node_modules/http-proxy-agent/LICENSE
+├─ https-proxy-agent@7.0.6
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/TooTallNate/node-https-proxy-agent
+│  ├─ repository: https://github.com/TooTallNate/proxy-agents
 │  ├─ publisher: Nathan Rajlich
 │  ├─ email: nathan@tootallnate.net
 │  ├─ url: http://n8.io/
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/https-proxy-agent
-│  └─ licenseFile: node_modules/https-proxy-agent/README.md
+│  └─ licenseFile: node_modules/https-proxy-agent/LICENSE
 ├─ human-signals@2.1.0
 │  ├─ licenses: Apache-2.0
 │  ├─ repository: https://github.com/ehmicky/human-signals
@@ -1143,21 +1139,14 @@
 │  ├─ url: https://github.com/ehmicky
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/human-signals
 │  └─ licenseFile: node_modules/human-signals/LICENSE
-├─ iconv-lite@0.4.24
+├─ import-fresh@3.3.1
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/ashtuchkin/iconv-lite
-│  ├─ publisher: Alexander Shtuchkin
-│  ├─ email: ashtuchkin@gmail.com
-│  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/iconv-lite
-│  └─ licenseFile: node_modules/iconv-lite/LICENSE
-├─ ieee754@1.2.1
-│  ├─ licenses: BSD-3-Clause
-│  ├─ repository: https://github.com/feross/ieee754
-│  ├─ publisher: Feross Aboukhadijeh
-│  ├─ email: feross@feross.org
-│  ├─ url: https://feross.org
-│  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/ieee754
-│  └─ licenseFile: node_modules/ieee754/LICENSE
+│  ├─ repository: https://github.com/sindresorhus/import-fresh
+│  ├─ publisher: Sindre Sorhus
+│  ├─ email: sindresorhus@gmail.com
+│  ├─ url: https://sindresorhus.com
+│  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/import-fresh
+│  └─ licenseFile: node_modules/import-fresh/license
 ├─ import-local@3.1.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/sindresorhus/import-local
@@ -1187,6 +1176,14 @@
 │  ├─ repository: https://github.com/isaacs/inherits
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/inherits
 │  └─ licenseFile: node_modules/inherits/LICENSE
+├─ ip-address@9.0.5
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/beaugunderson/ip-address
+│  ├─ publisher: Beau Gunderson
+│  ├─ email: beau@beaugunderson.com
+│  ├─ url: https://beaugunderson.com/
+│  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/ip-address
+│  └─ licenseFile: node_modules/ip-address/LICENSE
 ├─ is-arrayish@0.2.1
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/qix-/node-is-arrayish
@@ -1224,13 +1221,6 @@
 │  ├─ url: https://github.com/jonschlinkert
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/is-number
 │  └─ licenseFile: node_modules/is-number/LICENSE
-├─ is-potential-custom-element-name@1.0.1
-│  ├─ licenses: MIT
-│  ├─ repository: https://github.com/mathiasbynens/is-potential-custom-element-name
-│  ├─ publisher: Mathias Bynens
-│  ├─ url: https://mathiasbynens.be/
-│  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/is-potential-custom-element-name
-│  └─ licenseFile: node_modules/is-potential-custom-element-name/LICENSE-MIT.txt
 ├─ is-stream@2.0.1
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/sindresorhus/is-stream
@@ -1239,14 +1229,6 @@
 │  ├─ url: https://sindresorhus.com
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/is-stream
 │  └─ licenseFile: node_modules/is-stream/license
-├─ is-typedarray@1.0.0
-│  ├─ licenses: MIT
-│  ├─ repository: https://github.com/hughsk/is-typedarray
-│  ├─ publisher: Hugh Kennedy
-│  ├─ email: hughskennedy@gmail.com
-│  ├─ url: http://hughsk.io/
-│  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/is-typedarray
-│  └─ licenseFile: node_modules/is-typedarray/LICENSE.md
 ├─ isarray@1.0.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/juliangruber/isarray
@@ -1270,7 +1252,7 @@
 │  ├─ email: kananthmail-github@yahoo.com
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/istanbul-lib-coverage
 │  └─ licenseFile: node_modules/istanbul-lib-coverage/LICENSE
-├─ istanbul-lib-instrument@5.2.1
+├─ istanbul-lib-instrument@6.0.3
 │  ├─ licenses: BSD-3-Clause
 │  ├─ repository: https://github.com/istanbuljs/istanbuljs
 │  ├─ publisher: Krishnan Anantheswaran
@@ -1298,86 +1280,76 @@
 │  ├─ email: kananthmail-github@yahoo.com
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/istanbul-reports
 │  └─ licenseFile: node_modules/istanbul-reports/LICENSE
-├─ jest-changed-files@27.5.1
+├─ jest-changed-files@29.7.0
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/facebook/jest
+│  ├─ repository: https://github.com/jestjs/jest
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/jest-changed-files
 │  └─ licenseFile: node_modules/jest-changed-files/LICENSE
-├─ jest-circus@27.5.1
+├─ jest-circus@29.7.0
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/facebook/jest
+│  ├─ repository: https://github.com/jestjs/jest
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/jest-circus
 │  └─ licenseFile: node_modules/jest-circus/LICENSE
-├─ jest-cli@27.5.1
+├─ jest-cli@29.7.0
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/facebook/jest
+│  ├─ repository: https://github.com/jestjs/jest
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/jest-cli
 │  └─ licenseFile: node_modules/jest-cli/LICENSE
-├─ jest-config@27.5.1
+├─ jest-config@29.7.0
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/facebook/jest
+│  ├─ repository: https://github.com/jestjs/jest
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/jest-config
 │  └─ licenseFile: node_modules/jest-config/LICENSE
-├─ jest-diff@27.5.1
+├─ jest-diff@29.7.0
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/facebook/jest
+│  ├─ repository: https://github.com/jestjs/jest
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/jest-diff
 │  └─ licenseFile: node_modules/jest-diff/LICENSE
-├─ jest-docblock@27.5.1
+├─ jest-docblock@29.7.0
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/facebook/jest
+│  ├─ repository: https://github.com/jestjs/jest
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/jest-docblock
 │  └─ licenseFile: node_modules/jest-docblock/LICENSE
-├─ jest-each@27.5.1
+├─ jest-each@29.7.0
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/facebook/jest
+│  ├─ repository: https://github.com/jestjs/jest
 │  ├─ publisher: Matt Phillips
 │  ├─ url: mattphillips
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/jest-each
 │  └─ licenseFile: node_modules/jest-each/LICENSE
-├─ jest-environment-jsdom@27.5.1
+├─ jest-environment-node@29.7.0
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/facebook/jest
-│  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/jest-environment-jsdom
-│  └─ licenseFile: node_modules/jest-environment-jsdom/LICENSE
-├─ jest-environment-node@27.5.1
-│  ├─ licenses: MIT
-│  ├─ repository: https://github.com/facebook/jest
+│  ├─ repository: https://github.com/jestjs/jest
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/jest-environment-node
 │  └─ licenseFile: node_modules/jest-environment-node/LICENSE
-├─ jest-get-type@27.5.1
+├─ jest-get-type@29.6.3
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/facebook/jest
+│  ├─ repository: https://github.com/jestjs/jest
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/jest-get-type
 │  └─ licenseFile: node_modules/jest-get-type/LICENSE
-├─ jest-haste-map@27.5.1
+├─ jest-haste-map@29.7.0
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/facebook/jest
+│  ├─ repository: https://github.com/jestjs/jest
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/jest-haste-map
 │  └─ licenseFile: node_modules/jest-haste-map/LICENSE
-├─ jest-jasmine2@27.5.1
+├─ jest-leak-detector@29.7.0
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/facebook/jest
-│  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/jest-jasmine2
-│  └─ licenseFile: node_modules/jest-jasmine2/LICENSE
-├─ jest-leak-detector@27.5.1
-│  ├─ licenses: MIT
-│  ├─ repository: https://github.com/facebook/jest
+│  ├─ repository: https://github.com/jestjs/jest
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/jest-leak-detector
 │  └─ licenseFile: node_modules/jest-leak-detector/LICENSE
-├─ jest-matcher-utils@27.5.1
+├─ jest-matcher-utils@29.7.0
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/facebook/jest
+│  ├─ repository: https://github.com/jestjs/jest
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/jest-matcher-utils
 │  └─ licenseFile: node_modules/jest-matcher-utils/LICENSE
-├─ jest-message-util@27.5.1
+├─ jest-message-util@29.7.0
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/facebook/jest
+│  ├─ repository: https://github.com/jestjs/jest
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/jest-message-util
 │  └─ licenseFile: node_modules/jest-message-util/LICENSE
-├─ jest-mock@27.5.1
+├─ jest-mock@29.7.0
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/facebook/jest
+│  ├─ repository: https://github.com/jestjs/jest
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/jest-mock
 │  └─ licenseFile: node_modules/jest-mock/LICENSE
 ├─ jest-pnp-resolver@1.2.3
@@ -1385,64 +1357,59 @@
 │  ├─ repository: https://github.com/arcanis/jest-pnp-resolver
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/jest-pnp-resolver
 │  └─ licenseFile: node_modules/jest-pnp-resolver/README.md
-├─ jest-regex-util@27.5.1
+├─ jest-regex-util@29.6.3
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/facebook/jest
+│  ├─ repository: https://github.com/jestjs/jest
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/jest-regex-util
 │  └─ licenseFile: node_modules/jest-regex-util/LICENSE
-├─ jest-resolve-dependencies@27.5.1
+├─ jest-resolve-dependencies@29.7.0
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/facebook/jest
+│  ├─ repository: https://github.com/jestjs/jest
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/jest-resolve-dependencies
 │  └─ licenseFile: node_modules/jest-resolve-dependencies/LICENSE
-├─ jest-resolve@27.5.1
+├─ jest-resolve@29.7.0
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/facebook/jest
+│  ├─ repository: https://github.com/jestjs/jest
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/jest-resolve
 │  └─ licenseFile: node_modules/jest-resolve/LICENSE
-├─ jest-runner@27.5.1
+├─ jest-runner@29.7.0
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/facebook/jest
+│  ├─ repository: https://github.com/jestjs/jest
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/jest-runner
 │  └─ licenseFile: node_modules/jest-runner/LICENSE
-├─ jest-runtime@27.5.1
+├─ jest-runtime@29.7.0
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/facebook/jest
+│  ├─ repository: https://github.com/jestjs/jest
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/jest-runtime
 │  └─ licenseFile: node_modules/jest-runtime/LICENSE
-├─ jest-serializer@27.5.1
+├─ jest-snapshot@29.7.0
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/facebook/jest
-│  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/jest-serializer
-│  └─ licenseFile: node_modules/jest-serializer/LICENSE
-├─ jest-snapshot@27.5.1
-│  ├─ licenses: MIT
-│  ├─ repository: https://github.com/facebook/jest
+│  ├─ repository: https://github.com/jestjs/jest
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/jest-snapshot
 │  └─ licenseFile: node_modules/jest-snapshot/LICENSE
-├─ jest-util@27.5.1
+├─ jest-util@29.7.0
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/facebook/jest
+│  ├─ repository: https://github.com/jestjs/jest
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/jest-util
 │  └─ licenseFile: node_modules/jest-util/LICENSE
-├─ jest-validate@27.5.1
+├─ jest-validate@29.7.0
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/facebook/jest
+│  ├─ repository: https://github.com/jestjs/jest
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/jest-validate
 │  └─ licenseFile: node_modules/jest-validate/LICENSE
-├─ jest-watcher@27.5.1
+├─ jest-watcher@29.7.0
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/facebook/jest
+│  ├─ repository: https://github.com/jestjs/jest
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/jest-watcher
 │  └─ licenseFile: node_modules/jest-watcher/LICENSE
-├─ jest-worker@27.5.1
+├─ jest-worker@29.7.0
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/facebook/jest
+│  ├─ repository: https://github.com/jestjs/jest
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/jest-worker
 │  └─ licenseFile: node_modules/jest-worker/LICENSE
-├─ jest@27.5.1
+├─ jest@29.7.0
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/facebook/jest
+│  ├─ repository: https://github.com/jestjs/jest
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/jest
 │  └─ licenseFile: node_modules/jest/LICENSE
 ├─ js-tokens@4.0.0
@@ -1451,18 +1418,19 @@
 │  ├─ publisher: Simon Lydell
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/js-tokens
 │  └─ licenseFile: node_modules/js-tokens/LICENSE
-├─ js-yaml@3.14.1
+├─ js-yaml@4.1.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/nodeca/js-yaml
 │  ├─ publisher: Vladimir Zapparov
 │  ├─ email: dervus.grim@gmail.com
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/js-yaml
 │  └─ licenseFile: node_modules/js-yaml/LICENSE
-├─ jsdom@16.7.0
+├─ jsbn@1.1.0
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/jsdom/jsdom
-│  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/jsdom
-│  └─ licenseFile: node_modules/jsdom/LICENSE.txt
+│  ├─ repository: https://github.com/andyperlitch/jsbn
+│  ├─ publisher: Tom Wu
+│  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/jsbn
+│  └─ licenseFile: node_modules/jsbn/LICENSE
 ├─ jsesc@2.5.2
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/mathiasbynens/jsesc
@@ -1515,14 +1483,7 @@
 │  ├─ url: sindresorhus.com
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/locate-path
 │  └─ licenseFile: node_modules/locate-path/license
-├─ lodash@4.17.21
-│  ├─ licenses: MIT
-│  ├─ repository: https://github.com/lodash/lodash
-│  ├─ publisher: John-David Dalton
-│  ├─ email: john.david.dalton@gmail.com
-│  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/lodash
-│  └─ licenseFile: node_modules/lodash/LICENSE
-├─ lru-cache@4.1.5
+├─ lru-cache@5.1.1
 │  ├─ licenses: ISC
 │  ├─ repository: https://github.com/isaacs/node-lru-cache
 │  ├─ publisher: Isaac Z. Schlueter
@@ -1557,23 +1518,13 @@
 │  ├─ email: me@stephensugden.com
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/merge-stream
 │  └─ licenseFile: node_modules/merge-stream/LICENSE
-├─ micromatch@4.0.5
+├─ micromatch@4.0.8
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/micromatch/micromatch
 │  ├─ publisher: Jon Schlinkert
 │  ├─ url: https://github.com/jonschlinkert
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/micromatch
 │  └─ licenseFile: node_modules/micromatch/LICENSE
-├─ mime-db@1.52.0
-│  ├─ licenses: MIT
-│  ├─ repository: https://github.com/jshttp/mime-db
-│  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/mime-db
-│  └─ licenseFile: node_modules/mime-db/LICENSE
-├─ mime-types@2.1.35
-│  ├─ licenses: MIT
-│  ├─ repository: https://github.com/jshttp/mime-types
-│  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/mime-types
-│  └─ licenseFile: node_modules/mime-types/LICENSE
 ├─ mimic-fn@2.1.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/sindresorhus/mimic-fn
@@ -1590,22 +1541,11 @@
 │  ├─ url: http://blog.izs.me
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/minimatch
 │  └─ licenseFile: node_modules/minimatch/LICENSE
-├─ minimist@1.2.8
+├─ mitt@3.0.1
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/minimistjs/minimist
-│  ├─ publisher: James Halliday
-│  ├─ email: mail@substack.net
-│  ├─ url: http://substack.net
-│  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/minimist
-│  └─ licenseFile: node_modules/minimist/LICENSE
-├─ mkdirp@0.5.6
-│  ├─ licenses: MIT
-│  ├─ repository: https://github.com/substack/node-mkdirp
-│  ├─ publisher: James Halliday
-│  ├─ email: mail@substack.net
-│  ├─ url: http://substack.net
-│  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/mkdirp
-│  └─ licenseFile: node_modules/mkdirp/LICENSE
+│  ├─ repository: https://github.com/developit/mitt
+│  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/mitt
+│  └─ licenseFile: node_modules/mitt/LICENSE
 ├─ ms@2.1.2
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/zeit/ms
@@ -1618,12 +1558,13 @@
 │  ├─ url: https://github.com/litejs/natural-compare-lite
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/natural-compare
 │  └─ licenseFile: node_modules/natural-compare/README.md
-├─ node-fetch@2.6.1
+├─ netmask@2.0.2
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/bitinn/node-fetch
-│  ├─ publisher: David Frank
-│  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/node-fetch
-│  └─ licenseFile: node_modules/node-fetch/LICENSE.md
+│  ├─ repository: https://github.com/rs/node-netmask
+│  ├─ publisher: Olivier Poitrey
+│  ├─ email: rs@rhapsodyk.net
+│  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/netmask
+│  └─ licenseFile: node_modules/netmask/README.md
 ├─ node-int64@0.4.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/broofa/node-int64
@@ -1631,7 +1572,7 @@
 │  ├─ email: robert@broofa.com
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/node-int64
 │  └─ licenseFile: node_modules/node-int64/LICENSE
-├─ node-releases@2.0.14
+├─ node-releases@2.0.19
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/chicoxyzzy/node-releases
 │  ├─ publisher: Sergey Rubanov
@@ -1653,14 +1594,6 @@
 │  ├─ url: sindresorhus.com
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/npm-run-path
 │  └─ licenseFile: node_modules/npm-run-path/license
-├─ nwsapi@2.2.7
-│  ├─ licenses: MIT
-│  ├─ repository: https://github.com/dperini/nwsapi
-│  ├─ publisher: Diego Perini
-│  ├─ email: diego.perini@gmail.com
-│  ├─ url: http://www.iport.it/
-│  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/nwsapi
-│  └─ licenseFile: node_modules/nwsapi/LICENSE
 ├─ once@1.4.0
 │  ├─ licenses: ISC
 │  ├─ repository: https://github.com/isaacs/once
@@ -1682,12 +1615,12 @@
 │  ├─ repository: https://github.com/h2non/node-os-shim
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/os-shim
 │  └─ licenseFile: node_modules/os-shim/LICENSE
-├─ p-limit@2.3.0
+├─ p-limit@3.1.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/sindresorhus/p-limit
 │  ├─ publisher: Sindre Sorhus
 │  ├─ email: sindresorhus@gmail.com
-│  ├─ url: sindresorhus.com
+│  ├─ url: https://sindresorhus.com
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/p-limit
 │  └─ licenseFile: node_modules/p-limit/license
 ├─ p-locate@4.1.0
@@ -1706,6 +1639,30 @@
 │  ├─ url: sindresorhus.com
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/p-try
 │  └─ licenseFile: node_modules/p-try/license
+├─ pac-proxy-agent@7.2.0
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/TooTallNate/proxy-agents
+│  ├─ publisher: Nathan Rajlich
+│  ├─ email: nathan@tootallnate.net
+│  ├─ url: http://n8.io/
+│  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/pac-proxy-agent
+│  └─ licenseFile: node_modules/pac-proxy-agent/LICENSE
+├─ pac-resolver@7.0.1
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/TooTallNate/proxy-agents
+│  ├─ publisher: Nathan Rajlich
+│  ├─ email: nathan@tootallnate.net
+│  ├─ url: http://n8.io/
+│  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/pac-resolver
+│  └─ licenseFile: node_modules/pac-resolver/LICENSE
+├─ parent-module@1.0.1
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/sindresorhus/parent-module
+│  ├─ publisher: Sindre Sorhus
+│  ├─ email: sindresorhus@gmail.com
+│  ├─ url: sindresorhus.com
+│  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/parent-module
+│  └─ licenseFile: node_modules/parent-module/license
 ├─ parse-json@5.2.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/sindresorhus/parse-json
@@ -1714,14 +1671,6 @@
 │  ├─ url: https://sindresorhus.com
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/parse-json
 │  └─ licenseFile: node_modules/parse-json/license
-├─ parse5@6.0.1
-│  ├─ licenses: MIT
-│  ├─ repository: https://github.com/inikulin/parse5
-│  ├─ publisher: Ivan Nikulin
-│  ├─ email: ifaaan@gmail.com
-│  ├─ url: https://github.com/inikulin
-│  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/parse5
-│  └─ licenseFile: node_modules/parse5/LICENSE
 ├─ path-exists@4.0.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/sindresorhus/path-exists
@@ -1802,9 +1751,9 @@
 │  ├─ publisher: James Long
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/prettier
 │  └─ licenseFile: node_modules/prettier/LICENSE
-├─ pretty-format@27.5.1
+├─ pretty-format@29.7.0
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/facebook/jest
+│  ├─ repository: https://github.com/jestjs/jest
 │  ├─ publisher: James Kyle
 │  ├─ email: me@thejameskyle.com
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/pretty-format
@@ -1814,7 +1763,7 @@
 │  ├─ repository: https://github.com/calvinmetcalf/process-nextick-args
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/process-nextick-args
 │  └─ licenseFile: node_modules/process-nextick-args/license.md
-├─ progress@2.0.1
+├─ progress@2.0.3
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/visionmedia/node-progress
 │  ├─ publisher: TJ Holowaychuk
@@ -1829,6 +1778,14 @@
 │  ├─ url: https://terkel.com
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/prompts
 │  └─ licenseFile: node_modules/prompts/license
+├─ proxy-agent@6.5.0
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/TooTallNate/proxy-agents
+│  ├─ publisher: Nathan Rajlich
+│  ├─ email: nathan@tootallnate.net
+│  ├─ url: http://n8.io/
+│  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/proxy-agent
+│  └─ licenseFile: node_modules/proxy-agent/LICENSE
 ├─ proxy-from-env@1.1.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/Rob--W/proxy-from-env
@@ -1837,22 +1794,6 @@
 │  ├─ url: https://robwu.nl/
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/proxy-from-env
 │  └─ licenseFile: node_modules/proxy-from-env/LICENSE
-├─ pseudomap@1.0.2
-│  ├─ licenses: ISC
-│  ├─ repository: https://github.com/isaacs/pseudomap
-│  ├─ publisher: Isaac Z. Schlueter
-│  ├─ email: i@izs.me
-│  ├─ url: http://blog.izs.me/
-│  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/pseudomap
-│  └─ licenseFile: node_modules/pseudomap/LICENSE
-├─ psl@1.9.0
-│  ├─ licenses: MIT
-│  ├─ repository: https://github.com/lupomontero/psl
-│  ├─ publisher: Lupo Montero
-│  ├─ email: lupomontero@gmail.com
-│  ├─ url: https://lupomontero.com/
-│  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/psl
-│  └─ licenseFile: node_modules/psl/LICENSE
 ├─ pump@3.0.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/mafintosh/pump
@@ -1860,19 +1801,25 @@
 │  ├─ email: mathiasbuus@gmail.com
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/pump
 │  └─ licenseFile: node_modules/pump/LICENSE
-├─ punycode@2.3.1
-│  ├─ licenses: MIT
-│  ├─ repository: https://github.com/mathiasbynens/punycode.js
-│  ├─ publisher: Mathias Bynens
-│  ├─ url: https://mathiasbynens.be/
-│  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/punycode
-│  └─ licenseFile: node_modules/punycode/LICENSE-MIT.txt
-├─ puppeteer@10.4.0
+├─ puppeteer-core@24.6.0
 │  ├─ licenses: Apache-2.0
-│  ├─ repository: https://github.com/puppeteer/puppeteer
+│  ├─ repository: https://github.com/puppeteer/puppeteer/tree/main/packages/puppeteer-core
+│  ├─ publisher: The Chromium Authors
+│  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/puppeteer-core
+│  └─ licenseFile: node_modules/puppeteer-core/README.md
+├─ puppeteer@24.6.0
+│  ├─ licenses: Apache-2.0
+│  ├─ repository: https://github.com/puppeteer/puppeteer/tree/main/packages/puppeteer
 │  ├─ publisher: The Chromium Authors
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/puppeteer
-│  └─ licenseFile: node_modules/puppeteer/LICENSE
+│  └─ licenseFile: node_modules/puppeteer/README.md
+├─ pure-rand@6.1.0
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/dubzzz/pure-rand
+│  ├─ publisher: Nicolas DUBIEN
+│  ├─ email: github@dubien.org
+│  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/pure-rand
+│  └─ licenseFile: node_modules/pure-rand/LICENSE
 ├─ qr-code-styling@1.6.0-rc.1
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/kozakdenys/qr-code-styling
@@ -1886,18 +1833,12 @@
 │  ├─ publisher: Kazuhiko Arase
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/qrcode-generator
 │  └─ licenseFile: node_modules/qrcode-generator/README.md
-├─ querystringify@2.2.0
-│  ├─ licenses: MIT
-│  ├─ repository: https://github.com/unshiftio/querystringify
-│  ├─ publisher: Arnout Kazemier
-│  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/querystringify
-│  └─ licenseFile: node_modules/querystringify/LICENSE
-├─ react-is@17.0.2
+├─ react-is@18.3.1
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/facebook/react
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/react-is
 │  └─ licenseFile: node_modules/react-is/LICENSE
-├─ readable-stream@3.6.2
+├─ readable-stream@2.3.8
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/nodejs/readable-stream
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/readable-stream
@@ -1910,12 +1851,6 @@
 │  ├─ url: http://github.com/troygoode/
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/require-directory
 │  └─ licenseFile: node_modules/require-directory/LICENSE
-├─ requires-port@1.0.0
-│  ├─ licenses: MIT
-│  ├─ repository: https://github.com/unshiftio/requires-port
-│  ├─ publisher: Arnout Kazemier
-│  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/requires-port
-│  └─ licenseFile: node_modules/requires-port/LICENSE
 ├─ resolve-cwd@3.0.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/sindresorhus/resolve-cwd
@@ -1932,7 +1867,7 @@
 │  ├─ url: sindresorhus.com
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/resolve-from
 │  └─ licenseFile: node_modules/resolve-from/license
-├─ resolve.exports@1.1.1
+├─ resolve.exports@2.0.3
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/lukeed/resolve.exports
 │  ├─ publisher: Luke Edwards
@@ -1948,14 +1883,6 @@
 │  ├─ url: http://substack.net
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/resolve
 │  └─ licenseFile: node_modules/resolve/LICENSE
-├─ rimraf@3.0.2
-│  ├─ licenses: ISC
-│  ├─ repository: https://github.com/isaacs/rimraf
-│  ├─ publisher: Isaac Z. Schlueter
-│  ├─ email: i@izs.me
-│  ├─ url: http://blog.izs.me/
-│  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/rimraf
-│  └─ licenseFile: node_modules/rimraf/LICENSE
 ├─ rollup-plugin-inject@3.0.2
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/rollup/rollup-plugin-inject
@@ -1983,36 +1910,21 @@
 │  ├─ url: http://feross.org
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/safe-buffer
 │  └─ licenseFile: node_modules/safe-buffer/LICENSE
-├─ safer-buffer@2.1.2
-│  ├─ licenses: MIT
-│  ├─ repository: https://github.com/ChALkeR/safer-buffer
-│  ├─ publisher: Nikita Skovoroda
-│  ├─ email: chalkerx@gmail.com
-│  ├─ url: https://github.com/ChALkeR
-│  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/safer-buffer
-│  └─ licenseFile: node_modules/safer-buffer/LICENSE
-├─ saxes@5.0.1
-│  ├─ licenses: ISC
-│  ├─ repository: https://github.com/lddubeau/saxes
-│  ├─ publisher: Louis-Dominique Dubeau
-│  ├─ email: ldd@lddubeau.com
-│  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/saxes
-│  └─ licenseFile: node_modules/saxes/README.md
 ├─ semver@6.3.1
 │  ├─ licenses: ISC
 │  ├─ repository: https://github.com/npm/node-semver
 │  ├─ publisher: GitHub Inc.
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/semver
 │  └─ licenseFile: node_modules/semver/LICENSE
-├─ shebang-command@1.2.0
+├─ shebang-command@2.0.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/kevva/shebang-command
-│  ├─ publisher: Kevin Martensson
+│  ├─ publisher: Kevin Mårtensson
 │  ├─ email: kevinmartensson@gmail.com
 │  ├─ url: github.com/kevva
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/shebang-command
 │  └─ licenseFile: node_modules/shebang-command/license
-├─ shebang-regex@1.0.0
+├─ shebang-regex@3.0.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/sindresorhus/shebang-regex
 │  ├─ publisher: Sindre Sorhus
@@ -2043,7 +1955,27 @@
 │  ├─ url: sindresorhus.com
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/slash
 │  └─ licenseFile: node_modules/slash/license
-├─ source-map-support@0.5.21
+├─ smart-buffer@4.2.0
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/JoshGlazebrook/smart-buffer
+│  ├─ publisher: Josh Glazebrook
+│  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/smart-buffer
+│  └─ licenseFile: node_modules/smart-buffer/LICENSE
+├─ socks-proxy-agent@8.0.5
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/TooTallNate/proxy-agents
+│  ├─ publisher: Nathan Rajlich
+│  ├─ email: nathan@tootallnate.net
+│  ├─ url: http://n8.io/
+│  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/socks-proxy-agent
+│  └─ licenseFile: node_modules/socks-proxy-agent/LICENSE
+├─ socks@2.8.4
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/JoshGlazebrook/socks
+│  ├─ publisher: Josh Glazebrook
+│  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/socks
+│  └─ licenseFile: node_modules/socks/LICENSE
+├─ source-map-support@0.5.13
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/evanw/node-source-map-support
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/source-map-support
@@ -2067,12 +1999,11 @@
 │  ├─ publisher: ForbesLindesay
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/spawn-sync
 │  └─ licenseFile: node_modules/spawn-sync/LICENSE
-├─ sprintf-js@1.0.3
+├─ sprintf-js@1.1.3
 │  ├─ licenses: BSD-3-Clause
 │  ├─ repository: https://github.com/alexei/sprintf.js
-│  ├─ publisher: Alexandru Marasteanu
+│  ├─ publisher: Alexandru Mărășteanu
 │  ├─ email: hello@alexei.ro
-│  ├─ url: http://alexei.ro/
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/sprintf-js
 │  └─ licenseFile: node_modules/sprintf-js/LICENSE
 ├─ stack-utils@2.0.6
@@ -2083,6 +2014,13 @@
 │  ├─ url: github.com/jamestalmage
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/stack-utils
 │  └─ licenseFile: node_modules/stack-utils/LICENSE.md
+├─ streamx@2.22.0
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/mafintosh/streamx
+│  ├─ publisher: Mathias Buus
+│  ├─ url: @mafintosh
+│  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/streamx
+│  └─ licenseFile: node_modules/streamx/LICENSE
 ├─ string-length@4.0.2
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/sindresorhus/string-length
@@ -2099,7 +2037,7 @@
 │  ├─ url: sindresorhus.com
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/string-width
 │  └─ licenseFile: node_modules/string-width/license
-├─ string_decoder@1.3.0
+├─ string_decoder@1.1.1
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/nodejs/string_decoder
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/string_decoder
@@ -2144,14 +2082,6 @@
 │  ├─ url: sindresorhus.com
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/supports-color
 │  └─ licenseFile: node_modules/supports-color/license
-├─ supports-hyperlinks@2.3.0
-│  ├─ licenses: MIT
-│  ├─ repository: https://github.com/jamestalmage/supports-hyperlinks
-│  ├─ publisher: James Talmage
-│  ├─ email: james@talmage.io
-│  ├─ url: github.com/jamestalmage
-│  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/supports-hyperlinks
-│  └─ licenseFile: node_modules/supports-hyperlinks/license
 ├─ supports-preserve-symlinks-flag@1.0.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/inspect-js/node-supports-preserve-symlinks-flag
@@ -2159,34 +2089,19 @@
 │  ├─ email: ljharb@gmail.com
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/supports-preserve-symlinks-flag
 │  └─ licenseFile: node_modules/supports-preserve-symlinks-flag/LICENSE
-├─ symbol-tree@3.2.4
-│  ├─ licenses: MIT
-│  ├─ repository: https://github.com/jsdom/js-symbol-tree
-│  ├─ publisher: Joris van der Wel
-│  ├─ email: joris@jorisvanderwel.com
-│  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/symbol-tree
-│  └─ licenseFile: node_modules/symbol-tree/LICENSE
-├─ tar-fs@2.0.0
+├─ tar-fs@3.0.8
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/mafintosh/tar-fs
 │  ├─ publisher: Mathias Buus
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/tar-fs
 │  └─ licenseFile: node_modules/tar-fs/LICENSE
-├─ tar-stream@2.2.0
+├─ tar-stream@3.1.7
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/mafintosh/tar-stream
 │  ├─ publisher: Mathias Buus
 │  ├─ email: mathiasbuus@gmail.com
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/tar-stream
 │  └─ licenseFile: node_modules/tar-stream/LICENSE
-├─ terminal-link@2.1.1
-│  ├─ licenses: MIT
-│  ├─ repository: https://github.com/sindresorhus/terminal-link
-│  ├─ publisher: Sindre Sorhus
-│  ├─ email: sindresorhus@gmail.com
-│  ├─ url: sindresorhus.com
-│  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/terminal-link
-│  └─ licenseFile: node_modules/terminal-link/license
 ├─ test-exclude@6.0.0
 │  ├─ licenses: ISC
 │  ├─ repository: https://github.com/istanbuljs/test-exclude
@@ -2194,20 +2109,12 @@
 │  ├─ email: ben@npmjs.com
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/test-exclude
 │  └─ licenseFile: node_modules/test-exclude/LICENSE.txt
-├─ throat@6.0.2
-│  ├─ licenses: MIT
-│  ├─ repository: https://github.com/ForbesLindesay/throat
-│  ├─ publisher: ForbesLindesay
-│  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/throat
-│  └─ licenseFile: node_modules/throat/LICENSE
-├─ through@2.3.8
-│  ├─ licenses: MIT
-│  ├─ repository: https://github.com/dominictarr/through
-│  ├─ publisher: Dominic Tarr
-│  ├─ email: dominic.tarr@gmail.com
-│  ├─ url: dominictarr.com
-│  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/through
-│  └─ licenseFile: node_modules/through/LICENSE.APACHE2
+├─ text-decoder@1.2.3
+│  ├─ licenses: Apache-2.0
+│  ├─ repository: https://github.com/holepunchto/text-decoder
+│  ├─ publisher: Holepunch
+│  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/text-decoder
+│  └─ licenseFile: node_modules/text-decoder/LICENSE
 ├─ tmpl@1.0.5
 │  ├─ licenses: BSD-3-Clause
 │  ├─ repository: https://github.com/daaku/nodejs-tmpl
@@ -2230,20 +2137,12 @@
 │  ├─ url: https://github.com/jonschlinkert
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/to-regex-range
 │  └─ licenseFile: node_modules/to-regex-range/LICENSE
-├─ tough-cookie@4.1.3
-│  ├─ licenses: BSD-3-Clause
-│  ├─ repository: https://github.com/salesforce/tough-cookie
-│  ├─ publisher: Jeremy Stashewsky
-│  ├─ email: jstash@gmail.com
-│  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/tough-cookie
-│  └─ licenseFile: node_modules/tough-cookie/LICENSE
-├─ tr46@2.1.0
-│  ├─ licenses: MIT
-│  ├─ repository: https://github.com/jsdom/tr46
-│  ├─ publisher: Sebastian Mayr
-│  ├─ email: npm@smayr.name
-│  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/tr46
-│  └─ licenseFile: node_modules/tr46/LICENSE.md
+├─ tslib@2.8.1
+│  ├─ licenses: 0BSD
+│  ├─ repository: https://github.com/Microsoft/tslib
+│  ├─ publisher: Microsoft Corp.
+│  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/tslib
+│  └─ licenseFile: node_modules/tslib/LICENSE.txt
 ├─ type-detect@4.0.8
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/chaijs/type-detect
@@ -2260,14 +2159,13 @@
 │  ├─ url: https://sindresorhus.com
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/type-fest
 │  └─ licenseFile: node_modules/type-fest/license
-├─ typedarray-to-buffer@3.1.5
+├─ typed-query-selector@2.12.0
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/feross/typedarray-to-buffer
-│  ├─ publisher: Feross Aboukhadijeh
-│  ├─ email: feross@feross.org
-│  ├─ url: http://feross.org/
-│  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/typedarray-to-buffer
-│  └─ licenseFile: node_modules/typedarray-to-buffer/LICENSE
+│  ├─ repository: https://github.com/g-plane/typed-query-selector
+│  ├─ publisher: Pig Fang
+│  ├─ email: g-plane@hotmail.com
+│  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/typed-query-selector
+│  └─ licenseFile: node_modules/typed-query-selector/LICENSE
 ├─ typedarray@0.0.6
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/substack/typedarray
@@ -2282,38 +2180,18 @@
 │  ├─ publisher: Microsoft Corp.
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/typescript
 │  └─ licenseFile: node_modules/typescript/LICENSE.txt
-├─ unbzip2-stream@1.3.3
-│  ├─ licenses: MIT
-│  ├─ repository: https://github.com/regular/unbzip2-stream
-│  ├─ publisher: Jan Bölsche
-│  ├─ email: jan@lagomorph.de
-│  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/unbzip2-stream
-│  └─ licenseFile: node_modules/unbzip2-stream/LICENSE
 ├─ undici-types@5.26.5
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/nodejs/undici
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/undici-types
 │  └─ licenseFile: node_modules/undici-types/README.md
-├─ universalify@0.2.0
-│  ├─ licenses: MIT
-│  ├─ repository: https://github.com/RyanZim/universalify
-│  ├─ publisher: Ryan Zimmerman
-│  ├─ email: opensrc@ryanzim.com
-│  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/universalify
-│  └─ licenseFile: node_modules/universalify/LICENSE
-├─ update-browserslist-db@1.0.13
+├─ update-browserslist-db@1.1.3
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/browserslist/update-db
 │  ├─ publisher: Andrey Sitnik
 │  ├─ email: andrey@sitnik.ru
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/update-browserslist-db
 │  └─ licenseFile: node_modules/update-browserslist-db/LICENSE
-├─ url-parse@1.5.10
-│  ├─ licenses: MIT
-│  ├─ repository: https://github.com/unshiftio/url-parse
-│  ├─ publisher: Arnout Kazemier
-│  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/url-parse
-│  └─ licenseFile: node_modules/url-parse/LICENSE
 ├─ util-deprecate@1.0.2
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/TooTallNate/util-deprecate
@@ -2322,25 +2200,13 @@
 │  ├─ url: http://n8.io/
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/util-deprecate
 │  └─ licenseFile: node_modules/util-deprecate/LICENSE
-├─ v8-to-istanbul@8.1.1
+├─ v8-to-istanbul@9.3.0
 │  ├─ licenses: ISC
 │  ├─ repository: https://github.com/istanbuljs/v8-to-istanbul
 │  ├─ publisher: Ben Coe
 │  ├─ email: ben@npmjs.com
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/v8-to-istanbul
 │  └─ licenseFile: node_modules/v8-to-istanbul/LICENSE.txt
-├─ w3c-hr-time@1.0.2
-│  ├─ licenses: MIT
-│  ├─ repository: https://github.com/jsdom/w3c-hr-time
-│  ├─ publisher: Timothy Gu
-│  ├─ email: timothygu99@gmail.com
-│  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/w3c-hr-time
-│  └─ licenseFile: node_modules/w3c-hr-time/LICENSE.md
-├─ w3c-xmlserializer@2.0.0
-│  ├─ licenses: MIT
-│  ├─ repository: https://github.com/jsdom/w3c-xmlserializer
-│  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/w3c-xmlserializer
-│  └─ licenseFile: node_modules/w3c-xmlserializer/LICENSE.md
 ├─ walker@1.0.8
 │  ├─ licenses: Apache-2.0
 │  ├─ repository: https://github.com/daaku/nodejs-walker
@@ -2348,37 +2214,6 @@
 │  ├─ email: n@daaku.org
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/walker
 │  └─ licenseFile: node_modules/walker/LICENSE
-├─ webidl-conversions@6.1.0
-│  ├─ licenses: BSD-2-Clause
-│  ├─ repository: https://github.com/jsdom/webidl-conversions
-│  ├─ publisher: Domenic Denicola
-│  ├─ email: d@domenic.me
-│  ├─ url: https://domenic.me/
-│  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/webidl-conversions
-│  └─ licenseFile: node_modules/webidl-conversions/LICENSE.md
-├─ whatwg-encoding@1.0.5
-│  ├─ licenses: MIT
-│  ├─ repository: https://github.com/jsdom/whatwg-encoding
-│  ├─ publisher: Domenic Denicola
-│  ├─ email: d@domenic.me
-│  ├─ url: https://domenic.me/
-│  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/whatwg-encoding
-│  └─ licenseFile: node_modules/whatwg-encoding/LICENSE.txt
-├─ whatwg-mimetype@2.3.0
-│  ├─ licenses: MIT
-│  ├─ repository: https://github.com/jsdom/whatwg-mimetype
-│  ├─ publisher: Domenic Denicola
-│  ├─ email: d@domenic.me
-│  ├─ url: https://domenic.me/
-│  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/whatwg-mimetype
-│  └─ licenseFile: node_modules/whatwg-mimetype/LICENSE.txt
-├─ whatwg-url@8.7.0
-│  ├─ licenses: MIT
-│  ├─ repository: https://github.com/jsdom/whatwg-url
-│  ├─ publisher: Sebastian Mayr
-│  ├─ email: github@smayr.name
-│  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/whatwg-url
-│  └─ licenseFile: node_modules/whatwg-url/LICENSE.txt
 ├─ which@1.2.14
 │  ├─ licenses: ISC
 │  ├─ repository: https://github.com/isaacs/node-which
@@ -2403,15 +2238,13 @@
 │  ├─ url: http://blog.izs.me/
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/wrappy
 │  └─ licenseFile: node_modules/wrappy/LICENSE
-├─ write-file-atomic@3.0.3
+├─ write-file-atomic@4.0.2
 │  ├─ licenses: ISC
 │  ├─ repository: https://github.com/npm/write-file-atomic
-│  ├─ publisher: Rebecca Turner
-│  ├─ email: me@re-becca.org
-│  ├─ url: http://re-becca.org
+│  ├─ publisher: GitHub Inc.
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/write-file-atomic
-│  └─ licenseFile: node_modules/write-file-atomic/LICENSE
-├─ ws@7.4.6
+│  └─ licenseFile: node_modules/write-file-atomic/LICENSE.md
+├─ ws@8.18.1
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/websockets/ws
 │  ├─ publisher: Einar Otto Stangvik
@@ -2419,21 +2252,6 @@
 │  ├─ url: http://2x.io
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/ws
 │  └─ licenseFile: node_modules/ws/LICENSE
-├─ xml-name-validator@3.0.0
-│  ├─ licenses: Apache-2.0
-│  ├─ repository: https://github.com/jsdom/xml-name-validator
-│  ├─ publisher: Domenic Denicola
-│  ├─ email: d@domenic.me
-│  ├─ url: https://domenic.me/
-│  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/xml-name-validator
-│  └─ licenseFile: node_modules/xml-name-validator/LICENSE.txt
-├─ xmlchars@2.2.0
-│  ├─ licenses: MIT
-│  ├─ repository: https://github.com/lddubeau/xmlchars
-│  ├─ publisher: Louis-Dominique Dubeau
-│  ├─ email: ldd@lddubeau.com
-│  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/xmlchars
-│  └─ licenseFile: node_modules/xmlchars/LICENSE
 ├─ y18n@5.0.8
 │  ├─ licenses: ISC
 │  ├─ repository: https://github.com/yargs/y18n
@@ -2441,7 +2259,7 @@
 │  ├─ email: bencoe@gmail.com
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/y18n
 │  └─ licenseFile: node_modules/y18n/LICENSE
-├─ yallist@2.1.2
+├─ yallist@3.1.1
 │  ├─ licenses: ISC
 │  ├─ repository: https://github.com/isaacs/yallist
 │  ├─ publisher: Isaac Z. Schlueter
@@ -2449,23 +2267,38 @@
 │  ├─ url: http://blog.izs.me/
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/yallist
 │  └─ licenseFile: node_modules/yallist/LICENSE
-├─ yargs-parser@20.2.9
+├─ yargs-parser@21.1.1
 │  ├─ licenses: ISC
 │  ├─ repository: https://github.com/yargs/yargs-parser
 │  ├─ publisher: Ben Coe
 │  ├─ email: ben@npmjs.com
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/yargs-parser
 │  └─ licenseFile: node_modules/yargs-parser/LICENSE.txt
-├─ yargs@16.2.0
+├─ yargs@17.7.2
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/yargs/yargs
 │  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/yargs
 │  └─ licenseFile: node_modules/yargs/LICENSE
-└─ yauzl@2.10.0
+├─ yauzl@2.10.0
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/thejoshwolfe/yauzl
+│  ├─ publisher: Josh Wolfe
+│  ├─ email: thejoshwolfe@gmail.com
+│  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/yauzl
+│  └─ licenseFile: node_modules/yauzl/LICENSE
+├─ yocto-queue@0.1.0
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/sindresorhus/yocto-queue
+│  ├─ publisher: Sindre Sorhus
+│  ├─ email: sindresorhus@gmail.com
+│  ├─ url: https://sindresorhus.com
+│  ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/yocto-queue
+│  └─ licenseFile: node_modules/yocto-queue/license
+└─ zod@3.24.2
    ├─ licenses: MIT
-   ├─ repository: https://github.com/thejoshwolfe/yauzl
-   ├─ publisher: Josh Wolfe
-   ├─ email: thejoshwolfe@gmail.com
-   ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/yauzl
-   └─ licenseFile: node_modules/yauzl/LICENSE
+   ├─ repository: https://github.com/colinhacks/zod
+   ├─ publisher: Colin McDonnell
+   ├─ email: colin@colinhacks.com
+   ├─ path: /Users/angie/Desktop/projects/gataca-QR/node_modules/zod
+   └─ licenseFile: node_modules/zod/LICENSE
 
