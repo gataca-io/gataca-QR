@@ -1,2 +1,7 @@
 *.json
 *.md
+.cache
+package.json
+package-lock.json
+public
+
