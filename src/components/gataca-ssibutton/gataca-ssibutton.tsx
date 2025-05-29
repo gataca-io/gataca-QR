@@ -1,9 +1,9 @@
-import {Component, Event, EventEmitter, h, Method, Prop, State} from '@stencil/core';
+import { Component, Event, EventEmitter, h, Method, Prop, State } from '@stencil/core';
 import '../gataca-qrdisplay/gataca-qrdisplay';
 
-import {RESULT_STATUS} from '../../utils/utils';
-import {GatacaQR} from '../gataca-qr/gataca-qr';
-import {DrawType} from 'qr-code-styling';
+import { DrawType } from 'qr-code-styling';
+import { RESULT_STATUS } from '../../utils/utils';
+import { GatacaQR } from '../gataca-qr/gataca-qr';
 
 const PHONE_ICON =
     'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABsAAAAbCAYAAACN1PRVAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAHvSURBVHgB3ZZPTttAFMbfe3YjL7qYLopcpZXSG7Q3CDfIsqrSJpyg5QQtJ2h7glgUdVs4AeEE5AYEQSDAgtnw357Hm0hAQDaeIRFCfFKyeKPxzzPzvc+DUKCZN80GEv1ABgWOQgSdGbOwv7u0nDueV4zjTzUIKhuAZna4vdQFR828azbI0K/TI/qodaLvjlP+tLDGDCs+IKv9Lbsi7kcv0w9541Q0EREPYcoieEQ9KiyECRXHzbpBUOcnYTfPFOOaaGVx9WsLiDrSIp0iU0wFNgIx/AQyc9I/OmOjy+Y8aBvHQcDUYebewc6/Xtk8J5htcg5efEPGhk0JtqkyBjo7DuZcnuO2sqCyKv8rUDmfTS9IBURqBAL+I6CkzBjOMOs22TLY21n8fl17KzXR3uDvb/CQk0GEdfvN07QvpnAOaGfYaRT25JzU6+rnG2tTpcWAy+Cp0m3U/URLms8HWfg/rn6RFaGSs9KQkZMpvGBWNs2Vandt46ac6YNBuc0fDLMaOU5DFybQ8039p/KJ4bq4rwPewtqoM/1gsCm/NfBXvWjgHhhuDAeLyd3qVSifHQULeZkou9EqemLhmUmav8qrZ4GEMGA7ivzjKvfeqGptFV2YdWPMPHHq0cCh3DdpVdLl/XCY9J1gVvbCiWa6N+JLocPFjCsx9cAAAAAASUVORK5CYII=';
@@ -308,6 +308,17 @@ export class GatacaSSIButton {
     gatacaLoginFailed: EventEmitter;
 
     /**
+     * GatacaLoginCompleted event, triggered with session data upon login success
+     */
+    @Event({
+        eventName: 'gatacaButtonPushed',
+        composed: true,
+        cancelable: true,
+        bubbles: true
+    })
+    gatacaButtonPushed: EventEmitter;
+
+    /**
      * Retrieve manually the session data on a successful login
      */
     @Method()
@@ -521,6 +532,7 @@ export class GatacaSSIButton {
                 <button
                     class="gatacaButton"
                     onClick={() => {
+                        this.gatacaButtonPushed.emit()
                         executeRedirection();
                     }}
                     disabled={loading}
