@@ -29,6 +29,10 @@ export class GatacaQRDisplay {
             imageOptions: {
                 margin: 2,
                 imageSize: this.logoSize
+            },
+            backgroundOptions: {
+                round: this.rounded ? 16 : 0,
+                color: this.bgColor
             }
         });
         qrCode.append(this.qr);
@@ -69,6 +73,12 @@ export class GatacaQRDisplay {
      * QR Color.
      */
     @Prop() qrColor?: string = '#1E1E20'; //"#4745B7"; new purple color
+
+    /**
+     * _[Optional]_
+     * QR Color.
+     */
+    @Prop() bgColor?: string = '#FFFFFF';
 
     /**
      * _[Optional]_

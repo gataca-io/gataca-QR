@@ -1,9 +1,9 @@
-import { Component, Event, EventEmitter, h, Method, Prop, State } from '@stencil/core';
+import {Component, Event, EventEmitter, h, Method, Prop, State} from '@stencil/core';
 import '../gataca-qrdisplay/gataca-qrdisplay';
 
-import { DrawType } from 'qr-code-styling';
-import { RESULT_STATUS } from '../../utils/utils';
-import { GatacaQR } from '../gataca-qr/gataca-qr';
+import {DrawType} from 'qr-code-styling';
+import {RESULT_STATUS} from '../../utils/utils';
+import {GatacaQR} from '../gataca-qr/gataca-qr';
 
 const PHONE_ICON =
     'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABsAAAAbCAYAAACN1PRVAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAHvSURBVHgB3ZZPTttAFMbfe3YjL7qYLopcpZXSG7Q3CDfIsqrSJpyg5QQtJ2h7glgUdVs4AeEE5AYEQSDAgtnw357Hm0hAQDaeIRFCfFKyeKPxzzPzvc+DUKCZN80GEv1ABgWOQgSdGbOwv7u0nDueV4zjTzUIKhuAZna4vdQFR828azbI0K/TI/qodaLvjlP+tLDGDCs+IKv9Lbsi7kcv0w9541Q0EREPYcoieEQ9KiyECRXHzbpBUOcnYTfPFOOaaGVx9WsLiDrSIp0iU0wFNgIx/AQyc9I/OmOjy+Y8aBvHQcDUYebewc6/Xtk8J5htcg5efEPGhk0JtqkyBjo7DuZcnuO2sqCyKv8rUDmfTS9IBURqBAL+I6CkzBjOMOs22TLY21n8fl17KzXR3uDvb/CQk0GEdfvN07QvpnAOaGfYaRT25JzU6+rnG2tTpcWAy+Cp0m3U/URLms8HWfg/rn6RFaGSs9KQkZMpvGBWNs2Vandt46ac6YNBuc0fDLMaOU5DFybQ8039p/KJ4bq4rwPewtqoM/1gsCm/NfBXvWjgHhhuDAeLyd3qVSifHQULeZkou9EqemLhmUmav8qrZ4GEMGA7ivzjKvfeqGptFV2YdWPMPHHq0cCh3DdpVdLl/XCY9J1gVvbCiWa6N+JLocPFjCsx9cAAAAAASUVORK5CYII=';
@@ -67,6 +67,12 @@ export class GatacaSSIButton {
      */
     @Prop() buttonText?: string = 'Easy login';
 
+    /**
+     * _[Optional]_
+     * In the case of enabling DCAPI button, allows to configure the text displayed
+     */
+    @Prop() buttonDCAPIText?: string = 'Login with Device Credentials';
+
     //PROPERTIES INHERITED BY GATACA QR
 
     /**
@@ -98,6 +104,12 @@ export class GatacaSSIButton {
         sessionId: string;
         authenticationRequest?: string;
     }> = undefined;
+
+    /**
+     * ***Mandatory if DC API***
+     * Sends the API response
+     */
+    @Prop() fillSession?: (url: string, sessionData?: any) => Promise<{result: RESULT_STATUS; data?: any}> = undefined;
 
     /**
      * ***Mandatory***
@@ -275,6 +287,12 @@ export class GatacaSSIButton {
 
     /**
      * _[Optional]_
+     * String to show "waiting start session" label
+     */
+    @Prop() enableDcApi?: boolean = false;
+
+    /**
+     * _[Optional]_
      * Boolean to show or not show the QR Modal description
      */
     @Prop() hideQrModalDescription?: boolean = false;
@@ -317,6 +335,21 @@ export class GatacaSSIButton {
         bubbles: true
     })
     gatacaButtonPushed: EventEmitter;
+
+    supportsDCAPI(): boolean {
+        // let mobile = checkMobile();
+        // if (!mobile) return false;
+        if (!this.enableDcApi) {
+            return false;
+        }
+        //@ts-ignore
+        if (typeof window.DigitalCredential === 'undefined') return false;
+        const protocols = ['org-iso-mdoc', 'openid4vp', 'openid4vci'];
+        //@ts-ignore
+        const supportedProtocols = protocols.filter(window.DigitalCredential.userAgentAllowsProtocol);
+        console.log(supportedProtocols, protocols);
+        return true;
+    }
 
     /**
      * Retrieve manually the session data on a successful login
@@ -488,7 +521,7 @@ export class GatacaSSIButton {
     }
 
     renderMobileButton(isAndroid: boolean, isIos: boolean) {
-        if (this.autostart) {
+        if (this.autostart && !this.supportsDCAPI()) {
             this.startMobilePolling();
         }
 
@@ -532,13 +565,96 @@ export class GatacaSSIButton {
                 <button
                     class="gatacaButton"
                     onClick={() => {
-                        this.gatacaButtonPushed.emit()
+                        this.gatacaButtonPushed.emit();
                         executeRedirection();
                     }}
                     disabled={loading}
                 >
                     <img src={PHONE_ICON} class="buttonImg" alt={this.buttonText} />
                     <span>{this.buttonText}</span>
+                </button>
+            </div>
+        );
+    }
+
+    getRequestFromUri = async (authRequest: string): Promise<{request: any; uri: string}> => {
+        const requrl = new URL(authRequest);
+        const requri = requrl.searchParams.get('request_uri');
+        if (requri) {
+            const response = await fetch(requri, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+            const jwt = await response.json();
+            const parts = jwt.split('.');
+            const base64 = parts[1].replace(/-/g, '+').replace(/_/g, '/');
+            const decoded = window.atob(base64);
+            let parsed = JSON.parse(decoded);
+            parsed.response_mode = 'dc_api';
+            // parsed.client_metadata = {
+            //     vp_formats_supported: {
+            //         mso_mdoc: {
+            //             deviceauth_alg_values: [-7],
+            //             issuerauth_alg_values: [-7]
+            //         }
+            //     }
+            // };
+            return {request: parsed, uri: parsed.redirect_uri};
+        }
+    };
+
+    renderDCAPIButton(isAndroid: boolean, isIos: boolean) {
+        let loading = false;
+        console.log('Maybe act different', isAndroid, isIos);
+
+        const handleLoading = (isLoading: boolean) => {
+            loading = isLoading;
+            if (this.handleCheckAppLoading) {
+                this.handleCheckAppLoading(isLoading);
+            }
+        };
+
+        const executeDCAPICall = async () => {
+            handleLoading(true);
+
+            try {
+                const authRequest = await this.getAuthRequest();
+                let {request, uri} = await this.getRequestFromUri(authRequest);
+                let credentialResponse = await navigator.credentials.get({
+                    //@ts-ignore
+                    digital: {
+                        requests: [
+                            {
+                                protocol: 'openid4vp-v1-unsigned',
+                                data: request
+                            }
+                        ]
+                    }
+                });
+                if (credentialResponse.constructor.name == 'DigitalCredential') {
+                    console.log('Digital Credential - Response Data: ' + credentialResponse);
+                }
+                await this.fillSession(uri, credentialResponse);
+            } catch (error) {
+                this.stop();
+                handleLoading(false);
+            }
+        };
+
+        return (
+            <div class="gatacaButtonWrapper">
+                <button
+                    class="gatacaButton"
+                    onClick={() => {
+                        this.gatacaButtonPushed.emit();
+                        executeDCAPICall();
+                    }}
+                    disabled={loading}
+                >
+                    <img src={PHONE_ICON} class="buttonImg" alt={this.buttonDCAPIText} />
+                    <span>{this.buttonDCAPIText}</span>
                 </button>
             </div>
         );
@@ -553,11 +669,15 @@ export class GatacaSSIButton {
             // @ts-ignore
             (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
         const isMobile = isAndroid || isIos;
+        const displayDCApi = this.supportsDCAPI();
 
         return (
-            <div class="buttonContainer">
-                {isMobile && this.v === '3' ? this.renderMobileButton(isAndroid, isIos) : this.renderDesktopButton()}
-                {this.open && (!isMobile || this.v === '3') && this.renderModal()}
+            <div>
+                <div class="buttonContainer">
+                    {isMobile && this.v === '3' ? this.renderMobileButton(isAndroid, isIos) : this.renderDesktopButton()}
+                    {this.open && (!isMobile || this.v === '3') && this.renderModal()}
+                </div>
+                {displayDCApi /** && isMobile */ && <div class="buttonContainer">{this.renderDCAPIButton(isAndroid, isIos)}</div>}
             </div>
         );
     }

@@ -7,42 +7,170 @@
 </head>
 
 <body>
+
   <div>
-    <gataca-qr id="gataca-qr" qrRole="connect" hide-modal-texts="true" hide-modal-box-shadow="true" modal-width="300"
-      v="2" modal-height="300" qr-size="300" callback-server="https://connect.gataca.io">
-      <!-- TODO Change with your connect server-->
+
+    <gataca-ssibutton id="gataca-qr" qrRole="connect" polling-frequency="1" session-timeout="5" logo-size="0.33"
+      logo-src="https://uploads-ssl.webflow.com/6312535109af3402143e250c/6312535109af3426f83e2678_nike_-%20logo-300x303.png"
+      qr-code-expired-label="Cógido QR Expirado" credentials-not-validated-label="Credenciales de usuario no validadas"
+      click-inside-box-label="Pincha en la caja" refresh-qr-label="Refrescar el QR" scan-qr-label="Escanear el QR"
+      user-not-scan-in-time-error-label="Qr no escaneado en el tiempo permitido" ,
+      creds-not-validated-error-label="Las Credenciales no se han podido validar" qr-modal-title="Acceso rápido"
+      modal-title-color="#4745B7" failed-login-error-label="Inicio de sesión fallido"
+      success-login-label="Inicio de sesión exitoso" by-brand-label="By Gataca"
+      waiting-start-session-label="Esperando inicio de sesión" hide-qr-modal-description="true" hide-brand-title="true"
+      v="3"
+      enable-dc-api="true">
+    </gataca-ssibutton>
+
   </div>
 
   <script>
-    const qr = document.getElementById("gataca-qr");
-    var count = 0;
-    var ok = true;
+    const qr = document.getElementById('gataca-qr');
+    //const server = 'https://champion-routinely-oryx.ngrok-free.app'; //rodrigo
+    const server = 'https://connect.dev.gataca.io';
+    //const server = 'https://mainly-stable-insect.ngrok-free.app';
+    const loginServer = 'https://nucleus.dev.gataca.io';
+    const verifier = true;
+    //const configId = 'test_sd_jwt';
+    const configId = 'mdoc';
+    const apiKey = 'eb2187c6-8ffe-4483-adda-d6c782785128';
+    const password = '84cb1SYwPdNREzr7FPJTzARYku7r3zXQiacUC6o4y6Ro';
+    let v2 = true;
+
+    const paths = {
+      true: {
+        true: "/api/v4/sessions",
+        false: "/api/v3/oidc-issuance/credential-offer",
+      }, false: {
+        true: "/api/v1/sessions",
+        false: "/api/v1/issuanceRequests",
+      }
+    }
+
+    const RESULT_STATUS = {
+      ONGOING: 0,
+      SUCCESS: 1,
+      FAILED: 2,
+    }
+    let sessionId = ''
+
+    qr.v2 = v2;
+
     qr.successCallback = (data) => {
-      //TODO Change with what you want to happen when the session is validated
-      alert("ALL OK" + data);
+      alert("ALL OK" + data?.email)
     };
     qr.errorCallback = () => {
-      //TODO Change with what you want to happen when the session is expired or the user provides invalid credentials
-      alert("some error");
+      alert("some error")
     };
-    qr.createSession = () => {
-      return {
-        sessionId: "TWp3V2R1N29ZcmFMY3Nvd3ZPb3k0UlMz",
-        authenticationRequest: true,
-      };
-    };
-    qr.checkStatus = () => {
-      //TODO Change with and invocation to your Backend service to query the status of the session
-      count++;
-      if (count == 5) {
-        return { result: ok ? 1 : 2, data: { name: "test", token: "x" } };
+
+    getAppToken = async () => {
+      // console.log('sessionID', sessionId)
+      let response = await fetch(loginServer + '/admin/v1/api_keys/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: 'Basic ' + btoa(apiKey + ':' + password),
+        },
+        body: '{}',
+      })
+      return response?.headers?.get('Token')
+    }
+
+    qr.createSession = async () => {
+      let endpoint =
+        server +
+        paths[v2][verifier]
+      let response = await fetch(endpoint, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: 'jwt ' + await getAppToken(),
+        },
+        body: verifier
+          ? '{"ssiConfigId": "' + configId + '"}'
+          : '{"group": "' + configId + '"}',
+      })
+      let data = await response.json()
+      if (v2) {
+        if (verifier) {
+          sessionId = data.sessionId
+          return { sessionId: sessionId, authenticationRequest: data.authentication_request }
+        }
+        sessionId = getSessionIdFromCredentialOfferUri(data.credential_offer_uri)
+        return { sessionId: sessionId, authenticationRequest: data.credential_offer_uri }
       }
-      if (count >= 3) {
-        return { result: 5 };
+      sessionId = data.id
+      return { sessionId: data.id, authenticationRequest: data.authentication_request }
+
+    }
+
+    const getSessionIdFromCredentialOfferUri = (credOfferUri) => {
+      let requrl = new URL(credOfferUri);
+      let credOffer = requrl.searchParams.get('credential_offer_uri');
+      if (credOffer) {
+        requrl = new URL(credOffer)
+        let sessionId = requrl.pathname.split("/").pop()
+        return sessionId
       }
-      return { result: 0 };
-    };
+      return
+    }
+
+    qr.checkStatus = async () => {
+      //TODO Implement your own service logic invocation. This is just a dummy mimicking the Connect/Certify v1 APIs asuming you get an app token in props
+      const endpoint =
+        server +
+        (verifier ? (v2 ? '/api/v4/sessions/' : '/api/v1/sessions/') : '/admin/v1/issuanceRequests/') +
+        sessionId
+      let response = await fetch(endpoint, {
+        method: 'GET',
+        headers: {
+          Authorization: 'jwt ' + await getAppToken(),
+          'Content-Type': 'application/json',
+        },
+      })
+
+      if (verifier) {
+        let req = await response
+        let ongoing = v2 ? 202 : 204
+        return req.status === 200
+          ? { result: RESULT_STATUS.SUCCESS }
+          : req.status === ongoing
+            ? { result: RESULT_STATUS.ONGOING }
+            : { result: RESULT_STATUS.FAILED }
+      } else {
+        let req = await response.json()
+        return !req.status || req.status === 'PENDING'
+          ? { result: RESULT_STATUS.ONGOING }
+          : req.status === 'INVALID'
+            ? { result: RESULT_STATUS.FAILED }
+            : { result: RESULT_STATUS.SUCCESS }
+      }
+    }
+
+    qr.fillSession = async (redirect_uri, body) => {
+        //TODO Implement your own service logic invocation. This is just a dummy mimicking the Connect/Certify v1 APIs asuming you get an app token in props
+        let response = await fetch(redirect_uri, {
+          method: 'POST',
+          headers: {
+            Authorization: 'jwt ' + await getAppToken(),
+            'Content-Type': 'application/json',
+          },
+          body: body
+        })
+
+        if (response.status !== 302 ){
+          return { result: RESULT_STATUS.FAILED, data: body }
+        }
+
+        const location = response.headers.get("Location")
+        console.log("LOCATION RESPONSE")
+
+        return { result: RESULT_STATUS.SUCCESS, data: body }
+      }
+
   </script>
+
 </body>
 
 </html>

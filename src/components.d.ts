@@ -8,6 +8,7 @@ import {HTMLStencilElement, JSXBase} from '@stencil/core/internal';
 import {DrawType} from 'qr-code-styling';
 import {RESULT_STATUS} from './utils';
 import {RESULT_STATUS as RESULT_STATUS1, WSResponse} from './utils/utils';
+import {qrStyle} from './components/gataca-qr/gataca-qr';
 export namespace Components {
     interface GatacaAutoqr {
         /**
@@ -175,6 +176,10 @@ export namespace Components {
          */
         qrSize?: number;
         /**
+         * _[Optional]_ Display a link containing a dynamic link to invoke the wallet if closed
+         */
+        qrStyle?: qrStyle;
+        /**
          * _[Optional]_ Sets the qr type. It can be "svg" or "canvas". "svg" by default.
          */
         qrType?: DrawType;
@@ -224,6 +229,10 @@ export namespace Components {
         waitingStartSessionLabel?: string;
     }
     interface GatacaQrdisplay {
+        /**
+         * _[Optional]_ QR Color.
+         */
+        bgColor?: string;
         /**
          * _[Optional]_ Size of the logo to display in percentage to the total size [0-1]. 0 means no logo will be displayed. Default is the GATACA logo. Recommended size is around 0.33
          */
@@ -429,6 +438,10 @@ export namespace Components {
          */
         autostart: boolean;
         /**
+         * _[Optional]_ In the case of enabling DCAPI button, allows to configure the text displayed
+         */
+        buttonDCAPIText?: string;
+        /**
          * _[Optional]_ In the case of being a button, modifies its text
          */
         buttonText?: string;
@@ -472,6 +485,10 @@ export namespace Components {
          */
         dynamicLink?: boolean;
         /**
+         * _[Optional]_ String to show "waiting start session" label
+         */
+        enableDcApi?: boolean;
+        /**
          * ***Mandatory*** Callback fired upon session expired or invalid If not set, session error would not be handled An error containing information will be passed as parameter
          */
         errorCallback: (error?: Error) => void;
@@ -479,6 +496,10 @@ export namespace Components {
          * _[Optional]_ String to show "failed login" error
          */
         failedLoginErrorLabel?: string;
+        /**
+         * ***Mandatory if DC API*** Sends the API response
+         */
+        fillSession?: (url: string, sessionData?: any) => Promise<{result: RESULT_STATUS1; data?: any}>;
         /**
          * Retrieve manually the session data on a successful login
          */
@@ -878,6 +899,10 @@ declare namespace LocalJSX {
          */
         qrSize?: number;
         /**
+         * _[Optional]_ Display a link containing a dynamic link to invoke the wallet if closed
+         */
+        qrStyle?: qrStyle;
+        /**
          * _[Optional]_ Sets the qr type. It can be "svg" or "canvas". "svg" by default.
          */
         qrType?: DrawType;
@@ -923,6 +948,10 @@ declare namespace LocalJSX {
         waitingStartSessionLabel?: string;
     }
     interface GatacaQrdisplay {
+        /**
+         * _[Optional]_ QR Color.
+         */
+        bgColor?: string;
         /**
          * _[Optional]_ Size of the logo to display in percentage to the total size [0-1]. 0 means no logo will be displayed. Default is the GATACA logo. Recommended size is around 0.33
          */
@@ -1124,6 +1153,10 @@ declare namespace LocalJSX {
          */
         autostart?: boolean;
         /**
+         * _[Optional]_ In the case of enabling DCAPI button, allows to configure the text displayed
+         */
+        buttonDCAPIText?: string;
+        /**
          * _[Optional]_ In the case of being a button, modifies its text
          */
         buttonText?: string;
@@ -1167,6 +1200,10 @@ declare namespace LocalJSX {
          */
         dynamicLink?: boolean;
         /**
+         * _[Optional]_ String to show "waiting start session" label
+         */
+        enableDcApi?: boolean;
+        /**
          * ***Mandatory*** Callback fired upon session expired or invalid If not set, session error would not be handled An error containing information will be passed as parameter
          */
         errorCallback?: (error?: Error) => void;
@@ -1174,6 +1211,10 @@ declare namespace LocalJSX {
          * _[Optional]_ String to show "failed login" error
          */
         failedLoginErrorLabel?: string;
+        /**
+         * ***Mandatory if DC API*** Sends the API response
+         */
+        fillSession?: (url: string, sessionData?: any) => Promise<{result: RESULT_STATUS1; data?: any}>;
         /**
          * _[Optional]_ Function that runs every time the loading state changes while checking if the App is installed. Only on mobile with v3.
          */
@@ -1198,6 +1239,10 @@ declare namespace LocalJSX {
          * _[Optional]_ String to set Modal title color
          */
         modalTitleColor?: string;
+        /**
+         * GatacaLoginCompleted event, triggered with session data upon login success
+         */
+        onGatacaButtonPushed?: (event: GatacaSsibuttonCustomEvent<any>) => void;
         /**
          * GatacaLoginCompleted event, triggered with session data upon login success
          */
