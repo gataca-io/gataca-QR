@@ -273,7 +273,7 @@ export class GatacaQR {
 
     /**
      * _[Optional]_
-     * Display a link containing a dynamic link to invoke the wallet if closed
+     * Adjust the color styles of the QR
      */
     @Prop() qrStyle?: qrStyle;
 

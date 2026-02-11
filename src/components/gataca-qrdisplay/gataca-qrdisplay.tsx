@@ -31,7 +31,6 @@ export class GatacaQRDisplay {
                 imageSize: this.logoSize
             },
             backgroundOptions: {
-                round: this.rounded ? 16 : 0,
                 color: this.bgColor
             }
         });
