@@ -110,7 +110,7 @@ export class GatacaSSIButton {
      * ***Mandatory if DC API***
      * Sends the API response
      */
-    @Prop() fillSession?: (url: string, sessionData?: any) => Promise<{result: RESULT_STATUS; data?: any}> = undefined;
+    @Prop() fillSession?: (request: any, sessionData?: any) => Promise<{result: RESULT_STATUS; data?: any}> = undefined;
 
     /**
      * ***Mandatory***
@@ -600,15 +600,7 @@ export class GatacaSSIButton {
             const decoded = window.atob(base64);
             let parsed = JSON.parse(decoded);
             parsed.response_mode = 'dc_api';
-            // parsed.client_metadata = {
-            //     vp_formats_supported: {
-            //         mso_mdoc: {
-            //             deviceauth_alg_values: [-7],
-            //             issuerauth_alg_values: [-7]
-            //         }
-            //     }
-            // };
-            return {request: parsed, uri: parsed.redirect_uri};
+            return parsed;
         }
     };
 
@@ -628,7 +620,7 @@ export class GatacaSSIButton {
 
             try {
                 const authRequest = await this.getAuthRequest();
-                let {request, uri} = await this.getRequestFromUri(authRequest);
+                let request = await this.getRequestFromUri(authRequest);
                 let credentialResponse = await navigator.credentials.get({
                     //@ts-ignore
                     digital: {
@@ -643,7 +635,8 @@ export class GatacaSSIButton {
                 if (credentialResponse.constructor.name == 'DigitalCredential') {
                     console.log('Digital Credential - Response Data: ' + credentialResponse);
                 }
-                await this.fillSession(uri, credentialResponse);
+                //@ts-ignore
+                await this.fillSession(request, credentialResponse?.data);
             } catch (error) {
                 this.stop();
                 handleLoading(false);

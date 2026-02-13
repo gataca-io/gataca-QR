@@ -9,6 +9,7 @@ import {DrawType} from 'qr-code-styling';
 import {RESULT_STATUS} from './utils';
 import {RESULT_STATUS as RESULT_STATUS1, WSResponse} from './utils/utils';
 import {qrStyle} from './components/gataca-qr/gataca-qr';
+import {qrStyle as qrStyle1} from './components/gataca-qr/gataca-qr';
 export namespace Components {
     interface GatacaAutoqr {
         /**
@@ -176,7 +177,7 @@ export namespace Components {
          */
         qrSize?: number;
         /**
-         * _[Optional]_ Display a link containing a dynamic link to invoke the wallet if closed
+         * _[Optional]_ Adjust the color styles of the QR
          */
         qrStyle?: qrStyle;
         /**
@@ -499,7 +500,7 @@ export namespace Components {
         /**
          * ***Mandatory if DC API*** Sends the API response
          */
-        fillSession?: (url: string, sessionData?: any) => Promise<{result: RESULT_STATUS1; data?: any}>;
+        fillSession?: (request: any, sessionData?: any) => Promise<{result: RESULT_STATUS1; data?: any}>;
         /**
          * Retrieve manually the session data on a successful login
          */
@@ -548,6 +549,10 @@ export namespace Components {
          * ***Mandatory*** Decide if scanning the credential as a verifier to request credentials or as an issuer too issue credentials. Options: connect | certify
          */
         qrRole: string;
+        /**
+         * _[Optional]_ Adjust the color styles of the QR
+         */
+        qrStyle?: qrStyle1;
         /**
          * _[Optional]_ Sets the qr type. It can be "svg" or "canvas". "svg" by default.
          */
@@ -899,7 +904,7 @@ declare namespace LocalJSX {
          */
         qrSize?: number;
         /**
-         * _[Optional]_ Display a link containing a dynamic link to invoke the wallet if closed
+         * _[Optional]_ Adjust the color styles of the QR
          */
         qrStyle?: qrStyle;
         /**
@@ -1214,7 +1219,7 @@ declare namespace LocalJSX {
         /**
          * ***Mandatory if DC API*** Sends the API response
          */
-        fillSession?: (url: string, sessionData?: any) => Promise<{result: RESULT_STATUS1; data?: any}>;
+        fillSession?: (request: any, sessionData?: any) => Promise<{result: RESULT_STATUS1; data?: any}>;
         /**
          * _[Optional]_ Function that runs every time the loading state changes while checking if the App is installed. Only on mobile with v3.
          */
@@ -1271,6 +1276,10 @@ declare namespace LocalJSX {
          * ***Mandatory*** Decide if scanning the credential as a verifier to request credentials or as an issuer too issue credentials. Options: connect | certify
          */
         qrRole?: string;
+        /**
+         * _[Optional]_ Adjust the color styles of the QR
+         */
+        qrStyle?: qrStyle1;
         /**
          * _[Optional]_ Sets the qr type. It can be "svg" or "canvas". "svg" by default.
          */

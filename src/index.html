@@ -148,15 +148,23 @@
       }
     }
 
-    qr.fillSession = async (redirect_uri, body) => {
+    qr.fillSession = async (request, data) => {
         //TODO Implement your own service logic invocation. This is just a dummy mimicking the Connect/Certify v1 APIs asuming you get an app token in props
-        let response = await fetch(redirect_uri, {
+
+         let body = {
+            vp_token: JSON.stringify(data)
+          };
+      if (request.state) {
+        body.state = request.state;
+      }
+      const params = new URLSearchParams(body);
+        let response = await fetch(request.response_uri, {
           method: 'POST',
           headers: {
-            Authorization: 'jwt ' + await getAppToken(),
-            'Content-Type': 'application/json',
+            'Content-Type': 'application/x-www-form-urlencoded'
           },
-          body: body
+          body: params.toString(),
+          redirect: 'manual'
         })
 
         if (response.status !== 302 ){
