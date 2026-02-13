@@ -2,6 +2,7 @@ import React from 'react';
 import {h} from '@stencil/core';
 import refreshIcon from '../../../../assets/icons/gat-icon-refresh.svg';
 import alertIcon from '../../../../assets/icons/gat-icon-alert.svg';
+import {qrStyle} from '../../gataca-qr';
 
 type IRetryButtonProps = {
     errorMessage?: string;
@@ -10,21 +11,22 @@ type IRetryButtonProps = {
     refreshQrLabel?: string;
     scanQrLabel?: string;
     waitingStartSessionLabel?: string;
+    style?: qrStyle;
     display: (x?: any) => void;
     renderRetryQR(value: string, useLogo?: boolean): any;
 };
 
 export const RetryButton: React.FC<IRetryButtonProps> = (props) => {
-    const {errorMessage, modalWidth, clickInsideBoxLabel, refreshQrLabel, scanQrLabel, waitingStartSessionLabel, display, renderRetryQR} = props;
+    const {errorMessage, modalWidth, clickInsideBoxLabel, refreshQrLabel, scanQrLabel, waitingStartSessionLabel, style, display, renderRetryQR} = props;
 
     return (
         <div
             class="reload"
             style={{
                 width: (modalWidth - 48).toString() + 'px',
-                height: modalWidth ? (modalWidth - 48)?.toString() + 'px' : ''
-            }}
-        >
+                height: modalWidth ? (modalWidth - 48)?.toString() + 'px' : '',
+                border: style?.color ? `1px dashed ${style?.color}` : `1px dashed #a1a1a1`
+            }}>
             <div id="notify" onClick={() => display()}>
                 <img src={refreshIcon} height={24} width={24} />
 
@@ -36,8 +38,7 @@ export const RetryButton: React.FC<IRetryButtonProps> = (props) => {
                         class="alert"
                         style={{
                             width: (modalWidth - 48).toString() + 'px'
-                        }}
-                    >
+                        }}>
                         <img src={alertIcon} height={24} width={24}></img>
                         <p>{errorMessage}</p>
                     </div>

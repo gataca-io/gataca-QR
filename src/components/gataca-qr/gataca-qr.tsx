@@ -17,6 +17,7 @@ const DEFAULT_POLLING_FREQ = 3;
 export type qrStyle = {
     color: string;
     bgColor: string;
+    boxShadow?: boolean;
 };
 
 @Component({
@@ -479,12 +480,13 @@ export class GatacaQR {
                     class={`is-visible modal-window ${this.hideModalTexts ? '' : 'large-modal'} ${this.hideModalBoxShadow ? 'noBoxShadow' : ''}`}
                     style={{
                         width: (this.modalWidth - 2).toString() + 'px',
-                        height: this.modalHeight ? (this.modalHeight - 2)?.toString() + 'px' : ''
+                        height: this.modalHeight ? (this.modalHeight - 2)?.toString() + 'px' : '',
+                        backgroundColor: this?.qrStyle?.bgColor ? this?.qrStyle?.bgColor : 'white',
+                        boxShadow: this?.qrStyle?.boxShadow ? '0px 3px 10px rgba(48, 48, 48, 0.1);' : 'none'
                     }}
                     onClick={(event) => {
                         event.stopPropagation();
-                    }}
-                >
+                    }}>
                     <div class="modal-window__content">
                         <div class={`qrTitleContainer ${this.hideModalTexts ? 'hidenText' : ''}`}>
                             <p class="qrTitle modalText" style={{color: this.modalTitleColor || '#1e1e20'}}>
@@ -505,8 +507,7 @@ export class GatacaQR {
                             style={{
                                 width: this.modalWidth.toString() + 'px',
                                 height: this.modalWidth ? this.modalWidth?.toString() + 'px' : ''
-                            }}
-                        >
+                            }}>
                             {this.renderQRSection()}
                         </div>
                     </div>

@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-02-10T16:58:05",
+  "timestamp": "2026-02-13T12:11:04",
   "compiler": {
     "name": "@stencil/core",
-    "version": "2.22.3",
-    "typescriptVersion": "4.9.4"
+    "version": "2.19.3",
+    "typescriptVersion": "4.7.4"
   },
   "components": [
     {
@@ -694,14 +694,14 @@
         },
         {
           "name": "qrStyle",
-          "type": "{ color: string; bgColor: string; }",
+          "type": "{ color: string; bgColor: string; boxShadow?: boolean; }",
           "mutable": false,
           "reflectToAttr": false,
-          "docs": "_[Optional]_\nDisplay a link containing a dynamic link to invoke the wallet if closed",
+          "docs": "_[Optional]_\nAdjust the color styles of the QR",
           "docsTags": [],
           "values": [
             {
-              "type": "{ color: string; bgColor: string; }"
+              "type": "{ color: string; bgColor: string; boxShadow?: boolean; }"
             }
           ],
           "optional": true,
@@ -2160,7 +2160,7 @@
         },
         {
           "name": "fillSession",
-          "type": "(url: string, sessionData?: any) => Promise<{ result: RESULT_STATUS; data?: any; }>",
+          "type": "(request: any, sessionData?: any) => Promise<{ result: RESULT_STATUS; data?: any; }>",
           "mutable": false,
           "reflectToAttr": false,
           "docs": "***Mandatory if DC API***\nSends the API response",
@@ -2168,7 +2168,7 @@
           "default": "undefined",
           "values": [
             {
-              "type": "(url: string, sessionData?: any) => Promise<{ result: RESULT_STATUS; data?: any; }>"
+              "type": "(request: any, sessionData?: any) => Promise<{ result: RESULT_STATUS; data?: any; }>"
             }
           ],
           "optional": true,
@@ -2355,6 +2355,21 @@
             }
           ],
           "optional": false,
+          "required": false
+        },
+        {
+          "name": "qrStyle",
+          "type": "{ color: string; bgColor: string; boxShadow?: boolean; }",
+          "mutable": false,
+          "reflectToAttr": false,
+          "docs": "_[Optional]_\nAdjust the color styles of the QR",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "{ color: string; bgColor: string; boxShadow?: boolean; }"
+            }
+          ],
+          "optional": true,
           "required": false
         },
         {
