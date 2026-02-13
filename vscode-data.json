@@ -191,6 +191,10 @@
       },
       "attributes": [
         {
+          "name": "bg-color",
+          "description": "_[Optional]_\nQR Color."
+        },
+        {
           "name": "logo-size",
           "description": "_[Optional]_\nSize of the logo to display in percentage to the total size [0-1]. 0 means no logo will be displayed. Default is the GATACA logo. Recommended size is around 0.33"
         },
@@ -397,6 +401,10 @@
           "description": "_[Optional]_\nSet to start polling when button or QR is displayed. By default it is true"
         },
         {
+          "name": "button-d-c-a-p-i-text",
+          "description": "_[Optional]_\nIn the case of enabling DCAPI button, allows to configure the text displayed"
+        },
+        {
           "name": "button-text",
           "description": "_[Optional]_\nIn the case of being a button, modifies its text"
         },
@@ -427,6 +435,10 @@
         {
           "name": "dynamic-link",
           "description": "_[Optional]_\nDisplay a link containing a dynamic link to invoke the wallet if closed"
+        },
+        {
+          "name": "enable-dc-api",
+          "description": "_[Optional]_\nString to show \"waiting start session\" label"
         },
         {
           "name": "failed-login-error-label",

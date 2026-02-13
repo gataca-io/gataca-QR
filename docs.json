@@ -1,5 +1,5 @@
 {
-  "timestamp": "2025-03-24T12:40:31",
+  "timestamp": "2026-02-13T12:11:04",
   "compiler": {
     "name": "@stencil/core",
     "version": "2.19.3",
@@ -104,7 +104,7 @@
           "reflectToAttr": false,
           "docs": "_[Optional]_\nSets the qr type. It can be \"svg\" or \"canvas\". \"svg\" by default.",
           "docsTags": [],
-          "default": "\"svg\"",
+          "default": "'svg'",
           "values": [
             {
               "value": "canvas",
@@ -281,7 +281,7 @@
           "reflectToAttr": false,
           "docs": "_[Optional]_\nString to show \"by brand\" label",
           "docsTags": [],
-          "default": "\"by Gataca\"",
+          "default": "'by Gataca'",
           "values": [
             {
               "type": "string"
@@ -330,7 +330,7 @@
           "reflectToAttr": false,
           "docs": "_[Optional]_\nString to show \"click inside\" label",
           "docsTags": [],
-          "default": "\"Click inside the box to\"",
+          "default": "'Click inside the box to'",
           "values": [
             {
               "type": "string"
@@ -363,7 +363,7 @@
           "reflectToAttr": false,
           "docs": "_[Optional]_\nString to show when credentials not validatedd",
           "docsTags": [],
-          "default": "\"User credentials not validated\"",
+          "default": "'User credentials not validated'",
           "values": [
             {
               "type": "string"
@@ -430,7 +430,7 @@
           "reflectToAttr": false,
           "docs": "_[Optional]_\nString to show \"failed login\" error",
           "docsTags": [],
-          "default": "\"No successful login\"",
+          "default": "'No successful login'",
           "values": [
             {
               "type": "string"
@@ -565,7 +565,7 @@
           "reflectToAttr": false,
           "docs": "_[Optional]_\nString to set Modal title color",
           "docsTags": [],
-          "default": "\"#4745B7\"",
+          "default": "'#4745B7'",
           "values": [
             {
               "type": "string"
@@ -616,7 +616,7 @@
           "reflectToAttr": false,
           "docs": "_[Optional]_\nString to show when qr code expired",
           "docsTags": [],
-          "default": "\"QR Code expired\"",
+          "default": "'QR Code expired'",
           "values": [
             {
               "type": "string"
@@ -633,7 +633,7 @@
           "reflectToAttr": false,
           "docs": "_[Optional]_\nModifies the Modal description",
           "docsTags": [],
-          "default": "\"Sign up or sign in by scanning the QR Code with the Gataca Wallet\"",
+          "default": "'Sign up or sign in by scanning the QR Code with the Gataca Wallet'",
           "values": [
             {
               "type": "string"
@@ -650,7 +650,7 @@
           "reflectToAttr": false,
           "docs": "_[Optional]_\nModifies the qr headline title",
           "docsTags": [],
-          "default": "\"Quick Access\"",
+          "default": "'Quick Access'",
           "values": [
             {
               "type": "string"
@@ -693,6 +693,21 @@
           "required": false
         },
         {
+          "name": "qrStyle",
+          "type": "{ color: string; bgColor: string; boxShadow?: boolean; }",
+          "mutable": false,
+          "reflectToAttr": false,
+          "docs": "_[Optional]_\nAdjust the color styles of the QR",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "{ color: string; bgColor: string; boxShadow?: boolean; }"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
           "name": "qrType",
           "type": "\"canvas\" | \"svg\"",
           "mutable": false,
@@ -700,7 +715,7 @@
           "reflectToAttr": false,
           "docs": "_[Optional]_\nSets the qr type. It can be \"svg\" or \"canvas\". \"svg\" by default.",
           "docsTags": [],
-          "default": "\"svg\"",
+          "default": "'svg'",
           "values": [
             {
               "value": "canvas",
@@ -722,7 +737,7 @@
           "reflectToAttr": false,
           "docs": "_[Optional]_\nString description to show when QR already read",
           "docsTags": [],
-          "default": "\"Please wait a moment\"",
+          "default": "'Please wait a moment'",
           "values": [
             {
               "type": "string"
@@ -739,7 +754,7 @@
           "reflectToAttr": false,
           "docs": "_[Optional]_\nString title to show when QR already read",
           "docsTags": [],
-          "default": "\"Processing...\"",
+          "default": "'Processing...'",
           "values": [
             {
               "type": "string"
@@ -756,7 +771,7 @@
           "reflectToAttr": false,
           "docs": "_[Optional]_\nString to show \"refresh QR\" label",
           "docsTags": [],
-          "default": "\"Refresh QR Code\"",
+          "default": "'Refresh QR Code'",
           "values": [
             {
               "type": "string"
@@ -773,7 +788,7 @@
           "reflectToAttr": false,
           "docs": "_[Optional]_\nString to show \"scan QR\" label",
           "docsTags": [],
-          "default": "\"Scan QR Code\"",
+          "default": "'Scan QR Code'",
           "values": [
             {
               "type": "string"
@@ -823,7 +838,7 @@
           "reflectToAttr": false,
           "docs": "_[Optional]_\nString to show \"successful login\" label",
           "docsTags": [],
-          "default": "\"Successful Connection!\"",
+          "default": "'Successful Connection!'",
           "values": [
             {
               "type": "string"
@@ -840,7 +855,7 @@
           "reflectToAttr": false,
           "docs": "_[Optional]_\nString to show \"user not scan in time\" error",
           "docsTags": [],
-          "default": "\"User did not scan the QR in the allowed time\"",
+          "default": "'User did not scan the QR in the allowed time'",
           "values": [
             {
               "type": "string"
@@ -857,7 +872,7 @@
           "reflectToAttr": false,
           "docs": "_[Optional]_\nIf 3, handle deeplink redirects and deprecates (remove) v1 functionality. If not, the create session must be providing both an authentication request and a session Id",
           "docsTags": [],
-          "default": "\"3\"",
+          "default": "'3'",
           "values": [
             {
               "type": "string"
@@ -874,7 +889,7 @@
           "reflectToAttr": false,
           "docs": "_[Optional]_\nString to show \"waiting start session\" label",
           "docsTags": [],
-          "default": "\"waiting to start a session\"",
+          "default": "'waiting to start a session'",
           "values": [
             {
               "type": "string"
@@ -972,6 +987,23 @@
       "usage": {},
       "props": [
         {
+          "name": "bgColor",
+          "type": "string",
+          "mutable": false,
+          "attr": "bg-color",
+          "reflectToAttr": false,
+          "docs": "_[Optional]_\nQR Color.",
+          "docsTags": [],
+          "default": "'#FFFFFF'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
           "name": "logoSize",
           "type": "number",
           "mutable": false,
@@ -1012,7 +1044,7 @@
           "reflectToAttr": false,
           "docs": "_[Optional]_\nQR Color.",
           "docsTags": [],
-          "default": "\"#1E1E20\"",
+          "default": "'#1E1E20'",
           "values": [
             {
               "type": "string"
@@ -1045,7 +1077,7 @@
           "reflectToAttr": false,
           "docs": "_[Optional]_\nSets the qr type. It can be \"svg\" or \"canvas\". \"svg\" by default.",
           "docsTags": [],
-          "default": "\"svg\"",
+          "default": "'svg'",
           "values": [
             {
               "value": "canvas",
@@ -1165,7 +1197,7 @@
           "reflectToAttr": false,
           "docs": "_[Optional]_\nString to show \"by brand\" label",
           "docsTags": [],
-          "default": "\"by Gataca\"",
+          "default": "'by Gataca'",
           "values": [
             {
               "type": "string"
@@ -1198,7 +1230,7 @@
           "reflectToAttr": false,
           "docs": "_[Optional]_\nString to show \"click inside\" label",
           "docsTags": [],
-          "default": "\"Click inside the box to\"",
+          "default": "'Click inside the box to'",
           "values": [
             {
               "type": "string"
@@ -1215,7 +1247,7 @@
           "reflectToAttr": false,
           "docs": "_[Optional]_\nString to show when credentials not validatedd",
           "docsTags": [],
-          "default": "\"User credentials not validated\"",
+          "default": "'User credentials not validated'",
           "values": [
             {
               "type": "string"
@@ -1282,7 +1314,7 @@
           "reflectToAttr": false,
           "docs": "_[Optional]_\nString to show \"failed login\" error",
           "docsTags": [],
-          "default": "\"No successful login\"",
+          "default": "'No successful login'",
           "values": [
             {
               "type": "string"
@@ -1417,7 +1449,7 @@
           "reflectToAttr": false,
           "docs": "_[Optional]_\nString to set Modal title color",
           "docsTags": [],
-          "default": "\"#4745B7\"",
+          "default": "'#4745B7'",
           "values": [
             {
               "type": "string"
@@ -1451,7 +1483,7 @@
           "reflectToAttr": false,
           "docs": "_[Optional]_\nString to show when qr code expired",
           "docsTags": [],
-          "default": "\"QR Code expired\"",
+          "default": "'QR Code expired'",
           "values": [
             {
               "type": "string"
@@ -1468,7 +1500,7 @@
           "reflectToAttr": false,
           "docs": "_[Optional]_\nModifies the Modal description",
           "docsTags": [],
-          "default": "\"Sign up or sign in by scanning the QR Code with the Gataca Wallet\"",
+          "default": "'Sign up or sign in by scanning the QR Code with the Gataca Wallet'",
           "values": [
             {
               "type": "string"
@@ -1485,7 +1517,7 @@
           "reflectToAttr": false,
           "docs": "_[Optional]_\nModifies the qr headline title",
           "docsTags": [],
-          "default": "\"Quick Access\"",
+          "default": "'Quick Access'",
           "values": [
             {
               "type": "string"
@@ -1535,7 +1567,7 @@
           "reflectToAttr": false,
           "docs": "_[Optional]_\nSets the qr type. It can be \"svg\" or \"canvas\". \"svg\" by default.",
           "docsTags": [],
-          "default": "\"svg\"",
+          "default": "'svg'",
           "values": [
             {
               "value": "canvas",
@@ -1557,7 +1589,7 @@
           "reflectToAttr": false,
           "docs": "_[Optional]_\nString description to show when QR already read",
           "docsTags": [],
-          "default": "\"Please wait a moment\"",
+          "default": "'Please wait a moment'",
           "values": [
             {
               "type": "string"
@@ -1574,7 +1606,7 @@
           "reflectToAttr": false,
           "docs": "_[Optional]_\nString title to show when QR already read",
           "docsTags": [],
-          "default": "\"Processing...\"",
+          "default": "'Processing...'",
           "values": [
             {
               "type": "string"
@@ -1591,7 +1623,7 @@
           "reflectToAttr": false,
           "docs": "_[Optional]_\nString to show \"refresh QR\" label",
           "docsTags": [],
-          "default": "\"Refresh QR Code\"",
+          "default": "'Refresh QR Code'",
           "values": [
             {
               "type": "string"
@@ -1608,7 +1640,7 @@
           "reflectToAttr": false,
           "docs": "_[Optional]_\nString to show \"scan QR\" label",
           "docsTags": [],
-          "default": "\"Scan QR Code\"",
+          "default": "'Scan QR Code'",
           "values": [
             {
               "type": "string"
@@ -1674,7 +1706,7 @@
           "reflectToAttr": false,
           "docs": "_[Optional]_\nString to show \"successful login\" label",
           "docsTags": [],
-          "default": "\"Successful Connection!\"",
+          "default": "'Successful Connection!'",
           "values": [
             {
               "type": "string"
@@ -1691,7 +1723,7 @@
           "reflectToAttr": false,
           "docs": "_[Optional]_\nString to show \"user not scan in time\" error",
           "docsTags": [],
-          "default": "\"User did not scan the QR in the allowed time\"",
+          "default": "'User did not scan the QR in the allowed time'",
           "values": [
             {
               "type": "string"
@@ -1708,7 +1740,7 @@
           "reflectToAttr": false,
           "docs": "_[Optional]_\nIf 3, handle deeplink redirects and deprecates (remove) v1 functionality. If not, the create session must be providing both an authentication request and a session Id",
           "docsTags": [],
-          "default": "\"3\"",
+          "default": "'3'",
           "values": [
             {
               "type": "string"
@@ -1725,7 +1757,7 @@
           "reflectToAttr": false,
           "docs": "_[Optional]_\nString to show \"waiting start session\" label",
           "docsTags": [],
-          "default": "\"waiting to start a session\"",
+          "default": "'waiting to start a session'",
           "values": [
             {
               "type": "string"
@@ -1893,6 +1925,23 @@
           "required": false
         },
         {
+          "name": "buttonDCAPIText",
+          "type": "string",
+          "mutable": false,
+          "attr": "button-d-c-a-p-i-text",
+          "reflectToAttr": false,
+          "docs": "_[Optional]_\nIn the case of enabling DCAPI button, allows to configure the text displayed",
+          "docsTags": [],
+          "default": "'Login with Device Credentials'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
           "name": "buttonText",
           "type": "string",
           "mutable": false,
@@ -1900,7 +1949,7 @@
           "reflectToAttr": false,
           "docs": "_[Optional]_\nIn the case of being a button, modifies its text",
           "docsTags": [],
-          "default": "\"Easy login\"",
+          "default": "'Easy login'",
           "values": [
             {
               "type": "string"
@@ -1917,7 +1966,7 @@
           "reflectToAttr": false,
           "docs": "_[Optional]_\nString to show \"by brand\" label",
           "docsTags": [],
-          "default": "\"by Gataca\"",
+          "default": "'by Gataca'",
           "values": [
             {
               "type": "string"
@@ -1983,7 +2032,7 @@
           "reflectToAttr": false,
           "docs": "_[Optional]_\nString to show \"click inside\" label",
           "docsTags": [],
-          "default": "\"Click inside the box to\"",
+          "default": "'Click inside the box to'",
           "values": [
             {
               "type": "string"
@@ -2016,7 +2065,7 @@
           "reflectToAttr": false,
           "docs": "_[Optional]_\nString to show when credentials not validatedd",
           "docsTags": [],
-          "default": "\"User credentials not validated\"",
+          "default": "'User credentials not validated'",
           "values": [
             {
               "type": "string"
@@ -2060,6 +2109,23 @@
           "required": false
         },
         {
+          "name": "enableDcApi",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "enable-dc-api",
+          "reflectToAttr": false,
+          "docs": "_[Optional]_\nString to show \"waiting start session\" label",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
           "name": "errorCallback",
           "type": "(error?: Error) => void",
           "mutable": false,
@@ -2083,10 +2149,26 @@
           "reflectToAttr": false,
           "docs": "_[Optional]_\nString to show \"failed login\" error",
           "docsTags": [],
-          "default": "\"No successful login\"",
+          "default": "'No successful login'",
           "values": [
             {
               "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "fillSession",
+          "type": "(request: any, sessionData?: any) => Promise<{ result: RESULT_STATUS; data?: any; }>",
+          "mutable": false,
+          "reflectToAttr": false,
+          "docs": "***Mandatory if DC API***\nSends the API response",
+          "docsTags": [],
+          "default": "undefined",
+          "values": [
+            {
+              "type": "(request: any, sessionData?: any) => Promise<{ result: RESULT_STATUS; data?: any; }>"
             }
           ],
           "optional": true,
@@ -2183,7 +2265,7 @@
           "reflectToAttr": false,
           "docs": "_[Optional]_\nString to set Modal title color",
           "docsTags": [],
-          "default": "\"#4745B7\"",
+          "default": "'#4745B7'",
           "values": [
             {
               "type": "string"
@@ -2216,7 +2298,7 @@
           "reflectToAttr": false,
           "docs": "_[Optional]_\nString to show when qr code expired",
           "docsTags": [],
-          "default": "\"QR Code expired\"",
+          "default": "'QR Code expired'",
           "values": [
             {
               "type": "string"
@@ -2233,7 +2315,7 @@
           "reflectToAttr": false,
           "docs": "_[Optional]_\nModifies the Modal description",
           "docsTags": [],
-          "default": "\"Sign up or sign in by scanning the QR Code with the Gataca Wallet\"",
+          "default": "'Sign up or sign in by scanning the QR Code with the Gataca Wallet'",
           "values": [
             {
               "type": "string"
@@ -2250,7 +2332,7 @@
           "reflectToAttr": false,
           "docs": "_[Optional]_\nModifies the qr headline title",
           "docsTags": [],
-          "default": "\"Quick Access\"",
+          "default": "'Quick Access'",
           "values": [
             {
               "type": "string"
@@ -2276,6 +2358,21 @@
           "required": false
         },
         {
+          "name": "qrStyle",
+          "type": "{ color: string; bgColor: string; boxShadow?: boolean; }",
+          "mutable": false,
+          "reflectToAttr": false,
+          "docs": "_[Optional]_\nAdjust the color styles of the QR",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "{ color: string; bgColor: string; boxShadow?: boolean; }"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
           "name": "qrType",
           "type": "\"canvas\" | \"svg\"",
           "mutable": false,
@@ -2283,7 +2380,7 @@
           "reflectToAttr": false,
           "docs": "_[Optional]_\nSets the qr type. It can be \"svg\" or \"canvas\". \"svg\" by default.",
           "docsTags": [],
-          "default": "\"svg\"",
+          "default": "'svg'",
           "values": [
             {
               "value": "canvas",
@@ -2305,7 +2402,7 @@
           "reflectToAttr": false,
           "docs": "_[Optional]_\nString to show \"refresh QR\" label",
           "docsTags": [],
-          "default": "\"Refresh QR Code\"",
+          "default": "'Refresh QR Code'",
           "values": [
             {
               "type": "string"
@@ -2322,7 +2419,7 @@
           "reflectToAttr": false,
           "docs": "_[Optional]_\nString to show \"scan QR\" label",
           "docsTags": [],
-          "default": "\"Scan QR Code\"",
+          "default": "'Scan QR Code'",
           "values": [
             {
               "type": "string"
@@ -2371,7 +2468,7 @@
           "reflectToAttr": false,
           "docs": "_[Optional]_\nString to show \"successful login\" label",
           "docsTags": [],
-          "default": "\"Successful Connection!\"",
+          "default": "'Successful Connection!'",
           "values": [
             {
               "type": "string"
@@ -2388,7 +2485,7 @@
           "reflectToAttr": false,
           "docs": "_[Optional]_\nString to show \"user not scan in time\" error",
           "docsTags": [],
-          "default": "\"User did not scan the QR in the allowed time\"",
+          "default": "'User did not scan the QR in the allowed time'",
           "values": [
             {
               "type": "string"
@@ -2405,7 +2502,7 @@
           "reflectToAttr": false,
           "docs": "_[Optional]_\nIf 3, handle deeplink redirects and deprecates (remove) v1 functionality. If not, the create session must be providing both an authentication request and a session Id",
           "docsTags": [],
-          "default": "\"3\"",
+          "default": "'3'",
           "values": [
             {
               "type": "string"
@@ -2422,7 +2519,7 @@
           "reflectToAttr": false,
           "docs": "_[Optional]_\nString to show \"waiting start session\" label",
           "docsTags": [],
-          "default": "\"waiting to start a session\"",
+          "default": "'waiting to start a session'",
           "values": [
             {
               "type": "string"
@@ -2468,6 +2565,15 @@
         }
       ],
       "events": [
+        {
+          "event": "gatacaButtonPushed",
+          "detail": "any",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "GatacaLoginCompleted event, triggered with session data upon login success",
+          "docsTags": []
+        },
         {
           "event": "gatacaLoginCompleted",
           "detail": "any",
@@ -2560,7 +2666,7 @@
           "reflectToAttr": false,
           "docs": "_[Optional]_\nIn the case of being a button, modifies its text",
           "docsTags": [],
-          "default": "\"Easy login\"",
+          "default": "'Easy login'",
           "values": [
             {
               "type": "string"
@@ -2643,7 +2749,7 @@
           "reflectToAttr": false,
           "docs": "_[Optional]_\nModifies the Modal description",
           "docsTags": [],
-          "default": "\"Sign up or sign in by scanning the QR Code with the Gataca Wallet\"",
+          "default": "'Sign up or sign in by scanning the QR Code with the Gataca Wallet'",
           "values": [
             {
               "type": "string"
@@ -2660,7 +2766,7 @@
           "reflectToAttr": false,
           "docs": "_[Optional]_\nModifies the qr headline title",
           "docsTags": [],
-          "default": "\"Quick Access\"",
+          "default": "'Quick Access'",
           "values": [
             {
               "type": "string"
@@ -2693,7 +2799,7 @@
           "reflectToAttr": false,
           "docs": "_[Optional]_\nSets the qr type. It can be \"svg\" or \"canvas\". \"svg\" by default.",
           "docsTags": [],
-          "default": "\"svg\"",
+          "default": "'svg'",
           "values": [
             {
               "value": "canvas",
@@ -2763,7 +2869,7 @@
           "reflectToAttr": false,
           "docs": "**RECOMMENDED**\nIf 3, handle deeplink redirects and deprecates (remove) v1 functionality. If not, the create session must be providing both an authentication request and a session Id",
           "docsTags": [],
-          "default": "\"3\"",
+          "default": "'3'",
           "values": [
             {
               "type": "string"

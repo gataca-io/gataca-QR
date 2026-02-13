@@ -1,18 +1,24 @@
 import {Component, Event, EventEmitter, h, Method, Prop, State} from '@stencil/core';
-import logoGataca from '../../assets/images/logo_gataca.svg';
-import '../gataca-qrdisplay/gataca-qrdisplay';
-import {base64UrlEncode, checkMobile, RESULT_STATUS} from '../../utils/utils';
-import {Success} from './components/success/Success';
-import {RetryButton} from './components/retryButton/RetryButton';
-import {ReadQR} from './components/readQR/ReadQR';
-import {QR} from './components/qr/QR';
 import {DrawType} from 'qr-code-styling';
+import logoGataca from '../../assets/images/logo_gataca.svg';
+import {base64UrlEncode, checkMobile, RESULT_STATUS} from '../../utils/utils';
+import '../gataca-qrdisplay/gataca-qrdisplay';
+import {QR} from './components/qr/QR';
+import {ReadQR} from './components/readQR/ReadQR';
+import {RetryButton} from './components/retryButton/RetryButton';
+import {Success} from './components/success/Success';
 
 const DEEP_LINK_PREFIX = 'https://api.gataca.io/qr/redirect.html';
 
 //Default values
 const DEFAULT_SESSION_TIMEOUT = 300; //5mins as in connect
 const DEFAULT_POLLING_FREQ = 3;
+
+export type qrStyle = {
+    color: string;
+    bgColor: string;
+    boxShadow?: boolean;
+};
 
 @Component({
     tag: 'gataca-qr',
@@ -266,6 +272,12 @@ export class GatacaQR {
      */
     @Prop() dynamicLink?: boolean = true;
 
+    /**
+     * _[Optional]_
+     * Adjust the color styles of the QR
+     */
+    @Prop() qrStyle?: qrStyle;
+
     @State() sessionId?: string;
     @State() authenticationRequest?: string;
     @State() sessionData: any = undefined;
@@ -454,11 +466,11 @@ export class GatacaQR {
     }
 
     renderQR(value: string, useLogo?: boolean, sizeQR?: number) {
-        return <QR value={value} qrType={this.qrType} useLogo={useLogo && this.logoSize !== 0} size={sizeQR || this?.qrSize || undefined} logoSrc={this?.logoSrc} />;
+        return <QR value={value} qrType={this.qrType} useLogo={useLogo && this.logoSize !== 0} size={sizeQR || this?.qrSize || undefined} logoSrc={this?.logoSrc} style={this?.qrStyle} />;
     }
 
     renderRetryQR(value: string, useLogo?: boolean) {
-        return <QR value={value} useLogo={useLogo && this.logoSize !== 0} qrType={this.qrType} size={this?.qrSize ? this?.qrSize - 50 : undefined} logoSrc={this?.logoSrc} />;
+        return <QR value={value} useLogo={useLogo && this.logoSize !== 0} qrType={this.qrType} size={this?.qrSize ? this?.qrSize - 50 : undefined} logoSrc={this?.logoSrc} style={this?.qrStyle} />;
     }
 
     render() {
@@ -468,12 +480,13 @@ export class GatacaQR {
                     class={`is-visible modal-window ${this.hideModalTexts ? '' : 'large-modal'} ${this.hideModalBoxShadow ? 'noBoxShadow' : ''}`}
                     style={{
                         width: (this.modalWidth - 2).toString() + 'px',
-                        height: this.modalHeight ? (this.modalHeight - 2)?.toString() + 'px' : ''
+                        height: this.modalHeight ? (this.modalHeight - 2)?.toString() + 'px' : '',
+                        backgroundColor: this?.qrStyle?.bgColor ? this?.qrStyle?.bgColor : 'white',
+                        boxShadow: this?.qrStyle?.boxShadow ? '0px 3px 10px rgba(48, 48, 48, 0.1);' : 'none'
                     }}
                     onClick={(event) => {
                         event.stopPropagation();
-                    }}
-                >
+                    }}>
                     <div class="modal-window__content">
                         <div class={`qrTitleContainer ${this.hideModalTexts ? 'hidenText' : ''}`}>
                             <p class="qrTitle modalText" style={{color: this.modalTitleColor || '#1e1e20'}}>
@@ -494,8 +507,7 @@ export class GatacaQR {
                             style={{
                                 width: this.modalWidth.toString() + 'px',
                                 height: this.modalWidth ? this.modalWidth?.toString() + 'px' : ''
-                            }}
-                        >
+                            }}>
                             {this.renderQRSection()}
                         </div>
                     </div>
