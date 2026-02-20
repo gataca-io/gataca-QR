@@ -19,7 +19,7 @@ export type qrStyle = {
     bgColor: string;
     alertBgColor?: string;
     alertBorderColor?: string;
-    boxShadow?: boolean;
+    boxShadow?: string;
 };
 
 @Component({
@@ -494,7 +494,7 @@ export class GatacaQR {
                         width: (this.modalWidth - 2).toString() + 'px',
                         height: this.modalHeight ? (this.modalHeight - 2)?.toString() + 'px' : '',
                         backgroundColor: this?.qrStyle?.bgColor ? this?.qrStyle?.bgColor : 'white',
-                        boxShadow: this?.qrStyle?.boxShadow ? '0px 3px 10px rgba(48, 48, 48, 0.1);' : 'none'
+                        boxShadow: this?.qrStyle?.boxShadow ? this?.qrStyle?.boxShadow : '0px 3px 10px rgba(48, 48, 48, 0.1);'
                     }}
                     onClick={(event) => {
                         event.stopPropagation();
