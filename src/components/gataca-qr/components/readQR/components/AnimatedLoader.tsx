@@ -1,9 +1,16 @@
 import React from 'react';
 import {h} from '@stencil/core';
 
-export const AnimatedLoader: React.FC = () => {
+type AnimatedLoaderProps = {
+    color?: string;
+};
+
+export const AnimatedLoader: React.FC<AnimatedLoaderProps> = (props) => {
+    const {color = '#4745B7'} = props;
+    const style = {'--loader-color': color} as any;
+
     return (
-        <div class="containerLoader">
+        <div class="containerLoader" style={style}>
             <div class="loader">
                 <div class="loader__item loader__item__1"></div>
                 <div class="loader__item loader__item__2"></div>

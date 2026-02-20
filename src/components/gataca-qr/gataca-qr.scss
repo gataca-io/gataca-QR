@@ -54,8 +54,6 @@ table {
 
 $items: 8;
 $velocity: 1.2;
-$colorStart: #4745B7;
-$colorEnd: #CCCBF8;
 
 /* Sizes */
 $itemWidthSM: 9.68;
@@ -338,7 +336,7 @@ img {
   padding: 20px;
   background: rgba(255, 255, 255, 0.95);
 
-  & > img {
+  & > svg {
     padding-bottom: 12px;
   }
 }
@@ -401,8 +399,11 @@ img {
     position: absolute;
     width: $itemWidthSM + px;
     height: $itemHeightSM + px;
-    background: transparent;
+    background-color: var(--loader-color, #4745B7);
     border-radius: calc($itemHeightSM / 2) + px;
+
+    --to-opacity: 1;
+    opacity: var(--to-opacity);
   }
   @for $i from 1 through $items {
     &__item__#{$i} {
@@ -410,13 +411,17 @@ img {
       $offsetX: (
         cos(calc(360deg / $items) * $i) * $radiusSM) - calc($itemWidthSM / 2
       );
-    $offsetY: (
-      sin(calc(360deg / $items) * $i) * $radiusSM) - calc($itemHeightSM / 2
-    );
+      $offsetY: (
+        sin(calc(360deg / $items) * $i) * $radiusSM) - calc($itemHeightSM / 2
+      );
+  
       transform: translate($offsetX + px, $offsetY + px) rotate($deg);
       -webkit-animation: translate($offsetX + px, $offsetY + px) rotate($deg);
       -moz-animation: translate($offsetX + px, $offsetY + px) rotate($deg);
       -o-animation: translate($offsetX + px, $offsetY + px) rotate($deg);
+
+      // 1, 0.875, 0.75, ..., 0.125 (12.5%)
+       --to-opacity: calc(1 - (#{$i - 1} / #{$items}));
 
       animation: blink #{calc(1 / $velocity)}s linear #{$i * calc(calc(1 / $velocity) / $items)}s infinite;
       -webkit-animation: blink #{calc(1 / $velocity)}s linear #{$i * calc(calc(1 / $velocity) / $items)}s infinite;
@@ -432,10 +437,10 @@ img {
 /// Animations Loader
 @keyframes blink {
   0% {
-    background: $colorStart;
+    opacity: 1;
   }
   100% {
-    background: $colorEnd;
+    opacity: var(--to-opacity);
   }
 }
 @keyframes rotate {

@@ -17,6 +17,8 @@ const DEFAULT_POLLING_FREQ = 3;
 export type qrStyle = {
     color: string;
     bgColor: string;
+    alertBgColor?: string;
+    alertBorderColor?: string;
     boxShadow?: boolean;
 };
 
@@ -443,7 +445,7 @@ export class GatacaQR {
     }
 
     renderSuccess() {
-        return <Success modalHeight={this?.modalHeight} successLoginLabel={this?.successLoginLabel} />;
+        return <Success modalHeight={this?.modalHeight} successLoginLabel={this?.successLoginLabel} style={this?.qrStyle} />;
     }
 
     renderRetryButton(errorMessage?: string) {
@@ -457,12 +459,22 @@ export class GatacaQR {
                 waitingStartSessionLabel={this?.waitingStartSessionLabel}
                 display={this.display.bind(this)}
                 renderRetryQR={this.renderRetryQR.bind(this)}
+                style={this?.qrStyle}
             />
         );
     }
 
     renderReadQR(readQrMessages?: {title; description}) {
-        return <ReadQR modalWidth={this?.modalWidth} readQrMessages={readQrMessages} url={this.getLink()} sizeQR={this?.qrSize ? this?.qrSize - 50 : undefined} renderQR={this.renderQR.bind(this)} />;
+        return (
+            <ReadQR
+                modalWidth={this?.modalWidth}
+                readQrMessages={readQrMessages}
+                url={this.getLink()}
+                sizeQR={this?.qrSize ? this?.qrSize - 50 : undefined}
+                renderQR={this.renderQR.bind(this)}
+                style={this.qrStyle}
+            />
+        );
     }
 
     renderQR(value: string, useLogo?: boolean, sizeQR?: number) {

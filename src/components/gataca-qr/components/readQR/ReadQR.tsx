@@ -18,6 +18,9 @@ type IReadQRProps = {
 export const ReadQR: React.FC<IReadQRProps> = (props) => {
     const {modalWidth, readQrMessages, renderQR, url, sizeQR, style} = props;
 
+    const bgStyle = {backgroundColor: style?.bgColor ? style?.bgColor : 'white'};
+    const color = {color: style?.color ? style?.color : '#707074'};
+
     return (
         <div
             class="blured"
@@ -28,24 +31,12 @@ export const ReadQR: React.FC<IReadQRProps> = (props) => {
                 color: style?.color,
                 border: style?.color ? `1px dashed ${style?.color}` : `1px dashed #a1a1a1`
             }}>
-            <div
-                id="notify"
-                style={{
-                    backgroundColor: style?.bgColor ? style?.bgColor : 'white'
-                }}>
-                <AnimatedLoader />
-                <p
-                    class="notify-text"
-                    style={{
-                        color: style?.color ? style?.color : '#707074'
-                    }}>
+            <div id="notify" style={bgStyle}>
+                <AnimatedLoader color={style?.color} />
+                <p class="notify-text" style={color}>
                     {readQrMessages?.title}{' '}
                 </p>
-                <p
-                    class="notify-text bold"
-                    style={{
-                        color: style?.color ? style?.color : '#707074'
-                    }}>
+                <p class="notify-text bold" style={color}>
                     {readQrMessages?.description}
                 </p>
             </div>
