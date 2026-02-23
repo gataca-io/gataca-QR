@@ -2,7 +2,7 @@ import React from 'react';
 import {h} from '@stencil/core';
 import alertIcon from '../../../../assets/icons/gat-icon-alert.svg';
 import {qrStyle} from '../../gataca-qr';
-import {RefreshIcon} from '../../../../assets/icons/RefreshIcon';
+import {RefreshIcon} from '../../../icons/RefreshIcon';
 
 type IRetryButtonProps = {
     errorMessage?: string;
