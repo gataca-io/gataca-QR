@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-02-13T12:11:04",
+  "timestamp": "2026-02-23T20:08:59",
   "compiler": {
     "name": "@stencil/core",
     "version": "2.19.3",
@@ -694,14 +694,14 @@
         },
         {
           "name": "qrStyle",
-          "type": "{ color: string; bgColor: string; boxShadow?: boolean; }",
+          "type": "{ color: string; bgColor: string; alertBgColor?: string; alertBorderColor?: string; boxShadow?: string; }",
           "mutable": false,
           "reflectToAttr": false,
           "docs": "_[Optional]_\nAdjust the color styles of the QR",
           "docsTags": [],
           "values": [
             {
-              "type": "{ color: string; bgColor: string; boxShadow?: boolean; }"
+              "type": "{ color: string; bgColor: string; alertBgColor?: string; alertBorderColor?: string; boxShadow?: string; }"
             }
           ],
           "optional": true,
@@ -2359,14 +2359,14 @@
         },
         {
           "name": "qrStyle",
-          "type": "{ color: string; bgColor: string; boxShadow?: boolean; }",
+          "type": "{ color: string; bgColor: string; alertBgColor?: string; alertBorderColor?: string; boxShadow?: string; }",
           "mutable": false,
           "reflectToAttr": false,
           "docs": "_[Optional]_\nAdjust the color styles of the QR",
           "docsTags": [],
           "values": [
             {
-              "type": "{ color: string; bgColor: string; boxShadow?: boolean; }"
+              "type": "{ color: string; bgColor: string; alertBgColor?: string; alertBorderColor?: string; boxShadow?: string; }"
             }
           ],
           "optional": true,

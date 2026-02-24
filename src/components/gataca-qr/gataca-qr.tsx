@@ -17,7 +17,9 @@ const DEFAULT_POLLING_FREQ = 3;
 export type qrStyle = {
     color: string;
     bgColor: string;
-    boxShadow?: boolean;
+    alertBgColor?: string;
+    alertBorderColor?: string;
+    boxShadow?: string;
 };
 
 @Component({
@@ -443,7 +445,7 @@ export class GatacaQR {
     }
 
     renderSuccess() {
-        return <Success modalHeight={this?.modalHeight} successLoginLabel={this?.successLoginLabel} />;
+        return <Success modalHeight={this?.modalHeight} successLoginLabel={this?.successLoginLabel} style={this?.qrStyle} />;
     }
 
     renderRetryButton(errorMessage?: string) {
@@ -457,12 +459,22 @@ export class GatacaQR {
                 waitingStartSessionLabel={this?.waitingStartSessionLabel}
                 display={this.display.bind(this)}
                 renderRetryQR={this.renderRetryQR.bind(this)}
+                style={this?.qrStyle}
             />
         );
     }
 
     renderReadQR(readQrMessages?: {title; description}) {
-        return <ReadQR modalWidth={this?.modalWidth} readQrMessages={readQrMessages} url={this.getLink()} sizeQR={this?.qrSize ? this?.qrSize - 50 : undefined} renderQR={this.renderQR.bind(this)} />;
+        return (
+            <ReadQR
+                modalWidth={this?.modalWidth}
+                readQrMessages={readQrMessages}
+                url={this.getLink()}
+                sizeQR={this?.qrSize ? this?.qrSize - 50 : undefined}
+                renderQR={this.renderQR.bind(this)}
+                style={this.qrStyle}
+            />
+        );
     }
 
     renderQR(value: string, useLogo?: boolean, sizeQR?: number) {
@@ -482,7 +494,7 @@ export class GatacaQR {
                         width: (this.modalWidth - 2).toString() + 'px',
                         height: this.modalHeight ? (this.modalHeight - 2)?.toString() + 'px' : '',
                         backgroundColor: this?.qrStyle?.bgColor ? this?.qrStyle?.bgColor : 'white',
-                        boxShadow: this?.qrStyle?.boxShadow ? '0px 3px 10px rgba(48, 48, 48, 0.1);' : 'none'
+                        boxShadow: this?.qrStyle?.boxShadow ? this?.qrStyle?.boxShadow : '0px 3px 10px rgba(48, 48, 48, 0.1);'
                     }}
                     onClick={(event) => {
                         event.stopPropagation();
