@@ -10,14 +10,12 @@ type IRetryButtonProps = {
     clickInsideBoxLabel?: string;
     refreshQrLabel?: string;
     scanQrLabel?: string;
-    waitingStartSessionLabel?: string;
     style?: qrStyle;
     display: (x?: any) => void;
-    renderRetryQR(value: string, useLogo?: boolean): any;
 };
 
 export const RetryButton: React.FC<IRetryButtonProps> = (props) => {
-    const {errorMessage, modalWidth, clickInsideBoxLabel, refreshQrLabel, scanQrLabel, waitingStartSessionLabel, style, display, renderRetryQR} = props;
+    const {errorMessage, modalWidth, clickInsideBoxLabel, refreshQrLabel, scanQrLabel, style, display} = props;
 
     const bgStyle = {backgroundColor: style?.bgColor ? style?.bgColor : 'white'};
     const alertBgStyle = {backgroundColor: style?.alertBgColor ? style?.alertBgColor : '#ffdedf'};
@@ -61,7 +59,14 @@ export const RetryButton: React.FC<IRetryButtonProps> = (props) => {
                     </div>
                 )}
             </div>
-            <div id="qrwait">{renderRetryQR(waitingStartSessionLabel)}</div>
+            <div
+                id="qrwait"
+                class="qr-placeholder-slot"
+                style={{
+                    width: (modalWidth - 48).toString() + 'px',
+                    height: modalWidth ? (modalWidth - 48).toString() + 'px' : ''
+                }}
+            />
         </div>
     );
 };

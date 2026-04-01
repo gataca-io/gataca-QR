@@ -1,7 +1,7 @@
 import {Component, Event, EventEmitter, h, Method, Prop, State} from '@stencil/core';
 import {DrawType} from 'qr-code-styling';
 import logoGataca from '../../assets/images/logo_gataca.svg';
-import {base64UrlEncode, checkMobile, RESULT_STATUS} from '../../utils/utils';
+import {base64UrlEncode, checkMobile, RESULT_STATUS, shortenUrlIfPossible} from '../../utils/utils';
 import '../gataca-qrdisplay/gataca-qrdisplay';
 import {QR} from './components/qr/QR';
 import {ReadQR} from './components/readQR/ReadQR';
@@ -284,6 +284,8 @@ export class GatacaQR {
     @State() authenticationRequest?: string;
     @State() sessionData: any = undefined;
     @State() result: RESULT_STATUS = RESULT_STATUS.NOT_STARTED;
+    @State() qrHref: string = '';
+    private lastShortenRaw: string | null = null;
 
     async componentDidLoad() {
         if (this.autostart) {
@@ -319,6 +321,7 @@ export class GatacaQR {
     @Method()
     async display(): Promise<void> {
         await this.getSessionId();
+        await this.refreshQrHref();
         this.result = RESULT_STATUS.ONGOING;
         this.poll()
             .then((data: any) => {
@@ -346,6 +349,30 @@ export class GatacaQR {
         }
     }
 
+    private buildRawLink(): string {
+        if (this.v === '2') {
+            return this.authenticationRequest ?? '';
+        }
+        const authRequestEncoded = '?dl=' + base64UrlEncode(this.authenticationRequest);
+
+        return DEEP_LINK_PREFIX + authRequestEncoded;
+    }
+
+    private async refreshQrHref(): Promise<void> {
+        const raw = this.buildRawLink();
+        if (raw === this.lastShortenRaw) {
+            return;
+        }
+        this.lastShortenRaw = raw;
+        const shortened = await shortenUrlIfPossible(raw ?? '');
+        const now = this.buildRawLink();
+        if (now === raw) {
+            this.qrHref = shortened;
+        } else if (!this.qrHref?.trim()) {
+            this.qrHref = now;
+        }
+    }
+
     /**
      * Stop manually an ongoing session
      */
@@ -360,6 +387,8 @@ export class GatacaQR {
     clean(): void {
         this.sessionData = undefined;
         this.sessionId = undefined;
+        this.qrHref = '';
+        this.lastShortenRaw = null;
     }
 
     /**
@@ -381,12 +410,7 @@ export class GatacaQR {
     }
 
     getLink(): string {
-        if (this.v === '2') {
-            return this.authenticationRequest;
-        }
-        const authRequestEncoded = '?dl=' + base64UrlEncode(this.authenticationRequest);
-
-        return DEEP_LINK_PREFIX + authRequestEncoded;
+        return this.qrHref || this.buildRawLink();
     }
 
     async poll() {
@@ -429,7 +453,7 @@ export class GatacaQR {
             case RESULT_STATUS.NOT_STARTED:
                 return this.renderRetryButton();
             case RESULT_STATUS.ONGOING:
-                return this.renderQR(this.getLink(), true);
+                return this.renderQR(this.getLink(), true, undefined, !!this.qrHref?.trim());
             case RESULT_STATUS.EXPIRED:
                 return this.renderRetryButton(this.qrCodeExpiredLabel);
             case RESULT_STATUS.FAILED:
@@ -456,33 +480,38 @@ export class GatacaQR {
                 clickInsideBoxLabel={this?.clickInsideBoxLabel}
                 refreshQrLabel={this?.refreshQrLabel}
                 scanQrLabel={this?.scanQrLabel}
-                waitingStartSessionLabel={this?.waitingStartSessionLabel}
                 display={this.display.bind(this)}
-                renderRetryQR={this.renderRetryQR.bind(this)}
                 style={this?.qrStyle}
             />
         );
     }
 
     renderReadQR(readQrMessages?: {title; description}) {
+        const linkReady = !!this.qrHref?.trim();
         return (
             <ReadQR
                 modalWidth={this?.modalWidth}
                 readQrMessages={readQrMessages}
                 url={this.getLink()}
                 sizeQR={this?.qrSize ? this?.qrSize - 50 : undefined}
-                renderQR={this.renderQR.bind(this)}
+                renderQR={(url, useLogo, size) => this.renderQR(url, useLogo, size, linkReady)}
                 style={this.qrStyle}
             />
         );
     }
 
-    renderQR(value: string, useLogo?: boolean, sizeQR?: number) {
-        return <QR value={value} qrType={this.qrType} useLogo={useLogo && this.logoSize !== 0} size={sizeQR || this?.qrSize || undefined} logoSrc={this?.logoSrc} style={this?.qrStyle} />;
-    }
-
-    renderRetryQR(value: string, useLogo?: boolean) {
-        return <QR value={value} useLogo={useLogo && this.logoSize !== 0} qrType={this.qrType} size={this?.qrSize ? this?.qrSize - 50 : undefined} logoSrc={this?.logoSrc} style={this?.qrStyle} />;
+    renderQR(value: string, useLogo?: boolean, sizeQR?: number, linkReady: boolean = true) {
+        return (
+            <QR
+                value={value}
+                qrType={this.qrType}
+                useLogo={useLogo && this.logoSize !== 0}
+                size={sizeQR || this?.qrSize || undefined}
+                logoSrc={this?.logoSrc}
+                style={this?.qrStyle}
+                linkReady={linkReady}
+            />
+        );
     }
 
     render() {

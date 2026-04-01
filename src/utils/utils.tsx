@@ -83,3 +83,52 @@ export type QRConfig = (QRLogin & QRButton) & {
     useButton?: boolean;
     useWs?: boolean;
 };
+
+const GATACA_SHORTEN_API = 'https://links.gataca.io/api/v1/short';
+
+function extractShortUrlFromResponse(body: unknown): string | null {
+    if (!body || typeof body !== 'object') {
+        return null;
+    }
+    const o = body as Record<string, unknown>;
+    for (const key of ['url', 'shortUrl', 'short_url', 'link']) {
+        const v = o[key];
+        if (typeof v === 'string' && v.trim() !== '') {
+            return v;
+        }
+    }
+    return null;
+}
+
+/**
+ * POSTs the link to shortener. On success with a non-empty url in the body, returns that url;
+ * otherwise returns the original link.
+ */
+export async function shortenUrlIfPossible(link?: string): Promise<string> {
+    const trimmedLink = link?.trim() || '';
+    const linkHasLength = trimmedLink?.length;
+
+    if (!linkHasLength) {
+        return link ?? '';
+    }
+
+    try {
+        const res = await fetch(GATACA_SHORTEN_API, {
+            method: 'POST',
+            mode: 'cors',
+            credentials: 'omit',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({url: trimmedLink})
+        });
+        if (res.status !== 200 && res.status !== 201) {
+            return link;
+        }
+        const data = await res.json().catch(() => null);
+        const short = extractShortUrlFromResponse(data);
+        return short ?? link;
+    } catch {
+        return link;
+    }
+}
+
+//

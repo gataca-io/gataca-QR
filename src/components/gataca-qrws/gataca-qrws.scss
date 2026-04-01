@@ -316,6 +316,13 @@ img {
   justify-content: center;
 }
 
+.qr-placeholder-slot,
+.qr-loading-slot {
+  box-sizing: border-box;
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.04);
+}
+
 #qrwait,
 #notify {
   width: 100%;

@@ -1,5 +1,5 @@
-import {Component, h, Prop} from '@stencil/core';
-import QRCodeStyling, {DrawType} from 'qr-code-styling';
+import {Component, h, Prop, Watch} from '@stencil/core';
+import QRCodeStyling, {DrawType, Options} from 'qr-code-styling';
 import logoGataca from '../../assets/images/logo_gataca.svg';
 
 @Component({
@@ -7,9 +7,10 @@ import logoGataca from '../../assets/images/logo_gataca.svg';
 })
 export class GatacaQRDisplay {
     private qr: HTMLDivElement;
+    private qrCode: QRCodeStyling;
 
-    componentDidLoad() {
-        const qrCode = new QRCodeStyling({
+    private getQrOptions(): Partial<Options> {
+        return {
             data: this.qrData,
             width: this.size,
             height: this.size,
@@ -33,8 +34,28 @@ export class GatacaQRDisplay {
             backgroundOptions: {
                 color: this.bgColor
             }
-        });
-        qrCode.append(this.qr);
+        };
+    }
+
+    componentDidLoad() {
+        this.mountOrUpdateQr();
+    }
+
+    @Watch('qrData')
+    onQrDataChange() {
+        this.mountOrUpdateQr();
+    }
+
+    private mountOrUpdateQr() {
+        if (!this.qrData?.trim() || !this.qr) {
+            return;
+        }
+        if (!this.qrCode) {
+            this.qrCode = new QRCodeStyling(this.getQrOptions());
+            this.qrCode.append(this.qr);
+        } else {
+            this.qrCode.update({data: this.qrData});
+        }
     }
 
     /**
