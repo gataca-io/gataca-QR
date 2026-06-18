@@ -1,0 +1,57 @@
+# Hidden from AI context (@ mentions, Composer). On disk + git unless .gitignored.
+
+# Secrets
+.env*
+*.key
+*.pem
+*.p12
+*.pfx
+credentials.json
+service-account*.json
+.npmrc
+id_rsa*
+*.crt
+*.cer
+*secret*
+*token*
+
+# Dependencies & build
+node_modules/
+dist/
+www/
+.stencil/
+loader/
+
+# Generated docs/stats
+docs.json
+stats.json
+vscode-data.json
+licenses.txt
+licenses-summary.txt
+
+# Lock files
+yarn.lock
+package-lock.json
+
+# Logs & OS
+yarn-error.log
+npm-debug.log*
+.DS_Store
+
+# Binary assets
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.svg
+*.ico
+*.woff
+*.woff2
+*.ttf
+*.eot
+
+# Coverage
+coverage/
+
+# Long-session harness (load only on `longsession`)
+.ai-harness/

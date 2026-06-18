@@ -1,0 +1,12 @@
+---
+alwaysApply: true
+---
+
+Use `docs/ai/*` as indexes, not dumps.
+
+Prefer: `PROJECT_CONTEXT.md`, `ARCHITECTURE_DECISIONS.md`, `CURRENT_PROGRESS.md`, `VERIFICATION.md`.
+Before coding: choose smallest file set, state files to read/change, and never scan the whole repo unless asked. If confidence <95%, ask 1 question or give a plan.
+Ignore `.ai-harness/**` unless user says: `longsession`, `long session`, `resume long session`, or `continue harness`.
+Then read: progress, handoff, feature-list, verification, commands.
+Summarize state and continue the smallest next task.
+Read `CURSOR_WORKFLOW.md` only for Cursor/AI workflow, output modes, prompts, or long-session usage.

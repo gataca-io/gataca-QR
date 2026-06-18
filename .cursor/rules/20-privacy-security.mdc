@@ -1,0 +1,8 @@
+---
+alwaysApply: true
+---
+
+Never read, print, summarize, or expose secrets.
+Secrets include: `.env*`, keys, certs, prod creds, customer data, DB dumps, tokens, service accounts.
+Use placeholders unless approved.
+Do not log sensitive data, expose backend internals, rely on undocumented backend behavior, or show raw internal errors.

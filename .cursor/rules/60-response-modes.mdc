@@ -1,0 +1,7 @@
+---
+alwaysApply: true
+---
+
+First line may set. Default: `outmid`.
+Modes affect output only.
+Correctness, security, privacy, and maintainability override brevity.

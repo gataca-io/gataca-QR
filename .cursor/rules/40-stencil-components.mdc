@@ -1,0 +1,11 @@
+---
+globs: ["src/**/*.{ts,tsx,scss}"]
+alwaysApply: false
+---
+Stencil 2 web components: shadow DOM, `@Component` / `@Prop` / `@Event` / `@State` / `@Method`, JSX via `h`.
+One folder per tag under `src/components/`. Co-locate `*.tsx`, `*.scss`, `readme.md`, `*.e2e.ts`. Sub-UI in `components/` subfolder.
+
+Match sibling component patterns. Polling vs WS variants share UX — change both only when intentional.
+Host integration via props (callbacks, endpoints) — do not embed host backend URLs or invent API shapes.
+Reuse `src/utils/utils.tsx` types (`RESULT_STATUS`, `WSResponse`, etc.). QR rendering via `qr-code-styling`.
+Do not edit `gatacaqr-react/` (generated). Prefer small, scoped diffs.

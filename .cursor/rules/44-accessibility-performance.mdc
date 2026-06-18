@@ -1,0 +1,6 @@
+---
+globs: ["**/*.{tsx,scss}"]
+alwaysApply: false
+---
+Web components: keyboard use, focus management in modals/panels, meaningful labels, loading/error/success states visible to assistive tech.
+Shadow DOM limits global CSS — style inside component SCSS. Avoid heavy deps and unnecessary re-renders in polling/WS loops.

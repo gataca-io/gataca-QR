@@ -1,0 +1,7 @@
+---
+globs: ["**/*.{ts,tsx}"]
+alwaysApply: false
+---
+Stencil decorators + TS. Prefer explicit interfaces for `@Prop` contracts. Avoid new `any` unless matching existing callback props.
+Naming: components/classes PascalCase, files kebab-case folders, constants ALL_CAPS, enums PascalCase.
+Keep methods focused; extract shared logic to `src/utils/`. Match existing formatting (Prettier).
