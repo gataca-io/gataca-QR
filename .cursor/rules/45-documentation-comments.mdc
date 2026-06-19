@@ -1,0 +1,6 @@
+---
+globs: ["src/**/*.{ts,tsx}", "docs/ai/**/*.md"]
+alwaysApply: false
+---
+Comment non-obvious WHY only. `@Prop` JSDoc for public integration surface (match existing style in component files).
+Update component `readme.md` when public props/behavior change. No unrelated docs.

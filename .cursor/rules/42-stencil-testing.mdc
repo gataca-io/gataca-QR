@@ -1,0 +1,6 @@
+---
+globs: ["**/*.{spec,e2e}.{ts,tsx}", "**/__tests__/**"]
+alwaysApply: false
+---
+Stencil test runner (Jest + Puppeteer e2e). Test user-visible behavior: render, session states, callbacks, retry/expiry.
+Avoid testing private methods or snapshot-only coverage. Run scoped: `yarn test --spec -- src/components/<name>`.
