@@ -2,7 +2,7 @@ import {Component, Event, EventEmitter, h, Listen, Method, Prop, State} from '@s
 import logoGataca from '../../assets/images/logo_gataca.svg';
 import '../gataca-qrdisplay/gataca-qrdisplay';
 
-import {base64UrlEncode, checkMobile, RESULT_STATUS, WSResponse} from '../../utils/utils';
+import {base64UrlEncode, checkMobile, RESULT_STATUS, shortenUrlIfPossible, WSResponse} from '../../utils/utils';
 import {Success} from './components/success/Success';
 import {RetryButton} from './components/retryButton/RetryButton';
 import {QR} from './components/qr/QR';
@@ -263,6 +263,8 @@ export class GatacaQRWS {
     @State() authenticationRequest?: string;
     @State() sessionData: any = undefined;
     @State() result: RESULT_STATUS = RESULT_STATUS.NOT_STARTED;
+    @State() qrHref: string = '';
+    @State() qrShortenPending: boolean = false;
 
     async componentDidLoad() {
         if (this.autostart) {
@@ -293,12 +295,18 @@ export class GatacaQRWS {
     gatacaLoginFailed: EventEmitter;
 
     socket: WebSocket;
+    private qrRefreshGeneration = 0;
+    private lastShortenRaw: string | null = null;
 
     /**
      * Force manually the display of a QR
      */
     @Method()
     async display(): Promise<void> {
+        this.qrHref = '';
+        this.qrShortenPending = false;
+        this.lastShortenRaw = null;
+        this.qrRefreshGeneration++;
         let socket = new WebSocket(this.socketEndpoint);
         setTimeout(() => {
             this.socket.close(1000, '');
@@ -358,10 +366,16 @@ export class GatacaQRWS {
         this.result = wsresp.result;
         switch (wsresp.result) {
             case RESULT_STATUS.ONGOING:
-            case RESULT_STATUS.READ:
+            case RESULT_STATUS.READ: {
                 this.sessionId = wsresp.sessionId;
                 this.authenticationRequest = wsresp.authenticationRequest;
+                const raw = this.buildRawLink();
+                if (raw?.trim()) {
+                    this.qrShortenPending = true;
+                    void this.refreshQrHref();
+                }
                 break;
+            }
             case RESULT_STATUS.SUCCESS:
                 this.sessionData = wsresp.authenticatedUserData;
                 this.gatacaLoginCompleted.emit(wsresp.authenticatedUserData);
@@ -393,6 +407,9 @@ export class GatacaQRWS {
     async stop(): Promise<void> {
         this.sessionData = undefined;
         this.sessionId = undefined;
+        this.qrHref = '';
+        this.qrShortenPending = false;
+        this.lastShortenRaw = null;
         this.socket.close(1000, 'Client stopped the connection');
     }
 
@@ -404,13 +421,48 @@ export class GatacaQRWS {
         return this.sessionData ? Promise.resolve(this.sessionData) : Promise.reject(new Error('No successful login'));
     }
 
-    getLink(): string {
+    private buildRawLink(): string {
         if (this.v === '2' && this.qrRole == QR_ROLE_CONNECT) {
-            return this.authenticationRequest;
+            return this.authenticationRequest ?? '';
         }
         const authRequestEncoded = '?dl=' + base64UrlEncode(this.authenticationRequest);
 
         return DEEP_LINK_PREFIX + authRequestEncoded;
+    }
+
+    private async refreshQrHref(): Promise<void> {
+        const raw = this.buildRawLink();
+        if (!raw?.trim()) {
+            this.qrShortenPending = false;
+            return;
+        }
+        if (raw === this.lastShortenRaw && this.qrHref?.trim()) {
+            this.qrShortenPending = false;
+            return;
+        }
+        if (this.qrShortenPending && raw === this.lastShortenRaw && !this.qrHref?.trim()) {
+            return;
+        }
+
+        const gen = ++this.qrRefreshGeneration;
+        this.lastShortenRaw = raw;
+        try {
+            const shortened = await shortenUrlIfPossible(raw);
+            const now = this.buildRawLink();
+            if (now === raw) {
+                this.qrHref = shortened;
+            } else if (!this.qrHref?.trim()) {
+                this.qrHref = now;
+            }
+        } finally {
+            if (gen === this.qrRefreshGeneration) {
+                this.qrShortenPending = false;
+            }
+        }
+    }
+
+    getLink(): string {
+        return this.qrHref || this.buildRawLink();
     }
 
     renderQRSection() {
@@ -418,7 +470,7 @@ export class GatacaQRWS {
             case RESULT_STATUS.NOT_STARTED:
                 return this.renderRetryButton();
             case RESULT_STATUS.ONGOING:
-                return this.renderQR(this.getLink(), true);
+                return this.qrShortenPending || !this.qrHref?.trim() ? this.renderQrLoadingSlot() : this.renderQR(this.getLink(), true, undefined, !!this.qrHref?.trim());
             case RESULT_STATUS.EXPIRED:
                 return this.renderRetryButton(this.qrCodeExpiredLabel);
             case RESULT_STATUS.FAILED:
@@ -426,10 +478,12 @@ export class GatacaQRWS {
             case RESULT_STATUS.SUCCESS:
                 return this.renderSuccess();
             case RESULT_STATUS.READ:
-                return this.renderReadQR({
-                    title: this?.readQrTitle,
-                    description: this?.readQrDescription
-                });
+                return this.qrShortenPending || !this.qrHref?.trim()
+                    ? this.renderQrLoadingSlot()
+                    : this.renderReadQR({
+                          title: this?.readQrTitle,
+                          description: this?.readQrDescription
+                      });
         }
     }
 
@@ -445,23 +499,40 @@ export class GatacaQRWS {
                 clickInsideBoxLabel={this?.clickInsideBoxLabel}
                 refreshQrLabel={this?.refreshQrLabel}
                 scanQrLabel={this?.scanQrLabel}
-                waitingStartSessionLabel={this?.waitingStartSessionLabel}
                 display={this.display.bind(this)}
-                renderRetryQR={this.renderRetryQR.bind(this)}
             />
         );
     }
 
     renderReadQR(readQrMessages?: {title; description}) {
-        return <ReadQR modalWidth={this?.modalWidth} readQrMessages={readQrMessages} url={this.getLink()} sizeQR={this?.qrSize ? this?.qrSize - 50 : undefined} renderQR={this.renderQR.bind(this)} />;
+        const linkReady = !!this.qrHref?.trim();
+        return (
+            <ReadQR
+                modalWidth={this?.modalWidth}
+                readQrMessages={readQrMessages}
+                url={this.getLink()}
+                sizeQR={this?.qrSize ? this?.qrSize - 50 : undefined}
+                renderQR={(url, useLogo, size) => this.renderQR(url, useLogo, size, linkReady)}
+            />
+        );
     }
 
-    renderQR(value: string, useLogo?: boolean, sizeQR?: number) {
-        return <QR value={value} qrType={this.qrType} useLogo={useLogo && this.logoSize !== 0} size={sizeQR || this?.qrSize || undefined} logoSrc={this?.logoSrc} />;
+    renderQR(value: string, useLogo?: boolean, sizeQR?: number, linkReady: boolean = true) {
+        return <QR value={value} qrType={this.qrType} useLogo={useLogo && this.logoSize !== 0} size={sizeQR || this?.qrSize || undefined} logoSrc={this?.logoSrc} linkReady={linkReady} />;
     }
 
-    renderRetryQR(value: string, useLogo?: boolean) {
-        return <QR value={value} qrType={this.qrType} useLogo={useLogo && this.logoSize !== 0} size={this?.qrSize ? this?.qrSize - 50 : undefined} logoSrc={this?.logoSrc} />;
+    renderQrLoadingSlot() {
+        const s = this.qrSize || 300;
+        return (
+            <div
+                class="qr-loading-slot"
+                style={{
+                    width: s + 'px',
+                    height: s + 'px',
+                    margin: '0 auto'
+                }}
+            />
+        );
     }
 
     render() {

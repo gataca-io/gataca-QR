@@ -8,10 +8,25 @@ type IQRProps = {
     logoSrc?: string;
     qrType?: DrawType;
     size?: number;
+    linkReady?: boolean;
 };
 
 export const QR: React.FC<IQRProps> = (props) => {
-    const {value, useLogo, logoSrc, size, qrType} = props;
+    const {value, useLogo, logoSrc, size, qrType, linkReady = true} = props;
+    const s = size ?? 256;
+
+    if (!linkReady) {
+        return (
+            <div
+                class="qr-loading-slot"
+                style={{
+                    width: s + 'px',
+                    height: s + 'px',
+                    margin: '0 auto'
+                }}
+            />
+        );
+    }
 
     return <gataca-qrdisplay qrData={value} rounded={true} size={size} qrType={qrType} logo-size={useLogo ? 0.33 : 0} logo-src={logoSrc} />;
 };
