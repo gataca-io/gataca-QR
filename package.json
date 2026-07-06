@@ -1,6 +1,6 @@
 {
   "name": "@gataca/qr",
-  "version": "4.1.0",
+  "version": "4.2.1",
   "description": "Gataca component to display presentation requests in QR",
   "author": "Gataca <it@gataca.io>",
   "licenses": [

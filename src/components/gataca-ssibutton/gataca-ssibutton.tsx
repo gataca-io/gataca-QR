@@ -19,6 +19,7 @@ const DEFAULT_POLLING_FREQ = 3;
 })
 export class GatacaSSIButton {
     qr: GatacaQR;
+    private dcapiCallInProgress: boolean = false;
 
     private qrElement!: HTMLGatacaQrElement;
 
@@ -354,8 +355,7 @@ export class GatacaSSIButton {
         const protocols = ['org-iso-mdoc', 'openid4vp', 'openid4vci'];
         //@ts-ignore
         const supportedProtocols = protocols.filter(window.DigitalCredential.userAgentAllowsProtocol);
-        console.log(supportedProtocols, protocols);
-        return true;
+        return supportedProtocols.length > 0;
     }
 
     /**
@@ -512,8 +512,7 @@ export class GatacaSSIButton {
                                 this.qrElement?.stop();
                             }
                         }, 0);
-                    }}
-                >
+                    }}>
                     <img src={PHONE_ICON} class="buttonImg" alt={this.buttonText} />
                     <span>{this.buttonText}</span>
                 </button>
@@ -575,8 +574,7 @@ export class GatacaSSIButton {
                         this.gatacaButtonPushed.emit();
                         executeRedirection();
                     }}
-                    disabled={loading}
-                >
+                    disabled={loading}>
                     <img src={PHONE_ICON} class="buttonImg" alt={this.buttonText} />
                     <span>{this.buttonText}</span>
                 </button>
@@ -594,19 +592,34 @@ export class GatacaSSIButton {
                     'Content-Type': 'application/json'
                 }
             });
-            const jwt = await response.json();
+            const rawResponse = await response.text();
+            let jwt = rawResponse;
+            try {
+                const parsedResponse = JSON.parse(rawResponse);
+                if (typeof parsedResponse === 'string') {
+                    jwt = parsedResponse;
+                } else if (parsedResponse?.jwt) {
+                    jwt = parsedResponse.jwt;
+                }
+            } catch (error) {
+                console.log('[DCAPI] Raw response is likely already the compact JWT string');
+            }
+
             const parts = jwt.split('.');
+            if (parts.length < 3) {
+                throw new Error('[DCAPI] Invalid JWT format from request_uri');
+            }
             const base64 = parts[1].replace(/-/g, '+').replace(/_/g, '/');
             const decoded = window.atob(base64);
             let parsed = JSON.parse(decoded);
             parsed.response_mode = 'dc_api';
             return parsed;
         }
+        throw new Error('[DCAPI] authenticationRequest does not contain request_uri');
     };
 
-    renderDCAPIButton(isAndroid: boolean, isIos: boolean) {
+    renderDCAPIButton() {
         let loading = false;
-        console.log('Maybe act different', isAndroid, isIos);
 
         const handleLoading = (isLoading: boolean) => {
             loading = isLoading;
@@ -616,6 +629,10 @@ export class GatacaSSIButton {
         };
 
         const executeDCAPICall = async () => {
+            if (this.dcapiCallInProgress) {
+                return;
+            }
+            this.dcapiCallInProgress = true;
             handleLoading(true);
 
             try {
@@ -632,13 +649,15 @@ export class GatacaSSIButton {
                         ]
                     }
                 });
-                if (credentialResponse.constructor.name == 'DigitalCredential') {
+                if (!credentialResponse) {
                     console.log('Digital Credential - Response Data: ' + credentialResponse);
                 }
                 //@ts-ignore
                 await this.fillSession(request, credentialResponse?.data);
             } catch (error) {
                 this.stop();
+            } finally {
+                this.dcapiCallInProgress = false;
                 handleLoading(false);
             }
         };
@@ -651,8 +670,7 @@ export class GatacaSSIButton {
                         this.gatacaButtonPushed.emit();
                         executeDCAPICall();
                     }}
-                    disabled={loading}
-                >
+                    disabled={loading}>
                     <img src={PHONE_ICON} class="buttonImg" alt={this.buttonDCAPIText} />
                     <span>{this.buttonDCAPIText}</span>
                 </button>
@@ -674,10 +692,9 @@ export class GatacaSSIButton {
         return (
             <div>
                 <div class="buttonContainer">
-                    {isMobile && this.v === '3' ? this.renderMobileButton(isAndroid, isIos) : this.renderDesktopButton()}
-                    {this.open && (!isMobile || this.v === '3') && this.renderModal()}
+                    {isMobile && this.v === '3' ? (displayDCApi ? this.renderDCAPIButton() : this.renderMobileButton(isAndroid, isIos)) : this.renderDesktopButton()}
+                    {this.open && !displayDCApi && (!isMobile || this.v === '3') && this.renderModal()}
                 </div>
-                {displayDCApi /** && isMobile */ && <div class="buttonContainer">{this.renderDCAPIButton(isAndroid, isIos)}</div>}
             </div>
         );
     }
