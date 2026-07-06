@@ -594,9 +594,6 @@ export class GatacaSSIButton {
             });
             const rawResponse = await response.text();
             let jwt = rawResponse;
-
-            // Some providers return the JWT as plain text, others wrap it in JSON.
-            // Support both to avoid JSON parse errors in DCAPI flow.
             try {
                 const parsedResponse = JSON.parse(rawResponse);
                 if (typeof parsedResponse === 'string') {
@@ -604,8 +601,8 @@ export class GatacaSSIButton {
                 } else if (parsedResponse?.jwt) {
                     jwt = parsedResponse.jwt;
                 }
-            } catch (_e) {
-                // Raw response is likely already the compact JWT string.
+            } catch (error) {
+                console.log('[DCAPI] Raw response is likely already the compact JWT string');
             }
 
             const parts = jwt.split('.');
@@ -653,7 +650,7 @@ export class GatacaSSIButton {
                     }
                 });
                 if (!credentialResponse) {
-                    throw new Error('[DCAPI] Empty credential response from navigator.credentials.get');
+                    console.log('Digital Credential - Response Data: ' + credentialResponse);
                 }
                 //@ts-ignore
                 await this.fillSession(request, credentialResponse?.data);
