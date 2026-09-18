@@ -86,6 +86,60 @@ export type QRConfig = (QRLogin & QRButton) & {
 
 const GATACA_SHORTEN_API = 'https://links.gataca.io/api/v1/short';
 
+/** Schemes accepted before assigning window.location. */
+export const ALLOWED_APP_REDIRECT_PROTOCOLS: readonly string[] = [
+    'openid',
+    'openid-vc',
+    'openid-vp',
+    'openid4vp',
+    'openid4vci',
+    'openid-credential-offer',
+    'mdoc',
+    'org-iso-mdoc',
+    'gataca',
+    'eudi-openid4vp',
+    'oidc4vp',
+    'didsiop',
+    'gatcvp',
+    'oidc4vci',
+    'gatcvci',
+    'did',
+    'sbx'
+];
+
+const ALLOWED_APP_REDIRECT_PROTOCOL_SET = new Set(ALLOWED_APP_REDIRECT_PROTOCOLS);
+
+function extractRedirectProtocol(url?: string | null): string | undefined {
+    if (typeof url !== 'string') {
+        return undefined;
+    }
+    const trimmed = url.trim();
+    if (!trimmed || /[\u0000-\u001F\u007F\\]/.test(trimmed)) {
+        return undefined;
+    }
+    const match = /^([a-z][a-z0-9+.-]*):/i.exec(trimmed);
+    return match?.[1]?.toLowerCase();
+}
+
+export function isAllowedAppRedirect(url?: string | null): boolean {
+    const protocol = extractRedirectProtocol(url);
+    return !!protocol && ALLOWED_APP_REDIRECT_PROTOCOL_SET.has(protocol);
+}
+
+export function isAllowedNavigationRedirect(url?: string | null): boolean {
+    const protocol = extractRedirectProtocol(url);
+    return protocol === 'https' || isAllowedAppRedirect(url);
+}
+
+export function assignWindowLocationIfAllowed(url?: string | null, allowHttps: boolean = false): boolean {
+    const allowed = allowHttps ? isAllowedNavigationRedirect(url) : isAllowedAppRedirect(url);
+    if (!allowed || typeof url !== 'string') {
+        return false;
+    }
+    window.location.href = url.trim();
+    return true;
+}
+
 function extractShortUrlFromResponse(body: unknown): string | null {
     if (!body || typeof body !== 'object') {
         return null;

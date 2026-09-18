@@ -2,7 +2,7 @@ import {Component, Event, EventEmitter, h, Method, Prop, State} from '@stencil/c
 import '../gataca-qrdisplay/gataca-qrdisplay';
 
 import {DrawType} from 'qr-code-styling';
-import {RESULT_STATUS} from '../../utils/utils';
+import {assignWindowLocationIfAllowed, RESULT_STATUS} from '../../utils/utils';
 import {GatacaQR, qrStyle} from '../gataca-qr/gataca-qr';
 
 const PHONE_ICON =
@@ -466,7 +466,7 @@ export class GatacaSSIButton {
         let detected = false;
 
         if (appScheme?.length) {
-            window.location.href = appScheme;
+            assignWindowLocationIfAllowed(appScheme, true);
         }
 
         const waitTimeToCheckApp = this.checkAppTimeout * 1000;
