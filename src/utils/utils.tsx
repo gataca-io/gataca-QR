@@ -86,9 +86,8 @@ export type QRConfig = (QRLogin & QRButton) & {
 
 const GATACA_SHORTEN_API = 'https://links.gataca.io/api/v1/short';
 
-/** URL schemes from wallet `QrResolver` before assigning window.location. */
+/** URL schemes before assigning window.location. */
 export const ALLOWED_APP_REDIRECT_PROTOCOLS: readonly string[] = [
-    // requrl.protocol
     'openid-gatc-vp',
     'openid-vp',
     'openid4vp',
@@ -97,7 +96,6 @@ export const ALLOWED_APP_REDIRECT_PROTOCOLS: readonly string[] = [
     'openid-gatc-credential-offer',
     'haip-vci',
     'openid-credential-offer',
-    // DC API constructed URL
     'digital-credentials'
 ];
 
