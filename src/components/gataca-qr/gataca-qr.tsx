@@ -1,7 +1,7 @@
 import {Component, Event, EventEmitter, h, Method, Prop, State} from '@stencil/core';
 import {DrawType} from 'qr-code-styling';
 import logoGataca from '../../assets/images/logo_gataca.svg';
-import {base64UrlEncode, checkMobile, RESULT_STATUS, shortenUrlIfPossible} from '../../utils/utils';
+import {assignWindowLocationIfAllowed, base64UrlEncode, checkMobile, RESULT_STATUS, shortenUrlIfPossible} from '../../utils/utils';
 import '../gataca-qrdisplay/gataca-qrdisplay';
 import {QR} from './components/qr/QR';
 import {ReadQR} from './components/readQR/ReadQR';
@@ -345,7 +345,7 @@ export class GatacaQR {
                 }
             });
         if (checkMobile() && this.dynamicLink) {
-            window.location.href = this.getLink();
+            assignWindowLocationIfAllowed(this.getLink(), true);
         }
     }
 
@@ -527,7 +527,8 @@ export class GatacaQR {
                     }}
                     onClick={(event) => {
                         event.stopPropagation();
-                    }}>
+                    }}
+                >
                     <div class="modal-window__content">
                         <div class={`qrTitleContainer ${this.hideModalTexts ? 'hidenText' : ''}`}>
                             <p class="qrTitle modalText" style={{color: this.modalTitleColor || '#1e1e20'}}>
@@ -548,7 +549,8 @@ export class GatacaQR {
                             style={{
                                 width: this.modalWidth.toString() + 'px',
                                 height: this.modalWidth ? this.modalWidth?.toString() + 'px' : ''
-                            }}>
+                            }}
+                        >
                             {this.renderQRSection()}
                         </div>
                     </div>

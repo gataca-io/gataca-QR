@@ -2,7 +2,7 @@ import {Component, Event, EventEmitter, h, Listen, Method, Prop, State} from '@s
 import logoGataca from '../../assets/images/logo_gataca.svg';
 import '../gataca-qrdisplay/gataca-qrdisplay';
 
-import {base64UrlEncode, checkMobile, RESULT_STATUS, shortenUrlIfPossible, WSResponse} from '../../utils/utils';
+import {assignWindowLocationIfAllowed, base64UrlEncode, checkMobile, RESULT_STATUS, shortenUrlIfPossible, WSResponse} from '../../utils/utils';
 import {Success} from './components/success/Success';
 import {RetryButton} from './components/retryButton/RetryButton';
 import {QR} from './components/qr/QR';
@@ -352,7 +352,7 @@ export class GatacaQRWS {
         };
 
         if (checkMobile() && this.dynamicLink) {
-            window.location.href = this.getLink();
+            assignWindowLocationIfAllowed(this.getLink(), true);
         }
     }
 
