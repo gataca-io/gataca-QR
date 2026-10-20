@@ -615,8 +615,8 @@ export class GatacaSSIButton {
                 }
                 const authRequest = await this.getAuthRequest();
                 const prepared = await buildOpenId4VpDcApiCredentialGetRequest(authRequest);
-                //@ts-ignore Digital Credentials API
                 const credentialResponse = await navigator.credentials.get({
+                    // @ts-ignore Digital Credentials API is not in CredentialRequestOptions yet
                     digital: {requests: [prepared.digitalRequest]}
                 });
                 //@ts-ignore DigitalCredential
