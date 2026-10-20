@@ -19,7 +19,8 @@ export const Success: React.FC<ISuccessProps> = (props) => {
             class={'success'}
             style={{
                 height: modalHeight ? modalHeight?.toString() + 'px' : '300px'
-            }}>
+            }}
+        >
             <img src={successIcon} height={52} width={52}></img>
             <p class="successMsg" style={colorStyle}>
                 {successLoginLabel}

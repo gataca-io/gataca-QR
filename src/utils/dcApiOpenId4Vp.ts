@@ -29,8 +29,8 @@ export type OpenId4VpDcApiPrepareResult = {
     fillSessionRequest: string;
 };
 
-/** Parse Connect authentication_request (openid4vp://?client_id=…&request_uri=…). */
-export function buildOpenId4VpDcApiCredentialGetRequest(authenticationRequestUrl: string): OpenId4VpDcApiPrepareResult {
+/** Signed Appendix A.3.2 (request_uri only). Not used as primary: Gataca Wallet DC API needs inline auth request claims for DCQL matching. */
+export function buildSignedOpenId4VpDcApiCredentialGetRequest(authenticationRequestUrl: string): OpenId4VpDcApiPrepareResult {
     const url = new URL(authenticationRequestUrl);
     const requestUri = url.searchParams.get('request_uri');
     const clientId = url.searchParams.get('client_id');
@@ -47,6 +47,23 @@ export function buildOpenId4VpDcApiCredentialGetRequest(authenticationRequestUrl
                 request_uri_method: requestUriMethod
             }
         },
+        fillSessionRequest: authenticationRequestUrl
+    };
+}
+
+/**
+ * Primary Connect + Gataca Wallet path: fetch signed JWT from request_uri, pass claims inline (unsigned).
+ * Preserves response_mode (dc_api vs dc_api.jwt) from Connect.
+ */
+export async function buildOpenId4VpDcApiCredentialGetRequest(authenticationRequestUrl: string): Promise<OpenId4VpDcApiPrepareResult> {
+    const url = new URL(authenticationRequestUrl);
+    const requestUri = url.searchParams.get('request_uri');
+    if (!requestUri) {
+        throw new Error('OpenID4VP DC API: authentication request must include request_uri');
+    }
+    const digitalRequest = await buildUnsignedDigitalRequestFromRequestUri(requestUri);
+    return {
+        digitalRequest,
         fillSessionRequest: authenticationRequestUrl
     };
 }

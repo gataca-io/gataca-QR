@@ -2,7 +2,7 @@ import {Component, Event, EventEmitter, h, Method, Prop, State} from '@stencil/c
 import '../gataca-qrdisplay/gataca-qrdisplay';
 
 import {DrawType} from 'qr-code-styling';
-import {assignWindowLocationIfAllowed, buildOpenId4VpDcApiCredentialGetRequest, buildUnsignedDigitalRequestFromRequestUri, RESULT_STATUS} from '../../utils/utils';
+import {assignWindowLocationIfAllowed, buildOpenId4VpDcApiCredentialGetRequest, RESULT_STATUS} from '../../utils/utils';
 import {GatacaQR, qrStyle} from '../gataca-qr/gataca-qr';
 
 const PHONE_ICON =
@@ -592,23 +592,6 @@ export class GatacaSSIButton {
         );
     }
 
-    private async requestDigitalCredentialOpenId4Vp(prepared: ReturnType<typeof buildOpenId4VpDcApiCredentialGetRequest>) {
-        const digital = {requests: [prepared.digitalRequest]};
-        try {
-            //@ts-ignore Digital Credentials API
-            return await navigator.credentials.get({digital});
-        } catch (signedError) {
-            const requestUri = prepared.digitalRequest.data.request_uri;
-            if (typeof requestUri !== 'string' || !requestUri) {
-                throw signedError;
-            }
-            console.warn('[DCAPI] signed openid4vp-v1 failed, trying unsigned inline JWT claims', signedError);
-            const unsignedRequest = await buildUnsignedDigitalRequestFromRequestUri(requestUri);
-            //@ts-ignore Digital Credentials API
-            return await navigator.credentials.get({digital: {requests: [unsignedRequest]}});
-        }
-    }
-
     renderDCAPIButton() {
         let loading = false;
 
@@ -631,8 +614,11 @@ export class GatacaSSIButton {
                     throw new Error('fillSession callback is required for DC API verification');
                 }
                 const authRequest = await this.getAuthRequest();
-                const prepared = buildOpenId4VpDcApiCredentialGetRequest(authRequest);
-                const credentialResponse = await this.requestDigitalCredentialOpenId4Vp(prepared);
+                const prepared = await buildOpenId4VpDcApiCredentialGetRequest(authRequest);
+                //@ts-ignore Digital Credentials API
+                const credentialResponse = await navigator.credentials.get({
+                    digital: {requests: [prepared.digitalRequest]}
+                });
                 //@ts-ignore DigitalCredential
                 const sessionData = credentialResponse?.data;
                 if (sessionData === undefined || sessionData === null) {
