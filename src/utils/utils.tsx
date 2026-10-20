@@ -84,6 +84,8 @@ export type QRConfig = (QRLogin & QRButton) & {
     useWs?: boolean;
 };
 
+export * from './dcApiOpenId4Vp';
+
 const GATACA_SHORTEN_API = 'https://links.gataca.io/api/v1/short';
 
 /** URL schemes before assigning window.location. */

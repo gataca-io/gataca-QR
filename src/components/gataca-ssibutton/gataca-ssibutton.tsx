@@ -2,7 +2,7 @@ import {Component, Event, EventEmitter, h, Method, Prop, State} from '@stencil/c
 import '../gataca-qrdisplay/gataca-qrdisplay';
 
 import {DrawType} from 'qr-code-styling';
-import {assignWindowLocationIfAllowed, RESULT_STATUS} from '../../utils/utils';
+import {assignWindowLocationIfAllowed, buildOpenId4VpDcApiCredentialGetRequest, buildUnsignedDigitalRequestFromRequestUri, RESULT_STATUS} from '../../utils/utils';
 import {GatacaQR, qrStyle} from '../gataca-qr/gataca-qr';
 
 const PHONE_ICON =
@@ -512,7 +512,8 @@ export class GatacaSSIButton {
                                 this.qrElement?.stop();
                             }
                         }, 0);
-                    }}>
+                    }}
+                >
                     <img src={PHONE_ICON} class="buttonImg" alt={this.buttonText} />
                     <span>{this.buttonText}</span>
                 </button>
@@ -521,8 +522,16 @@ export class GatacaSSIButton {
     }
 
     async getAuthRequest(): Promise<string> {
-        let {authenticationRequest} = await this.createSession();
-
+        const {sessionId, authenticationRequest} = await this.createSession();
+        if (sessionId) {
+            this.sessionId = sessionId;
+        }
+        if (authenticationRequest) {
+            this.authenticationRequest = authenticationRequest;
+        }
+        if (!authenticationRequest) {
+            throw new Error('createSession did not return authenticationRequest');
+        }
         return authenticationRequest;
     }
 
@@ -574,7 +583,8 @@ export class GatacaSSIButton {
                         this.gatacaButtonPushed.emit();
                         executeRedirection();
                     }}
-                    disabled={loading}>
+                    disabled={loading}
+                >
                     <img src={PHONE_ICON} class="buttonImg" alt={this.buttonText} />
                     <span>{this.buttonText}</span>
                 </button>
@@ -582,41 +592,22 @@ export class GatacaSSIButton {
         );
     }
 
-    getRequestFromUri = async (authRequest: string): Promise<{request: any; uri: string}> => {
-        const requrl = new URL(authRequest);
-        const requri = requrl.searchParams.get('request_uri');
-        if (requri) {
-            const response = await fetch(requri, {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            });
-            const rawResponse = await response.text();
-            let jwt = rawResponse;
-            try {
-                const parsedResponse = JSON.parse(rawResponse);
-                if (typeof parsedResponse === 'string') {
-                    jwt = parsedResponse;
-                } else if (parsedResponse?.jwt) {
-                    jwt = parsedResponse.jwt;
-                }
-            } catch (error) {
-                console.log('[DCAPI] Raw response is likely already the compact JWT string');
+    private async requestDigitalCredentialOpenId4Vp(prepared: ReturnType<typeof buildOpenId4VpDcApiCredentialGetRequest>) {
+        const digital = {requests: [prepared.digitalRequest]};
+        try {
+            //@ts-ignore Digital Credentials API
+            return await navigator.credentials.get({digital});
+        } catch (signedError) {
+            const requestUri = prepared.digitalRequest.data.request_uri;
+            if (typeof requestUri !== 'string' || !requestUri) {
+                throw signedError;
             }
-
-            const parts = jwt.split('.');
-            if (parts.length < 3) {
-                throw new Error('[DCAPI] Invalid JWT format from request_uri');
-            }
-            const base64 = parts[1].replace(/-/g, '+').replace(/_/g, '/');
-            const decoded = window.atob(base64);
-            let parsed = JSON.parse(decoded);
-            parsed.response_mode = 'dc_api';
-            return parsed;
+            console.warn('[DCAPI] signed openid4vp-v1 failed, trying unsigned inline JWT claims', signedError);
+            const unsignedRequest = await buildUnsignedDigitalRequestFromRequestUri(requestUri);
+            //@ts-ignore Digital Credentials API
+            return await navigator.credentials.get({digital: {requests: [unsignedRequest]}});
         }
-        throw new Error('[DCAPI] authenticationRequest does not contain request_uri');
-    };
+    }
 
     renderDCAPIButton() {
         let loading = false;
@@ -636,25 +627,28 @@ export class GatacaSSIButton {
             handleLoading(true);
 
             try {
-                const authRequest = await this.getAuthRequest();
-                let request = await this.getRequestFromUri(authRequest);
-                let credentialResponse = await navigator.credentials.get({
-                    //@ts-ignore
-                    digital: {
-                        requests: [
-                            {
-                                protocol: 'openid4vp-v1-unsigned',
-                                data: request
-                            }
-                        ]
-                    }
-                });
-                if (!credentialResponse) {
-                    console.log('Digital Credential - Response Data: ' + credentialResponse);
+                if (!this.fillSession) {
+                    throw new Error('fillSession callback is required for DC API verification');
                 }
-                //@ts-ignore
-                await this.fillSession(request, credentialResponse?.data);
+                const authRequest = await this.getAuthRequest();
+                const prepared = buildOpenId4VpDcApiCredentialGetRequest(authRequest);
+                const credentialResponse = await this.requestDigitalCredentialOpenId4Vp(prepared);
+                //@ts-ignore DigitalCredential
+                const sessionData = credentialResponse?.data;
+                if (sessionData === undefined || sessionData === null) {
+                    throw new Error('Digital Credential API returned no presentation data');
+                }
+                const outcome = await this.fillSession(prepared.fillSessionRequest, sessionData);
+                if (!outcome || outcome.result !== RESULT_STATUS.SUCCESS) {
+                    throw new Error('fillSession did not complete successfully');
+                }
             } catch (error) {
+                const err = error instanceof Error ? error : new Error(String(error));
+                console.error('[DCAPI] verification failed', err);
+                this.gatacaLoginFailed.emit(err);
+                if (this.errorCallback) {
+                    this.errorCallback(err);
+                }
                 this.stop();
             } finally {
                 this.dcapiCallInProgress = false;
@@ -670,7 +664,8 @@ export class GatacaSSIButton {
                         this.gatacaButtonPushed.emit();
                         executeDCAPICall();
                     }}
-                    disabled={loading}>
+                    disabled={loading}
+                >
                     <img src={PHONE_ICON} class="buttonImg" alt={this.buttonDCAPIText} />
                     <span>{this.buttonDCAPIText}</span>
                 </button>
