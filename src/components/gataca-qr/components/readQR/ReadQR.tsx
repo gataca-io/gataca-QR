@@ -30,7 +30,8 @@ export const ReadQR: React.FC<IReadQRProps> = (props) => {
                 backgroundColor: style?.bgColor,
                 color: style?.color,
                 border: style?.color ? `1px dashed ${style?.color}` : `1px dashed #a1a1a1`
-            }}>
+            }}
+        >
             <div id="notify" style={bgStyle}>
                 <AnimatedLoader color={style?.color} />
                 <p class="notify-text" style={color}>

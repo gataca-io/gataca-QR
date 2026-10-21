@@ -29,7 +29,8 @@ export const RetryButton: React.FC<IRetryButtonProps> = (props) => {
                 width: (modalWidth - 48).toString() + 'px',
                 height: modalWidth ? (modalWidth - 48)?.toString() + 'px' : '',
                 border: style?.color ? `1px dashed ${style?.color}` : `1px dashed #a1a1a1`
-            }}>
+            }}
+        >
             <div id="notify" onClick={() => display()} style={bgStyle}>
                 <RefreshIcon color={style?.color} height={24} width={24} />
 
@@ -53,7 +54,8 @@ export const RetryButton: React.FC<IRetryButtonProps> = (props) => {
                             width: (modalWidth - 48).toString() + 'px',
                             ...alertBgStyle,
                             border: `1px solid ${alertBorderColor}`
-                        }}>
+                        }}
+                    >
                         <img src={alertIcon} height={24} width={24}></img>
                         <p style={{color: style?.color ? style?.color : '#1e1e20'}}>{errorMessage}</p>
                     </div>
