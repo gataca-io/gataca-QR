@@ -2,7 +2,7 @@ import {Component, Event, EventEmitter, h, Method, Prop, State} from '@stencil/c
 import '../gataca-qrdisplay/gataca-qrdisplay';
 
 import {DrawType} from 'qr-code-styling';
-import {assignWindowLocationIfAllowed, buildOpenId4VpDcApiCredentialGetRequest, RESULT_STATUS} from '../../utils/utils';
+import {assignWindowLocationIfAllowed, buildOpenId4VpDcApiCredentialGetRequest, extractDigitalCredentialPresentationData, RESULT_STATUS} from '../../utils/utils';
 import {GatacaQR, qrStyle} from '../gataca-qr/gataca-qr';
 
 const PHONE_ICON =
@@ -619,8 +619,7 @@ export class GatacaSSIButton {
                     // @ts-ignore Digital Credentials API is not in CredentialRequestOptions yet
                     digital: {requests: [prepared.digitalRequest]}
                 });
-                //@ts-ignore DigitalCredential
-                const sessionData = credentialResponse?.data;
+                const sessionData = extractDigitalCredentialPresentationData(credentialResponse);
                 if (sessionData === undefined || sessionData === null) {
                     throw new Error('Digital Credential API returned no presentation data');
                 }

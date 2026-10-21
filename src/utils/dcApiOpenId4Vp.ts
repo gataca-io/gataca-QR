@@ -118,3 +118,37 @@ export async function buildUnsignedDigitalRequestFromRequestUri(requestUri: stri
         data: claims
     };
 }
+
+/**
+ * Read VP payload from navigator.credentials.get() (DigitalCredential).
+ * UAs differ: payload may be in .data, a JSON string, or nested protocol/data (Appendix A).
+ */
+export function extractDigitalCredentialPresentationData(credentialResponse: unknown): unknown {
+    if (credentialResponse === undefined || credentialResponse === null) {
+        return null;
+    }
+    if (typeof credentialResponse === 'string') {
+        return credentialResponse;
+    }
+    if (typeof credentialResponse !== 'object') {
+        return credentialResponse;
+    }
+    const record = credentialResponse as Record<string, unknown>;
+    if (record.data !== undefined && record.data !== null) {
+        return record.data;
+    }
+    if (record.response !== undefined || record.vp_token !== undefined || record.id_token !== undefined) {
+        return credentialResponse;
+    }
+    const toJSON = (record as {toJSON?: () => unknown}).toJSON;
+    if (typeof toJSON === 'function') {
+        const json = toJSON.call(credentialResponse);
+        if (json && typeof json === 'object') {
+            const j = json as Record<string, unknown>;
+            if (j.data !== undefined && j.data !== null) {
+                return j.data;
+            }
+        }
+    }
+    return credentialResponse;
+}

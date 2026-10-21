@@ -2,6 +2,7 @@ import {
     buildOpenId4VpDcApiCredentialGetRequest,
     buildSignedOpenId4VpDcApiCredentialGetRequest,
     decodeJwtPayloadClaims,
+    extractDigitalCredentialPresentationData,
     isDcApiJwtResponseMode,
     isDcApiResponseMode,
     OPENID4VP_DCAPI_SIGNED_PROTOCOL,
@@ -48,6 +49,12 @@ describe('dcApiOpenId4Vp', () => {
         expect(isDcApiResponseMode('dc_api.jwt')).toBe(true);
         expect(isDcApiJwtResponseMode('dc_api.jwt')).toBe(true);
         expect(isDcApiResponseMode('direct_post')).toBe(false);
+    });
+
+    it('extractDigitalCredentialPresentationData prefers .data', () => {
+        const jwe = 'eyJhbGciOiJFUzI1NiJ9.e30.sig';
+        expect(extractDigitalCredentialPresentationData({data: {response: jwe}})).toEqual({response: jwe});
+        expect(extractDigitalCredentialPresentationData(JSON.stringify({response: jwe}))).toBe(JSON.stringify({response: jwe}));
     });
 
     it('decodes JWT payload without mutating response_mode', () => {
