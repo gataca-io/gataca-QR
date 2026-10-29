@@ -9,6 +9,8 @@ export const DC_API_JWT_RESPONSE_MODE = 'dc_api.jwt';
 
 export const OPENID4VP_DCAPI_SIGNED_PROTOCOL = 'openid4vp-v1';
 export const OPENID4VP_DCAPI_UNSIGNED_PROTOCOL = 'openid4vp-v1-unsigned';
+/** Google Wallet Identity (sandbox/production RP) — JWS General JSON in `data`. */
+export const OPENID4VP_GOOGLE_SIGNED_PROTOCOL = 'openid4vp-v1-signed';
 
 export function isDcApiResponseMode(responseMode: unknown): boolean {
     return responseMode === DC_API_RESPONSE_MODE || responseMode === DC_API_JWT_RESPONSE_MODE;
@@ -116,6 +118,39 @@ export async function buildUnsignedDigitalRequestFromRequestUri(requestUri: stri
     return {
         protocol: OPENID4VP_DCAPI_UNSIGNED_PROTOCOL,
         data: claims
+    };
+}
+
+/** JWS compact → General JSON (Google Wallet: `data` must be an object, not a string). */
+export function compactJwsToGeneralJson(jws: string): Record<string, unknown> {
+    const parts = jws.trim().split('.');
+    if (parts.length !== 3) {
+        return {request: jws};
+    }
+    return {
+        protected: parts[0],
+        payload: parts[1],
+        signature: parts[2]
+    };
+}
+
+/**
+ * Google Wallet Identity web/Android DC API (Step B): openid4vp-v1-signed + JWS General JSON.
+ * Uses the same Connect authentication_request URL as Gataca (request_uri → fetch JWT).
+ */
+export async function buildGoogleWalletSignedOpenId4VpDcApiCredentialGetRequest(authenticationRequestUrl: string): Promise<OpenId4VpDcApiPrepareResult> {
+    const url = new URL(authenticationRequestUrl);
+    const requestUri = url.searchParams.get('request_uri');
+    if (!requestUri) {
+        throw new Error('Google Wallet DC API: authentication request must include request_uri');
+    }
+    const jwt = await fetchCompactJwtFromRequestUri(requestUri);
+    return {
+        digitalRequest: {
+            protocol: OPENID4VP_GOOGLE_SIGNED_PROTOCOL,
+            data: compactJwsToGeneralJson(jwt)
+        },
+        fillSessionRequest: authenticationRequestUrl
     };
 }
 

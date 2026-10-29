@@ -352,7 +352,7 @@ export class GatacaSSIButton {
         }
         //@ts-ignore
         if (typeof window.DigitalCredential === 'undefined') return false;
-        const protocols = ['org-iso-mdoc', 'openid4vp', 'openid4vci'];
+        const protocols = ['org-iso-mdoc', 'openid4vp', 'openid4vci', 'openid4vp-v1-signed', 'openid4vp-v1', 'openid4vp-v1-unsigned'];
         //@ts-ignore
         const supportedProtocols = protocols.filter(window.DigitalCredential.userAgentAllowsProtocol);
         return supportedProtocols.length > 0;
