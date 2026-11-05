@@ -98,9 +98,9 @@ export class GatacaSSIButton {
 
     /**
      * ***Mandatory***
-     * Create session function to generate a new Session
-     * Using v="3", it can provide just a session Id
-     * Using another version, it must provide also the authentication request. The session Id is the id of the presentation definition
+     * Create session function to generate a new Session.
+     * Must return sessionId and authenticationRequest (the Connect authorization request URL).
+     * The wallet deeplink and the Digital Credentials API both read authenticationRequest.
      */
     @Prop() createSession?: () => Promise<{
         sessionId: string;
@@ -109,7 +109,9 @@ export class GatacaSSIButton {
 
     /**
      * ***Mandatory if DC API***
-     * Sends the API response
+     * Posts the wallet presentation to the relying party backend.
+     * Arguments are the authentication request URL and the credential payload.
+     * Return result SUCCESS (1) when Connect accepts it. This path does not call successCallback.
      */
     @Prop() fillSession?: (request: any, sessionData?: any) => Promise<{result: RESULT_STATUS; data?: any}> = undefined;
 
@@ -289,7 +291,10 @@ export class GatacaSSIButton {
 
     /**
      * _[Optional]_
-     * String to show "waiting start session" label
+     * Use the W3C Digital Credentials API when the browser allows a supported protocol
+     * (org-iso-mdoc, openid4vp-v1-signed, openid4vp-v1-unsigned, openid4vp-v1, openid4vp).
+     * The protocol is chosen from the Connect request_uri body. See the package README.
+     * Requires fillSession. Default false.
      */
     @Prop() enableDcApi?: boolean = false;
 

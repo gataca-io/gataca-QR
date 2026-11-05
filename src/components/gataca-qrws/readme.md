@@ -1,6 +1,8 @@
 # Gataca-QRWS
 
-This component built using stencyl allows an easy integration to display a gataca QR to be read by the wallet.
+This component built using Stencil displays a Gataca QR for the wallet to scan.
+
+Load the package as described in the [package README](../../../readme.md). The script tags in the samples below are from older releases.
 
 It does the same but using WebSockets instead of polling
 

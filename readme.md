@@ -1,69 +1,111 @@
-# Gataca-QR Components
+# @gataca/qr
 
-Since V3, create session params in all components must be providing both an authentication request and a session Id. The case where it is not necessary has been eliminated.
+Web components for presenting a Gataca Connect or Certify session in a website. The package is published as [`@gataca/qr`](https://www.npmjs.com/package/@gataca/qr).
 
-Since V2, this library is now a list of components provided by Gataca to help the integration of its backends components into your front services.
+Your backend creates the session and reports its status. The components do not call Connect or Certify with your application credentials. They render the QR or the button and invoke the callbacks you pass in.
 
-To use this components (except for the QR Display), you will need an instance of any of the Gataca Components (Connect and Certify). You can also use it with onPremise instances over Gataca Studio.
+`createSession` must return both values:
 
-## Component List
+| Field | Meaning |
+| --- | --- |
+| `sessionId` | Id your backend uses to poll the session |
+| `authenticationRequest` | Authorization request URL returned by Connect (`client_id`, `request_uri`, and the rest of the query). The wallet link and the Digital Credentials API both need this URL |
 
-### [Gataca QRDisplay](src/components/gataca-qrdisplay/readme.md)
+`checkStatus` returns `{ result, data? }` with `result` from `RESULT_STATUS`: `0` ongoing, `1` success, `2` failed, `3` expired. `qrRole` is `connect` (verify) or `certify` (issue). There is no default.
 
-Just to display QRs with the Gataca format in any required component
+`v` defaults to `"3"`: mobile opens the Gataca deeplink, desktop opens the QR modal. `v="2"` uses `authenticationRequest` as the raw link, without the deeplink wrapper.
 
-### [Gataca QR](src/components/gataca-qr/readme.md)
+The v1 properties `sessionEndpoint`, `generationEndpoint`, `asButton`, and `getLoginToken()` are gone. Anything you want from the finished session (token, claims, headers) comes back in the `data` of `checkStatus`.
 
-Main component of the library. It has been reworked and simplified, while keeping all it's flexibility.
+## Install
 
-It displays a qr as an overflow panel to integrate into your site. It requires that you have a backend service integrated with Gataca Connect or Certify.
-![GatacaQR](GatacaQR.png)
+```bash
+npm install @gataca/qr
+```
 
-See its documentation for integration.
+Load the custom elements once, before rendering:
 
-### [Gataca QRWS](src/components/gataca-qrwsreadme.md)
+```html
+<script type="module" src="https://unpkg.com/@gataca/qr/dist/gatacaqr/gatacaqr.esm.js"></script>
+<script nomodule src="https://unpkg.com/@gataca/qr/dist/gatacaqr/gatacaqr.js"></script>
+```
 
-This is another version of the QR supporting WebSockets instead of a constant polling to your service.
-It enables a more updated an elegant architecture, but the complexity gets transported to your backend service which will need to handle the polling or support an Event-oriented architecture.
+In a bundler, call `defineCustomElements` from `@gataca/qr/loader` during startup. React wrappers live in `gatacaqr-react/`.
 
-### [Gataca SSIButton](src/components/gataca-ssibutton/readme.md)
+## Components
 
-This flavour supports the easy login button to integrate into your site instead of a panel.
-The integration and parameters are analogue to the GatacaQR.
+| Component | Role |
+| --- | --- |
+| [gataca-qrdisplay](src/components/gataca-qrdisplay/readme.md) | Renders a QR. No session logic. |
+| [gataca-qr](src/components/gataca-qr/readme.md) | QR panel. Polls with `checkStatus`. |
+| [gataca-qrws](src/components/gataca-qrws/readme.md) | Same panel, fed by a WebSocket instead of polling. Your backend owns the socket. Messages can be `WSResponse`, or any payload you translate into a `sessionMsg` event with that shape. |
+| [gataca-ssibutton](src/components/gataca-ssibutton/readme.md) | Button that opens the QR modal, a mobile deeplink, or the Digital Credentials API. Same session callbacks as `gataca-qr`. |
+| [gataca-ssibuttonws](src/components/gataca-ssibuttonws/readme.md) | Same button over the WebSocket QR. No Digital Credentials API. |
+| [gataca-autoqr](src/components/gataca-autoqr/readme.md) | Downloads a `QRConfig` and mounts one of the components above. The config still has to carry `createSession` / `checkStatus` (or the WebSocket handlers). |
 
-![GatacaSSIButton](SSIButton.png)
+Property tables for each tag are in those pages. Prefer this file for how a session is created and how the Digital Credentials API picks a protocol. `callbackServer` remains on the tags and is not used to create or poll the session.
 
-### [Gataca SSIButtonWS](src/components/gataca-ssibuttonws/readme.md)
+## Digital Credentials API
 
-Same as the SSI Button, but with Websockets :)
-The integration and parameters are analogue to the GatacaQR.
+Only `gataca-ssibutton`. Set `enable-dc-api="true"` and pass `fillSession`. The button replaces the QR modal when `DigitalCredential.userAgentAllowsProtocol` accepts at least one supported protocol, on mobile and on desktop. On desktop the browser draws its own cross-device dialog (the system QR); this package does not.
 
-### [Gataca AutoQR](src/components/gataca-autoqr/readme.md)
+The relying party does not choose the protocol. On click the button reads `request_uri` from `authenticationRequest`, fetches it, and matches the body to what the browser allows:
 
-````note
-WIP
-````
+| Connect `request_uri` body | Protocol sent to `navigator.credentials.get` |
+| --- | --- |
+| JSON with `deviceRequest` and `encryptionInfo` (ISO/IEC 18013-7 Annex C) | `org-iso-mdoc` |
+| Compact JWT with an `x5c` header, or `client_id` `x509_hash:` / `x509_san_dns:` | `openid4vp-v1-signed`, with `{ request: "<jwt>" }` |
+| Any other compact JWT (DID, OpenID Federation) | `openid4vp-v1-unsigned`, with the JWT claims inline |
 
-This component allows to simplify the integration by downloading all the configuration from a remote server.
-However, the integration steps and functions of the selected subcomponent need to be still implemented and provided to the component.
+If the browser rejects the preferred protocol, the button falls through in this order and then stops:
 
-## Updating from V1
+- Signed JWT: `openid4vp-v1-signed`, then `openid4vp-v1` (`client_id` + `request_uri`).
+- Other JWT: `openid4vp-v1-unsigned`, then `openid4vp-v1`, then `openid4vp-v1-signed`.
+- Last resort, only when the browser still advertises the unversioned name: `openid4vp`, reusing the `data` of the candidate that was just rejected.
 
-V1 was too flexible and confusing to integrate. We have removed all unuseful parameters to keep a more simplified process.
+A body that is neither Annex C JSON nor a compact JWT throws. It is not sent as the other protocol.
 
-### Breaking changes
+`fillSession(authenticationRequest, presentation)` receives the same authorization request URL and the wallet payload (`vp_token`, compact JWE, or the Annex C response, depending on the wallet). Post that payload to Connect and return `{ result: 1, data? }` on success. Any other result, a thrown error, or a user dismissing the dialog calls `errorCallback` and emits `gatacaLoginFailed`. A successful DC API call does not call `successCallback` or emit `gatacaLoginCompleted`; finish the login with the `data` you already have inside `fillSession`.
 
-* _sessionEndpoint_ and _generationEndpoint_ have been suppressed.
-* _createSession_ and _checkStatus_ functions are now mandatory. The returning parameters of those functions have now changed.
-* _qrRole_ is also mandatory. There is no default value. The possible values have changed to "**connect**" and "**certify**"
-* _asButton_ and _buttonText_ functionality has been suppressed. That is a different component.
-* _getLoginToken()_ has been suppressed. Any data that wants to be received from the session (from headers, body or whatever) must be provided by the _checkStatus_ result function.
-* _sessionTimeout_ can be removed by introducing a negative value. If removed, the QR will wait until the server provides an error by session expiration.
+Without `enable-dc-api`, or when the browser allows none of these protocols, the button keeps the QR modal (desktop) or the deeplink (mobile, `v="3"`).
 
-### Improvements
+```html
+<gataca-ssibutton
+  id="gataca-login"
+  qr-role="connect"
+  enable-dc-api="true"
+  v="3"
+></gataca-ssibutton>
+<script>
+  const button = document.getElementById("gataca-login");
 
-* Logs have been cleaned
-* Fix providing feedback on the process result and results either if it expires, fails or successes.
-* Stopping the component working upon disappearance
-* Autostart and autorefresh capabilities
-* Documentation and integration with the new provided components
+  button.createSession = async () => {
+    const session = await fetch("/api/verification/sessions", { method: "POST" }).then((r) => r.json());
+    return {
+      sessionId: session.id,
+      authenticationRequest: session.authenticationRequest,
+    };
+  };
+
+  button.checkStatus = async (sessionId) => {
+    const status = await fetch("/api/verification/sessions/" + sessionId).then((r) => r.json());
+    return { result: status.result, data: status.data };
+  };
+
+  button.fillSession = async (authenticationRequest, presentation) => {
+    const done = await fetch("/api/verification/presentations", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ authenticationRequest, presentation }),
+    }).then((r) => r.json());
+    return { result: done.ok ? 1 : 2, data: done.user };
+  };
+
+  button.successCallback = (data) => {
+    // QR / deeplink path only
+  };
+  button.errorCallback = (error) => {
+    console.error(error);
+  };
+</script>
+```
