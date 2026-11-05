@@ -2,7 +2,7 @@ import {Component, Event, EventEmitter, h, Method, Prop, State} from '@stencil/c
 import '../gataca-qrdisplay/gataca-qrdisplay';
 
 import {DrawType} from 'qr-code-styling';
-import {assignWindowLocationIfAllowed, buildOpenId4VpDcApiCredentialGetRequest, extractDigitalCredentialPresentationData, RESULT_STATUS} from '../../utils/utils';
+import {assignWindowLocationIfAllowed, buildDcApiCredentialGetRequest, DC_API_REQUEST_PROTOCOLS, extractDigitalCredentialPresentationData, RESULT_STATUS} from '../../utils/utils';
 import {GatacaQR, qrStyle} from '../gataca-qr/gataca-qr';
 
 const PHONE_ICON =
@@ -350,12 +350,9 @@ export class GatacaSSIButton {
         if (!this.enableDcApi) {
             return false;
         }
-        //@ts-ignore
-        if (typeof window.DigitalCredential === 'undefined') return false;
-        const protocols = ['org-iso-mdoc', 'openid4vp', 'openid4vci', 'openid4vp-v1-signed', 'openid4vp-v1', 'openid4vp-v1-unsigned'];
-        //@ts-ignore
-        const supportedProtocols = protocols.filter(window.DigitalCredential.userAgentAllowsProtocol);
-        return supportedProtocols.length > 0;
+        const dc = (window as Window & {DigitalCredential?: {userAgentAllowsProtocol?: (protocol: string) => boolean}}).DigitalCredential;
+        if (!dc || typeof dc.userAgentAllowsProtocol !== 'function') return false;
+        return DC_API_REQUEST_PROTOCOLS.some((protocol) => dc.userAgentAllowsProtocol(protocol));
     }
 
     /**
@@ -614,7 +611,7 @@ export class GatacaSSIButton {
                     throw new Error('fillSession callback is required for DC API verification');
                 }
                 const authRequest = await this.getAuthRequest();
-                const prepared = await buildOpenId4VpDcApiCredentialGetRequest(authRequest);
+                const prepared = await buildDcApiCredentialGetRequest(authRequest);
                 const credentialResponse = await navigator.credentials.get({
                     // @ts-ignore Digital Credentials API is not in CredentialRequestOptions yet
                     digital: {requests: [prepared.digitalRequest]}
@@ -672,7 +669,7 @@ export class GatacaSSIButton {
         return (
             <div>
                 <div class="buttonContainer">
-                    {isMobile && this.v === '3' ? (displayDCApi ? this.renderDCAPIButton() : this.renderMobileButton(isAndroid, isIos)) : this.renderDesktopButton()}
+                    {displayDCApi ? this.renderDCAPIButton() : isMobile && this.v === '3' ? this.renderMobileButton(isAndroid, isIos) : this.renderDesktopButton()}
                     {this.open && !displayDCApi && (!isMobile || this.v === '3') && this.renderModal()}
                 </div>
             </div>
