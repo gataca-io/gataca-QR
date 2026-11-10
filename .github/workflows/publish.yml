@@ -1,0 +1,71 @@
+name: Publish to npm
+
+# Publishes the version already specified in package.json. Does not increment the version.
+# If that version already exists in the registry, it issues a warning and terminates.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  publish:
+    name: Publish package
+    runs-on: ubuntu-latest
+    environment: npm
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Set up Node.js 18
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18.20.5
+
+      - name: Install Yarn
+        run: npm install -g yarn@1.22.22
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Build
+        run: yarn build
+
+      - name: Set up Node.js for trusted publishing
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22.14.0
+          registry-url: https://registry.npmjs.org
+
+      # Trusted publishing requires Node >= 22.14 and npm >= 11.5.1. 
+      # The build remains on Node 18, which is the version used by this package.
+      - name: Install npm CLI
+        run: npm install -g npm@11.21.0
+
+      - name: Check if this version is already published
+        id: version
+        run: |
+          NAME=$(node -p "require('./package.json').name")
+          VERSION=$(node -p "require('./package.json').version")
+          echo "name=$NAME" >> "$GITHUB_OUTPUT"
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          if npm view "${NAME}@${VERSION}" version >/dev/null 2>&1; then
+            echo "exists=true" >> "$GITHUB_OUTPUT"
+            echo "::warning title=Versión ya publicada::${NAME}@${VERSION} ya está en npm. No se publica nada."
+            {
+              echo "### Versión ya publicada"
+              echo ""
+              echo "\`${NAME}@${VERSION}\` ya está en npm. No se ha publicado nada."
+              echo "Sube la versión en \`package.json\` y vuelve a lanzar este workflow."
+            } >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "exists=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Publish to npm
+        if: steps.version.outputs.exists != 'true'
+        # --ignore-scripts avoid recompiling in Node 22: the build was already performed in Node 18.
+        run: npm publish --access public --ignore-scripts

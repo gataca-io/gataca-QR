@@ -46,6 +46,10 @@
     "typescript": "^5.8.3"
   },
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gataca-io/gataca-QR.git"
+  },
   "dependencies": {
     "@stencil/react-output-target": "^0.5.3",
     "pre-commit": "^1.2.2",
