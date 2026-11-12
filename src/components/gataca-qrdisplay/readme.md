@@ -1,6 +1,8 @@
 # Gataca-QR Display
 
-This component built using stencyl allows an easy integration to display a QR with the gataca styles
+This component built using Stencil displays a QR with the Gataca styles. It does not create or poll a session.
+
+Load the package as described in the [package README](../../../readme.md).
 
 Continuing with that example, you could integrate in any HTML using the following code
 

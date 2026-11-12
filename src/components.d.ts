@@ -25,7 +25,7 @@ export namespace Components {
          */
         configRepository: string;
         /**
-         * ***Mandatory*** Create session function to generate a new Session Using v="3", it can provide just a session Id Using another version, it must provide also the authentication request. The session Id is the id of the presentation definition
+         * ***Mandatory*** Create session function to generate a new Session Must return sessionId and authenticationRequest (the Connect authorization request URL). The wallet deeplink reads authenticationRequest. v="2" uses that URL as the raw link.
          */
         createSession?: () => Promise<{
             sessionId: string;
@@ -82,7 +82,7 @@ export namespace Components {
          */
         clickInsideBoxLabel?: string;
         /**
-         * ***Mandatory*** Create session function to generate a new Session Using v="3", it can provide just a session Id Using another version, it must provide also the authentication request. The session Id is the id of the presentation definition
+         * ***Mandatory*** Create session function to generate a new Session Must return sessionId and authenticationRequest (the Connect authorization request URL). The wallet deeplink reads authenticationRequest. v="2" uses that URL as the raw link.
          */
         createSession?: () => Promise<{
             sessionId: string;
@@ -467,7 +467,7 @@ export namespace Components {
          */
         clickInsideBoxLabel?: string;
         /**
-         * ***Mandatory*** Create session function to generate a new Session Using v="3", it can provide just a session Id Using another version, it must provide also the authentication request. The session Id is the id of the presentation definition
+         * ***Mandatory*** Create session function to generate a new Session Must return sessionId and authenticationRequest (the Connect authorization request URL). The wallet deeplink reads authenticationRequest. v="2" uses that URL as the raw link.
          */
         createSession?: () => Promise<{
             sessionId: string;
@@ -486,7 +486,7 @@ export namespace Components {
          */
         dynamicLink?: boolean;
         /**
-         * _[Optional]_ String to show "waiting start session" label
+         * _[Optional]_ Use the W3C Digital Credentials API when the browser allows a supported protocol (org-iso-mdoc, openid4vp-v1-signed, openid4vp-v1-unsigned, openid4vp-v1, openid4vp). The protocol is chosen from the Connect request_uri body. See the package README. Requires fillSession. Default false.
          */
         enableDcApi?: boolean;
         /**
@@ -498,7 +498,7 @@ export namespace Components {
          */
         failedLoginErrorLabel?: string;
         /**
-         * ***Mandatory if DC API*** Sends the API response
+         * ***Mandatory if DC API*** Posts the wallet presentation to the relying party backend. Arguments are the authentication request URL and the credential payload. Return result SUCCESS (1) when Connect accepts it. This path does not call successCallback.
          */
         fillSession?: (request: any, sessionData?: any) => Promise<{result: RESULT_STATUS1; data?: any}>;
         /**
@@ -748,7 +748,7 @@ declare namespace LocalJSX {
          */
         configRepository?: string;
         /**
-         * ***Mandatory*** Create session function to generate a new Session Using v="3", it can provide just a session Id Using another version, it must provide also the authentication request. The session Id is the id of the presentation definition
+         * ***Mandatory*** Create session function to generate a new Session Must return sessionId and authenticationRequest (the Connect authorization request URL). The wallet deeplink reads authenticationRequest. v="2" uses that URL as the raw link.
          */
         createSession?: () => Promise<{
             sessionId: string;
@@ -809,7 +809,7 @@ declare namespace LocalJSX {
          */
         clickInsideBoxLabel?: string;
         /**
-         * ***Mandatory*** Create session function to generate a new Session Using v="3", it can provide just a session Id Using another version, it must provide also the authentication request. The session Id is the id of the presentation definition
+         * ***Mandatory*** Create session function to generate a new Session Must return sessionId and authenticationRequest (the Connect authorization request URL). The wallet deeplink reads authenticationRequest. v="2" uses that URL as the raw link.
          */
         createSession?: () => Promise<{
             sessionId: string;
@@ -1186,7 +1186,7 @@ declare namespace LocalJSX {
          */
         clickInsideBoxLabel?: string;
         /**
-         * ***Mandatory*** Create session function to generate a new Session Using v="3", it can provide just a session Id Using another version, it must provide also the authentication request. The session Id is the id of the presentation definition
+         * ***Mandatory*** Create session function to generate a new Session Must return sessionId and authenticationRequest (the Connect authorization request URL). The wallet deeplink reads authenticationRequest. v="2" uses that URL as the raw link.
          */
         createSession?: () => Promise<{
             sessionId: string;
@@ -1205,7 +1205,7 @@ declare namespace LocalJSX {
          */
         dynamicLink?: boolean;
         /**
-         * _[Optional]_ String to show "waiting start session" label
+         * _[Optional]_ Use the W3C Digital Credentials API when the browser allows a supported protocol (org-iso-mdoc, openid4vp-v1-signed, openid4vp-v1-unsigned, openid4vp-v1, openid4vp). The protocol is chosen from the Connect request_uri body. See the package README. Requires fillSession. Default false.
          */
         enableDcApi?: boolean;
         /**
@@ -1217,7 +1217,7 @@ declare namespace LocalJSX {
          */
         failedLoginErrorLabel?: string;
         /**
-         * ***Mandatory if DC API*** Sends the API response
+         * ***Mandatory if DC API*** Posts the wallet presentation to the relying party backend. Arguments are the authentication request URL and the credential payload. Return result SUCCESS (1) when Connect accepts it. This path does not call successCallback.
          */
         fillSession?: (request: any, sessionData?: any) => Promise<{result: RESULT_STATUS1; data?: any}>;
         /**

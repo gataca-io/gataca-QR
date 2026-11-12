@@ -2,7 +2,7 @@ import {Component, Event, EventEmitter, h, Method, Prop, State} from '@stencil/c
 import '../gataca-qrdisplay/gataca-qrdisplay';
 
 import {DrawType} from 'qr-code-styling';
-import {assignWindowLocationIfAllowed, buildOpenId4VpDcApiCredentialGetRequest, extractDigitalCredentialPresentationData, RESULT_STATUS} from '../../utils/utils';
+import {assignWindowLocationIfAllowed, buildDcApiCredentialGetRequest, DC_API_REQUEST_PROTOCOLS, extractDigitalCredentialPresentationData, RESULT_STATUS} from '../../utils/utils';
 import {GatacaQR, qrStyle} from '../gataca-qr/gataca-qr';
 
 const PHONE_ICON =
@@ -98,9 +98,9 @@ export class GatacaSSIButton {
 
     /**
      * ***Mandatory***
-     * Create session function to generate a new Session
-     * Using v="3", it can provide just a session Id
-     * Using another version, it must provide also the authentication request. The session Id is the id of the presentation definition
+     * Create session function to generate a new Session.
+     * Must return sessionId and authenticationRequest (the Connect authorization request URL).
+     * The wallet deeplink and the Digital Credentials API both read authenticationRequest.
      */
     @Prop() createSession?: () => Promise<{
         sessionId: string;
@@ -109,7 +109,9 @@ export class GatacaSSIButton {
 
     /**
      * ***Mandatory if DC API***
-     * Sends the API response
+     * Posts the wallet presentation to the relying party backend.
+     * Arguments are the authentication request URL and the credential payload.
+     * Return result SUCCESS (1) when Connect accepts it. This path does not call successCallback.
      */
     @Prop() fillSession?: (request: any, sessionData?: any) => Promise<{result: RESULT_STATUS; data?: any}> = undefined;
 
@@ -289,7 +291,10 @@ export class GatacaSSIButton {
 
     /**
      * _[Optional]_
-     * String to show "waiting start session" label
+     * Use the W3C Digital Credentials API when the browser allows a supported protocol
+     * (org-iso-mdoc, openid4vp-v1-signed, openid4vp-v1-unsigned, openid4vp-v1, openid4vp).
+     * The protocol is chosen from the Connect request_uri body. See the package README.
+     * Requires fillSession. Default false.
      */
     @Prop() enableDcApi?: boolean = false;
 
@@ -350,12 +355,9 @@ export class GatacaSSIButton {
         if (!this.enableDcApi) {
             return false;
         }
-        //@ts-ignore
-        if (typeof window.DigitalCredential === 'undefined') return false;
-        const protocols = ['org-iso-mdoc', 'openid4vp', 'openid4vci'];
-        //@ts-ignore
-        const supportedProtocols = protocols.filter(window.DigitalCredential.userAgentAllowsProtocol);
-        return supportedProtocols.length > 0;
+        const dc = (window as Window & {DigitalCredential?: {userAgentAllowsProtocol?: (protocol: string) => boolean}}).DigitalCredential;
+        if (!dc || typeof dc.userAgentAllowsProtocol !== 'function') return false;
+        return DC_API_REQUEST_PROTOCOLS.some((protocol) => dc.userAgentAllowsProtocol(protocol));
     }
 
     /**
@@ -614,7 +616,7 @@ export class GatacaSSIButton {
                     throw new Error('fillSession callback is required for DC API verification');
                 }
                 const authRequest = await this.getAuthRequest();
-                const prepared = await buildOpenId4VpDcApiCredentialGetRequest(authRequest);
+                const prepared = await buildDcApiCredentialGetRequest(authRequest);
                 const credentialResponse = await navigator.credentials.get({
                     // @ts-ignore Digital Credentials API is not in CredentialRequestOptions yet
                     digital: {requests: [prepared.digitalRequest]}
@@ -672,7 +674,7 @@ export class GatacaSSIButton {
         return (
             <div>
                 <div class="buttonContainer">
-                    {isMobile && this.v === '3' ? (displayDCApi ? this.renderDCAPIButton() : this.renderMobileButton(isAndroid, isIos)) : this.renderDesktopButton()}
+                    {displayDCApi ? this.renderDCAPIButton() : isMobile && this.v === '3' ? this.renderMobileButton(isAndroid, isIos) : this.renderDesktopButton()}
                     {this.open && !displayDCApi && (!isMobile || this.v === '3') && this.renderModal()}
                 </div>
             </div>

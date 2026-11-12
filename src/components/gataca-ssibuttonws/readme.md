@@ -1,6 +1,8 @@
 # Gataca-SSIButtonWS
 
-This component built using stencyl allows an easy integration to display a "Quick SSI Access Button", with a similar to the current existing sign-in buttons for OAuth2 providers like Google, Twitter or Facebook. The display is identical to the simple [Gataca-SSI Button](../gataca-ssibutton/readme.md), but with a component using websockets underneath.
+This component built using Stencil displays a "Quick SSI Access" button. The display is identical to the simple [Gataca-SSI Button](../gataca-ssibutton/readme.md), but with a component using websockets underneath.
+
+Load the package as described in the [package README](../../../readme.md). The script tags in the samples below are from older releases. This button does not implement the Digital Credentials API.
 
 This component wraps the logic to display and hide a Gataca-QR component under a button. To configure and integrate it, you need to follow the same process as the base [Gataca-QRWS Component](../gataca-qrws/readme.md). It is the suitable option if you wish to display an SSI Button but allowing the use of WebSockets instead of polling.
 

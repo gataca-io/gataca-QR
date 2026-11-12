@@ -6,7 +6,14 @@ import {
     isDcApiJwtResponseMode,
     isDcApiResponseMode,
     OPENID4VP_DCAPI_SIGNED_PROTOCOL,
-    OPENID4VP_DCAPI_UNSIGNED_PROTOCOL
+    OPENID4VP_DCAPI_UNSIGNED_PROTOCOL,
+    OPENID4VP_GOOGLE_SIGNED_PROTOCOL,
+    buildGoogleWalletSignedOpenId4VpDcApiCredentialGetRequest,
+    buildDcApiCredentialGetRequest,
+    jwtRequestsSignedDcApiProtocol,
+    LEGACY_OPENID4VP_PROTOCOL,
+    ORG_ISO_MDOC_PROTOCOL,
+    selectOpenId4VpDcApiRequest
 } from './dcApiOpenId4Vp';
 
 describe('dcApiOpenId4Vp', () => {
@@ -66,5 +73,68 @@ describe('dcApiOpenId4Vp', () => {
         const claims = decodeJwtPayloadClaims(jwt);
         expect(claims.response_mode).toBe('dc_api.jwt');
         expect(claims.response_uri).toBe('https://enc.example/r');
+    });
+
+    it('buildGoogleWalletSignedOpenId4VpDcApiCredentialGetRequest uses openid4vp-v1-signed', async () => {
+        const jwt = 'aaa.bbb.ccc';
+        const requestUri = 'https://connect.example/request/gw';
+        const authUrl = `openid4vp://?client_id=x&request_uri=${encodeURIComponent(requestUri)}`;
+        const originalFetch = global.fetch;
+        global.fetch = jest.fn().mockResolvedValue({
+            ok: true,
+            text: async () => jwt
+        }) as typeof fetch;
+
+        const prepared = await buildGoogleWalletSignedOpenId4VpDcApiCredentialGetRequest(authUrl);
+        expect(prepared.digitalRequest.protocol).toBe(OPENID4VP_GOOGLE_SIGNED_PROTOCOL);
+        expect(prepared.digitalRequest.data).toEqual({request: jwt});
+
+        global.fetch = originalFetch;
+    });
+
+    it('buildDcApiCredentialGetRequest uses org-iso-mdoc when request_uri returns deviceRequest', async () => {
+        const requestUri = 'https://connect.example/request/iso';
+        const authUrl = `openid4vp://?client_id=x&request_uri=${encodeURIComponent(requestUri)}`;
+        const originalFetch = global.fetch;
+        global.fetch = jest.fn().mockResolvedValue({
+            ok: true,
+            text: async () => JSON.stringify({deviceRequest: 'dr', encryptionInfo: 'ei', response_uri: 'https://connect.example/authorization-responses/s1'})
+        }) as typeof fetch;
+
+        const prepared = await buildDcApiCredentialGetRequest(authUrl);
+        expect(prepared.digitalRequest.protocol).toBe(ORG_ISO_MDOC_PROTOCOL);
+        expect(prepared.digitalRequest.data).toEqual({deviceRequest: 'dr', encryptionInfo: 'ei'});
+        expect(prepared.fillSessionRequest).toBe(authUrl);
+
+        global.fetch = originalFetch;
+    });
+
+    function b64url(value: object): string {
+        return btoa(JSON.stringify(value)).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+    }
+
+    it('selects openid4vp-v1-signed when Connect embedded x5c', () => {
+        const jwt = `${b64url({alg: 'ES256', x5c: ['YQ==']})}.${b64url({response_mode: 'dc_api.jwt'})}.sig`;
+        const authUrl = 'openid4vp://?client_id=x509_hash:abc&request_uri=https%3A%2F%2Fconnect.example%2Frequest%2Fs1';
+        expect(jwtRequestsSignedDcApiProtocol(jwt)).toBe(true);
+        const selected = selectOpenId4VpDcApiRequest(jwt, authUrl, () => true);
+        expect(selected.protocol).toBe(OPENID4VP_GOOGLE_SIGNED_PROTOCOL);
+        expect(selected.data).toEqual({request: jwt});
+    });
+
+    it('falls back to openid4vp-v1 when the browser rejects the signed inline protocol', () => {
+        const jwt = `${b64url({alg: 'ES256', x5c: ['YQ==']})}.${b64url({client_id: 'x509_hash:abc'})}.sig`;
+        const authUrl = 'openid4vp://?client_id=x509_hash:abc&request_uri=https%3A%2F%2Fconnect.example%2Frequest%2Fs1&request_uri_method=GET';
+        const selected = selectOpenId4VpDcApiRequest(jwt, authUrl, (protocol) => protocol === OPENID4VP_DCAPI_SIGNED_PROTOCOL);
+        expect(selected.protocol).toBe(OPENID4VP_DCAPI_SIGNED_PROTOCOL);
+        expect(selected.data.request_uri).toBe('https://connect.example/request/s1');
+    });
+
+    it('uses the legacy openid4vp name only when no versioned protocol is allowed', () => {
+        const jwt = `eyJhbGciOiJIUzI1NiJ9.${b64url({response_mode: 'dc_api'})}.sig`;
+        const authUrl = 'openid4vp://?client_id=did:web:example&request_uri=https%3A%2F%2Fconnect.example%2Frequest%2Fs1';
+        const selected = selectOpenId4VpDcApiRequest(jwt, authUrl, (protocol) => protocol === LEGACY_OPENID4VP_PROTOCOL);
+        expect(selected.protocol).toBe(LEGACY_OPENID4VP_PROTOCOL);
+        expect(selected.data.response_mode).toBe('dc_api');
     });
 });
